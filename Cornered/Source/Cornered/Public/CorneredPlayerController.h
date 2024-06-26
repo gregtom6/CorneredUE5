@@ -11,6 +11,8 @@ class APlayerCharacter;
 class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
+class UCameraComponent;
+class UConfig_Character_General;
 /**
  *
  */
@@ -33,6 +35,9 @@ public:
 	UInputAction* ActionDrop;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 	TObjectPtr<UInputMappingContext> InputMappingContext;
+
+	UPROPERTY(EditAnywhere)
+		UConfig_Character_General* ConfigCharacter;
 
 protected:
 

@@ -6,6 +6,8 @@
 #include "PlayerCharacter.h"
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
+#include "Camera/CameraComponent.h"
+#include "Config_Character_General.h"
 
 void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	Super::OnPossess(aPawn);
@@ -64,7 +66,15 @@ void ACorneredPlayerController::HandleLook(const FInputActionValue& InputActionV
 	const FVector2D LookAxisVector = InputActionValue.Get<FVector2D>();
 
 	AddYawInput(LookAxisVector.X);
-	AddPitchInput(LookAxisVector.Y);
+
+	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
+	if (CameraComponent) {
+		FRotator CameraRotation = CameraComponent->GetComponentRotation();
+		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch + LookAxisVector.Y && CameraRotation.Pitch + LookAxisVector.Y < ConfigCharacter->HeadMaxRotY) {
+			CameraRotation.Pitch += LookAxisVector.Y;
+			CameraComponent->SetWorldRotation(CameraRotation);
+		}
+	}
 }
 
 void ACorneredPlayerController::HandleMovement(const FInputActionValue& InputActionValue) {

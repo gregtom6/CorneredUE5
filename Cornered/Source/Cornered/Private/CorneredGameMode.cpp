@@ -10,5 +10,11 @@ ACorneredGameMode::ACorneredGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+
+	static ConstructorHelpers::FClassFinder<APlayerController>PlayerControllerBPClass(TEXT("/Game/Data/Blueprints/BP_CorneredPlayerController"));
+	if (PlayerControllerBPClass.Class != nullptr)
+	{
+		PlayerControllerClass = PlayerControllerBPClass.Class;
+	}
 }
 

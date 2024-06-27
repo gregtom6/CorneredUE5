@@ -20,6 +20,7 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 
 	if (ActionMovement) {
 		EnhancedInputComponent->BindAction(ActionMovement, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleMovement);
+		EnhancedInputComponent->BindAction(ActionMovement, ETriggerEvent::Completed, this, &ACorneredPlayerController::MovementCompleted);
 	}
 
 	if (ActionLook) {
@@ -84,5 +85,27 @@ void ACorneredPlayerController::HandleMovement(const FInputActionValue& InputAct
 	if (PlayerCharacter) {
 		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(), MovementVector.X);
 		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(), -MovementVector.Y);
+
+		if (!FMath::IsNearlyZero(MovementVector.X)) {
+			MovementState = EMovementState::Strafing;
+		}
+		else if (!FMath::IsNearlyZero(MovementVector.Y)) {
+			MovementState = EMovementState::Walking;
+		}
 	}
+}
+
+void ACorneredPlayerController::MovementCompleted(const FInputActionValue& InputActionValue) {
+
+	const FVector2D MovementVector = InputActionValue.Get<FVector2D>();
+
+	if (PlayerCharacter) {
+		if (FMath::IsNearlyZero(MovementVector.X) && FMath::IsNearlyZero(MovementVector.Y)) {
+			MovementState = EMovementState::Standing;
+		}
+	}
+}
+
+EMovementState ACorneredPlayerController::GetMovementState() const {
+	return MovementState;
 }

@@ -13,6 +13,16 @@ class UInputMappingContext;
 struct FInputActionValue;
 class UCameraComponent;
 class UConfig_Character_General;
+
+UENUM(BlueprintType)
+enum class EMovementState : uint8 {
+	Standing,
+	Walking,
+	Strafing,
+
+	Count,
+};
+
 /**
  *
  */
@@ -39,12 +49,16 @@ public:
 	UPROPERTY(EditAnywhere)
 		UConfig_Character_General* ConfigCharacter;
 
+	UFUNCTION()
+		EMovementState GetMovementState() const;
+
 protected:
 
 	virtual void OnPossess(APawn*) override;
 	virtual void OnUnPossess() override;
 
 	void HandleMovement(const FInputActionValue& InputActionValue);
+	void MovementCompleted(const FInputActionValue& InputActionValue);
 	void HandleLook(const FInputActionValue& InputActionValue);
 	void HandleInteract();
 	void HandlePickup();
@@ -58,4 +72,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
 
+	UPROPERTY()
+		EMovementState MovementState;
 };

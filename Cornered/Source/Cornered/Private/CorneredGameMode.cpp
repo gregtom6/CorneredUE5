@@ -2,6 +2,7 @@
 
 
 #include "CorneredGameMode.h"
+#include <CorneredHud.h>
 
 ACorneredGameMode::ACorneredGameMode()
 {
@@ -15,6 +16,12 @@ ACorneredGameMode::ACorneredGameMode()
 	if (PlayerControllerBPClass.Class != nullptr)
 	{
 		PlayerControllerClass = PlayerControllerBPClass.Class;
+	}
+
+	static ConstructorHelpers::FClassFinder<ACorneredHud>CorneredHudBPClass(TEXT("/Game/Data/Blueprints/UI/BP_CorneredHud"));
+	if (CorneredHudBPClass.Class != nullptr)
+	{
+		HUDClass = CorneredHudBPClass.Class;
 	}
 }
 

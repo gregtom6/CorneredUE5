@@ -8,6 +8,7 @@
 #include "Picker.generated.h"
 
 class UInteractableDetector;
+class UPickable;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CORNERED_API UPicker : public USceneComponent

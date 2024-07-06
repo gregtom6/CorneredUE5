@@ -82,10 +82,10 @@ void UPicker::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponen
 }
 
 IIPickable* UPicker::GetPickedPickable() const {
-	return PickedPickable;
-	//return nullptr;
+	//return PickedPickable;
+	return nullptr;
 }
 
 void UPicker::RemovePickable() {
-	PickedPickable = nullptr;
+	//PickedPickable = nullptr;
 }

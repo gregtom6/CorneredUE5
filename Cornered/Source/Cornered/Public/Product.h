@@ -7,11 +7,16 @@
 #include "Product.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
-class CORNERED_API AProduct : public AIngredient
+class CORNERED_API AProduct : public AIngredient, public IEquippable
 {
 	GENERATED_BODY()
-	
+
+		UFUNCTION()
+		// Inherited via IEquippable
+		virtual void Equip() override;
+
+		virtual IEquippable* GetEquippable() const override;
 };

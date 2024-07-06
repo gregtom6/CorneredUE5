@@ -42,5 +42,5 @@ public:
 
 	bool WasPickedAnytime() const override;
 
-	IEquippable* GetEquippable() const override;
+	virtual IEquippable* GetEquippable() const;
 };

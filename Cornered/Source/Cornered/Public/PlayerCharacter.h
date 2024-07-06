@@ -9,6 +9,7 @@
 class UPlayerWeapon;
 class UInteractableDetector;
 class UPicker;
+class UEquipper;
 class UCameraComponent;
 class USkeletalMeshComponent;
 
@@ -40,6 +41,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UPicker> PickerComp;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UEquipper> EquipperComp;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UCameraComponent> CameraComp;

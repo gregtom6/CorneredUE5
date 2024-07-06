@@ -27,6 +27,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPickupInteractionHappenedDelegate);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDropInteractionHappenedDelegate);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEquipInteractionHappenedDelegate);
+
 /**
  *
  */
@@ -48,6 +50,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		UInputAction* ActionDrop;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
+		UInputAction* ActionEquip;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	UPROPERTY(EditAnywhere)
@@ -67,6 +71,7 @@ protected:
 	void HandleInteract();
 	void HandlePickup();
 	void HandleDrop();
+	void HandleEquip();
 
 private:
 
@@ -86,4 +91,7 @@ public:
 
 	UPROPERTY()
 		FDropInteractionHappenedDelegate DropHappenedInstance;
+
+	UPROPERTY()
+		FEquipInteractionHappenedDelegate EquipHappenedInstance;
 };

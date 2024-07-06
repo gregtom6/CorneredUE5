@@ -39,6 +39,10 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 		EnhancedInputComponent->BindAction(ActionDrop, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleDrop);
 	}
 
+	if (ActionEquip) {
+		EnhancedInputComponent->BindAction(ActionEquip, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleEquip);
+	}
+
 	UEnhancedInputLocalPlayerSubsystem* InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	InputSubsystem->ClearAllMappings();
 	InputSubsystem->AddMappingContext(InputMappingContext, 0);
@@ -60,6 +64,10 @@ void ACorneredPlayerController::HandlePickup() {
 
 void ACorneredPlayerController::HandleDrop() {
 	DropHappenedInstance.Broadcast();
+}
+
+void ACorneredPlayerController::HandleEquip() {
+	EquipHappenedInstance.Broadcast();
 }
 
 void ACorneredPlayerController::HandleLook(const FInputActionValue& InputActionValue) {

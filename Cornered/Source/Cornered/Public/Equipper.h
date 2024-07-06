@@ -4,47 +4,31 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "IPickable.h"
-#include "Picker.generated.h"
+#include "Equipper.generated.h"
 
-class UInteractableDetector;
+class UPicker;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class CORNERED_API UPicker : public USceneComponent
+class CORNERED_API UEquipper : public USceneComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UPicker();
+	UEquipper();
+
+	UPROPERTY()
+		TObjectPtr<UPicker> PickerComp;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
 public:	
-
-	UPROPERTY()
-		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
-
+	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	
-	IIPickable* GetPickedPickable() const;
-
-	UFUNCTION()
-		void RemovePickable();
-
 private:
-	
-	UPROPERTY()
-		bool bPickupDropHappenedInThisFrame;
-
-	IIPickable* PickedPickable;
-
 	UFUNCTION()
-		void PickupHappened();
-
-	UFUNCTION()
-		void DropHappened();
+		void EquipHappened();
 };

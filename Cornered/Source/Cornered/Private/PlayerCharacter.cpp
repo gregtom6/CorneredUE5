@@ -7,6 +7,7 @@
 #include <PlayerCharacterAnimInstance.h>
 #include "InteractableDetector.h"
 #include "Picker.h"
+#include "Equipper.h"
 #include "PlayerWeapon.h"
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
@@ -20,6 +21,7 @@ APlayerCharacter::APlayerCharacter()
 	PlayerWeaponComp = CreateDefaultSubobject<UPlayerWeapon>(TEXT("PlayerWeaponComp"));
 	InteractableDetectorComp = CreateDefaultSubobject<UInteractableDetector>(TEXT("InteractableDetectorComp"));
 	PickerComp = CreateDefaultSubobject<UPicker>(TEXT("PickerComp"));
+	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 
@@ -27,7 +29,7 @@ APlayerCharacter::APlayerCharacter()
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
-
+	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	
 }
 

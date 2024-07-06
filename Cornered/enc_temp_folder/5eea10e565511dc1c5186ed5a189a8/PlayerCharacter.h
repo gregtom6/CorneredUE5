@@ -43,4 +43,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UCameraComponent> CameraComp;
+
+	//UPROPERTY(EditAnywhere)
+		//TObjectPtr<USkeletalMeshComponent> SkeletalMesh;
 };

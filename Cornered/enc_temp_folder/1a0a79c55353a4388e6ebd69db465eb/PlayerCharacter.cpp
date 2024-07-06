@@ -23,6 +23,8 @@ APlayerCharacter::APlayerCharacter()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 
+	//SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
+
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);

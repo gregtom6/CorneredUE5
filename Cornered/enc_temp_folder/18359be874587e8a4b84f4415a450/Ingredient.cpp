@@ -46,8 +46,6 @@ void AIngredient::Pickup(AActor* Actor) {
 }
 
 void AIngredient::Drop() {
-	StaticMesh->SetPhysicsLinearVelocity(FVector::ZeroVector);
-	StaticMesh->SetPhysicsAngularVelocityInDegrees(FVector::ZeroVector);
 	StaticMesh->SetSimulatePhysics(true);
 }
 

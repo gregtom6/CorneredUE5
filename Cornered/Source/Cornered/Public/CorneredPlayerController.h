@@ -23,6 +23,10 @@ enum class EMovementState : uint8 {
 	Count,
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPickupInteractionHappenedDelegate);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDropInteractionHappenedDelegate);
+
 /**
  *
  */
@@ -36,15 +40,15 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		UInputAction* ActionMovement;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-	UInputAction* ActionLook;
+		UInputAction* ActionLook;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-	UInputAction* ActionInteract;
+		UInputAction* ActionInteract;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-	UInputAction* ActionPickup;
+		UInputAction* ActionPickup;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-	UInputAction* ActionDrop;
+		UInputAction* ActionDrop;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-	TObjectPtr<UInputMappingContext> InputMappingContext;
+		TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	UPROPERTY(EditAnywhere)
 		UConfig_Character_General* ConfigCharacter;
@@ -74,4 +78,12 @@ private:
 
 	UPROPERTY()
 		EMovementState MovementState;
+
+public:
+
+	UPROPERTY()
+		FPickupInteractionHappenedDelegate PickupHappenedInstance;
+
+	UPROPERTY()
+		FDropInteractionHappenedDelegate DropHappenedInstance;
 };

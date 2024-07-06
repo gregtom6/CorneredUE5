@@ -32,11 +32,11 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	}
 
 	if (ActionPickup) {
-		EnhancedInputComponent->BindAction(ActionPickup, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandlePickup);
+		EnhancedInputComponent->BindAction(ActionPickup, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandlePickup);
 	}
 
 	if (ActionDrop) {
-		EnhancedInputComponent->BindAction(ActionDrop, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleDrop);
+		EnhancedInputComponent->BindAction(ActionDrop, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleDrop);
 	}
 
 	UEnhancedInputLocalPlayerSubsystem* InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());

@@ -51,8 +51,6 @@ void UPicker::PickupHappened() {
 				Pickable->Pickup(GetOwner());
 				PickedPickable = Pickable;
 				bPickupDropHappenedInThisFrame = true;
-
-				UE_LOG(LogTemp, Warning, TEXT("pickup"));
 			}
 		}
 	}
@@ -64,8 +62,6 @@ void UPicker::DropHappened() {
 		PickedPickable->Drop();
 		PickedPickable = nullptr;
 		bPickupDropHappenedInThisFrame = true;
-
-		UE_LOG(LogTemp, Warning, TEXT("drop"));
 	}
 }
 
@@ -75,8 +71,5 @@ void UPicker::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponen
 
 	if (bPickupDropHappenedInThisFrame) {
 		bPickupDropHappenedInThisFrame = false;
-
-
-		UE_LOG(LogTemp, Warning, TEXT("falsera"));
 	}
 }

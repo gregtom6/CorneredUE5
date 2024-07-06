@@ -24,5 +24,20 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+	UFUNCTION()
+		bool ItWasValidHit();
+
+	UFUNCTION()
+		FHitResult GetHitResult();
+
+private:
+
+	UPROPERTY()
+		TObjectPtr<UWorld> CachedWorld;
+
+	UPROPERTY()
+		bool bIsValidHit;
+
+	UPROPERTY()
+		FHitResult HitResult;
 };

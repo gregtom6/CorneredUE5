@@ -7,6 +7,7 @@
 #include "Equippable.h"
 #include <CorneredPlayerController.h>
 #include "EquipmentVisualizer.h"
+#include "Inventory.h"
 
 // Sets default values for this component's properties
 UEquipper::UEquipper()
@@ -44,9 +45,10 @@ void UEquipper::EquipHappened() {
 		if (equippable) {
 
 			UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+			UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
 
 			PickerComp->RemovePickable();
-			equippable->Equip(equipmentVisualizer);
+			equippable->Equip(equipmentVisualizer, inventory);
 		}
 	}
 }

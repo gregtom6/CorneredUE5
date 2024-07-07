@@ -26,8 +26,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION()
-		void VisualizeEquipment(EItemType itemType);
+		void VisualizeEquipment(AProduct* Product);
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Equipment> ConfigEquipment;
+
+private:
+
+	UFUNCTION()
+		FName GetNameOfSocket(AProduct* Product);
 };

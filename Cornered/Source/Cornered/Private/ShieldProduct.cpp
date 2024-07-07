@@ -3,10 +3,13 @@
 
 #include "ShieldProduct.h"
 #include "EquipmentVisualizer.h"
+#include "Inventory.h"
 
-void AShieldProduct::Equip(UEquipmentVisualizer* equipmentVisualizer) {
+void AShieldProduct::Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) {
 
-	equipmentVisualizer->VisualizeEquipment(ItemType);
+	inventory->EquipItem(this);
 
-	AProduct::Equip(equipmentVisualizer);
+	equipmentVisualizer->VisualizeEquipment(this);
+
+	AProduct::Equip(equipmentVisualizer, inventory);
 }

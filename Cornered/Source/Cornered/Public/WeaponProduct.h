@@ -7,7 +7,7 @@
 #include "WeaponProduct.generated.h"
 
 class UEquipmentVisualizer;
-
+class UInventory;
 /**
  * 
  */
@@ -18,5 +18,5 @@ class CORNERED_API AWeaponProduct : public AProduct
 	
 protected:
 
-	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer) override;
+	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;
 };

@@ -5,6 +5,9 @@
 #include "Config_Equipment.h"
 #include "Product.h"
 #include "PlayerCharacter.h"
+#include "WeaponProduct.h"
+#include "ShieldProduct.h"
+#include "AdditionalProduct.h"
 
 // Sets default values for this component's properties
 UEquipmentVisualizer::UEquipmentVisualizer()
@@ -35,12 +38,26 @@ void UEquipmentVisualizer::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UEquipmentVisualizer::VisualizeEquipment(EItemType itemType) {
-	TSubclassOf<AActor> product = ConfigEquipment->GetEquippedProduct(itemType);
+void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
+	TSubclassOf<AActor> product = ConfigEquipment->GetEquippedProduct(Product->GetItemType());
 
 	TObjectPtr<AActor> SpawnedActor = GetWorld()->SpawnActor<AActor>(product);
 
 	ACharacter* character = Cast<ACharacter>(GetOwner());
 
-	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
+	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, GetNameOfSocket(Product));
+}
+
+FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {
+	if (Product->IsA(AWeaponProduct::StaticClass())) {
+		return FName("BodySocket");
+	}
+	else if (Product->IsA(AShieldProduct::StaticClass())) {
+		return FName("RightArmSocket");
+	}
+	else if (Product->IsA(AAdditionalProduct::StaticClass())) {
+		return FName("");
+	}
+
+	return FName("");
 }

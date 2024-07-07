@@ -7,7 +7,7 @@
 #include "Product.generated.h"
 
 class UEquipmentVisualizer;
-
+class UInventory;
 /**
  *
  */
@@ -20,7 +20,7 @@ protected:
 
 		UFUNCTION()
 		// Inherited via IEquippable
-		virtual void Equip(UEquipmentVisualizer* equipmentVisualizer) override;
+		virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;
 
 		virtual IEquippable* GetEquippable() const override;
 };

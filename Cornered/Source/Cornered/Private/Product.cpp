@@ -3,8 +3,9 @@
 
 #include "Product.h"
 #include "EquipmentVisualizer.h"
+#include "Inventory.h"
 
-void AProduct::Equip(UEquipmentVisualizer* equipmentVisualizer)
+void AProduct::Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory)
 {
 	Destroy();
 }

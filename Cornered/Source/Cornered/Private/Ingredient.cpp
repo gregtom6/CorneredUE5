@@ -62,3 +62,7 @@ bool AIngredient::WasPickedAnytime() const {
 IEquippable* AIngredient::GetEquippable() const {
 	return nullptr;
 }
+
+EItemType AIngredient::GetItemType() const {
+	return ItemType;
+}

@@ -47,4 +47,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		EItemType ItemType;
+
+	UFUNCTION()
+		EItemType GetItemType() const;
 };

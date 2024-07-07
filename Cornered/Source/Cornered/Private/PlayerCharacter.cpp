@@ -12,6 +12,7 @@
 #include "Camera/CameraComponent.h"
 #include "EquipmentVisualizer.h"
 #include "Components/SceneComponent.h"
+#include "Inventory.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -25,6 +26,8 @@ APlayerCharacter::APlayerCharacter()
 	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
 
 	EquipmentVisualizer = CreateDefaultSubobject<UEquipmentVisualizer>(TEXT("EquipmentVisualizer"));
+
+	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 

@@ -2,7 +2,10 @@
 
 
 #include "PlayerWeapon.h"
+#include "Inventory.h"
 
 EItemType UPlayerWeapon::GetEquippedWeapon() const {
-	return EItemType::Count;
+	
+	UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
+	return inventory->GetWeapon();
 }

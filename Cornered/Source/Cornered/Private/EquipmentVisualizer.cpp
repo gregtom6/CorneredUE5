@@ -45,7 +45,7 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 
 	ACharacter* character = Cast<ACharacter>(GetOwner());
 
-	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, GetNameOfSocket(Product));
+	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, GetNameOfSocket(Product));
 }
 
 FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {

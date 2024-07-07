@@ -55,11 +55,11 @@ void APlayerCharacter::Tick(float DeltaTime)
 	UPlayerCharacterAnimInstance* animInst = Cast<UPlayerCharacterAnimInstance>(GetMesh()->GetAnimInstance());
 
 	if (animInst) {
-		if (CorneredPlayerController) {
+		if (CorneredPlayerController && animInst->LegState != (int)CorneredPlayerController->GetMovementState()) {
 			animInst->LegState = (int)CorneredPlayerController->GetMovementState();
 		}
 
-		if (PlayerWeaponComp) {
+		if (PlayerWeaponComp && animInst->UseWeapon != PlayerWeaponComp->IsThereEquippedWeapon()) {
 			animInst->UseWeapon = PlayerWeaponComp->IsThereEquippedWeapon();
 		}
 	}

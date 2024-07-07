@@ -6,6 +6,8 @@
 #include "Ingredient.h"
 #include "Product.generated.h"
 
+class UEquipmentVisualizer;
+
 /**
  *
  */
@@ -14,9 +16,11 @@ class CORNERED_API AProduct : public AIngredient, public IEquippable
 {
 	GENERATED_BODY()
 
+protected:
+
 		UFUNCTION()
 		// Inherited via IEquippable
-		virtual void Equip() override;
+		virtual void Equip(UEquipmentVisualizer* equipmentVisualizer) override;
 
 		virtual IEquippable* GetEquippable() const override;
 };

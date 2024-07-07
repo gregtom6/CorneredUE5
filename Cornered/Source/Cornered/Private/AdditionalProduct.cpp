@@ -2,4 +2,11 @@
 
 
 #include "AdditionalProduct.h"
+#include "EquipmentVisualizer.h"
 
+void AAdditionalProduct::Equip(UEquipmentVisualizer* equipmentVisualizer) {
+
+	equipmentVisualizer->VisualizeEquipment(ItemType);
+
+	AProduct::Equip(equipmentVisualizer);
+}

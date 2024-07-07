@@ -6,6 +6,7 @@
 #include <Kismet/GameplayStatics.h>
 #include "Equippable.h"
 #include <CorneredPlayerController.h>
+#include "EquipmentVisualizer.h"
 
 // Sets default values for this component's properties
 UEquipper::UEquipper()
@@ -41,8 +42,11 @@ void UEquipper::EquipHappened() {
 	if (PickerComp && PickerComp->GetPickedPickable()) {
 		IEquippable* equippable = PickerComp->GetPickedPickable()->GetEquippable();
 		if (equippable) {
+
+			UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+
 			PickerComp->RemovePickable();
-			equippable->Equip();
+			equippable->Equip(equipmentVisualizer);
 		}
 	}
 }

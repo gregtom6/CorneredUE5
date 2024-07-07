@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "IPickable.h"
 #include "Equippable.h"
+#include "CharacterWeapon.h"
 #include "Ingredient.generated.h"
 
 class UStaticMeshComponent;
@@ -43,4 +44,7 @@ public:
 	bool WasPickedAnytime() const override;
 
 	virtual IEquippable* GetEquippable() const;
+
+	UPROPERTY(EditAnywhere)
+		EItemType ItemType;
 };

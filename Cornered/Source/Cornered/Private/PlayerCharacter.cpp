@@ -10,6 +10,7 @@
 #include "Equipper.h"
 #include "PlayerWeapon.h"
 #include "Camera/CameraComponent.h"
+#include "EquipmentVisualizer.h"
 #include "Components/SceneComponent.h"
 
 // Sets default values
@@ -23,6 +24,8 @@ APlayerCharacter::APlayerCharacter()
 	PickerComp = CreateDefaultSubobject<UPicker>(TEXT("PickerComp"));
 	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
 
+	EquipmentVisualizer = CreateDefaultSubobject<UEquipmentVisualizer>(TEXT("EquipmentVisualizer"));
+
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
@@ -30,7 +33,6 @@ APlayerCharacter::APlayerCharacter()
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
-	
 }
 
 // Called when the game starts or when spawned

@@ -2,13 +2,13 @@
 
 
 #include "Product.h"
+#include "EquipmentVisualizer.h"
 
-void AProduct::Equip()
+void AProduct::Equip(UEquipmentVisualizer* equipmentVisualizer)
 {
 	Destroy();
 }
 
 IEquippable* AProduct::GetEquippable() const {
 	return const_cast<IEquippable*>(static_cast<const IEquippable*>(this));
-	//return nullptr;
 }

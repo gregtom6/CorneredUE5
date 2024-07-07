@@ -12,6 +12,7 @@ class UPicker;
 class UEquipper;
 class UCameraComponent;
 class USkeletalMeshComponent;
+class UEquipmentVisualizer;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACharacter
@@ -44,6 +45,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UEquipper> EquipperComp;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UCameraComponent> CameraComp;

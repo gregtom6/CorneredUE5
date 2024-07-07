@@ -6,6 +6,8 @@
 #include "Product.h"
 #include "ShieldProduct.generated.h"
 
+class UEquipmentVisualizer;
+
 /**
  * 
  */
@@ -14,4 +16,7 @@ class CORNERED_API AShieldProduct : public AProduct
 {
 	GENERATED_BODY()
 	
+protected:
+
+	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer) override;
 };

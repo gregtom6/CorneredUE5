@@ -6,6 +6,9 @@
 #include "Components/PointLightComponent.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
+#include <Camera/CameraComponent.h>
 
 // Sets default values
 AEquippedWeapon::AEquippedWeapon()
@@ -21,9 +24,13 @@ AEquippedWeapon::AEquippedWeapon()
 
 	PointLightComp = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLightComp"));
 
+	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComp"));
+
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+
+	NiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -31,7 +38,7 @@ void AEquippedWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	PointLightComp->Intensity = 0.f;
+	PointLightComp->SetIntensity(0.f);
 }
 
 // Called every frame
@@ -58,5 +65,15 @@ void AEquippedWeapon::ShotHappened() {
 	UActorSequencePlayer* player = ShotSequ->GetSequencePlayer();
 	if (player) {
 		player->Play();
+
+		UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));
+
+		NiagaraComp->SetVariableVec3("BeamEnd", FVector(300.0f, 300.0f, 300.0f));
+
+		NiagaraComp->Activate(true);
 	}
+}
+
+void AEquippedWeapon::SetEquipperActor(AActor* equipper) {
+	EquipperActor = equipper;
 }

@@ -84,6 +84,7 @@ FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {
 void UEquipmentVisualizer::PlayEquippedWeaponVisuals() {
 	AEquippedWeapon* equippedWeapon = Cast<AEquippedWeapon>(SpawnedEquippedWeapon);
 	if (equippedWeapon) {
+		equippedWeapon->SetEquipperActor(GetOwner());
 		equippedWeapon->ShotHappened();
 	}
 }

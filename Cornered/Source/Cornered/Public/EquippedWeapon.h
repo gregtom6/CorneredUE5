@@ -10,6 +10,7 @@ class USceneComponent;
 class UPointLightComponent;
 class UActorSequenceComponent;
 class UActorSequencePlayer;
+class UNiagaraComponent;
 
 UCLASS()
 class CORNERED_API AEquippedWeapon : public AActor
@@ -41,4 +42,15 @@ public:
 
 	UFUNCTION()
 		void ShotHappened();
+
+	UFUNCTION()
+		void SetEquipperActor(AActor* equipper);
+	
+private:
+
+	UPROPERTY(VisibleAnywhere)
+		UNiagaraComponent* NiagaraComp;
+		
+	UPROPERTY()
+		TObjectPtr<AActor> EquipperActor;
 };

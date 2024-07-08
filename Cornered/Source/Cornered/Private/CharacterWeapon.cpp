@@ -21,7 +21,7 @@ void UCharacterWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
-	bIsReadyToShoot = true;
+	bIsReadyToShoot = false;
 	
 }
 
@@ -63,4 +63,8 @@ void UCharacterWeapon::ManageVisual() {
 	if (equipmentVisualizer) {
 		equipmentVisualizer->PlayEquippedWeaponVisuals();
 	}
+}
+
+void UCharacterWeapon::SetWeaponReadyToBeUsed() {
+	bIsReadyToShoot = true;
 }

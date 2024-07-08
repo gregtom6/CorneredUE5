@@ -71,6 +71,9 @@ public:
     UPROPERTY(EditAnywhere)
         TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
+    UFUNCTION()
+        void SetWeaponReadyToBeUsed();
+
 private:
     FTimerHandle TimerHandle;
 };

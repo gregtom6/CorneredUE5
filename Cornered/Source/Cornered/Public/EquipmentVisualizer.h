@@ -41,4 +41,7 @@ private:
 
 	UFUNCTION()
 		FName GetNameOfSocket(AProduct* Product);
+
+	UPROPERTY()
+		bool bWeaponSpawned;
 };

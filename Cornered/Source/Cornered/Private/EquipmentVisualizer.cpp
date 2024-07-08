@@ -9,6 +9,7 @@
 #include "ShieldProduct.h"
 #include "AdditionalProduct.h"
 #include <EquippedWeapon.h>
+#include "CharacterWeapon.h"
 
 // Sets default values for this component's properties
 UEquipmentVisualizer::UEquipmentVisualizer()
@@ -36,7 +37,12 @@ void UEquipmentVisualizer::TickComponent(float DeltaTime, ELevelTick TickType, F
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (bWeaponSpawned) {
+		UCharacterWeapon* characterWeapon = Cast<UCharacterWeapon>(GetOwner()->GetComponentByClass(UCharacterWeapon::StaticClass()));
+		characterWeapon->SetWeaponReadyToBeUsed();
+
+		bWeaponSpawned = false;
+	}
 }
 
 void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
@@ -57,6 +63,8 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 		SpawnedEquippedWeapon->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
 		SpawnedEquippedWeapon->SetActorRelativeScale3D(FVector(0.5775f, 0.5775f, 0.5775f));
 	}
+
+	bWeaponSpawned = true;
 }
 
 FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {

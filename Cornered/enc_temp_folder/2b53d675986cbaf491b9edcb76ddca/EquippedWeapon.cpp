@@ -31,7 +31,7 @@ void AEquippedWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	PointLightComp->SetIntensity(0.f);
+	PointLightComp->Intensity = 0.f;
 }
 
 // Called every frame

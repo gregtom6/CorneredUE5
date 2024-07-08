@@ -31,7 +31,13 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Equipment> ConfigEquipment;
 
+	UFUNCTION()
+		void PlayEquippedWeaponVisuals();
+
+
 private:
+	UPROPERTY()
+		TObjectPtr<AActor> SpawnedEquippedWeapon;
 
 	UFUNCTION()
 		FName GetNameOfSocket(AProduct* Product);

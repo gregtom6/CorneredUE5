@@ -29,6 +29,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDropInteractionHappenedDelegate);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEquipInteractionHappenedDelegate);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FShootInteractionHappenedDelegate);
+
 /**
  *
  */
@@ -52,6 +54,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		UInputAction* ActionEquip;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
+		UInputAction* ActionShoot;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	UPROPERTY(EditAnywhere)
@@ -72,6 +76,7 @@ protected:
 	void HandlePickup();
 	void HandleDrop();
 	void HandleEquip();
+	void HandleShoot();
 
 private:
 
@@ -94,4 +99,7 @@ public:
 
 	UPROPERTY()
 		FEquipInteractionHappenedDelegate EquipHappenedInstance;
+
+	UPROPERTY()
+		FShootInteractionHappenedDelegate ShootHappenedInstance;
 };

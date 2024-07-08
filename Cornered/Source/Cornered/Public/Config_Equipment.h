@@ -21,6 +21,47 @@ struct FEquippedProductEntry
         TSubclassOf<AActor> Value;
 };
 
+USTRUCT(BlueprintType)
+struct FWeaponSettingsEntry
+{
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemType Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        float CooldownTimeInSec;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        float Damage;
+
+};
+
+USTRUCT(BlueprintType)
+struct FShieldSettingsEntry
+{
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemType Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        float DamageDivider;
+
+};
+
+USTRUCT(BlueprintType)
+struct FAdditionalSettingsEntry
+{
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemType Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        float Multiplier;
+
+};
+
 /**
  * 
  */
@@ -29,11 +70,31 @@ class CORNERED_API UConfig_Equipment : public UDataAsset
 {
 	GENERATED_BODY()
 	
-public:
+private:
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary")
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
         TArray<FEquippedProductEntry> EquippedProductEntries;
+
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
+        TArray<FWeaponSettingsEntry> WeaponSettingsEntries;
+
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
+        TArray<FShieldSettingsEntry> ShieldSettingsEntries;
+
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
+        TArray<FAdditionalSettingsEntry> AdditionalSettingsEntries;
+
+public:
 
     UFUNCTION()
         TSubclassOf<AActor> GetEquippedProduct(EItemType itemType) const;
+
+    UFUNCTION()
+        FWeaponSettingsEntry GetWeaponSettings(EItemType itemType) const;
+
+    UFUNCTION()
+        FShieldSettingsEntry GetShieldSettings(EItemType itemType) const;
+
+    UFUNCTION()
+        FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
 };

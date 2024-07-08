@@ -7,6 +7,9 @@
 #include "EquippedWeapon.generated.h"
 
 class USceneComponent;
+class UPointLightComponent;
+class UActorSequenceComponent;
+class UActorSequencePlayer;
 
 UCLASS()
 class CORNERED_API AEquippedWeapon : public AActor
@@ -30,4 +33,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> MuzzlePosition;
+
+	UPROPERTY(VisibleAnywhere)
+		TObjectPtr<UPointLightComponent> PointLightComp;
+	UPROPERTY()
+		UActorSequenceComponent* ShotSequ;
+
+	UFUNCTION()
+		void ShotHappened();
 };

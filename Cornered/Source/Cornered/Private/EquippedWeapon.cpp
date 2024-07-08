@@ -3,6 +3,9 @@
 
 #include "EquippedWeapon.h"
 #include "Components/SceneComponent.h"
+#include "Components/PointLightComponent.h"
+#include "ActorSequenceComponent.h"
+#include "ActorSequencePlayer.h"
 
 // Sets default values
 AEquippedWeapon::AEquippedWeapon()
@@ -16,7 +19,11 @@ AEquippedWeapon::AEquippedWeapon()
 
 	MuzzlePosition = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzlePosition"));
 
+	PointLightComp = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLightComp"));
+
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+
+	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -24,6 +31,7 @@ void AEquippedWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	PointLightComp->Intensity = 0.f;
 }
 
 // Called every frame
@@ -33,3 +41,22 @@ void AEquippedWeapon::Tick(float DeltaTime)
 
 }
 
+void AEquippedWeapon::ShotHappened() {
+
+	TArray<UActorSequenceComponent*> ActorSequenceComponents;
+	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
+
+	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
+	{
+		if (ActorSequenceComponents[i]->GetFName() == FName("ShotSequence"))
+		{
+			ShotSequ = ActorSequenceComponents[i];
+			break;
+		}
+	}
+
+	UActorSequencePlayer* player = ShotSequ->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+}

@@ -17,4 +17,10 @@ class CORNERED_API UPlayerWeapon : public UCharacterWeapon
 protected:
 	virtual EItemType GetEquippedWeapon() const override;
 
+	// Called when the game starts
+	virtual void BeginPlay() override;
+private:
+
+	UFUNCTION()
+		void ShootHappened();
 };

@@ -8,6 +8,7 @@
 #include "WeaponProduct.h"
 #include "ShieldProduct.h"
 #include "AdditionalProduct.h"
+#include <EquippedWeapon.h>
 
 // Sets default values for this component's properties
 UEquipmentVisualizer::UEquipmentVisualizer()
@@ -41,20 +42,20 @@ void UEquipmentVisualizer::TickComponent(float DeltaTime, ELevelTick TickType, F
 void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 	TSubclassOf<AActor> product = ConfigEquipment->GetEquippedProduct(Product->GetItemType());
 
-	TObjectPtr<AActor> SpawnedActor = GetWorld()->SpawnActor<AActor>(product);
+	SpawnedEquippedWeapon = GetWorld()->SpawnActor<AActor>(product);
 
 	APlayerCharacter* character = Cast<APlayerCharacter>(GetOwner());
 
-	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, GetNameOfSocket(Product));
+	SpawnedEquippedWeapon->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, GetNameOfSocket(Product));
 
 	if (Product->GetItemType() == EItemType::Pistol) {
-		SpawnedActor->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
-		SpawnedActor->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
+		SpawnedEquippedWeapon->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
+		SpawnedEquippedWeapon->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
 	}
 	else {
-		SpawnedActor->SetActorRelativeLocation(FVector(442.129621f, 23.534655f, 282.048388f));
-		SpawnedActor->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
-		SpawnedActor->SetActorRelativeScale3D(FVector(0.5775f, 0.5775f, 0.5775f));
+		SpawnedEquippedWeapon->SetActorRelativeLocation(FVector(442.129621f, 23.534655f, 282.048388f));
+		SpawnedEquippedWeapon->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
+		SpawnedEquippedWeapon->SetActorRelativeScale3D(FVector(0.5775f, 0.5775f, 0.5775f));
 	}
 }
 
@@ -70,4 +71,11 @@ FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {
 	}
 
 	return FName("");
+}
+
+void UEquipmentVisualizer::PlayEquippedWeaponVisuals() {
+	AEquippedWeapon* equippedWeapon = Cast<AEquippedWeapon>(SpawnedEquippedWeapon);
+	if (equippedWeapon) {
+		equippedWeapon->ShotHappened();
+	}
 }

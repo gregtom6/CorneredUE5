@@ -2,6 +2,8 @@
 
 
 #include "CharacterWeapon.h"
+#include "Config_Equipment.h"
+#include <EquipmentVisualizer.h>
 
 // Sets default values for this component's properties
 UCharacterWeapon::UCharacterWeapon()
@@ -19,7 +21,7 @@ void UCharacterWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	bIsReadyToShoot = true;
 	
 }
 
@@ -34,4 +36,31 @@ void UCharacterWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 bool UCharacterWeapon::IsThereEquippedWeapon() const {
 	return GetEquippedWeapon() != EItemType::Count;
+}
+
+void UCharacterWeapon::ShootWithEquippedWeapon() {
+	if (!IsThereEquippedWeapon() || !bIsReadyToShoot) {
+		return;
+	}
+
+	ManageVisual();
+
+	bIsReadyToShoot = false;
+
+	FWeaponSettingsEntry weaponSettings = EquipmentConfig->GetWeaponSettings(GetEquippedWeapon());
+
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UCharacterWeapon::ShootCooldownEnded, weaponSettings.CooldownTimeInSec, false);
+}
+
+void UCharacterWeapon::ShootCooldownEnded() {
+	bIsReadyToShoot = true;
+}
+
+void UCharacterWeapon::ManageVisual() {
+	UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+
+	if (equipmentVisualizer) {
+		equipmentVisualizer->PlayEquippedWeaponVisuals();
+	}
 }

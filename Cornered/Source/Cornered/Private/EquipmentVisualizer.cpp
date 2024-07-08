@@ -45,20 +45,25 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 
 	APlayerCharacter* character = Cast<APlayerCharacter>(GetOwner());
 
-	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
-	SpawnedActor->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
-	SpawnedActor->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f ));
-	if (character->GetMesh()->DoesSocketExist(FName("RightArmSocket"))) {
-		bool akarmi = false;
+	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, GetNameOfSocket(Product));
+
+	if (Product->GetItemType() == EItemType::Pistol) {
+		SpawnedActor->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
+		SpawnedActor->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
+	}
+	else {
+		SpawnedActor->SetActorRelativeLocation(FVector(442.129621f, 23.534655f, 282.048388f));
+		SpawnedActor->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
+		SpawnedActor->SetActorRelativeScale3D(FVector(0.5775f, 0.5775f, 0.5775f));
 	}
 }
 
 FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {
 	if (Product->IsA(AWeaponProduct::StaticClass())) {
-		return FName("BodySocket");
+		return FName("RightArmSocket");
 	}
 	else if (Product->IsA(AShieldProduct::StaticClass())) {
-		return FName("RightArmSocket");
+		return FName("BodySocket");
 	}
 	else if (Product->IsA(AAdditionalProduct::StaticClass())) {
 		return FName("");

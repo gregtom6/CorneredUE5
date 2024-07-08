@@ -46,8 +46,6 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 	APlayerCharacter* character = Cast<APlayerCharacter>(GetOwner());
 
 	SpawnedActor->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
-	SpawnedActor->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
-	SpawnedActor->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f ));
 	if (character->GetMesh()->DoesSocketExist(FName("RightArmSocket"))) {
 		bool akarmi = false;
 	}

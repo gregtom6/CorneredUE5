@@ -14,6 +14,7 @@
 #include "Components/SceneComponent.h"
 #include "Inventory.h"
 #include "PaperSpriteComponent.h"
+#include "CooldownIndicator.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -39,13 +40,13 @@ APlayerCharacter::APlayerCharacter()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 
+	CooldownIndicatorManagementComp = CreateDefaultSubobject<UCooldownIndicator>(TEXT("CooldownIndicatorManagementComp"));
+
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
-
-	//CooldownIndicatorParentComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
 }
 
 // Called when the game starts or when spawned
@@ -64,6 +65,8 @@ void APlayerCharacter::BeginPlay()
 	PaperSpriteComp->SetRelativeScale3D(FVector(1.0f, 1.684211f, 1.684211f));
 
 	CooldownIndicatorComp->SetRelativeLocation(FVector(0.f, -0.1725f, 0.f));
+
+	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, PlayerWeaponComp);
 }
 
 // Called every frame

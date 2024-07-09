@@ -15,6 +15,7 @@ class USkeletalMeshComponent;
 class UEquipmentVisualizer;
 class UInventory;
 class UPaperSpriteComponent;
+class UCooldownIndicator;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACharacter
@@ -65,4 +66,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorComp;
+
+	UPROPERTY(VisibleAnywhere)
+		TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
 };

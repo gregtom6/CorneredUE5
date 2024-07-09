@@ -61,7 +61,10 @@ protected:
 
     void ShootCooldownEnded();
 
+
 public:	
+    UFUNCTION()
+        float GetCooldownTimeLeftPercentageBetween01();
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 

@@ -68,3 +68,21 @@ void UCharacterWeapon::ManageVisual() {
 void UCharacterWeapon::SetWeaponReadyToBeUsed() {
 	bIsReadyToShoot = true;
 }
+
+float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
+	
+
+	bool bIsTimerActive = GetWorld()->GetTimerManager().IsTimerActive(TimerHandle);
+
+	if (bIsTimerActive) {
+
+		FWeaponSettingsEntry weaponSettings = EquipmentConfig->GetWeaponSettings(GetEquippedWeapon());
+
+		float ElapsedTime = GetWorld()->GetTimerManager().GetTimerElapsed(TimerHandle);
+
+		return FMath::Clamp(ElapsedTime / weaponSettings.CooldownTimeInSec, 0.f, 1.f);
+	}
+	
+	return 1.0f;
+	
+}

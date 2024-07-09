@@ -39,13 +39,12 @@ APlayerCharacter::APlayerCharacter()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 
+	CooldownIndicatorComp->AttachToComponent(PaperSpriteComp, FAttachmentTransformRules::KeepRelativeTransform);
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
-
-	//CooldownIndicatorParentComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
 }
 
 // Called when the game starts or when spawned
@@ -54,16 +53,6 @@ void APlayerCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	CooldownIndicatorParentComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
-	PaperSpriteComp->AttachToComponent(CooldownIndicatorParentComp, FAttachmentTransformRules::KeepRelativeTransform);
-	CooldownIndicatorComp->AttachToComponent(PaperSpriteComp, FAttachmentTransformRules::KeepRelativeTransform);
-
-	CooldownIndicatorParentComp->SetRelativeLocation(FVector(93.663588f, -25.109281f, -89.030848f));
-	CooldownIndicatorParentComp->SetRelativeRotation(FRotator(-31.553031f, -16.355435f, -45.163447f ));
-	CooldownIndicatorParentComp->SetRelativeScale3D(FVector(20.0f, 20.0f, 49.375f));
-
-	PaperSpriteComp->SetRelativeScale3D(FVector(1.0f, 1.684211f, 1.684211f));
-
-	CooldownIndicatorComp->SetRelativeLocation(FVector(0.f, -0.1725f, 0.f));
 }
 
 // Called every frame

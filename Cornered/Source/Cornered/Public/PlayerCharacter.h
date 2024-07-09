@@ -14,6 +14,7 @@ class UCameraComponent;
 class USkeletalMeshComponent;
 class UEquipmentVisualizer;
 class UInventory;
+class UPaperSpriteComponent;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACharacter
@@ -55,4 +56,13 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UInventory> InventoryComp;
+
+	UPROPERTY(VisibleAnywhere)
+		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
+
+	UPROPERTY(VisibleAnywhere)
+		TObjectPtr<UPaperSpriteComponent> PaperSpriteComp;
+
+	UPROPERTY(VisibleAnywhere)
+		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorComp;
 };

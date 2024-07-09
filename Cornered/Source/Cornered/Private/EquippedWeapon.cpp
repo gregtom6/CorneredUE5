@@ -69,7 +69,7 @@ void AEquippedWeapon::ShotHappened() {
 
 		UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));
 
-		//NiagaraComp->SetVariablePosition("BeamEnd", cameraComp->GetComponentLocation()+(cameraComp->GetRelativeTransform().GetRotation().GetForwardVector() * 10000.0f));
+		NiagaraComp->SetVariablePosition("BeamStart", MuzzlePosition->GetComponentLocation());
 		NiagaraComp->SetVariablePosition("BeamEnd", cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f));
 
 		NiagaraComp->Activate(true);

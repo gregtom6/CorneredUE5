@@ -64,11 +64,13 @@ void AEquippedWeapon::ShotHappened() {
 
 	UActorSequencePlayer* player = ShotSequ->GetSequencePlayer();
 	if (player) {
+		player->Stop();
 		player->Play();
 
 		UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));
 
-		NiagaraComp->SetVariableVec3("BeamEnd", FVector(300.0f, 300.0f, 300.0f));
+		//NiagaraComp->SetVariablePosition("BeamEnd", cameraComp->GetComponentLocation()+(cameraComp->GetRelativeTransform().GetRotation().GetForwardVector() * 10000.0f));
+		NiagaraComp->SetVariablePosition("BeamEnd", cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f));
 
 		NiagaraComp->Activate(true);
 	}

@@ -51,6 +51,7 @@ void ABeltElement::SetActorHiddenInGame(bool bNewHidden)
 		//TODO: remove timer and use a function which gets called, when GetComponentLocation already gives back world coordinates instead of local. 
 		//tried in BeginPlay, tried in PostInitializeComponents, in both of them GetComponentLocation was invalid, probably because of the Object Pool
 
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABeltElement::TimerFunction, 3.0f, false);
 	}
 }

@@ -55,7 +55,7 @@ void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 
 void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-d	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>())
+	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>())
 	{
 		AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
 		beltElement->SetActorHiddenInGame(false);

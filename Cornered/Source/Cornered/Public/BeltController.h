@@ -41,9 +41,6 @@ private:
 		TObjectPtr<UBoxComponent> SpawnPointComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> RealSpawnPoint;
-
-	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UBoxComponent> DespawnPointComp;
 
 

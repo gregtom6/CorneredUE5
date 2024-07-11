@@ -52,7 +52,7 @@ void ABeltElement::SetActorHiddenInGame(bool bNewHidden)
 		//tried in BeginPlay, tried in PostInitializeComponents, in both of them GetComponentLocation was invalid, probably because of the Object Pool
 
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABeltElement::TimerFunction, 0.001f, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABeltElement::TimerFunction, 3.0f, false);
 	}
 }
 

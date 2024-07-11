@@ -4,18 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TimePrinter.generated.h"
-
-class UTextRenderComponent;
+#include "CorneredButton.generated.h"
 
 UCLASS()
-class CORNERED_API ATimePrinter : public AActor
+class CORNERED_API ACorneredButton : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ATimePrinter();
+	ACorneredButton();
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,11 +23,4 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-private:
-
-	UPROPERTY()
-		TObjectPtr<USceneComponent> Root;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UTextRenderComponent> TimeLeftComp;
 };

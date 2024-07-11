@@ -32,9 +32,5 @@ void ACorneredGameMode::ZeroingTimer() {
 }
 
 float ACorneredGameMode::GetPreparingTimeLeft() {
-
-	if (GetWorld()->GetTimerManager().IsTimerActive(TimerHandle)) {
-		return GetWorld()->GetTimerManager().GetTimerRemaining(TimerHandle);
-	}
-	return 0.f;
+	return GetWorld()->GetTimerManager().GetTimerRemaining(TimerHandle);
 }

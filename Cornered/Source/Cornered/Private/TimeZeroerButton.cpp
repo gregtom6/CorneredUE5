@@ -3,6 +3,7 @@
 
 #include "TimeZeroerButton.h"
 #include "Components/StaticMeshComponent.h"
+#include "CorneredGameMode.h"
 
 ATimeZeroerButton::ATimeZeroerButton() {
 
@@ -13,4 +14,14 @@ ATimeZeroerButton::ATimeZeroerButton() {
 	SetRootComponent(Root);
 
 	TimeButtonStaticMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+}
+
+void ATimeZeroerButton::Interact() {
+	Super::Interact();
+
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+
+	if (CorneredGameMode) {
+		CorneredGameMode->ZeroingTimer();
+	}
 }

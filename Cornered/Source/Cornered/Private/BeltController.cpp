@@ -6,6 +6,7 @@
 #include "Config_Belt.h"
 #include "CorneredObjectPool.h"
 #include "BeltElement.h"
+#include "CorneredButton.h"
 
 // Sets default values
 ABeltController::ABeltController()
@@ -25,11 +26,23 @@ ABeltController::ABeltController()
 void ABeltController::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CurrentBeltSpeed = EBeltSpeed::Normal;
+
+	CorneredButton->PressHappened.AddUniqueDynamic(this, &ABeltController::PressHappened);
 	
 	AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
 	ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
 	beltElementComp->SetBeltController(this);
 	beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
+}
+
+void ABeltController::PressHappened() {
+	SwitchBeltSpeed();
+}
+
+void ABeltController::SwitchBeltSpeed() {
+	CurrentBeltSpeed = CurrentBeltSpeed == EBeltSpeed::Normal ? EBeltSpeed::Fastened : EBeltSpeed::Normal;
 }
 
 // Called every frame
@@ -65,4 +78,8 @@ void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 		ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
 		beltElementComp->SetBeltController(this);
 	}
+}
+
+EBeltSpeed ABeltController::GetCurrentBeltSpeed() {
+	return CurrentBeltSpeed;
 }

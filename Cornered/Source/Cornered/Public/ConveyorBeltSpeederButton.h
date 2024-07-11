@@ -4,9 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "CorneredButton.h"
+#include "Materials/MaterialInterface.h"
 #include "ConveyorBeltSpeederButton.generated.h"
 
 class UStaticMeshComponent;
+class UConfig_Belt;
+class ABeltController;
 
 /**
  * 
@@ -20,6 +23,12 @@ public:
 
 	AConveyorBeltSpeederButton();
 
+	void Interact() override;
+
+protected:
+
+	virtual void BeginPlay() override;
+
 private:
 
 	UPROPERTY(VisibleAnywhere)
@@ -27,4 +36,10 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> Root;
+
+	UPROPERTY(EditAnywhere)
+		UConfig_Belt* BeltConfig;
+
+	UPROPERTY(EditAnywhere)
+		ABeltController* BeltController;
 };

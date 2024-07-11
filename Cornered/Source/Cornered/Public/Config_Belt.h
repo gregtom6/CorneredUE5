@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "Materials/MaterialInterface.h"
 #include "Config_Belt.generated.h"
 
 UENUM()
@@ -12,6 +13,20 @@ enum class EBeltSpeed : uint8 {
 	Fastened,
 
 	Count,
+};
+
+
+USTRUCT(BlueprintType)
+struct FBeltSpeedMaterialEntry
+{
+	GENERATED_BODY()
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EBeltSpeed Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		UMaterialInterface* Material;
+
 };
 
 
@@ -33,6 +48,9 @@ private:
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<ABeltElement> BeltElementClass;
 
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
+		TArray<FBeltSpeedMaterialEntry> BeltSpeedMaterialEntries;
+
 public:
 
 	UFUNCTION()
@@ -40,4 +58,7 @@ public:
 
 	UFUNCTION()
 		TSubclassOf<ABeltElement> GetBeltElementClass();
+
+	UFUNCTION()
+		UMaterialInterface* GetMaterialBasedOnSpeed(EBeltSpeed speed);
 };

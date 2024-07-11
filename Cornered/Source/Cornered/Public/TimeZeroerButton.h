@@ -19,6 +19,8 @@ class CORNERED_API ATimeZeroerButton : public ACorneredButton
 public:
 		ATimeZeroerButton();
 
+		void Interact() override;
+
 private:
 
 	UPROPERTY(VisibleAnywhere)

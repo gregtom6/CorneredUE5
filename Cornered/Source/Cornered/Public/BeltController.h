@@ -10,6 +10,7 @@
 class UBoxComponent;
 class UConfig_Belt;
 class ACorneredObjectPool;
+class ACorneredButton;
 
 UCLASS()
 class CORNERED_API ABeltController : public AActor
@@ -31,11 +32,16 @@ public:
 	UFUNCTION()
 		float GetCurrentMultiplier();
 
-
+	UFUNCTION()
+		EBeltSpeed GetCurrentBeltSpeed();
 
 private:
 
+	UFUNCTION()
+		void PressHappened();
 
+	UFUNCTION()
+		void SwitchBeltSpeed();
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UBoxComponent> SpawnPointComp;
@@ -52,6 +58,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredObjectPool> ObjectPool;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<ACorneredButton> CorneredButton;
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

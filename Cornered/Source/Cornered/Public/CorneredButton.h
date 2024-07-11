@@ -4,10 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Interactable.h"
 #include "CorneredButton.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPressHappenedDelegate);
+
 UCLASS()
-class CORNERED_API ACorneredButton : public AActor
+class CORNERED_API ACorneredButton : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -23,4 +26,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void Interact() override;
+
+	UPROPERTY()
+		FPressHappenedDelegate PressHappened;
 };

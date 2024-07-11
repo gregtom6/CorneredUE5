@@ -25,3 +25,6 @@ void ACorneredButton::Tick(float DeltaTime)
 
 }
 
+void ACorneredButton::Interact() {
+	PressHappened.Broadcast();
+}

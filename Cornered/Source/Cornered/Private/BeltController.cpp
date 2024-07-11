@@ -17,6 +17,8 @@ ABeltController::ABeltController()
 
 	DespawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("DespawnPointComp"));
 
+	RealSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("RealSpawnPoint"));
+
 	DespawnPointComp->OnComponentBeginOverlap.AddDynamic(this, &ABeltController::OnOverlapBegin);
 	SpawnPointComp->OnComponentEndOverlap.AddDynamic(this, &ABeltController::OnOverlapEnd);
 }
@@ -55,13 +57,14 @@ void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 
 void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-d	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>())
+	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>())
 	{
 		AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
+		beltElement->SetActorLocation(RealSpawnPoint->GetComponentLocation());
 		beltElement->SetActorHiddenInGame(false);
 		beltElement->SetActorEnableCollision(true);
+		beltElement->SetActorTickEnabled(true);
 		ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
 		beltElementComp->SetBeltController(this);
-		beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
 	}
 }

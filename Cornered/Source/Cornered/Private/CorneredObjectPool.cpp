@@ -55,13 +55,13 @@ AActor* ACorneredObjectPool::GetPooledActor(FString name)
 	if (firstAvailable >= 0)
 	{
 		UCorneredPooledObject* toReturn = _Pools[currentPool]._PooledObjects[firstAvailable];
-		toReturn->_IsActive = true;
 		OnPoolerCleanup.AddUniqueDynamic(toReturn, &UCorneredPooledObject::RecycleSelf);
 		AActor* toReturnActor = toReturn->GetOwner();
+		toReturnActor->AttachToActor(nullptr, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 		toReturnActor->SetActorHiddenInGame(false);
 		toReturnActor->SetActorEnableCollision(true);
 		toReturnActor->SetActorTickEnabled(true);
-		toReturnActor->AttachToActor(nullptr, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		toReturn->_IsActive = true;
 		return toReturnActor;
 	}
 
@@ -80,8 +80,9 @@ AActor* ACorneredObjectPool::GetPooledActor(FString name)
 	spawnedActor->AddInstanceComponent(poolComp);
 	poolComp->Init(this);
 	_Pools[currentPool]._PooledObjects.Add(poolComp);
-	poolComp->_IsActive = true;
+	spawnedActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	OnPoolerCleanup.AddUniqueDynamic(poolComp, &UCorneredPooledObject::RecycleSelf);
+	poolComp->_IsActive = true;
 	return spawnedActor;
 }
 

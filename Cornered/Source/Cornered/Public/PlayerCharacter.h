@@ -16,6 +16,7 @@ class UEquipmentVisualizer;
 class UInventory;
 class UPaperSpriteComponent;
 class UCooldownIndicator;
+class UInteractor;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACharacter
@@ -48,6 +49,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UEquipper> EquipperComp;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UInteractor> InteractorComp;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;

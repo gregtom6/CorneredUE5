@@ -15,6 +15,7 @@
 #include "Inventory.h"
 #include "PaperSpriteComponent.h"
 #include "CooldownIndicator.h"
+#include "Interactor.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -26,6 +27,7 @@ APlayerCharacter::APlayerCharacter()
 	InteractableDetectorComp = CreateDefaultSubobject<UInteractableDetector>(TEXT("InteractableDetectorComp"));
 	PickerComp = CreateDefaultSubobject<UPicker>(TEXT("PickerComp"));
 	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
+	InteractorComp = CreateDefaultSubobject<UInteractor>(TEXT("InteractorComp"));
 
 	CooldownIndicatorParentComp = CreateDefaultSubobject<USceneComponent>(TEXT("CooldownIndicatorParentComp"));
 
@@ -47,6 +49,7 @@ APlayerCharacter::APlayerCharacter()
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
+	InteractorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned

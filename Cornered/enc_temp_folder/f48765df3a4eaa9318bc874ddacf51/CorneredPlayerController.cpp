@@ -28,7 +28,7 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	}
 
 	if (ActionInteract) {
-		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleInteract);
+		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleInteract);
 	}
 
 	if (ActionPickup) {

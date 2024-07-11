@@ -31,6 +31,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEquipInteractionHappenedDelegate);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FShootInteractionHappenedDelegate);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractHappenedDelegate);
+
 /**
  *
  */
@@ -102,4 +104,7 @@ public:
 
 	UPROPERTY()
 		FShootInteractionHappenedDelegate ShootHappenedInstance;
+
+	UPROPERTY()
+		FInteractHappenedDelegate InteractHappenedInstance;
 };

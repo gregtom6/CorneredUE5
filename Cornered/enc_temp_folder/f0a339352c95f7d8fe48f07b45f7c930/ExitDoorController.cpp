@@ -36,7 +36,7 @@ void AExitDoorController::BeginPlay()
 
 	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
 	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("OpenSequence"))
+		if (ActorSequenceComponents[i]->GetFName() == FName("OpenSequ"))
 		{
 			OpenSequ = ActorSequenceComponents[i];
 		}

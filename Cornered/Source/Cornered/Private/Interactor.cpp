@@ -6,6 +6,7 @@
 #include <Kismet/GameplayStatics.h>
 #include "Interactable.h"
 #include "InteractableDetector.h"
+#include "Holdable.h"
 
 // Sets default values for this component's properties
 UInteractor::UInteractor()
@@ -31,6 +32,7 @@ void UInteractor::BeginPlay()
 		ACorneredPlayerController* CustomPlayerController = Cast<ACorneredPlayerController>(PlayerController);
 		if (CustomPlayerController)
 		{
+			CustomPlayerController->InteractStartedInstance.AddUniqueDynamic(this, &UInteractor::InteractStarted);
 			CustomPlayerController->InteractHappenedInstance.AddUniqueDynamic(this, &UInteractor::InteractHappened);
 		}
 	}
@@ -45,9 +47,18 @@ void UInteractor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	if (bInteractHappenedInThisFrame) {
 		bInteractHappenedInThisFrame = false;
 	}
+
+	if (!Holdable) {
+		return;
+	}
+
+	if (InteractableDetectorComp && !InteractableDetectorComp->ItWasValidHit()) {
+		Holdable->HoldingFinished();
+		Holdable = nullptr;
+	}
 }
 
-void UInteractor::InteractHappened() {
+void UInteractor::InteractStarted() {
 	if (InteractableDetectorComp && InteractableDetectorComp->ItWasValidHit()) {
 		FHitResult HitResult = InteractableDetectorComp->GetHitResult();
 		AActor* HitActor = HitResult.GetActor();
@@ -58,6 +69,28 @@ void UInteractor::InteractHappened() {
 			if (Pickable) {
 				Pickable->Interact();
 				bInteractHappenedInThisFrame = true;
+			}
+
+			Holdable = Cast<IHoldable>(HitActor);
+
+			if (Holdable) {
+				Holdable->HoldingStarted();
+			}
+		}
+	}
+}
+
+void UInteractor::InteractHappened() {
+	if (InteractableDetectorComp && InteractableDetectorComp->ItWasValidHit()) {
+		FHitResult HitResult = InteractableDetectorComp->GetHitResult();
+		AActor* HitActor = HitResult.GetActor();
+
+		if (HitActor) {
+
+			Holdable = Cast<IHoldable>(HitActor);
+
+			if (Holdable) {
+				Holdable->HoldingFinished();
 			}
 		}
 	}

@@ -28,7 +28,8 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	}
 
 	if (ActionInteract) {
-		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleInteract);
+		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Started, this, &ACorneredPlayerController::HandleInteractStarted);
+		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleInteractFinished);
 	}
 
 	if (ActionPickup) {
@@ -58,7 +59,11 @@ void ACorneredPlayerController::OnUnPossess() {
 	EnhancedInputComponent->ClearActionBindings();
 }
 
-void ACorneredPlayerController::HandleInteract() {
+void ACorneredPlayerController::HandleInteractStarted() {
+	InteractStartedInstance.Broadcast();
+}
+
+void ACorneredPlayerController::HandleInteractFinished() {
 	InteractHappenedInstance.Broadcast();
 }
 

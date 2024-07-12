@@ -31,6 +31,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FEquipInteractionHappenedDelegate);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FShootInteractionHappenedDelegate);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractStartedDelegate);
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractHappenedDelegate);
 
 /**
@@ -74,7 +76,8 @@ protected:
 	void HandleMovement(const FInputActionValue& InputActionValue);
 	void MovementCompleted(const FInputActionValue& InputActionValue);
 	void HandleLook(const FInputActionValue& InputActionValue);
-	void HandleInteract();
+	void HandleInteractStarted();
+	void HandleInteractFinished();
 	void HandlePickup();
 	void HandleDrop();
 	void HandleEquip();
@@ -104,6 +107,9 @@ public:
 
 	UPROPERTY()
 		FShootInteractionHappenedDelegate ShootHappenedInstance;
+
+	UPROPERTY()
+		FInteractStartedDelegate InteractStartedInstance;
 
 	UPROPERTY()
 		FInteractHappenedDelegate InteractHappenedInstance;

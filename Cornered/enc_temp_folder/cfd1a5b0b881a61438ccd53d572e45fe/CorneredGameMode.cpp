@@ -29,7 +29,6 @@ void ACorneredGameMode::PreparingTimeEnded() {
 
 void ACorneredGameMode::ZeroingTimer() {
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	PreparingTimeEnded();
 }
 
 float ACorneredGameMode::GetPreparingTimeLeft() {

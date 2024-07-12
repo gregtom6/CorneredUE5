@@ -22,7 +22,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void TimerFunction();
+	UFUNCTION()
+	void OnTimerOverHappened();
 
 public:	
 	// Called every frame

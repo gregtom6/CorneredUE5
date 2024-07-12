@@ -3,6 +3,7 @@
 #include "RedLightController.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
+#include "CorneredGameMode.h"
 
 // Sets default values
 ARedLightController::ARedLightController()
@@ -16,12 +17,13 @@ void ARedLightController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ARedLightController::TimerFunction, 5.0f, false);
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
+	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ARedLightController::OnTimerOverHappened);
 	
 }
 
-void ARedLightController::TimerFunction()
+void ARedLightController::OnTimerOverHappened()
 {
 	// Your code here
 	UE_LOG(LogTemp, Warning, TEXT("TimerFunction has been called!"));

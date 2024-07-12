@@ -11,6 +11,8 @@ class UStaticMeshComponent;
 class UActorSequenceComponent;
 class UActorSequencePlayer;
 class UConfig_ExitDoor;
+class AHoldableButton;
+class AExitButtonMover;
 /**
  * 
  */
@@ -53,6 +55,12 @@ private:
 	UPROPERTY()
 		UActorSequenceComponent* OpenSequ;
 
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<AHoldableButton> HoldableButton;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<AExitButtonMover> ExitButtonParent;
+
 	UPROPERTY()
 		bool bOpeningInProgress;
 
@@ -61,4 +69,7 @@ private:
 
 	UFUNCTION()
 		void PrintPercentageText();
+
+	UPROPERTY()
+		bool bDoorOpened;
 };

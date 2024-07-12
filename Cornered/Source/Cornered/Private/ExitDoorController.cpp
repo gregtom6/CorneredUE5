@@ -7,7 +7,8 @@
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 #include "Config_ExitDoor.h"
-
+#include "HoldableButton.h"
+#include "ExitButtonMover.h"
 
 AExitDoorController::AExitDoorController() {
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
@@ -43,6 +44,8 @@ void AExitDoorController::BeginPlay()
 	}
 
 	PrintPercentageText();
+
+	HoldableButton->AttachToActor(ExitButtonParent, FAttachmentTransformRules::KeepWorldTransform);
 }
 
 void AExitDoorController::Tick(float DeltaTime)
@@ -59,10 +62,14 @@ void AExitDoorController::Tick(float DeltaTime)
 
 	PrintPercentageText();
 
-	if (OpeningPercentage>= ExitDoorConfig->MaxPercentage) {
+	if (OpeningPercentage>= ExitDoorConfig->MaxPercentage && !bDoorOpened) {
 		UActorSequencePlayer* player = OpenSequ->GetSequencePlayer();
 		if (player) {
 			player->Play();
+
+			ExitButtonParent->StartMoving();
+
+			bDoorOpened = true;
 		}
 	}
 

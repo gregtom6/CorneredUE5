@@ -82,9 +82,9 @@ void AMixingMachine::ConvertTimeEnded() {
 		player->Play();
 	}
 
-	TArray<EItemType> detectedItems = MixingItemDetector->GetDetectedItems();
+	TArray<FItemData> detectedItems = MixingItemDetector->GetDetectedItems();
 
-	if (detectedItems.Num() == 0 || detectedItems.Contains(EItemType::EmptyItem))
+	if (detectedItems.Num() == 0)
 	{
 		return;
 	}

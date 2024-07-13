@@ -10,6 +10,7 @@
 
 class AIngredient;
 
+
 USTRUCT(BlueprintType)
 struct FRecipeEntry
 {
@@ -22,7 +23,7 @@ struct FRecipeEntry
         EAbility NecessaryAbilityToUSe;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        TArray<EItemType> Items;
+        TArray<FItemData> Items;
 
 };
 
@@ -56,9 +57,9 @@ private:
         TArray<FProductClassEntry> ProductClassEntries;
 
     UFUNCTION()
-        int32 GetOccurrenceNumber(TArray<EItemType> array, EItemType element);
+        int32 GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState);
 
 public:
 
-	TSubclassOf<AIngredient> GetResultItem(TArray<EItemType> detectedItems);
+	TSubclassOf<AIngredient> GetResultItem(TArray<FItemData> detectedItems);
 };

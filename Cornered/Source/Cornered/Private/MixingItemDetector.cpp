@@ -9,16 +9,19 @@ AMixingItemDetector::AMixingItemDetector() {
 
 }
 
-TArray<EItemType> AMixingItemDetector::GetDetectedItems() {
+TArray<FItemData> AMixingItemDetector::GetDetectedItems() {
 	TArray<AActor*> OverlappingActors;
 	GetCollisionComponent()->GetOverlappingActors(OverlappingActors);
 
-	TArray<EItemType> itemTypes;
+	TArray<FItemData> itemTypes;
 
 	for (int i = 0; i < OverlappingActors.Num(); i++) {
 		AIngredient* ingredient = Cast<AIngredient>(OverlappingActors[i]);
 		if (ingredient) {
-			itemTypes.Add(ingredient->GetItemType());
+			FItemData data;
+			data.ItemType = ingredient->GetItemType();
+			data.ItemState = ingredient->GetItemState();
+			itemTypes.Add(data);
 		}
 	}
 

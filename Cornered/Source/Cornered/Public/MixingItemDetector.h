@@ -17,6 +17,19 @@ enum class EItemState : uint8
     Count,
 };
 
+USTRUCT(BlueprintType)
+struct FItemData
+{
+	GENERATED_BODY()
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemType ItemType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemState ItemState;
+
+};
+
 /**
  * 
  */
@@ -30,7 +43,7 @@ public:
 	AMixingItemDetector();
 
 	UFUNCTION()
-		TArray<EItemType> GetDetectedItems();
+		TArray<FItemData> GetDetectedItems();
 
 	UFUNCTION()
 		void DestroyAllItems();

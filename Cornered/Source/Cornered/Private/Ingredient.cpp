@@ -67,6 +67,10 @@ EItemType AIngredient::GetItemType() const {
 	return ItemType;
 }
 
+EItemState AIngredient::GetItemState() const {
+	return ItemState;
+}
+
 void AIngredient::SetState(EItemState itemState) {
 	ItemState = itemState;
 }

@@ -57,4 +57,7 @@ public:
 
 	UFUNCTION()
 		EItemType GetItemType() const;
+
+	UFUNCTION()
+		EItemState GetItemState() const;
 };

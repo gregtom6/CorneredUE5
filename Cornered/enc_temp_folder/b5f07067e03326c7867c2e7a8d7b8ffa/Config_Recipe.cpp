@@ -3,8 +3,9 @@
 
 #include "Config_Recipe.h"
 #include "Ingredient.h"
+#include "MixingItemDetector.h"
 
-TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<EItemType> detectedItems) {
+TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<FItemData> detectedItems) {
     
     EItemType resultItemType;
 
@@ -14,13 +15,13 @@ TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<EItemType> detecte
         
         for (int j = 0; j < RecipeEntries[i].Items.Num(); j++) {
 
-            if (GetOccurrenceNumber(RecipeEntries[i].Items, RecipeEntries[i].Items[j]) == GetOccurrenceNumber(detectedItems, RecipeEntries[i].Items[j])) {
+            if (GetOccurrenceNumber(RecipeEntries[i].Items, RecipeEntries[i].Items[j].ItemType, RecipeEntries[i].Items[j].ItemState) == GetOccurrenceNumber(detectedItems, RecipeEntries[i].Items[j].ItemType, RecipeEntries[i].Items[j].ItemState)) {
                 equalElements += 1;
             }
 
         }
 
-        if (equalElements == detectedItems.Num()) {
+        if (equalElements == RecipeEntries[i].Items.Num()) {
             resultItemType = RecipeEntries[i].Key;
             break;
         }
@@ -35,10 +36,10 @@ TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<EItemType> detecte
     return nullptr;
 }
 
-int32 UConfig_Recipe::GetOccurrenceNumber(TArray<EItemType> array, EItemType element) {
+int32 UConfig_Recipe::GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState) {
     int32 count = 0;
     for (int i = 0; i < array.Num(); i++) {
-        if (array[i] == element) {
+        if (array[i].ItemType == element && array[i].ItemState==itemState) {
             count += 1;
         }
     }

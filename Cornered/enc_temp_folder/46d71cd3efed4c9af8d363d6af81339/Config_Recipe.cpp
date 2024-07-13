@@ -20,7 +20,7 @@ TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<EItemType> detecte
 
         }
 
-        if (equalElements == RecipeEntries[i].Items.Num()) {
+        if (equalElements == detectedItems.Num()) {
             resultItemType = RecipeEntries[i].Key;
             break;
         }

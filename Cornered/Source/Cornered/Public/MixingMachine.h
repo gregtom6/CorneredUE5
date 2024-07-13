@@ -10,6 +10,19 @@
 class UActorSequenceComponent;
 class UActorSequencePlayer;
 class UNiagaraComponent;
+class AMixingItemDetector;
+class UConfig_MixingMachine;
+class UConfig_Recipe;
+
+
+UENUM(BlueprintType)
+enum class EMixingMachineState :uint8
+{
+	DoingProcess,
+	Waiting,
+
+	Count,
+};
 
 UCLASS()
 class CORNERED_API AMixingMachine : public AActor
@@ -24,11 +37,34 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void ConvertTimeEnded();
+
+	void BurnTimeEnded();
+
+	void FreezeTimeEnded();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 private:
+
+	FTimerHandle TimerHandle;
+
+	UFUNCTION()
+		void ConvertPressHappened();
+
+	UFUNCTION()
+		void FreezePressHappened();
+
+	UFUNCTION()
+		void BurnPressHappened();
+
+	UPROPERTY()
+		EMixingMachineState State;
+
+	UFUNCTION()
+		float GetCurrentProcessTime(EAbility ability);
 
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
@@ -46,14 +82,23 @@ private:
 		TObjectPtr<ACorneredButton> FreezeButton;
 
 	UPROPERTY()
-		UActorSequenceComponent* TopLidOpen;
+		UActorSequenceComponent* TopLidOpenComp;
 
 	UPROPERTY()
-		UActorSequenceComponent* TopLidClose;
+		UActorSequenceComponent* TopLidCloseComp;
 
 	UPROPERTY(VisibleAnywhere)
 		UNiagaraComponent* BurningComp;
 
 	UPROPERTY(VisibleAnywhere)
 		UNiagaraComponent* FreezingComp;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<AMixingItemDetector> MixingItemDetector;
+
+	UPROPERTY(EditAnywhere)
+		UConfig_MixingMachine* MixingMachineConfig;
+
+	UPROPERTY(EditAnywhere)
+		UConfig_Recipe* RecipeConfig;
 };

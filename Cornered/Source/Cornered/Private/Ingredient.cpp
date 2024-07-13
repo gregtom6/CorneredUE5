@@ -66,3 +66,7 @@ IEquippable* AIngredient::GetEquippable() const {
 EItemType AIngredient::GetItemType() const {
 	return ItemType;
 }
+
+void AIngredient::SetState(EItemState itemState) {
+	ItemState = itemState;
+}

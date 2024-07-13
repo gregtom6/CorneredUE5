@@ -7,6 +7,7 @@
 #include "IPickable.h"
 #include "Equippable.h"
 #include "CharacterWeapon.h"
+#include "MixingItemDetector.h"
 #include "Ingredient.generated.h"
 
 class UStaticMeshComponent;
@@ -45,8 +46,14 @@ public:
 
 	virtual IEquippable* GetEquippable() const;
 
+	UFUNCTION()
+		void SetState(EItemState state);
+
 	UPROPERTY(EditAnywhere)
 		EItemType ItemType;
+
+	UPROPERTY()
+		EItemState ItemState;
 
 	UFUNCTION()
 		EItemType GetItemType() const;

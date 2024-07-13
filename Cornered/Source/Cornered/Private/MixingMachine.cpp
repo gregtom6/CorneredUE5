@@ -6,6 +6,10 @@
 #include "ActorSequencePlayer.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Config_MixingMachine.h"
+#include "MixingItemDetector.h"
+#include "Ingredient.h"
+#include "Config_Recipe.h"
 
 // Sets default values
 AMixingMachine::AMixingMachine()
@@ -42,14 +46,116 @@ void AMixingMachine::BeginPlay()
 	{
 		if (ActorSequenceComponents[i]->GetFName() == FName("TopLidOpen"))
 		{
-			TopLidOpen = ActorSequenceComponents[i];
+			TopLidOpenComp = ActorSequenceComponents[i];
 		}
 		else if (ActorSequenceComponents[i]->GetFName() == FName("TopLidClose"))
 		{
-			TopLidClose = ActorSequenceComponents[i];
+			TopLidCloseComp = ActorSequenceComponents[i];
 		}
 	}
 
+	State = EMixingMachineState::Waiting;
+
+	ConvertButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::ConvertPressHappened);
+	BurnButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::BurnPressHappened);
+	FreezeButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::FreezePressHappened);
+}
+
+void AMixingMachine::ConvertPressHappened() {
+	
+	UActorSequencePlayer* player = TopLidCloseComp->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::ConvertTimeEnded, GetCurrentProcessTime(EAbility::Default), false);
+
+	State = EMixingMachineState::DoingProcess;
+}
+
+
+void AMixingMachine::ConvertTimeEnded() {
+	State = EMixingMachineState::Waiting;
+
+	UActorSequencePlayer* player = TopLidOpenComp->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+
+	TArray<EItemType> detectedItems = MixingItemDetector->GetDetectedItems();
+
+	if (detectedItems.Num() == 0 || detectedItems.Contains(EItemType::EmptyItem))
+	{
+		return;
+	}
+
+	TSubclassOf<AIngredient> result = RecipeConfig->GetResultItem(detectedItems);
+
+	if (result)
+	{
+		GetWorld()->SpawnActor<AActor>(result, ResultTarget->GetComponentLocation(), FRotator::ZeroRotator);
+		MixingItemDetector->DestroyAllItems();
+	}
+}
+
+void AMixingMachine::BurnTimeEnded() {
+	State = EMixingMachineState::Waiting;
+
+	UActorSequencePlayer* player = TopLidOpenComp->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+
+	if (BurningComp) {
+		BurningComp->Deactivate();
+	}
+
+	MixingItemDetector->BurnAllItems();
+}
+
+void AMixingMachine::FreezeTimeEnded() {
+	State = EMixingMachineState::Waiting;
+
+	UActorSequencePlayer* player = TopLidOpenComp->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+
+	if (FreezingComp) {
+		FreezingComp->Deactivate();
+	}
+
+	MixingItemDetector->FreezeAllItems();
+}
+
+void AMixingMachine::BurnPressHappened() {
+	UActorSequencePlayer* player = TopLidCloseComp->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::BurnTimeEnded, GetCurrentProcessTime(EAbility::Burn), false);
+
+	State = EMixingMachineState::DoingProcess;
+
+	if (BurningComp) {
+		BurningComp->Activate(true);
+	}
+}
+
+void AMixingMachine::FreezePressHappened() {
+	UActorSequencePlayer* player = TopLidCloseComp->GetSequencePlayer();
+	if (player) {
+		player->Play();
+	}
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::FreezeTimeEnded, GetCurrentProcessTime(EAbility::Freeze), false);
+
+	State = EMixingMachineState::DoingProcess;
+
+	if (FreezingComp) {
+		FreezingComp->Activate(true);
+	}
 }
 
 // Called every frame
@@ -57,5 +163,10 @@ void AMixingMachine::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	
 }
 
+
+float AMixingMachine::GetCurrentProcessTime(EAbility ability) {
+	return MixingMachineConfig->GetProcessTime(ability);
+}

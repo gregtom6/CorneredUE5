@@ -5,12 +5,29 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "CharacterWeapon.h"
+#include "Config_MixingMachine.h"
 #include "Config_Recipe.generated.h"
 
 class AIngredient;
 
 USTRUCT(BlueprintType)
 struct FRecipeEntry
+{
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemType Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EAbility NecessaryAbilityToUSe;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        TArray<EItemType> Items;
+
+};
+
+USTRUCT(BlueprintType)
+struct FProductClassEntry
 {
     GENERATED_BODY()
 
@@ -35,7 +52,13 @@ private:
     UPROPERTY(EditAnywhere, Category = "Dictionary")
         TArray<FRecipeEntry> RecipeEntries;
 
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
+        TArray<FProductClassEntry> ProductClassEntries;
+
+    UFUNCTION()
+        int32 GetOccurrenceNumber(TArray<EItemType> array, EItemType element);
+
 public:
 
-	TSubclassOf<AIngredient> GetResultItem(EItemType itemType);
+	TSubclassOf<AIngredient> GetResultItem(TArray<EItemType> detectedItems);
 };

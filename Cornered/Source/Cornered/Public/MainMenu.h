@@ -23,6 +23,7 @@ enum class EMainMenuState : uint8
 	Count,
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUIPressHappenedDelegate);
 
 /**
  * 
@@ -94,6 +95,8 @@ private:
 public:
 	virtual void NativeConstruct() override;
 
+	UPROPERTY()
+		FUIPressHappenedDelegate UIPressHappened;
 
 protected:
 

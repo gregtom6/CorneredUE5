@@ -6,6 +6,8 @@
 #include "GameFramework/HUD.h"
 #include "MainMenuHUD.generated.h"
 
+class UUserWidget;
+
 /**
  * 
  */
@@ -14,4 +16,15 @@ class CORNERED_API AMainMenuHUD : public AHUD
 {
 	GENERATED_BODY()
 	
+public:
+	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
+		TSubclassOf<UUserWidget> UserWidgetClass;
+
+private:
+
+	UPROPERTY()
+	UUserWidget* UserWidgetInstance;
 };

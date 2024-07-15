@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
 #include "Ingredient.h"

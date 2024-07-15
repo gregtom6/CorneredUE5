@@ -11,7 +11,7 @@
 // Sets default values
 ABeltController::ABeltController()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	SpawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnPointComp"));
@@ -30,7 +30,15 @@ void ABeltController::BeginPlay()
 	CurrentBeltSpeed = EBeltSpeed::Normal;
 
 	CorneredButton->PressHappened.AddUniqueDynamic(this, &ABeltController::PressHappened);
-	
+
+	ObjectPool->InitializationHappened.AddUniqueDynamic(this, &ABeltController::ObjectPoolInitialized);
+
+	if (ObjectPool->bAlreadyInitialized) {
+		ObjectPoolInitialized();
+	}
+}
+
+void ABeltController::ObjectPoolInitialized() {
 	AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
 	ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
 	beltElementComp->SetBeltController(this);
@@ -50,7 +58,7 @@ void ABeltController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	
+
 }
 
 float ABeltController::GetCurrentMultiplier()
@@ -60,7 +68,7 @@ float ABeltController::GetCurrentMultiplier()
 
 void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>())
+	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool)
 	{
 		ObjectPool->RecycleActor(OtherActor);
 	}
@@ -68,15 +76,18 @@ void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 
 void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>())
+	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool && this)
 	{
 		AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
-		beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
-		beltElement->SetActorHiddenInGame(false);
-		beltElement->SetActorEnableCollision(true);
-		beltElement->SetActorTickEnabled(true);
-		ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
-		beltElementComp->SetBeltController(this);
+
+		if (beltElement) {
+			beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
+			beltElement->SetActorHiddenInGame(false);
+			beltElement->SetActorEnableCollision(true);
+			beltElement->SetActorTickEnabled(true);
+			ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
+			beltElementComp->SetBeltController(this);
+		}
 	}
 }
 

@@ -74,7 +74,6 @@ AActor* ACorneredObjectPool::GetPooledActor(FString name)
 	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	AActor* spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[currentPool]._ActorTemplate,
 		&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
-	spawnedActor->SetActorLabel(spawnedActor->GetName());
 	UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);
 	poolComp->RegisterComponent();
 	spawnedActor->AddInstanceComponent(poolComp);
@@ -122,7 +121,6 @@ void ACorneredObjectPool::BeginPlay()
 
 			AActor* spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,
 				&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
-			spawnedActor->SetActorLabel(spawnedActor->GetName());
 			UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);
 			poolComp->RegisterComponent();
 			spawnedActor->AddInstanceComponent(poolComp);
@@ -135,6 +133,9 @@ void ACorneredObjectPool::BeginPlay()
 		}
 		_Pools.Add(currentPool);
 	}
+
+	bAlreadyInitialized = true;
+	InitializationHappened.Broadcast();
 }
 
 // Called every frame
@@ -152,7 +153,6 @@ void ACorneredObjectPool::RegenItem(int poolIndex, int positionIndex)
 	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 	AActor* spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,
 		&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
-	spawnedActor->SetActorLabel(spawnedActor->GetName());
 	UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);
 	poolComp->RegisterComponent();
 	spawnedActor->AddInstanceComponent(poolComp);

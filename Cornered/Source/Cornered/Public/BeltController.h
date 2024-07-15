@@ -59,6 +59,9 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredObjectPool> ObjectPool;
 
+	UFUNCTION()
+		void ObjectPoolInitialized();
+
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredButton> CorneredButton;
 

@@ -10,6 +10,8 @@ class UCorneredPooledObject;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPoolerCleanupSignature);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInitializationHappened);
+
 USTRUCT(BlueprintType)
 struct FSingleObjectPool
 {
@@ -82,6 +84,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	FInitializationHappened InitializationHappened;
+
+	UPROPERTY()
+		bool bAlreadyInitialized;
 
 private:
 

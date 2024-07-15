@@ -40,7 +40,7 @@ private:
 		TObjectPtr<USceneComponent> ItemPivot;
 
 	UPROPERTY()
-		TObjectPtr<ABeltController> BeltController;
+		ABeltController* BeltController;
 
 	UPROPERTY(EditAnywhere)
 		UConfig_IngredientGeneration* IngredientGenConfig;

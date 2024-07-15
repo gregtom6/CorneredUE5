@@ -11,6 +11,7 @@ class UPointLightComponent;
 class UActorSequenceComponent;
 class UActorSequencePlayer;
 class UNiagaraComponent;
+class UAudioComponent;
 
 UCLASS()
 class CORNERED_API AEquippedWeapon : public AActor
@@ -53,4 +54,7 @@ private:
 		
 	UPROPERTY()
 		TObjectPtr<AActor> EquipperActor;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UAudioComponent> ShotAudio;
 };

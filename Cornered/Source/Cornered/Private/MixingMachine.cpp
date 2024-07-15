@@ -10,6 +10,7 @@
 #include "MixingItemDetector.h"
 #include "Ingredient.h"
 #include "Config_Recipe.h"
+#include "Components/AudioComponent.h"
 
 // Sets default values
 AMixingMachine::AMixingMachine()
@@ -27,11 +28,23 @@ AMixingMachine::AMixingMachine()
 
 	ResultTarget = CreateDefaultSubobject<USceneComponent>(TEXT("ResultTarget"));
 
+	BurnAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("BurnAudio"));
+
+	FreezeAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("FreezeAudio"));
+
+	MixingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("MixingAudio"));
+
 	ResultTarget->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 
 	BurningComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 
 	FreezingComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+
+	BurnAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+
+	FreezeAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+
+	MixingAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -71,6 +84,8 @@ void AMixingMachine::ConvertPressHappened() {
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::ConvertTimeEnded, GetCurrentProcessTime(EAbility::Default), false);
 
 	State = EMixingMachineState::DoingProcess;
+
+	MixingAudio->Play();
 }
 
 
@@ -96,6 +111,8 @@ void AMixingMachine::ConvertTimeEnded() {
 		GetWorld()->SpawnActor<AActor>(result, ResultTarget->GetComponentLocation(), FRotator::ZeroRotator);
 		MixingItemDetector->DestroyAllItems();
 	}
+
+	MixingAudio->Stop();
 }
 
 void AMixingMachine::BurnTimeEnded() {
@@ -111,6 +128,8 @@ void AMixingMachine::BurnTimeEnded() {
 	}
 
 	MixingItemDetector->BurnAllItems();
+
+	BurnAudio->Stop();
 }
 
 void AMixingMachine::FreezeTimeEnded() {
@@ -126,6 +145,8 @@ void AMixingMachine::FreezeTimeEnded() {
 	}
 
 	MixingItemDetector->FreezeAllItems();
+
+	FreezeAudio->Stop();
 }
 
 void AMixingMachine::BurnPressHappened() {
@@ -141,6 +162,8 @@ void AMixingMachine::BurnPressHappened() {
 	if (BurningComp) {
 		BurningComp->Activate(true);
 	}
+
+	BurnAudio->Play();
 }
 
 void AMixingMachine::FreezePressHappened() {
@@ -156,6 +179,8 @@ void AMixingMachine::FreezePressHappened() {
 	if (FreezingComp) {
 		FreezingComp->Activate(true);
 	}
+
+	FreezeAudio->Play();
 }
 
 // Called every frame

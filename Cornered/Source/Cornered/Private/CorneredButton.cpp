@@ -2,6 +2,8 @@
 
 
 #include "CorneredButton.h"
+#include "Components/AudioComponent.h"
+
 
 // Sets default values
 ACorneredButton::ACorneredButton()
@@ -9,6 +11,7 @@ ACorneredButton::ACorneredButton()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	PressAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("PressAudio"));
 }
 
 // Called when the game starts or when spawned
@@ -26,5 +29,8 @@ void ACorneredButton::Tick(float DeltaTime)
 }
 
 void ACorneredButton::Interact() {
+
+	PressAudio->Play();
+
 	PressHappened.Broadcast();
 }

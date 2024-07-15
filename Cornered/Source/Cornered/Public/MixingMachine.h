@@ -13,7 +13,7 @@ class UNiagaraComponent;
 class AMixingItemDetector;
 class UConfig_MixingMachine;
 class UConfig_Recipe;
-
+class UAudioComponent;
 
 UENUM(BlueprintType)
 enum class EMixingMachineState :uint8
@@ -101,4 +101,13 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		UConfig_Recipe* RecipeConfig;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UAudioComponent> BurnAudio;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UAudioComponent> FreezeAudio;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UAudioComponent> MixingAudio;
 };

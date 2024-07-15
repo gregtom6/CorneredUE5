@@ -9,6 +9,8 @@
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include <Camera/CameraComponent.h>
+#include "Components/AudioComponent.h"
+
 
 // Sets default values
 AEquippedWeapon::AEquippedWeapon()
@@ -26,11 +28,15 @@ AEquippedWeapon::AEquippedWeapon()
 
 	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComp"));
 
+	ShotAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("ShotAudio"));
+
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 
 	NiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+
+	ShotAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -74,6 +80,8 @@ void AEquippedWeapon::ShotHappened() {
 
 		NiagaraComp->Activate(true);
 	}
+
+	ShotAudio->Play();
 }
 
 void AEquippedWeapon::SetEquipperActor(AActor* equipper) {

@@ -7,6 +7,8 @@
 #include "Interactable.h"
 #include "CorneredButton.generated.h"
 
+class UAudioComponent;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPressHappenedDelegate);
 
 UCLASS()
@@ -30,4 +32,9 @@ public:
 
 	UPROPERTY()
 		FPressHappenedDelegate PressHappened;
+
+private:
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UAudioComponent> PressAudio;
 };

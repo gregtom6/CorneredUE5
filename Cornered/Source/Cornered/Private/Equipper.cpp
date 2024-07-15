@@ -8,6 +8,8 @@
 #include <CorneredPlayerController.h>
 #include "EquipmentVisualizer.h"
 #include "Inventory.h"
+#include "Components/AudioComponent.h"
+
 
 // Sets default values for this component's properties
 UEquipper::UEquipper()
@@ -45,10 +47,14 @@ void UEquipper::EquipHappened() {
 		if (equippable) {
 
 			UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+			UAudioComponent* equipAudio = Cast<UAudioComponent>(GetOwner()->GetComponentByClass(UAudioComponent::StaticClass()));
+
 			UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
 
 			PickerComp->RemovePickable();
 			equippable->Equip(equipmentVisualizer, inventory);
+
+			equipAudio->Play();
 		}
 	}
 }

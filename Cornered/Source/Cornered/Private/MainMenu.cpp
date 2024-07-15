@@ -108,9 +108,13 @@ void UMainMenu::ManageControlsPageSteppingButtons() {
 
 void UMainMenu::BackToMain() {
 	SetMainMenuState(EMainMenuState::Main);
+
+	UIPressHappened.Broadcast();
 }
 
 void UMainMenu::NewGameOnClick() {
+
+	UIPressHappened.Broadcast();
 
 	FString levelName = LevelToLoad.GetAssetName();
 	FName LevelName = FName(*levelName);
@@ -121,23 +125,36 @@ void UMainMenu::HintOnClick() {
 	SetMainMenuState(EMainMenuState::Hint);
 	CurrentPageIndex = 0;
 	ShowCurrentTutorialPage();
+
+	UIPressHappened.Broadcast();
 }
 
 void UMainMenu::ControlsOnClick() {
 	SetMainMenuState(EMainMenuState::Controls);
 	CurrentPageIndex = 0;
 	ShowCurrentControlsPage();
+
+	UIPressHappened.Broadcast();
 }
 
 void UMainMenu::QuitOnClick() {
+
+	UIPressHappened.Broadcast();
+
 	UKismetSystemLibrary::QuitGame(GetWorld(), nullptr, EQuitPreference::Quit, true);
 }
 
 void UMainMenu::FromTutorialToMainMenuOnClick() {
+
+	UIPressHappened.Broadcast();
+
 	BackToMain();
 }
 
 void UMainMenu::TutorialLeftPageOnClick() {
+
+	UIPressHappened.Broadcast();
+
 	if (CurrentPageIndex - 1 >= 0)
 	{
 		CurrentPageIndex -= 1;
@@ -146,6 +163,9 @@ void UMainMenu::TutorialLeftPageOnClick() {
 }
 
 void UMainMenu::TutorialRightPageOnClick() {
+
+	UIPressHappened.Broadcast();
+
 	if (CurrentPageIndex + 1 < TutorialConfig->GetTutorialPageCount())
 	{
 		CurrentPageIndex += 1;
@@ -154,10 +174,15 @@ void UMainMenu::TutorialRightPageOnClick() {
 }
 
 void UMainMenu::FromControlsToMainMenuOnClick() {
+	UIPressHappened.Broadcast();
+
 	BackToMain();
 }
 
 void UMainMenu::ControlsLeftPageOnClick() {
+
+	UIPressHappened.Broadcast();
+
 	if (CurrentPageIndex - 1 >= 0)
 	{
 		CurrentPageIndex -= 1;
@@ -166,6 +191,9 @@ void UMainMenu::ControlsLeftPageOnClick() {
 }
 
 void UMainMenu::ControlsRightPageOnClick() {
+
+	UIPressHappened.Broadcast();
+
 	if (CurrentPageIndex + 1 < ControlsConfig->GetControlsPageCount())
 	{
 		CurrentPageIndex += 1;

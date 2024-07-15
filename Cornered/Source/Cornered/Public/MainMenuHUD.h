@@ -7,7 +7,7 @@
 #include "MainMenuHUD.generated.h"
 
 class UUserWidget;
-
+class UAudioComponent;
 /**
  * 
  */
@@ -17,6 +17,9 @@ class CORNERED_API AMainMenuHUD : public AHUD
 	GENERATED_BODY()
 	
 public:
+
+	AMainMenuHUD();
+
 	virtual void BeginPlay() override;
 
 protected:
@@ -27,4 +30,13 @@ private:
 
 	UPROPERTY()
 	UUserWidget* UserWidgetInstance;
+
+	UPROPERTY(EditAnywhere)
+		UAudioComponent* MainMenuBGMComp;
+
+	UPROPERTY(EditAnywhere)
+		UAudioComponent* SFXComp;
+
+	UFUNCTION()
+		void UIPressHappened();
 };

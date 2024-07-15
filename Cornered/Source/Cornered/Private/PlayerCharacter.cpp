@@ -16,6 +16,8 @@
 #include "PaperSpriteComponent.h"
 #include "CooldownIndicator.h"
 #include "Interactor.h"
+#include "Components/AudioComponent.h"
+
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -35,6 +37,7 @@ APlayerCharacter::APlayerCharacter()
 
 	CooldownIndicatorComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("CooldownIndicatorComp"));
 
+	EquipAudio= CreateDefaultSubobject<UAudioComponent>(TEXT("EquipAudio"));
 
 	EquipmentVisualizer = CreateDefaultSubobject<UEquipmentVisualizer>(TEXT("EquipmentVisualizer"));
 
@@ -50,6 +53,8 @@ APlayerCharacter::APlayerCharacter()
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	InteractorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
+
+	EquipAudio->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned

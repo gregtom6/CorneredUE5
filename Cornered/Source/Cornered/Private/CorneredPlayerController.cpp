@@ -27,6 +27,19 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 		EnhancedInputComponent->BindAction(ActionLook, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleLook);
 	}
 
+	if (ActionLookUp) {
+		EnhancedInputComponent->BindAction(ActionLookUp, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleLookUp);
+	}
+	if (ActionLookDown) {
+		EnhancedInputComponent->BindAction(ActionLookDown, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleLookDown);
+	}
+	if (ActionLookLeft) {
+		EnhancedInputComponent->BindAction(ActionLookLeft, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleLookLeft);
+	}
+	if (ActionLookRight) {
+		EnhancedInputComponent->BindAction(ActionLookRight, ETriggerEvent::Triggered, this, &ACorneredPlayerController::HandleLookRight);
+	}
+
 	if (ActionInteract) {
 		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Started, this, &ACorneredPlayerController::HandleInteractStarted);
 		EnhancedInputComponent->BindAction(ActionInteract, ETriggerEvent::Completed, this, &ACorneredPlayerController::HandleInteractFinished);
@@ -100,13 +113,52 @@ void ACorneredPlayerController::HandleLook(const FInputActionValue& InputActionV
 	}
 }
 
+void ACorneredPlayerController::HandleLookUp() {
+	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
+	if (CameraComponent) {
+		FRotator CameraRotation = CameraComponent->GetComponentRotation();
+		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch + 0.35f && CameraRotation.Pitch + 0.35f < ConfigCharacter->HeadMaxRotY) {
+			CameraRotation.Pitch += 0.35f;
+
+			CameraComponent->SetWorldRotation(CameraRotation);
+		}
+	}
+
+
+
+}
+
+void ACorneredPlayerController::HandleLookDown() {
+
+	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
+	if (CameraComponent) {
+		FRotator CameraRotation = CameraComponent->GetComponentRotation();
+		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch - 0.35f && CameraRotation.Pitch - 0.35f < ConfigCharacter->HeadMaxRotY) {
+			CameraRotation.Pitch += -0.35f;
+
+			CameraComponent->SetWorldRotation(CameraRotation);
+		}
+	}
+
+
+
+}
+
+void ACorneredPlayerController::HandleLookLeft() {
+	AddYawInput(-0.125f);
+}
+
+void ACorneredPlayerController::HandleLookRight() {
+	AddYawInput(0.125f);
+}
+
 void ACorneredPlayerController::HandleMovement(const FInputActionValue& InputActionValue) {
 
 	const FVector2D MovementVector = InputActionValue.Get<FVector2D>();
 
 	if (PlayerCharacter) {
-		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(), MovementVector.X);
-		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(), -MovementVector.Y);
+		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(), MovementVector.X * 0.6f);
+		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(), -MovementVector.Y * 0.6f);
 
 		if (!FMath::IsNearlyZero(MovementVector.X)) {
 			MovementState = EMovementState::Strafing;

@@ -50,6 +50,14 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		UInputAction* ActionLook;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
+		UInputAction* ActionLookUp;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
+		UInputAction* ActionLookDown;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
+		UInputAction* ActionLookLeft;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
+		UInputAction* ActionLookRight;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		UInputAction* ActionInteract;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		UInputAction* ActionPickup;
@@ -76,6 +84,10 @@ protected:
 	void HandleMovement(const FInputActionValue& InputActionValue);
 	void MovementCompleted(const FInputActionValue& InputActionValue);
 	void HandleLook(const FInputActionValue& InputActionValue);
+	void HandleLookUp();
+	void HandleLookDown();
+	void HandleLookLeft();
+	void HandleLookRight();
 	void HandleInteractStarted();
 	void HandleInteractFinished();
 	void HandlePickup();

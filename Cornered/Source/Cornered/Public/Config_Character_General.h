@@ -36,4 +36,11 @@ public:
 		float HealHealthDelta;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float FastBootsSpeedMultiplier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float LookVerticalSensitivity;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float LookHorizontalSensitivity;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float MovementMultiplier;
 };

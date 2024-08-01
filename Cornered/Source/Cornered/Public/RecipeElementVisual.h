@@ -40,13 +40,4 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPaperSpriteComponent> EffectSprite;
-
-	UPROPERTY()
-		UMaterialInterface* ElementMaterialToUse;
-
-	UPROPERTY()
-		UMaterialInterface* EffectMaterialToUse;
-
-	UFUNCTION()
-		void SetVisualComponents();
 };

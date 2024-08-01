@@ -28,8 +28,6 @@ ARecipeElementVisual::ARecipeElementVisual()
 void ARecipeElementVisual::BeginPlay()
 {
 	Super::BeginPlay();
-
-	SetVisualComponents();
 }
 
 // Called every frame
@@ -41,17 +39,9 @@ void ARecipeElementVisual::Tick(float DeltaTime)
 
 void ARecipeElementVisual::SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial) {
 
-	ElementMaterialToUse = ElementMaterial;
-	EffectMaterialToUse = EffectMaterial;
+	ElementSprite->SetMaterial(0, ElementMaterial);
 
-	SetVisualComponents();
-}
+	EffectSprite->SetMaterial(0, EffectMaterial);
 
-void ARecipeElementVisual::SetVisualComponents() {
-
-	ElementSprite->SetMaterial(0, ElementMaterialToUse);
-
-	EffectSprite->SetMaterial(0, EffectMaterialToUse);
-
-	EffectSprite->SetVisibility(EffectMaterialToUse != nullptr);
+	EffectSprite->SetVisibility(EffectMaterial != nullptr);
 }

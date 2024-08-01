@@ -118,10 +118,4 @@ void ARecipeShower::RecipeElementCreation(TSubclassOf<AActor> RecipeElementClass
 	recipeElement->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform);
 
 	PositionForGeneration = FVector(PositionForGeneration.X - xDelta, PositionForGeneration.Y, PositionForGeneration.Z);
-
-	//GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ARecipeShower::SetVisuals, 0.001f, false,);
-}
-
-void ARecipeShower::SetVisuals() {
-	//RecipeElementVisual->SetElement(ElementMaterial, EffectMaterial);
 }

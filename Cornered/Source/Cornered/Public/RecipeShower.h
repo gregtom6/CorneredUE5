@@ -79,8 +79,4 @@ private:
 
 	UFUNCTION()
 		void RecipeElementCreation(TSubclassOf<AActor> ClassOfElement, FVector& PositionForGeneration, UMaterialInterface* Material, float xDelta, UMaterialInterface* EffectMaterial = nullptr);
-
-	FTimerHandle TimerHandle;
-
-	void SetVisuals();
 };

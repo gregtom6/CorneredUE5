@@ -117,15 +117,12 @@ void ACorneredPlayerController::HandleLookUp() {
 	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
 	if (CameraComponent) {
 		FRotator CameraRotation = CameraComponent->GetComponentRotation();
-		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch + 0.35f && CameraRotation.Pitch + 0.35f < ConfigCharacter->HeadMaxRotY) {
-			CameraRotation.Pitch += 0.35f;
+		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch + ConfigCharacter->LookVerticalSensitivity && CameraRotation.Pitch + ConfigCharacter->LookVerticalSensitivity < ConfigCharacter->HeadMaxRotY) {
+			CameraRotation.Pitch += ConfigCharacter->LookVerticalSensitivity;
 
 			CameraComponent->SetWorldRotation(CameraRotation);
 		}
 	}
-
-
-
 }
 
 void ACorneredPlayerController::HandleLookDown() {
@@ -133,23 +130,20 @@ void ACorneredPlayerController::HandleLookDown() {
 	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
 	if (CameraComponent) {
 		FRotator CameraRotation = CameraComponent->GetComponentRotation();
-		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch - 0.35f && CameraRotation.Pitch - 0.35f < ConfigCharacter->HeadMaxRotY) {
-			CameraRotation.Pitch += -0.35f;
+		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch - ConfigCharacter->LookVerticalSensitivity && CameraRotation.Pitch - ConfigCharacter->LookVerticalSensitivity < ConfigCharacter->HeadMaxRotY) {
+			CameraRotation.Pitch += -ConfigCharacter->LookVerticalSensitivity;
 
 			CameraComponent->SetWorldRotation(CameraRotation);
 		}
 	}
-
-
-
 }
 
 void ACorneredPlayerController::HandleLookLeft() {
-	AddYawInput(-0.125f);
+	AddYawInput(-ConfigCharacter->LookHorizontalSensitivity);
 }
 
 void ACorneredPlayerController::HandleLookRight() {
-	AddYawInput(0.125f);
+	AddYawInput(ConfigCharacter->LookHorizontalSensitivity);
 }
 
 void ACorneredPlayerController::HandleMovement(const FInputActionValue& InputActionValue) {
@@ -157,8 +151,8 @@ void ACorneredPlayerController::HandleMovement(const FInputActionValue& InputAct
 	const FVector2D MovementVector = InputActionValue.Get<FVector2D>();
 
 	if (PlayerCharacter) {
-		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(), MovementVector.X * 0.6f);
-		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(), -MovementVector.Y * 0.6f);
+		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorForwardVector(), MovementVector.X * ConfigCharacter->MovementMultiplier);
+		PlayerCharacter->AddMovementInput(PlayerCharacter->GetActorRightVector(), -MovementVector.Y * ConfigCharacter->MovementMultiplier);
 
 		if (!FMath::IsNearlyZero(MovementVector.X)) {
 			MovementState = EMovementState::Strafing;

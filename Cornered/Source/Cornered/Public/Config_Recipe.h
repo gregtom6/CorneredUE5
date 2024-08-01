@@ -9,7 +9,9 @@
 #include "Config_Recipe.generated.h"
 
 class AIngredient;
-
+class UMaterialInterface;
+class UConfig_Progress;
+class UCorneredGameInstance;
 
 USTRUCT(BlueprintType)
 struct FRecipeEntry
@@ -40,6 +42,39 @@ struct FProductClassEntry
 
 };
 
+USTRUCT(BlueprintType)
+struct FIngredientRadiatingMaterialEntry {
+
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemType Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        UMaterialInterface* Material;
+};
+
+USTRUCT(BlueprintType)
+struct FEffectRadiatingMaterialEntry {
+
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemState Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        UMaterialInterface* Material;
+};
+
+USTRUCT(BlueprintType)
+struct FMaterialArray
+{
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite)
+        TArray<UMaterialInterface*> Materials;
+};
+
 /**
  * 
  */
@@ -50,16 +85,45 @@ class CORNERED_API UConfig_Recipe : public UDataAsset
 	
 private:
 
+    UPROPERTY(EditAnywhere)
+        UConfig_Progress* ProgressConfig;
+
     UPROPERTY(EditAnywhere, Category = "Dictionary")
         TArray<FRecipeEntry> RecipeEntries;
 
     UPROPERTY(EditAnywhere, Category = "Dictionary")
         TArray<FProductClassEntry> ProductClassEntries;
 
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
+        TArray< FIngredientRadiatingMaterialEntry> IngredientRadiatingMaterialEntries;
+
+    UPROPERTY(EditAnywhere, Category = "Dictionary")
+        TArray< FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
+
     UFUNCTION()
         int32 GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState);
 
+    UFUNCTION()
+        UMaterialInterface* GetRadiatingMaterial(EItemType itemType);
+
+    UFUNCTION()
+        UMaterialInterface* GetRadiatingEffectMaterial(EItemState itemState);
+
 public:
+    UPROPERTY(EditAnywhere)
+        UMaterialInterface* RecipeShowPlusMaterial;
+
+    UPROPERTY(EditAnywhere)
+        UMaterialInterface* RecipeShowEqualMaterial;
+
+    UPROPERTY(EditAnywhere)
+        TSubclassOf<AActor> RecipeShowElementClass;
+
+    UPROPERTY(EditAnywhere)
+        TSubclassOf<AActor> RecipeShowOperatorClass;
 
 	TSubclassOf<AIngredient> GetResultItem(TArray<FItemData> detectedItems);
+
+    UFUNCTION()
+        TArray<FMaterialArray> GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance);
 };

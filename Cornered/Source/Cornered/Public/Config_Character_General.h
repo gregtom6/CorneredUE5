@@ -6,6 +6,8 @@
 #include "Engine/DataAsset.h"
 #include "Config_Character_General.generated.h"
 
+class AEnemyCharacter;
+
 /**
  * 
  */
@@ -43,4 +45,7 @@ public:
 		float LookHorizontalSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float MovementMultiplier;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AEnemyCharacter> EnemyCharacterClass;
 };

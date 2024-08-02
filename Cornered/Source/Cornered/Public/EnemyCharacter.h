@@ -4,34 +4,42 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "PlayerCharacter.generated.h"
+#include "EnemyCharacter.generated.h"
 
-class UPlayerWeapon;
-class UInteractableDetector;
-class UPicker;
-class UEquipper;
+class UEnemyWeapon;
 class UCameraComponent;
 class USkeletalMeshComponent;
 class UEquipmentVisualizer;
 class UInventory;
 class UPaperSpriteComponent;
 class UCooldownIndicator;
-class UInteractor;
-class UAudioComponent;
-class UPlayerHealth;
+class UPawnSensingComponent;
+class UEnemyHealth;
+class AEnemyController;
+class AGameModeBase;
+class APlayerController;
+class APawn;
+class AAIController;
 
 UCLASS()
-class CORNERED_API APlayerCharacter : public ACharacter
+class CORNERED_API AEnemyCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	APlayerCharacter();
+	AEnemyCharacter();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+private:
+
+	APawn* ChasedTarget = nullptr;
+
+	UFUNCTION()
+		void Chase(APawn* targetPawn);
 
 public:	
 	// Called every frame
@@ -41,19 +49,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPlayerWeapon> PlayerWeaponComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UPicker> PickerComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEquipper> EquipperComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInteractor> InteractorComp;
+		TObjectPtr<UEnemyWeapon> EnemyWeaponComp;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
@@ -77,8 +73,8 @@ public:
 		TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UAudioComponent> EquipAudio;
+		TObjectPtr<UPawnSensingComponent> PawnSensingComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPlayerHealth> PlayerHealthComp;
+		TObjectPtr<UEnemyHealth> EnemyHealthComp;
 };

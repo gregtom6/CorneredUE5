@@ -41,6 +41,9 @@ void AEnemyController::Tick(float DeltaTime)
 	//TODO: nicer
 
 	if (UPathFollowingComponent* PathFollowingComp = GetPathFollowingComponent()) {
+
+		MovementState = PathFollowingComp->GetStatus() == EPathFollowingStatus::Moving ? EMovementState::Walking : EMovementState::Standing;
+
 		if (PathFollowingComp->GetStatus() != EPathFollowingStatus::Moving && FVector::Distance(PlayerPawn->GetActorLocation(), GetPawn()->GetActorLocation()) > 100.f) {
 			FollowPlayer();
 		}
@@ -52,4 +55,8 @@ void AEnemyController::FollowPlayer() {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
 	MoveToActor(PlayerPawn);
+}
+
+EMovementState AEnemyController::GetMovementState() const {
+	return MovementState;
 }

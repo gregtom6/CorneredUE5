@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "Navigation/PathFollowingComponent.h"
+#include "CorneredPlayerController.h"
 #include "EnemyController.generated.h"
 
 class ACorneredGameMode;
@@ -23,6 +24,9 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION()
+		EMovementState GetMovementState() const;
+
 protected:
 
 	UFUNCTION()
@@ -34,4 +38,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	bool bIsTimerOver;
+
+private:
+
+	UPROPERTY()
+		EMovementState MovementState;
 };

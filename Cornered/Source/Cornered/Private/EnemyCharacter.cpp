@@ -66,49 +66,25 @@ void AEnemyCharacter::BeginPlay()
 	CooldownIndicatorComp->SetRelativeLocation(FVector(0.f, -0.1725f, 0.f));
 
 	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, EnemyWeaponComp);
-
-	/*
-	UWorld* World = GetWorld();
-	AGameModeBase* GameMode = World->GetAuthGameMode();
-	APlayerController* PlayerController = World->GetFirstPlayerController();
-	APawn* PlayerPawn = PlayerController->GetPawn();
-
-	EnemyController = Cast<AEnemyController>(GetController());
-	EnemyController->MoveToActor(PlayerPawn);
-	*/
 }
 
 // Called every frame
 void AEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	/*
-	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	ACorneredPlayerController* CorneredPlayerController = Cast<ACorneredPlayerController>(PlayerController);
+	
+	AEnemyController* EnemyController = Cast<AEnemyController>(GetController());
 	UPlayerCharacterAnimInstance* animInst = Cast<UPlayerCharacterAnimInstance>(GetMesh()->GetAnimInstance());
 
 	if (animInst) {
-		if (CorneredPlayerController && animInst->LegState != (int)CorneredPlayerController->GetMovementState()) {
-			animInst->LegState = (int)CorneredPlayerController->GetMovementState();
+		if (EnemyController && animInst->LegState != (int)EnemyController->GetMovementState()) {
+			animInst->LegState = (int)EnemyController->GetMovementState();
 		}
 
 		if (EnemyWeaponComp && animInst->UseWeapon != EnemyWeaponComp->IsThereEquippedWeapon()) {
 			animInst->UseWeapon = EnemyWeaponComp->IsThereEquippedWeapon();
 		}
 	}
-	*/
-	/*
-	FVector Velocity = GetCharacterMovement()->Velocity;
-	if (!Velocity.IsZero())
-	{
-		FRotator TargetRotation = Velocity.Rotation();
-
-		// Optionally interpolate to smooth the rotation
-		//FRotator NewRotation = FMath::RInterpTo(GetActorRotation(), TargetRotation, DeltaTime, 5.0f); // 5.0f is the interpolation speed
-
-		SetActorRotation(TargetRotation);
-	}
-	*/
 }
 
 // Called to bind functionality to input

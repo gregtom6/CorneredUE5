@@ -34,6 +34,8 @@ void AEnemyController::Tick(float DeltaTime)
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
 
+	//TODO: nicer
+
 	if (UPathFollowingComponent* PathFollowingComp = GetPathFollowingComponent()) {
 		if (PathFollowingComp->GetStatus() != EPathFollowingStatus::Moving && FVector::Distance(PlayerPawn->GetActorLocation(), GetPawn()->GetActorLocation()) > 100.f) {
 			FollowPlayer();

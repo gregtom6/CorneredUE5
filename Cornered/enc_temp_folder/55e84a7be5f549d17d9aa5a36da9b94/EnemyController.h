@@ -28,8 +28,7 @@ protected:
 	UFUNCTION()
 		void OnTimerOverHappened();
 
-	UFUNCTION()
-		void FollowPlayer();
-
 	virtual void BeginPlay() override;
+
+		void OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result);
 };

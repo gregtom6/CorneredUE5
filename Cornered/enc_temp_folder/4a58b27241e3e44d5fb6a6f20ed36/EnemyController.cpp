@@ -20,10 +20,22 @@ void AEnemyController::BeginPlay()
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
 	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &AEnemyController::OnTimerOverHappened);
+
+	if (UPathFollowingComponent* PathFollowingComp = GetPathFollowingComponent()) {
+
+		PathFollowingComp->OnRequestFinished.AddUObject(this, &AEnemyController::OnMoveCompleted);
+	}
 }
 
 void AEnemyController::OnTimerOverHappened() {
-	FollowPlayer();
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	APawn* PlayerPawn = PlayerController->GetPawn();
+	MoveToActor(PlayerPawn);
+}
+
+void AEnemyController::OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result) {
+
+	
 }
 
 void AEnemyController::Tick(float DeltaTime)
@@ -34,16 +46,13 @@ void AEnemyController::Tick(float DeltaTime)
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
 
+
 	if (UPathFollowingComponent* PathFollowingComp = GetPathFollowingComponent()) {
+
+
 		if (PathFollowingComp->GetStatus() != EPathFollowingStatus::Moving && FVector::Distance(PlayerPawn->GetActorLocation(), GetPawn()->GetActorLocation()) > 100.f) {
-			FollowPlayer();
+			OnTimerOverHappened();
 		}
+
 	}
-}
-
-
-void AEnemyController::FollowPlayer() {
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	APawn* PlayerPawn = PlayerController->GetPawn();
-	MoveToActor(PlayerPawn);
 }

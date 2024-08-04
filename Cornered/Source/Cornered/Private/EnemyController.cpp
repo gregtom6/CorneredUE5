@@ -23,6 +23,7 @@ void AEnemyController::BeginPlay()
 }
 
 void AEnemyController::OnTimerOverHappened() {
+	bIsTimerOver = true;
 	FollowPlayer();
 }
 
@@ -30,6 +31,9 @@ void AEnemyController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (!bIsTimerOver) {
+		return;
+	}
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();

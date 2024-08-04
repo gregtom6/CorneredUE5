@@ -32,4 +32,6 @@ protected:
 		void FollowPlayer();
 
 	virtual void BeginPlay() override;
+
+	bool bIsTimerOver;
 };

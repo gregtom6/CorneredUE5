@@ -5,7 +5,7 @@
 #include "Inventory.h"
 #include <Kismet/GameplayStatics.h>
 #include <CorneredPlayerController.h>
-
+#include "Perception/PawnSensingComponent.h"
 
 EItemType UEnemyWeapon::GetEquippedWeapon() const {
 
@@ -16,19 +16,20 @@ EItemType UEnemyWeapon::GetEquippedWeapon() const {
 void UEnemyWeapon::BeginPlay() {
 
 	Super::BeginPlay();
-	/*
-	AEnemyController* EnemyController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	if (PlayerController)
-	{
-		ACorneredPlayerController* CustomPlayerController = Cast<ACorneredPlayerController>(PlayerController);
-		if (CustomPlayerController)
-		{
-			CustomPlayerController->ShootHappenedInstance.AddUniqueDynamic(this, &UEnemyWeapon::ShootHappened);
-		}
-	}
-	*/
 }
 
-void UEnemyWeapon::ShootHappened() {
-	ShootWithEquippedWeapon();
+void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
+    if (bIsReadyToShoot)
+    {
+        UPawnSensingComponent* pawnSensing = Cast<UPawnSensingComponent>(GetOwner()->GetComponentByClass(UPawnSensingComponent::StaticClass()));
+
+        if (pawnSensing)
+        {
+            APawn* pawn= UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+
+            if (pawnSensing->CouldSeePawn(pawn)) {
+                ShootWithEquippedWeapon();
+            }
+        }
+    }
 }

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "CharacterWeapon.h"
+#include "Config_Equipment.h"
 #include "Inventory.generated.h"
 
 class AProduct;
@@ -26,6 +27,15 @@ public:
 
 	UFUNCTION()
 		void EquipItem(AProduct* Product);
+
+	UFUNCTION()
+		void EquipWeapon(FItemDatas itemDatas);
+
+	UFUNCTION()
+		void EquipShield(FItemDatas itemDatas);
+
+	UFUNCTION()
+		void EquipAdditional(FItemDatas itemDatas);
 
 	UFUNCTION()
 		EItemType GetWeapon() const;

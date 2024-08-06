@@ -2,6 +2,9 @@
 
 
 #include "EquipmentGenerator.h"
+#include "CharacterSpawner.h"
+#include "Config_Equipment.h"
+#include "EnemyCharacter.h"
 
 // Sets default values
 AEquipmentGenerator::AEquipmentGenerator()
@@ -16,6 +19,11 @@ void AEquipmentGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
+	if (MySubsystem)
+	{
+		MySubsystem->OnEnemyGenerated.AddDynamic(this, &AEquipmentGenerator::OnEnemyGenerated);
+	}
 }
 
 // Called every frame
@@ -25,3 +33,14 @@ void AEquipmentGenerator::Tick(float DeltaTime)
 
 }
 
+void AEquipmentGenerator::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
+	GenerateEquipment(EnemyCharacter);
+}
+
+void AEquipmentGenerator::GenerateEquipment(AEnemyCharacter* EnemyCharacter) {
+	FItemDatas weapon= EquipmentConfig->GetRandomWeapon();
+	FItemDatas shield = EquipmentConfig->GetRandomShield();
+	FItemDatas additional = EquipmentConfig->GetRandomAdditional();
+
+	EnemyCharacter->SetEquipment(weapon, shield, additional);
+}

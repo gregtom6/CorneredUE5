@@ -6,10 +6,13 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "CharacterSpawner.generated.h"
 
+
 class UConfig_CharacterSpawner;
 class ATargetPoint;
 class AEnemyCharacter;
 class UConfig_Character_General;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEnemyGeneratedDelegate, AEnemyCharacter*, EnemyCharacter);
 /**
  * 
  */
@@ -25,6 +28,10 @@ public:
 
 	void OnLevelLoaded(ULevel* LoadedLevel, UWorld* World);
 
+	UPROPERTY()
+		FEnemyGeneratedDelegate OnEnemyGenerated;
+	UFUNCTION()
+		void OnGameStart();
 private:
 
 	bool IsWorldInArray(UWorld* World) const;
@@ -35,6 +42,10 @@ private:
 	UFUNCTION()
 		TArray<AActor*> QueryAllTargetPoints();
 
+	bool bLevelLoaded;
+
 	UFUNCTION()
 		FString RemoveBeforeUnderscore(const FString& Input) const;
+
+	
 };

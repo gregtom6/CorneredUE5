@@ -20,20 +20,42 @@ void UCharacterSpawner::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	FWorldDelegates::LevelAddedToWorld.AddUObject(this, &UCharacterSpawner::OnLevelLoaded);
+	//FWorldDelegates::LevelAddedToWorld.AddUObject(this, &UCharacterSpawner::OnLevelLoaded);
 }
 
 void UCharacterSpawner::OnLevelLoaded(ULevel* LoadedLevel, UWorld* World)
 {
-	if (IsWorldInArray(World)) {
+	/*
+	if (!bLevelLoaded && IsWorldInArray(World)) {
 		FVector SelectedPosition = GetRandomPosition();
 
 		const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
 
 		if (Settings) {
-			GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
+			AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
+
+			OnEnemyGenerated.Broadcast(enemyCharacter);
+			bLevelLoaded = true;
 		}
+
 	}
+	*/
+}
+
+void UCharacterSpawner::OnGameStart() {
+	//if (!bLevelLoaded) {
+		FVector SelectedPosition = GetRandomPosition();
+
+		const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
+
+		if (Settings) {
+			AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
+
+			OnEnemyGenerated.Broadcast(enemyCharacter);
+			//bLevelLoaded = true;
+		}
+
+	//}
 }
 
 bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
@@ -58,10 +80,10 @@ bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 // For packaged builds, simply check the valid worlds
 			return IsWorldInArray(World);
 #endif
+			}
 		}
-	}
 	return false;
-}
+	}
 
 FVector UCharacterSpawner::GetRandomPosition() {
 	TArray<AActor*> FoundActors = QueryAllTargetPoints();

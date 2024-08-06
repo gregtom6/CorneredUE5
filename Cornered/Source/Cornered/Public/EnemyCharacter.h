@@ -20,6 +20,7 @@ class AGameModeBase;
 class APlayerController;
 class APawn;
 class AAIController;
+class UExternalEquipper;
 
 UCLASS()
 class CORNERED_API AEnemyCharacter : public ACharacter
@@ -60,6 +61,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UInventory> InventoryComp;
 
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UExternalEquipper> ExternalEquipperComp;
+
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
 
@@ -77,4 +81,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UEnemyHealth> EnemyHealthComp;
+
+	UFUNCTION()
+		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 };

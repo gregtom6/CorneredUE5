@@ -39,6 +39,8 @@ public:
 	UPROPERTY()
 		FTimeOverHappenedDelegate TimeOverHappened;
 
+	virtual void StartPlay() override;
+
 private:
 
 	UPROPERTY()

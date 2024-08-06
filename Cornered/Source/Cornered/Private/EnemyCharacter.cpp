@@ -18,6 +18,8 @@
 #include "GameFramework/PlayerController.h"
 #include "AIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Config_Equipment.h"
+#include "ExternalEquipper.h"
 
 // Sets default values
 AEnemyCharacter::AEnemyCharacter()
@@ -36,6 +38,8 @@ AEnemyCharacter::AEnemyCharacter()
 	EquipmentVisualizer = CreateDefaultSubobject<UEquipmentVisualizer>(TEXT("EquipmentVisualizer"));
 
 	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
+
+	ExternalEquipperComp = CreateDefaultSubobject<UExternalEquipper>(TEXT("ExternalEquipperComp"));
 
 	EnemyHealthComp = CreateDefaultSubobject<UEnemyHealth>(TEXT("EnemyHealthComp"));
 
@@ -96,4 +100,8 @@ void AEnemyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 void AEnemyCharacter::Chase(APawn* TargetPawn) {
 
+}
+
+void AEnemyCharacter::SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
+	ExternalEquipperComp->Equip(weapon, shield, additional);
 }

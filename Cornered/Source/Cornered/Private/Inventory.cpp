@@ -6,6 +6,7 @@
 #include "WeaponProduct.h"
 #include "AdditionalProduct.h"
 #include "ShieldProduct.h"
+#include "Config_Equipment.h"
 
 // Sets default values for this component's properties
 UInventory::UInventory()
@@ -39,6 +40,18 @@ void UInventory::EquipItem(AProduct* Product) {
 	else if (Product->IsA(AAdditionalProduct::StaticClass())) {
 		Additional = Product->GetItemType();
 	}
+}
+
+void UInventory::EquipWeapon(FItemDatas itemDatas) {
+	Weapon = itemDatas.Key;
+}
+
+void UInventory::EquipShield(FItemDatas itemDatas) {
+	Shield = itemDatas.Key;
+}
+
+void UInventory::EquipAdditional(FItemDatas itemDatas) {
+	Additional = itemDatas.Key;
 }
 
 EItemType UInventory::GetWeapon() const {

@@ -83,7 +83,7 @@ bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 			}
 		}
 	return false;
-	}
+}
 
 FVector UCharacterSpawner::GetRandomPosition() {
 	TArray<AActor*> FoundActors = QueryAllTargetPoints();

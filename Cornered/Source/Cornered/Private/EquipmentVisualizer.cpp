@@ -54,7 +54,33 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 
 	SpawnedEquippedWeapon->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, GetNameOfSocket(Product));
 
+	//TODO: refactor:
+
 	if (Product->GetItemType() == EItemType::Pistol) {
+		SpawnedEquippedWeapon->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
+		SpawnedEquippedWeapon->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
+	}
+	else {
+		SpawnedEquippedWeapon->SetActorRelativeLocation(FVector(442.129621f, 23.534655f, 282.048388f));
+		SpawnedEquippedWeapon->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
+		SpawnedEquippedWeapon->SetActorRelativeScale3D(FVector(0.5775f, 0.5775f, 0.5775f));
+	}
+
+	bWeaponSpawned = true;
+}
+
+void UEquipmentVisualizer::VisualizeWeaponDatas(FItemDatas ItemDatas) {
+	TSubclassOf<AActor> product = ConfigEquipment->GetEquippedProduct(ItemDatas.Key);
+
+	SpawnedEquippedWeapon = GetWorld()->SpawnActor<AActor>(product);
+
+	ACharacter* character = Cast<ACharacter>(GetOwner());
+
+	SpawnedEquippedWeapon->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("RightArmSocket"));
+
+	//TODO: refactor:
+
+	if (ItemDatas.Key == EItemType::Pistol) {
 		SpawnedEquippedWeapon->SetActorRelativeLocation(FVector(189.0f, 210.0f, 145.0f));
 		SpawnedEquippedWeapon->SetActorRelativeRotation(FRotator(-48.496153f, -51.800591f, -4.977581f));
 	}

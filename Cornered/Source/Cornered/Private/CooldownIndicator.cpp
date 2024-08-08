@@ -2,7 +2,7 @@
 
 
 #include "CooldownIndicator.h"
-#include "PlayerWeapon.h"
+#include "CharacterWeapon.h"
 #include "PaperSpriteComponent.h"
 
 // Sets default values for this component's properties
@@ -44,7 +44,7 @@ void UCooldownIndicator::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
 }
 
-void UCooldownIndicator::SetComponents(USceneComponent* parent, UPlayerWeapon* weapon) {
+void UCooldownIndicator::SetComponents(USceneComponent* parent, UCharacterWeapon* weapon) {
 	CooldownIndicatorParentComp = parent;
 	CharacterWeapon = weapon;
 

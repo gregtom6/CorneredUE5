@@ -18,6 +18,7 @@ class UPaperSpriteComponent;
 class UCooldownIndicator;
 class UInteractor;
 class UAudioComponent;
+class UPlayerHealth;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACharacter
@@ -77,4 +78,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UAudioComponent> EquipAudio;
+
+	UPROPERTY(VisibleAnywhere)
+		TObjectPtr<UPlayerHealth> PlayerHealthComp;
 };

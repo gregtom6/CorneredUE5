@@ -5,9 +5,23 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "CharacterWeapon.h"
+#include "MixingItemDetector.h"
 #include "Config_Equipment.generated.h"
 
 class AProduct;
+
+USTRUCT(BlueprintType)
+struct FItemDatas
+{
+    GENERATED_BODY()
+
+        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemType Key;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+        EItemState Value;
+};
+
 
 USTRUCT(BlueprintType)
 struct FEquippedProductEntry
@@ -72,6 +86,13 @@ class CORNERED_API UConfig_Equipment : public UDataAsset
 	
 private:
 
+    UPROPERTY(EditAnywhere)
+        TArray<FItemDatas> Weapons;
+    UPROPERTY(EditAnywhere)
+        TArray<FItemDatas> Shields;
+    UPROPERTY(EditAnywhere)
+        TArray<FItemDatas> Additionals;
+
     UPROPERTY(EditAnywhere, Category = "Dictionary")
         TArray<FEquippedProductEntry> EquippedProductEntries;
 
@@ -97,4 +118,13 @@ public:
 
     UFUNCTION()
         FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
+
+    UFUNCTION()
+        FItemDatas GetRandomWeapon();
+
+    UFUNCTION()
+        FItemDatas GetRandomShield();
+
+    UFUNCTION()
+        FItemDatas GetRandomAdditional();
 };

@@ -17,7 +17,7 @@
 #include "CooldownIndicator.h"
 #include "Interactor.h"
 #include "Components/AudioComponent.h"
-
+#include "PlayerHealth.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -42,6 +42,8 @@ APlayerCharacter::APlayerCharacter()
 	EquipmentVisualizer = CreateDefaultSubobject<UEquipmentVisualizer>(TEXT("EquipmentVisualizer"));
 
 	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
+
+	PlayerHealthComp = CreateDefaultSubobject<UPlayerHealth>(TEXT("PlayerHealthComp"));
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 

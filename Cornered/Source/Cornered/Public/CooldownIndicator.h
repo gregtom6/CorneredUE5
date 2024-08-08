@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "CooldownIndicator.generated.h"
 
-class UPlayerWeapon;
+class UCharacterWeapon;
 class UPaperSpriteComponent;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -27,13 +27,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION()
-		void SetComponents(USceneComponent* parent, UPlayerWeapon* weapon);
+		void SetComponents(USceneComponent* parent, UCharacterWeapon* weapon);
 
 	UPROPERTY(VisibleAnywhere)
 		USceneComponent* CooldownIndicatorParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		UPlayerWeapon* CharacterWeapon;
+		UCharacterWeapon* CharacterWeapon;
 
 	UPROPERTY(VisibleAnywhere)
 		UPaperSpriteComponent* CooldownIndicatorPaperSprite;

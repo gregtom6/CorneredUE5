@@ -5,10 +5,24 @@
 #include <CorneredHud.h>
 #include <Kismet/GameplayStatics.h>
 #include "Config_Time.h"
+#include "CharacterSpawner.h"
 
 ACorneredGameMode::ACorneredGameMode()
 {
 
+}
+
+void ACorneredGameMode::StartPlay()
+{
+	Super::StartPlay();
+
+	if (UWorld* World = GetWorld())
+	{
+		if (UCharacterSpawner* Spawner = World->GetSubsystem<UCharacterSpawner>())
+		{
+			Spawner->OnGameStart();
+		}
+	}
 }
 
 void ACorneredGameMode::BeginPlay()

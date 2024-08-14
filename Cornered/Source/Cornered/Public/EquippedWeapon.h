@@ -13,6 +13,19 @@ class UActorSequencePlayer;
 class UNiagaraComponent;
 class UAudioComponent;
 
+USTRUCT(BlueprintType)
+struct FShotRayDatas
+{
+	GENERATED_BODY()
+
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		FVector Origin;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		FVector End;
+
+};
+
 UCLASS()
 class CORNERED_API AEquippedWeapon : public AActor
 {
@@ -46,6 +59,9 @@ public:
 
 	UFUNCTION()
 		void SetEquipperActor(AActor* equipper);
+
+	UFUNCTION()
+		FShotRayDatas GetShotRayDatas();
 	
 private:
 

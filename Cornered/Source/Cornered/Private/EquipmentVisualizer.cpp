@@ -114,3 +114,8 @@ void UEquipmentVisualizer::PlayEquippedWeaponVisuals() {
 		equippedWeapon->ShotHappened();
 	}
 }
+
+FShotRayDatas UEquipmentVisualizer::GetShotRayDatas() {
+	AEquippedWeapon* equippedWeapon = Cast<AEquippedWeapon>(SpawnedEquippedWeapon);
+	return equippedWeapon->GetShotRayDatas();
+}

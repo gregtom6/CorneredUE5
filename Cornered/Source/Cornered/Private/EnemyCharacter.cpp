@@ -20,6 +20,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Config_Equipment.h"
 #include "ExternalEquipper.h"
+#include "Components/StateTreeComponent.h"
+#include "HideSpotFinder.h"
 
 // Sets default values
 AEnemyCharacter::AEnemyCharacter()
@@ -39,6 +41,8 @@ AEnemyCharacter::AEnemyCharacter()
 
 	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
 
+	HideSpotFinderComp = CreateDefaultSubobject<UHideSpotFinder>(TEXT("HideSpotFinderComp"));
+
 	ExternalEquipperComp = CreateDefaultSubobject<UExternalEquipper>(TEXT("ExternalEquipperComp"));
 
 	EnemyHealthComp = CreateDefaultSubobject<UEnemyHealth>(TEXT("EnemyHealthComp"));
@@ -46,6 +50,8 @@ AEnemyCharacter::AEnemyCharacter()
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
+
+	StateTreeComp = CreateDefaultSubobject<UStateTreeComponent>(TEXT("StateTreeComp"));
 
 	CooldownIndicatorManagementComp = CreateDefaultSubobject<UCooldownIndicator>(TEXT("CooldownIndicatorManagementComp"));
 
@@ -104,4 +110,16 @@ void AEnemyCharacter::Chase(APawn* TargetPawn) {
 
 void AEnemyCharacter::SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
 	ExternalEquipperComp->Equip(weapon, shield, additional);
+}
+
+float AEnemyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	// Pass damage to the health component
+	if (EnemyHealthComp)
+	{
+		EnemyHealthComp->DamageHealth(DamageAmount);
+	}
+
+	// Call base class implementation
+	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 }

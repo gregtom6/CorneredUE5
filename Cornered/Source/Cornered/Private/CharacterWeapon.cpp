@@ -4,6 +4,8 @@
 #include "CharacterWeapon.h"
 #include "Config_Equipment.h"
 #include <EquipmentVisualizer.h>
+#include <Kismet/GameplayStatics.h>
+#include "EquippedWeapon.h"
 
 // Sets default values for this component's properties
 UCharacterWeapon::UCharacterWeapon()
@@ -49,8 +51,36 @@ void UCharacterWeapon::ShootWithEquippedWeapon() {
 
 	FWeaponSettingsEntry weaponSettings = EquipmentConfig->GetWeaponSettings(GetEquippedWeapon());
 
+	DamageTheOtherOneIfCan(weaponSettings);
+
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UCharacterWeapon::ShootCooldownEnded, weaponSettings.CooldownTimeInSec, false);
+}
+
+void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings) {
+
+	UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+
+	FShotRayDatas shotRayDatas = equipmentVisualizer->GetShotRayDatas();
+
+
+	FVector Origin = shotRayDatas.Origin;
+
+	FVector End = shotRayDatas.End;
+
+	FHitResult HitResult;
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(
+		HitResult,
+		Origin,
+		End,
+		ECC_GameTraceChannel4
+	);
+
+	if (bHit) {
+
+		UGameplayStatics::ApplyDamage(HitResult.GetActor(),weaponSettings.Damage,GetOwner()->GetInstigatorController(),GetOwner(),UDamageType::StaticClass());
+	}
 }
 
 void UCharacterWeapon::ShootCooldownEnded() {
@@ -85,4 +115,8 @@ float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 	
 	return 1.0f;
 	
+}
+
+bool UCharacterWeapon::IsReadyToShoot() {
+	return bIsReadyToShoot;
 }

@@ -10,7 +10,8 @@
 
 class ACorneredGameMode;
 class UPathFollowingComponent;
-
+class AEnemyCharacter;
+class UStateTreeComponent;
 /**
  * 
  */
@@ -27,13 +28,17 @@ public:
 	UFUNCTION()
 		EMovementState GetMovementState() const;
 
+	UFUNCTION()
+		void FollowPlayer();
+
+	UFUNCTION()
+		void HideFromPlayer();
+
 protected:
 
 	UFUNCTION()
 		void OnTimerOverHappened();
 
-	UFUNCTION()
-		void FollowPlayer();
 
 	virtual void BeginPlay() override;
 

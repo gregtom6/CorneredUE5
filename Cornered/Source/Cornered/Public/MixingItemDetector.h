@@ -4,18 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
-#include <CharacterWeapon.h>
+#include "ItemType.h"
+#include "ItemState.h"
 #include "MixingItemDetector.generated.h"
-
-UENUM(BlueprintType)
-enum class EItemState : uint8
-{
-    Normal,
-	Freezed,
-	Burned,
-
-    Count,
-};
 
 USTRUCT(BlueprintType)
 struct FItemData

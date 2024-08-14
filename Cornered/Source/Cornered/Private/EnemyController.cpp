@@ -4,6 +4,9 @@
 #include "EnemyController.h"
 #include "CorneredGameMode.h"
 #include "Navigation/PathFollowingComponent.h"
+#include "EnemyCharacter.h"
+#include "Components/StateTreeComponent.h"
+#include "HideSpotFinder.h"
 
 AEnemyController::AEnemyController()
 {
@@ -24,12 +27,17 @@ void AEnemyController::BeginPlay()
 
 void AEnemyController::OnTimerOverHappened() {
 	bIsTimerOver = true;
-	FollowPlayer();
+
+	AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(GetPawn());
+
+	EnemyCharacter->StateTreeComp->StartLogic();
 }
 
 void AEnemyController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	/*
 
 	if (!bIsTimerOver) {
 		return;
@@ -37,8 +45,6 @@ void AEnemyController::Tick(float DeltaTime)
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
-
-	//TODO: nicer
 
 	if (UPathFollowingComponent* PathFollowingComp = GetPathFollowingComponent()) {
 
@@ -48,6 +54,7 @@ void AEnemyController::Tick(float DeltaTime)
 			FollowPlayer();
 		}
 	}
+	*/
 }
 
 
@@ -55,6 +62,16 @@ void AEnemyController::FollowPlayer() {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
 	MoveToActor(PlayerPawn);
+}
+
+void AEnemyController::HideFromPlayer() {
+	UHideSpotFinder* hideSpotFinder = Cast<UHideSpotFinder>(GetPawn()->GetComponentByClass(UHideSpotFinder::StaticClass()));
+
+	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
+
+	if (closestHidingSpot.IsSet()) {
+		MoveToLocation(closestHidingSpot.GetValue());
+	}
 }
 
 EMovementState AEnemyController::GetMovementState() const {

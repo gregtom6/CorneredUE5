@@ -14,4 +14,10 @@ class CORNERED_API UEnemyHealth : public UCharacterHealth
 {
 	GENERATED_BODY()
 	
+public:
+
+		virtual float GetMaxHealth() override;
+protected:
+
+	virtual float GetReloadWaitingMaxTime() override;
 };

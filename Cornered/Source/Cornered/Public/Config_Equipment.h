@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "CharacterWeapon.h"
+#include "ItemType.h"
 #include "MixingItemDetector.h"
 #include "Config_Equipment.generated.h"
 

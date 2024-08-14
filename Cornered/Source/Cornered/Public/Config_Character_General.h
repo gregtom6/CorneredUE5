@@ -35,6 +35,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float WaitUntilHealthReloadStarts;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float EnemyWaitUntilHealthReloadStarts;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float HealHealthDelta;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float FastBootsSpeedMultiplier;

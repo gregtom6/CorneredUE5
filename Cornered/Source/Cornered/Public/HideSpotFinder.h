@@ -44,19 +44,19 @@ private:
 		void SortHitsBasedOnDistance();
 
 	UFUNCTION()
-		void FindingPossiblePositionsAlongCurrentRay(FVector Origin, FVector Direction, TArray<FVector>& possibleHideSpots, TArray<FHitResult> raycastHits, float rayLength);
+		void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);
 
 	UFUNCTION()
-		TArray<FHitResult> MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction);
+		FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit);
 
 	UFUNCTION()
-		bool ThisRayIsNotHittingPlayer(TArray<FHitResult> raycastHits);
+		bool ThisRayIsNotHittingPlayer(FHitResult raycastHits);
 
 	UFUNCTION()
 		bool IsThisPointNotVisibleByPlayer(FVector CurrentPoint);
 
 	UFUNCTION()
-		bool IsThisPointOutsideColliders(FVector CurrentPoint);
+		bool IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent);
 
 	UFUNCTION()
 		void SortPointsByDistance(TArray<FVector>& PointsArray);

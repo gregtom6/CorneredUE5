@@ -7,6 +7,7 @@
 #include "EnemyCharacter.h"
 #include "Components/StateTreeComponent.h"
 #include "HideSpotFinder.h"
+#include "DrawDebugHelpers.h"
 
 AEnemyController::AEnemyController()
 {
@@ -71,7 +72,9 @@ void AEnemyController::HideFromPlayer() {
 
 	if (closestHidingSpot.IsSet()) {
 		MoveToLocation(closestHidingSpot.GetValue());
+		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), 100.f, 12, FColor::Red, false, -1.f, 0, 1.0f);
 	}
+
 }
 
 EMovementState AEnemyController::GetMovementState() const {

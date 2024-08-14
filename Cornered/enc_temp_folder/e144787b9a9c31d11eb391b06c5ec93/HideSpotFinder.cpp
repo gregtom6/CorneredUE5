@@ -88,7 +88,7 @@ void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoin
 		{
 			stepCount += 1.f;
 		}
-	} while (currentDistanceToCheckOnRay < 5000.f);
+	} while (currentDistanceToCheckOnRay >= 5000.f);
 }
 
 FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) {
@@ -169,10 +169,10 @@ bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) {
 	);
 
 	if (!bHit || (bHit && HitResult.GetActor() == PlayerPawn)) {
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent) {

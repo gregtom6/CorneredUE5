@@ -30,3 +30,23 @@ void UPlayerWeapon::BeginPlay() {
 void UPlayerWeapon::ShootHappened() {
 	ShootWithEquippedWeapon();
 }
+
+void UPlayerWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) {
+	FVector Origin = shotRayDatas.Origin;
+
+	FVector End = shotRayDatas.End;
+
+	FHitResult HitResult;
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(
+		HitResult,
+		Origin,
+		End,
+		ECC_GameTraceChannel5
+	);
+
+	if (bHit) {
+
+		UGameplayStatics::ApplyDamage(HitResult.GetActor(), weaponSettings.Damage, GetOwner()->GetInstigatorController(), GetOwner(), UDamageType::StaticClass());
+	}
+}

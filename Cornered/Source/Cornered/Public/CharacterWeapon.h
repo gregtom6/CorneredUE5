@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "ItemType.h"
+#include "EquippedWeapon.h"
 #include "CharacterWeapon.generated.h"
 
 class UConfig_Equipment;
@@ -36,6 +37,8 @@ protected:
 
     void ShootCooldownEnded();
 
+    UFUNCTION()
+        virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas);
 
 public:	
     UFUNCTION()
@@ -60,4 +63,5 @@ private:
 
     UFUNCTION()
         void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
+
 };

@@ -63,24 +63,7 @@ void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSetting
 
 	FShotRayDatas shotRayDatas = equipmentVisualizer->GetShotRayDatas();
 
-
-	FVector Origin = shotRayDatas.Origin;
-
-	FVector End = shotRayDatas.End;
-
-	FHitResult HitResult;
-
-	bool bHit = GetWorld()->LineTraceSingleByChannel(
-		HitResult,
-		Origin,
-		End,
-		ECC_GameTraceChannel4
-	);
-
-	if (bHit) {
-
-		UGameplayStatics::ApplyDamage(HitResult.GetActor(),weaponSettings.Damage,GetOwner()->GetInstigatorController(),GetOwner(),UDamageType::StaticClass());
-	}
+	InflictDamage(weaponSettings, shotRayDatas);
 }
 
 void UCharacterWeapon::ShootCooldownEnded() {
@@ -115,6 +98,10 @@ float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 	
 	return 1.0f;
 	
+}
+
+void UCharacterWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) {
+
 }
 
 bool UCharacterWeapon::IsReadyToShoot() {

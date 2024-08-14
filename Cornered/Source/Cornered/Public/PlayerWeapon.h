@@ -19,8 +19,11 @@ protected:
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) override;
 private:
 
 	UFUNCTION()
 		void ShootHappened();
+
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "EquippedWeapon.h"
 #include "EquipmentVisualizer.generated.h"
 
 class UConfig_Equipment;
@@ -36,6 +37,9 @@ public:
 
 	UFUNCTION()
 		void PlayEquippedWeaponVisuals();
+
+	UFUNCTION()
+		FShotRayDatas GetShotRayDatas();
 
 private:
 	UPROPERTY()

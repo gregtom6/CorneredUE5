@@ -106,3 +106,14 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 }
 
+float APlayerCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	// Pass damage to the health component
+	if (PlayerHealthComp)
+	{
+		PlayerHealthComp->DamageHealth(DamageAmount);
+	}
+
+	// Call base class implementation
+	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+}

@@ -3,6 +3,8 @@
 
 #include "HealthBar.h"
 #include "Components/ProgressBar.h"
+#include "PlayerCharacter.h"
+#include "CharacterHealth.h"
 
 void UHealthBar::NativeConstruct()
 {
@@ -17,6 +19,10 @@ void UHealthBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 
     if (Health)
     {
-        Health->SetPercent(0.9f); // Example: Set progress to 50%
+        APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+        APlayerCharacter* PlayerPawn = Cast<APlayerCharacter>(PlayerController->GetPawn());
+        UCharacterHealth* CharHealth = Cast<UCharacterHealth>(PlayerPawn->GetComponentByClass(UCharacterHealth::StaticClass()));
+
+        Health->SetPercent(CharHealth->GetCurrentHealth()/100.f); // Example: Set progress to 50%
     }
 }

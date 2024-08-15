@@ -47,7 +47,7 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			);
 
 
-			if (/*bHit && HitResult.GetActor() == pawn && */pawnSensing->CouldSeePawn(pawn)) {
+			if (bHit && HitResult.GetActor() == pawn && pawnSensing->CouldSeePawn(pawn)) {
 				ShootWithEquippedWeapon();
 			}
 		}

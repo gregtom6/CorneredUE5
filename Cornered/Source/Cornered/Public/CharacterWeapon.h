@@ -4,33 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "ItemType.h"
+#include "EquippedWeapon.h"
 #include "CharacterWeapon.generated.h"
-
-class UConfig_Equipment;
-
-UENUM(BlueprintType)
-enum class EItemType : uint8
-{
-    EmptyItem,
-    Tube,
-    Marbles,
-    Board,
-    Coffee,
-    Boots,
-    Petrol,
-    Pistol,
-    Shotgun,
-    FastBoots,
-    FlamingShotgun,
-    Freezer,
-    DefenderPhysical,
-    DefenderPhysicalExtra,
-    DefenderHeat,
-    DefenderCold,
-    Rope,
-
-    Count,
-};
 
 class UConfig_Equipment;
 
@@ -56,11 +32,13 @@ protected:
     UFUNCTION()
         void ManageVisual();
 
-    UPROPERTY()
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
         bool bIsReadyToShoot = true;
 
     void ShootCooldownEnded();
 
+    UFUNCTION()
+        virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas);
 
 public:	
     UFUNCTION()
@@ -77,6 +55,13 @@ public:
     UFUNCTION()
         void SetWeaponReadyToBeUsed();
 
+    UFUNCTION(BlueprintGetter)
+        bool IsReadyToShoot();
+
 private:
     FTimerHandle TimerHandle;
+
+    UFUNCTION()
+        void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
+
 };

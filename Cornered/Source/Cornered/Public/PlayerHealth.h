@@ -13,5 +13,12 @@ UCLASS()
 class CORNERED_API UPlayerHealth : public UCharacterHealth
 {
 	GENERATED_BODY()
+
+public:
 	
+		virtual float GetMaxHealth() override;
+	
+protected:
+
+	virtual float GetReloadWaitingMaxTime() override;
 };

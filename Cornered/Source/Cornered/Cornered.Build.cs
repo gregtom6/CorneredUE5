@@ -8,7 +8,7 @@ public class Cornered : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "MovieScene", "ActorSequence", "Niagara", "Paper2D", "AIModule" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "MovieScene", "ActorSequence", "Niagara", "Paper2D", "AIModule","StateTreeModule" ,"GameplayStateTreeModule","NavigationSystem" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

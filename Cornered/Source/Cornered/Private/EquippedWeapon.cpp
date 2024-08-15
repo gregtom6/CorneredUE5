@@ -73,10 +73,10 @@ void AEquippedWeapon::ShotHappened() {
 		player->Stop();
 		player->Play();
 
-		UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));
+		FShotRayDatas ShotDatas = GetShotRayDatas();
 
-		NiagaraComp->SetVariablePosition("BeamStart", MuzzlePosition->GetComponentLocation());
-		NiagaraComp->SetVariablePosition("BeamEnd", cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f));
+		NiagaraComp->SetVariablePosition("BeamStart", ShotDatas.Origin);
+		NiagaraComp->SetVariablePosition("BeamEnd", ShotDatas.End);
 
 		NiagaraComp->Activate(true);
 	}
@@ -87,3 +87,18 @@ void AEquippedWeapon::ShotHappened() {
 void AEquippedWeapon::SetEquipperActor(AActor* equipper) {
 	EquipperActor = equipper;
 }
+
+UE_DISABLE_OPTIMIZATION
+
+FShotRayDatas AEquippedWeapon::GetShotRayDatas() {
+	FShotRayDatas ShotDatas;
+
+	UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));
+
+	ShotDatas.Origin = MuzzlePosition->GetComponentLocation();
+	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f);
+
+	return ShotDatas;
+}
+
+UE_ENABLE_OPTIMIZATION

@@ -17,6 +17,7 @@ struct FUnlockableAbilities
 };
 
 class UCorneredGameInstance;
+class AProgressionGameState;
 
 /**
  * 
@@ -30,6 +31,12 @@ public:
 
     UFUNCTION()
     bool IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance) const;
+
+    UFUNCTION()
+        int GetMaxUnlockLevel();
+
+    UFUNCTION()
+        bool IsAbilityUnlocked(EAbility Ability, AProgressionGameState* GameState);
 
 private:
 

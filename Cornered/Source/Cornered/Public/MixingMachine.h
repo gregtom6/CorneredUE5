@@ -49,6 +49,9 @@ public:
 
 private:
 
+	UFUNCTION()
+		void OnNewMatchStarted();
+
 	FTimerHandle TimerHandle;
 
 	UFUNCTION()

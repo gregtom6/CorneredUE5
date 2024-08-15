@@ -4,6 +4,7 @@
 #include "Config_Progress.h"
 #include "CorneredGameInstance.h"
 #include <Kismet/GameplayStatics.h>
+#include "ProgressionGameState.h"
 
 bool UConfig_Progress::IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance) const {
     if (ability == EAbility::Default)
@@ -29,4 +30,22 @@ TArray<EAbility> UConfig_Progress::GetAlreadyUnlockedAbilities(int32 currentUnlo
     }
 
     return abilities;
+}
+
+int UConfig_Progress::GetMaxUnlockLevel() {
+    return AbilitiesToUnlockPerLevel.Num();
+}
+
+bool UConfig_Progress::IsAbilityUnlocked(EAbility Ability, AProgressionGameState* GameState) {
+    if (Ability == EAbility::Default) {
+        return true;
+    }
+
+    if (GameState)
+    {
+        TArray<EAbility> unlockedAbilities = GetAlreadyUnlockedAbilities(GameState->UnlockLevel);
+        return unlockedAbilities.Contains(Ability);
+    }
+
+    return false;
 }

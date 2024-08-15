@@ -203,7 +203,7 @@ void AMixingMachine::OnNewMatchStarted() {
 
 	AProgressionGameState* GameState = GetWorld()->GetGameState<AProgressionGameState>();
 
-	ConvertButton->SetActorHiddenInGame(!GameState->IsAbilityAlreadyUnlocked(EAbility::Default));
-	BurnButton->SetActorHiddenInGame(!GameState->IsAbilityAlreadyUnlocked(EAbility::Burn));
-	FreezeButton->SetActorHiddenInGame(!GameState->IsAbilityAlreadyUnlocked(EAbility::Freeze));
+	ConvertButton->SetActorHiddenInGame(GameState->IsAbilityAlreadyUnlocked(EAbility::Default));
+	BurnButton->SetActorHiddenInGame(GameState->IsAbilityAlreadyUnlocked(EAbility::Burn));
+	FreezeButton->SetActorHiddenInGame(GameState->IsAbilityAlreadyUnlocked(EAbility::Freeze));
 }

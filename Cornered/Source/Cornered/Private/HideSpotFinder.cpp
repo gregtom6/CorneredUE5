@@ -191,7 +191,7 @@ bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObj
 
 TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 	float currentAngle = 0.f;
-	float angleRotationChecks = 15.f;
+	float angleRotationChecks = 10.f;
 	float rayLength = 1500.f;
 
 	TOptional<FVector> PossibleHideSpot;

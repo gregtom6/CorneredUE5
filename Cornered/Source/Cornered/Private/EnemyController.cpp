@@ -8,6 +8,7 @@
 #include "Components/StateTreeComponent.h"
 #include "HideSpotFinder.h"
 #include "DrawDebugHelpers.h"
+#include "Config_AI.h"
 
 AEnemyController::AEnemyController()
 {
@@ -38,24 +39,9 @@ void AEnemyController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	/*
-
-	if (!bIsTimerOver) {
-		return;
-	}
-
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	APawn* PlayerPawn = PlayerController->GetPawn();
-
 	if (UPathFollowingComponent* PathFollowingComp = GetPathFollowingComponent()) {
-
 		MovementState = PathFollowingComp->GetStatus() == EPathFollowingStatus::Moving ? EMovementState::Walking : EMovementState::Standing;
-
-		if (PathFollowingComp->GetStatus() != EPathFollowingStatus::Moving && FVector::Distance(PlayerPawn->GetActorLocation(), GetPawn()->GetActorLocation()) > 100.f) {
-			FollowPlayer();
-		}
 	}
-	*/
 }
 
 

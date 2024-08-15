@@ -12,6 +12,7 @@ class ACorneredGameMode;
 class UPathFollowingComponent;
 class AEnemyCharacter;
 class UStateTreeComponent;
+class UConfig_AI;
 /**
  * 
  */
@@ -48,4 +49,7 @@ private:
 
 	UPROPERTY()
 		EMovementState MovementState;
+
+	UPROPERTY(EditAnywhere)
+		UConfig_AI* AIConfig;
 };

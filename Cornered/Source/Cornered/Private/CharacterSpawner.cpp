@@ -44,16 +44,16 @@ void UCharacterSpawner::OnLevelLoaded(ULevel* LoadedLevel, UWorld* World)
 
 void UCharacterSpawner::OnGameStart() {
 	//if (!bLevelLoaded) {
-		FVector SelectedPosition = GetRandomPosition();
+	FVector SelectedPosition = GetRandomPosition();
 
-		const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
+	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
 
-		if (Settings) {
-			AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
+	if (Settings) {
+		AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
 
-			OnEnemyGenerated.Broadcast(enemyCharacter);
-			//bLevelLoaded = true;
-		}
+		OnEnemyGenerated.Broadcast(enemyCharacter);
+		//bLevelLoaded = true;
+	}
 
 	//}
 }
@@ -80,8 +80,8 @@ bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 // For packaged builds, simply check the valid worlds
 			return IsWorldInArray(World);
 #endif
-			}
 		}
+	}
 	return false;
 }
 
@@ -101,11 +101,16 @@ bool UCharacterSpawner::IsWorldInArray(UWorld* World) const
 	if (Settings)
 	{
 		for (int i = 0; i < Settings->ActiveInTheseLevels.Num(); i++) {
-			FString name1 = RemoveBeforeUnderscore(Settings->ActiveInTheseLevels[i]->GetMapName());
-			FString name2 = RemoveBeforeUnderscore(World->GetMapName());
-			if (name1 == name2) {
-				return true;
+
+			if (!Settings->ActiveInTheseLevels[i].IsNull()) {
+				FString path1 = Settings->ActiveInTheseLevels[i].ToSoftObjectPath().ToString();
+				FString path2 = World->GetMapName();
+				if (path1 == path2) {
+					return true;
+				}
+
 			}
+
 		}
 	}
 

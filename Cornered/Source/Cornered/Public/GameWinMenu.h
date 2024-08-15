@@ -24,12 +24,6 @@ public:
 	UPROPERTY()
 		FUIPressHappenedDelegate UIPressHappened;
 
-	UPROPERTY(EditAnywhere)
-		TSoftObjectPtr<UWorld> GameLevel;
-
-	UPROPERTY(EditAnywhere)
-		TSoftObjectPtr<UWorld> MainMenuLevel;
-
 protected:
 
 	UPROPERTY(meta = (BindWidget))

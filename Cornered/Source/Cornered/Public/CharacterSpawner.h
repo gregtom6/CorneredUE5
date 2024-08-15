@@ -47,5 +47,4 @@ private:
 	UFUNCTION()
 		FString RemoveBeforeUnderscore(const FString& Input) const;
 
-	
 };

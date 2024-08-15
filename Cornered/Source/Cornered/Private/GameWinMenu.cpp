@@ -5,6 +5,8 @@
 #include "Components/Button.h"
 #include <Kismet/GameplayStatics.h>
 #include "Components/TextBlock.h"
+#include "LevelManager.h"
+#include "ConfigLevelsDevSettings.h"
 
 void UGameWinMenu::NativeConstruct()
 {
@@ -25,16 +27,14 @@ void UGameWinMenu::RestartOnClick() {
 
 	UIPressHappened.Broadcast();
 
-	FString levelName = GameLevel.GetAssetName();
-	FName LevelName = FName(*levelName);
-	UGameplayStatics::OpenLevel(this, LevelName);
+	ULevelManager* MySubsystem = GetGameInstance()->GetSubsystem<ULevelManager>();
+	MySubsystem->LoadLevel(ELevelIdentifier::MainScene, GetWorld());
 }
 
 void UGameWinMenu::QuitOnClick() {
 
 	UIPressHappened.Broadcast();
 
-	FString levelName = MainMenuLevel.GetAssetName();
-	FName LevelName = FName(*levelName);
-	UGameplayStatics::OpenLevel(this, LevelName);
+	ULevelManager* MySubsystem = GetGameInstance()->GetSubsystem<ULevelManager>();
+	MySubsystem->LoadLevel(ELevelIdentifier::MainMenu, GetWorld());
 }

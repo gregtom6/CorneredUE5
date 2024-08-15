@@ -71,9 +71,9 @@ bool UEquipmentDecider::IsWorldInArray(UWorld* World) const
 	if (Settings)
 	{
 		for (int i = 0; i < Settings->ActiveInTheseLevels.Num(); i++) {
-			FString name1 = RemoveBeforeUnderscore(Settings->ActiveInTheseLevels[i]->GetMapName());
-			FString name2 = RemoveBeforeUnderscore(World->GetMapName());
-			if (name1 == name2) {
+			FString path1 = Settings->ActiveInTheseLevels[i].ToSoftObjectPath().ToString();
+			FString path2 = World->GetMapName();
+			if (path1 == path2) {
 				return true;
 			}
 		}

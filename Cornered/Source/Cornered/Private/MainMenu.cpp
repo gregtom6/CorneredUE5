@@ -8,6 +8,8 @@
 #include "Config_Tutorial.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
+#include "LevelManager.h"
+#include "ConfigLevelsDevSettings.h"
 
 void UMainMenu::NativeConstruct()
 {
@@ -116,9 +118,8 @@ void UMainMenu::NewGameOnClick() {
 
 	UIPressHappened.Broadcast();
 
-	FString levelName = LevelToLoad.GetAssetName();
-	FName LevelName = FName(*levelName);
-	UGameplayStatics::OpenLevel(this, LevelName);
+	ULevelManager* MySubsystem = GetGameInstance()->GetSubsystem<ULevelManager>();
+	MySubsystem->LoadLevel(ELevelIdentifier::MainScene, GetWorld());
 }
 
 void UMainMenu::HintOnClick() {

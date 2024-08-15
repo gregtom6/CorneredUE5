@@ -160,12 +160,4 @@ protected:
 
 	UFUNCTION()
 		void ControlsRightPageOnClick();
-
-
-public:
-
-	UPROPERTY(EditAnywhere)
-		TSoftObjectPtr<UWorld> LevelToLoad;
-
-	
 };

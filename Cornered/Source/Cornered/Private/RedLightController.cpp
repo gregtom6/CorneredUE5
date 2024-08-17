@@ -4,6 +4,8 @@
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 #include "CorneredGameMode.h"
+#include "GameFramework/Character.h"
+
 
 // Sets default values
 ARedLightController::ARedLightController()
@@ -20,6 +22,8 @@ void ARedLightController::BeginPlay()
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
 	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ARedLightController::OnTimerOverHappened);
+
+	CorneredGameMode->CharacterDefeated.AddDynamic(this, &ARedLightController::OnCharacterDefeated);
 	
 }
 
@@ -56,3 +60,14 @@ void ARedLightController::Tick(float DeltaTime)
 
 }
 
+void ARedLightController::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+	UActorSequencePlayer* player = BlinkingSequ->GetSequencePlayer();
+	if (player) {
+		player->Stop();
+	}
+
+	UActorSequencePlayer* stpper = DisabledSequ->GetSequencePlayer();
+	if (stpper) {
+		stpper->Play();
+	}
+}

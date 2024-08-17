@@ -40,45 +40,45 @@ void UEquipmentDecider::GenerateEquipment(AEnemyCharacter* EnemyCharacter) {
 
 bool UEquipmentDecider::ShouldCreateSubsystem(UObject* Outer) const
 {
-	if (Outer)
+	if (!Outer || !Super::ShouldCreateSubsystem(Outer))
 	{
-		UWorld* World = Outer->GetWorld();
-		if (World)
+		return false;
+	}
+
+	const UWorld* World = Cast<UWorld>(Outer);
+	if (!World)
+	{
+		return false;
+	}
+
+	const TArray<TSoftObjectPtr<UWorld>>& Levels = GetDefault<UConfigEquipmentDevSettings>()->ActiveInTheseLevels;
+	for (TSoftObjectPtr<UWorld> Level : Levels)
+	{
+		const UWorld* LevelPtr = Level.Get(); //nullptr if not loaded
+		if (LevelPtr && LevelPtr->GetName() == World->GetName())
 		{
-			// Check if running in the editor and if the editor is simulating gameplay
-#if WITH_EDITOR
-			if (GIsEditor)
-			{
-				// Check if we are in PIE (Play In Editor) mode
-				if (World->IsPlayInEditor())
-				{
-					return IsWorldInArray(World);
-				}
-				return false;
-			}
-#else
-// For packaged builds, simply check the valid worlds
-			return IsWorldInArray(World);
-#endif
+			return true;
 		}
 	}
+
 	return false;
 }
 
 bool UEquipmentDecider::IsWorldInArray(UWorld* World) const
 {
+	/*
 	const UConfigEquipmentDevSettings* Settings = GetDefault<UConfigEquipmentDevSettings>();
 	if (Settings)
 	{
 		for (int i = 0; i < Settings->ActiveInTheseLevels.Num(); i++) {
 			FString path1 = Settings->ActiveInTheseLevels[i].ToSoftObjectPath().ToString();
-			FString path2 = World->GetMapName();
+			FString path2 = World->RemovePIEPrefix(World->GetOutermost()->GetName());
 			if (path1 == path2) {
 				return true;
 			}
 		}
 	}
-
+	*/
 	return false;
 }
 

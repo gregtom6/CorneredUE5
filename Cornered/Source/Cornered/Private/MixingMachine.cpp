@@ -12,6 +12,7 @@
 #include "Config_Recipe.h"
 #include "Components/AudioComponent.h"
 #include "ProgressionGameState.h"
+#include "CorneredGameMode.h"
 
 // Sets default values
 AMixingMachine::AMixingMachine()
@@ -74,7 +75,9 @@ void AMixingMachine::BeginPlay()
 	BurnButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::BurnPressHappened);
 	FreezeButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::FreezePressHappened);
 
-	OnNewMatchStarted();
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+
+	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &AMixingMachine::OnNewMatchStarted);
 }
 
 void AMixingMachine::ConvertPressHappened() {

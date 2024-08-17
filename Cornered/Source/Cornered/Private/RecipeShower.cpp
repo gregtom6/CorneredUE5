@@ -8,6 +8,7 @@
 #include "CorneredGameInstance.h"
 #include "GameFramework/GameModeBase.h"
 #include "RecipeElementVisual.h"
+#include "CorneredGameMode.h"
 
 // Sets default values
 ARecipeShower::ARecipeShower()
@@ -29,8 +30,9 @@ void ARecipeShower::BeginPlay()
 {
 	Super::BeginPlay();
 
-	DestroyElements();
-	GenerateRecipeVisuals();
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+
+	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &ARecipeShower::OnNewMatchStarted);
 }
 
 // Called every frame
@@ -118,4 +120,9 @@ void ARecipeShower::RecipeElementCreation(TSubclassOf<AActor> RecipeElementClass
 	recipeElement->AttachToActor(this, FAttachmentTransformRules::KeepRelativeTransform);
 
 	PositionForGeneration = FVector(PositionForGeneration.X - xDelta, PositionForGeneration.Y, PositionForGeneration.Z);
+}
+
+void ARecipeShower::OnNewMatchStarted() {
+	DestroyElements();
+	GenerateRecipeVisuals();
 }

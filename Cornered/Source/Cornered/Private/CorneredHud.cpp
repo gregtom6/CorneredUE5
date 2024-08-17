@@ -5,6 +5,8 @@
 #include "Blueprint/UserWidget.h"
 #include "CorneredGameMode.h"
 #include "Components/AudioComponent.h"
+#include "GameFramework/Character.h"
+
 
 ACorneredHud::ACorneredHud() {
     BGMComp = CreateDefaultSubobject<UAudioComponent>(TEXT("BGMComp"));
@@ -32,9 +34,16 @@ void ACorneredHud::BeginPlay()
     ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
     CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ACorneredHud::OnTimerOverHappened);
+
+    CorneredGameMode->CharacterDefeated.AddDynamic(this, &ACorneredHud::OnCharacterDefeated);
 }
 
 void ACorneredHud::OnTimerOverHappened() {
     BGMComp->Play();
     AmbientComp->Play();
+}
+
+void ACorneredHud::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+    BGMComp->Stop();
+    AmbientComp->Stop();
 }

@@ -8,6 +8,7 @@
 
 class UUserWidget;
 class UAudioComponent;
+class ACharacter;
 /**
  * 
  */
@@ -25,6 +26,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		UAudioComponent* AmbientComp;
+
+	UFUNCTION()
+		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 	
 public:
 	virtual void BeginPlay() override;

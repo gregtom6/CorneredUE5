@@ -3,6 +3,9 @@
 
 #include "CharacterHealth.h"
 #include "Config_Character_General.h"
+#include "CorneredGameMode.h"
+#include "GameFramework/Character.h"
+
 
 // Sets default values for this component's properties
 UCharacterHealth::UCharacterHealth()
@@ -57,8 +60,8 @@ void UCharacterHealth::DamageHealth(float Damage) {
 
 	if (CurrentHealth <= CharacterConfig->MinHealth)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Enemy defeated"));
-		//EventManager.Raise(new CharacterDefeatedEvent{ characterType = GetCharacterType() });
+		ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+		CorneredGameMode->CharacterDied(Cast<ACharacter>(GetOwner()));
 	}
 	else {
 

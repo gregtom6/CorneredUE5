@@ -8,6 +8,7 @@
 
 class UActorSequenceComponent;
 class UActorSequencePlayer;
+class ACharacter;
 
 UCLASS()
 class CORNERED_API ARedLightController : public AActor
@@ -36,4 +37,7 @@ public:
 
 private:
 	FTimerHandle TimerHandle;
+
+	UFUNCTION()
+		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 };

@@ -7,8 +7,13 @@
 #include "CorneredGameMode.generated.h"
 
 class UConfig_Time;
+class ACharacter;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTimeOverHappenedDelegate);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACharacter*, Character);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FNewMatchStartedDelegate);
 
 /**
  * 
@@ -25,6 +30,8 @@ protected:
 
 	void PreparingTimeEnded();
 
+	void WaitTimeEndedBetweenMatches();
+
 public:
 
 	UFUNCTION()
@@ -39,7 +46,16 @@ public:
 	UPROPERTY()
 		FTimeOverHappenedDelegate TimeOverHappened;
 
+	UPROPERTY()
+		FCharacterDefeatedDelegate CharacterDefeated;
+
+	UPROPERTY()
+		FNewMatchStartedDelegate NewMatchStarted;
+
 	virtual void StartPlay() override;
+
+	UFUNCTION()
+		void CharacterDied(ACharacter* Character);
 
 private:
 
@@ -53,4 +69,13 @@ private:
 		UConfig_Time* TimeConfig;
 
 	FTimerHandle TimerHandle;
+
+	UPROPERTY()
+		int MatchIndex;
+
+	UFUNCTION()
+		void InitiateNewMatch();
+
+	UFUNCTION()
+		void InitiateGameOver();
 };

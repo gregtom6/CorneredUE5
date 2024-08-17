@@ -15,35 +15,28 @@
 #include "Engine/LevelStreaming.h"
 #include "EnemyCharacter.h"
 #include "Config_Character_General.h"
+#include "CorneredGameMode.h"
+#include "GameFramework/Character.h"
+
 
 void UCharacterSpawner::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	//FWorldDelegates::LevelAddedToWorld.AddUObject(this, &UCharacterSpawner::OnLevelLoaded);
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+
+	CorneredGameMode->CharacterDefeated.AddDynamic(this, &UCharacterSpawner::OnCharacterDefeated);
+
+	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &UCharacterSpawner::OnNewMatchStarted);
 }
 
 void UCharacterSpawner::OnLevelLoaded(ULevel* LoadedLevel, UWorld* World)
 {
-	/*
-	if (!bLevelLoaded && IsWorldInArray(World)) {
-		FVector SelectedPosition = GetRandomPosition();
 
-		const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
-
-		if (Settings) {
-			AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
-
-			OnEnemyGenerated.Broadcast(enemyCharacter);
-			bLevelLoaded = true;
-		}
-
-	}
-	*/
 }
 
-void UCharacterSpawner::OnGameStart() {
-	//if (!bLevelLoaded) {
+void UCharacterSpawner::OnNewMatchStarted() {
+	
 	FVector SelectedPosition = GetRandomPosition();
 
 	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
@@ -52,36 +45,32 @@ void UCharacterSpawner::OnGameStart() {
 		AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
 
 		OnEnemyGenerated.Broadcast(enemyCharacter);
-		//bLevelLoaded = true;
 	}
-
-	//}
 }
 
 bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 {
-	if (Outer)
+	if (!Outer || !Super::ShouldCreateSubsystem(Outer))
 	{
-		UWorld* World = Outer->GetWorld();
-		if (World)
+		return false;
+	}
+
+	const UWorld* World = Cast<UWorld>(Outer);
+	if (!World)
+	{
+		return false;
+	}
+
+	const TArray<TSoftObjectPtr<UWorld>>& Levels = GetDefault<UConfig_CharacterSpawner>()->ActiveInTheseLevels;
+	for (TSoftObjectPtr<UWorld> Level : Levels)
+	{
+		const UWorld* LevelPtr = Level.Get(); //nullptr if not loaded
+		if (LevelPtr && LevelPtr->GetName() == World->GetName())
 		{
-			// Check if running in the editor and if the editor is simulating gameplay
-#if WITH_EDITOR
-			if (GIsEditor)
-			{
-				// Check if we are in PIE (Play In Editor) mode
-				if (World->IsPlayInEditor())
-				{
-					return IsWorldInArray(World);
-				}
-				return false;
-			}
-#else
-// For packaged builds, simply check the valid worlds
-			return IsWorldInArray(World);
-#endif
+			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -97,22 +86,6 @@ FVector UCharacterSpawner::GetRandomPosition() {
 
 bool UCharacterSpawner::IsWorldInArray(UWorld* World) const
 {
-	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
-	if (Settings)
-	{
-		for (int i = 0; i < Settings->ActiveInTheseLevels.Num(); i++) {
-
-			if (!Settings->ActiveInTheseLevels[i].IsNull()) {
-				FString path1 = Settings->ActiveInTheseLevels[i].ToSoftObjectPath().ToString();
-				FString path2 = World->GetMapName();
-				if (path1 == path2) {
-					return true;
-				}
-
-			}
-
-		}
-	}
 
 	return false;
 }
@@ -141,4 +114,10 @@ TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints()
 	}
 
 	return FoundActors;
+}
+
+void UCharacterSpawner::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+	if (DefeatedCharacter->IsA(AEnemyCharacter::StaticClass())) {
+		DefeatedCharacter->Destroy();
+	}
 }

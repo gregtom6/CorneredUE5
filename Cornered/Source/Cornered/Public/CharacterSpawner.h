@@ -30,9 +30,9 @@ public:
 
 	UPROPERTY()
 		FEnemyGeneratedDelegate OnEnemyGenerated;
-	UFUNCTION()
-		void OnGameStart();
 private:
+	UFUNCTION()
+		void OnNewMatchStarted();
 
 	bool IsWorldInArray(UWorld* World) const;
 
@@ -47,4 +47,6 @@ private:
 	UFUNCTION()
 		FString RemoveBeforeUnderscore(const FString& Input) const;
 
+	UFUNCTION()
+		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 };

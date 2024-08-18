@@ -8,16 +8,12 @@
 
 class UProgressBar;
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UHealthBar : public UUserWidget
 {
 	GENERATED_BODY()
 	
 protected:
-	virtual void NativeConstruct() override;
     virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
 public:

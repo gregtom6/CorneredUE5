@@ -35,8 +35,6 @@ void UPicker::BeginPlay()
 			CustomPlayerController->DropHappenedInstance.AddUniqueDynamic(this, &UPicker::DropHappened);
 		}
 	}
-
-
 }
 
 void UPicker::PickupHappened() {
@@ -76,14 +74,12 @@ void UPicker::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponen
 	if (bPickupDropHappenedInThisFrame) {
 		bPickupDropHappenedInThisFrame = false;
 
-
 		UE_LOG(LogTemp, Warning, TEXT("falsera"));
 	}
 }
 
 IIPickable* UPicker::GetPickedPickable() const {
 	return PickedPickable;
-	//return nullptr;
 }
 
 void UPicker::RemovePickable() {

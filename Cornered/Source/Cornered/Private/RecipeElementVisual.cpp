@@ -9,7 +9,7 @@
 ARecipeElementVisual::ARecipeElementVisual()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
@@ -22,19 +22,6 @@ ARecipeElementVisual::ARecipeElementVisual()
 	ElementSprite->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 
 	EffectSprite->AttachToComponent(ElementSprite, FAttachmentTransformRules::KeepRelativeTransform);
-}
-
-// Called when the game starts or when spawned
-void ARecipeElementVisual::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-// Called every frame
-void ARecipeElementVisual::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void ARecipeElementVisual::SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial) {

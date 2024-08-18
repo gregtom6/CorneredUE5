@@ -9,7 +9,6 @@
 #include "EnemyController.h"
 #include "EnemyCharacter.h"
 
-// Implement the EnterState function, which will be called when this state is entered.
 EStateTreeRunStatus FDefendPositionEnemyState::EnterState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const
 {
 	if (Context.IsValid()) {
@@ -27,11 +26,6 @@ EStateTreeRunStatus FDefendPositionEnemyState::EnterState(FStateTreeExecutionCon
 	return EStateTreeRunStatus::Failed;
 }
 
-void FDefendPositionEnemyState::ExitState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const
-{
-	// ExitState logic here
-}
-
 EStateTreeRunStatus FDefendPositionEnemyState::Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const
 {
 	FDefendTest& InstanceData = Context.GetInstanceData<FDefendTest>(*this);
@@ -42,6 +36,5 @@ EStateTreeRunStatus FDefendPositionEnemyState::Tick(FStateTreeExecutionContext& 
 
 	enemyController->HideFromPlayer();
 
-	// Continue running
 	return EStateTreeRunStatus::Running;
 }

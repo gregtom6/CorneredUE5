@@ -19,8 +19,6 @@ TSubclassOf<AActor> UConfig_Equipment::GetEquippedProduct(EItemType itemType) co
     return result;
 }
 
-
-
 FWeaponSettingsEntry UConfig_Equipment::GetWeaponSettings(EItemType itemType) const {
     for (int i = 0; i < WeaponSettingsEntries.Num(); i++) {
         if (WeaponSettingsEntries[i].Key == itemType) {

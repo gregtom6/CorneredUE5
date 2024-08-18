@@ -6,13 +6,6 @@
 #include "PlayerCharacter.h"
 #include "CharacterHealth.h"
 
-void UHealthBar::NativeConstruct()
-{
-    Super::NativeConstruct();
-
-    
-}
-
 void UHealthBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
     Super::NativeTick(MyGeometry, InDeltaTime);

@@ -6,9 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "ItemType.h"
 #include "EquippedWeapon.h"
+#include "Config_Equipment.h"
 #include "CharacterWeapon.generated.h"
-
-class UConfig_Equipment;
 
 UCLASS(Abstract, ClassGroup = (Custom))
 class CORNERED_API UCharacterWeapon : public UActorComponent
@@ -16,11 +15,9 @@ class CORNERED_API UCharacterWeapon : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	UCharacterWeapon();
 
 protected:
-	// Called when the game starts
 	virtual void BeginPlay() override;
 
     UFUNCTION()
@@ -38,13 +35,11 @@ protected:
     void ShootCooldownEnded();
 
     UFUNCTION()
-        virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas);
+        virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const PURE_VIRTUAL(UCharacterWeapon::InflictDamage, );
 
 public:	
     UFUNCTION()
         float GetCooldownTimeLeftPercentageBetween01();
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION()
 		bool IsThereEquippedWeapon() const;

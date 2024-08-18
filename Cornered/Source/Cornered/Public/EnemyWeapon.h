@@ -17,10 +17,7 @@ class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 protected:
 	virtual EItemType GetEquippedWeapon() const override;
 
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
-	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) override;
+	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const override;
 
 public:
 

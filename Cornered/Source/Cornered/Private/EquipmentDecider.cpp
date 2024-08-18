@@ -54,7 +54,7 @@ bool UEquipmentDecider::ShouldCreateSubsystem(UObject* Outer) const
 	const TArray<TSoftObjectPtr<UWorld>>& Levels = GetDefault<UConfigEquipmentDevSettings>()->ActiveInTheseLevels;
 	for (TSoftObjectPtr<UWorld> Level : Levels)
 	{
-		const UWorld* LevelPtr = Level.Get(); //nullptr if not loaded
+		const UWorld* LevelPtr = Level.Get();
 		if (LevelPtr && LevelPtr->GetName() == World->GetName())
 		{
 			return true;
@@ -62,36 +62,4 @@ bool UEquipmentDecider::ShouldCreateSubsystem(UObject* Outer) const
 	}
 
 	return false;
-}
-
-bool UEquipmentDecider::IsWorldInArray(UWorld* World) const
-{
-	/*
-	const UConfigEquipmentDevSettings* Settings = GetDefault<UConfigEquipmentDevSettings>();
-	if (Settings)
-	{
-		for (int i = 0; i < Settings->ActiveInTheseLevels.Num(); i++) {
-			FString path1 = Settings->ActiveInTheseLevels[i].ToSoftObjectPath().ToString();
-			FString path2 = World->RemovePIEPrefix(World->GetOutermost()->GetName());
-			if (path1 == path2) {
-				return true;
-			}
-		}
-	}
-	*/
-	return false;
-}
-
-FString UEquipmentDecider::RemoveBeforeUnderscore(const FString& Input) const {
-
-	int32 LastUnderscoreIndex;
-	FString result;
-
-	if (Input.FindLastChar('_', LastUnderscoreIndex))
-	{
-		result = Input.RightChop(LastUnderscoreIndex + 1);
-		return result;
-	}
-
-	return Input;
 }

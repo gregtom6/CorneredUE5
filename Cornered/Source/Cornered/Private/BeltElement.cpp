@@ -6,10 +6,8 @@
 #include "Config_IngredientGeneration.h"
 #include "Ingredient.h"
 
-// Sets default values
 ABeltElement::ABeltElement()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
@@ -21,13 +19,6 @@ ABeltElement::ABeltElement()
 	ItemPivot->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
-// Called when the game starts or when spawned
-void ABeltElement::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-// Called every frame
 void ABeltElement::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);

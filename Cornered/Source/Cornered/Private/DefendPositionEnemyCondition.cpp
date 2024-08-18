@@ -5,11 +5,6 @@
 #include "StateTreeConditionBase.h"
 #include "Config_CharacterSpawner.h"
 
-FDefendPositionEnemyCondition::FDefendPositionEnemyCondition()
-{
-	
-}
-
 bool FDefendPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Context) const
 {
 	const FStateTreeDefendConditionMagic* InstanceData = Context.GetInstanceDataPtr<FStateTreeDefendConditionMagic>(*this);

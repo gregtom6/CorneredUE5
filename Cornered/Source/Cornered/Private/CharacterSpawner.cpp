@@ -19,16 +19,6 @@
 #include "GameFramework/Character.h"
 #include "Engine/World.h"
 
-void UCharacterSpawner::Initialize(FSubsystemCollectionBase& Collection)
-{
-	Super::Initialize(Collection);
-}
-
-void UCharacterSpawner::Deinitialize()
-{
-	Super::Deinitialize();
-}
-
 void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
@@ -38,11 +28,6 @@ void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 	CorneredGameMode->CharacterDefeated.AddDynamic(this, &UCharacterSpawner::OnCharacterDefeated);
 
 	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &UCharacterSpawner::OnNewMatchStarted);
-}
-
-void UCharacterSpawner::OnLevelLoaded(ULevel* LoadedLevel, UWorld* World)
-{
-
 }
 
 void UCharacterSpawner::OnNewMatchStarted() {
@@ -74,7 +59,7 @@ bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 	const TArray<TSoftObjectPtr<UWorld>>& Levels = GetDefault<UConfig_CharacterSpawner>()->ActiveInTheseLevels;
 	for (TSoftObjectPtr<UWorld> Level : Levels)
 	{
-		const UWorld* LevelPtr = Level.Get(); //nullptr if not loaded
+		const UWorld* LevelPtr = Level.Get();
 		if (LevelPtr && LevelPtr->GetName() == World->GetName())
 		{
 			return true;
@@ -92,26 +77,6 @@ FVector UCharacterSpawner::GetRandomPosition() {
 	}
 
 	return FVector::ZeroVector;
-}
-
-bool UCharacterSpawner::IsWorldInArray(UWorld* World) const
-{
-
-	return false;
-}
-
-FString UCharacterSpawner::RemoveBeforeUnderscore(const FString& Input) const {
-
-	int32 LastUnderscoreIndex;
-	FString result;
-
-	if (Input.FindLastChar('_', LastUnderscoreIndex))
-	{
-		result = Input.RightChop(LastUnderscoreIndex + 1);
-		return result;
-	}
-
-	return Input;
 }
 
 TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints()

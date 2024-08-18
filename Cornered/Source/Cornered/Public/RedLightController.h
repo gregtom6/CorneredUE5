@@ -27,8 +27,6 @@ protected:
 	void OnTimerOverHappened();
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY()
 		UActorSequenceComponent* DisabledSequ;

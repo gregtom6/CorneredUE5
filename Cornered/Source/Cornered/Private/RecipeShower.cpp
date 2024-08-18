@@ -14,7 +14,7 @@
 ARecipeShower::ARecipeShower()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
@@ -33,13 +33,6 @@ void ARecipeShower::BeginPlay()
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
 	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &ARecipeShower::OnNewMatchStarted);
-}
-
-// Called every frame
-void ARecipeShower::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void ARecipeShower::DestroyElements() {

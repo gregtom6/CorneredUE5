@@ -22,20 +22,14 @@ class CORNERED_API UCharacterSpawner : public UWorldSubsystem
 	GENERATED_BODY()
 	
 public:
-    virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-	virtual void Deinitialize() override;
 
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
-
-	void OnLevelLoaded(ULevel* LoadedLevel, UWorld* World);
 
 	UPROPERTY()
 		FEnemyGeneratedDelegate OnEnemyGenerated;
 private:
 	UFUNCTION()
 		void OnNewMatchStarted();
-
-	bool IsWorldInArray(UWorld* World) const;
 
 	UFUNCTION()
 		FVector GetRandomPosition();
@@ -44,9 +38,6 @@ private:
 		TArray<AActor*> QueryAllTargetPoints();
 
 	bool bLevelLoaded;
-
-	UFUNCTION()
-		FString RemoveBeforeUnderscore(const FString& Input) const;
 
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);

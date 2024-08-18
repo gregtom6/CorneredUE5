@@ -4,12 +4,9 @@
 #include "CorneredObjectPool.h"
 #include "CorneredPooledObject.h"
 
-// Sets default values
 ACorneredObjectPool::ACorneredObjectPool()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	PrimaryActorTick.bCanEverTick = false;
 }
 
 void ACorneredObjectPool::Broadcast_PoolerCleanup()
@@ -136,13 +133,6 @@ void ACorneredObjectPool::BeginPlay()
 
 	bAlreadyInitialized = true;
 	InitializationHappened.Broadcast();
-}
-
-// Called every frame
-void ACorneredObjectPool::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void ACorneredObjectPool::RegenItem(int poolIndex, int positionIndex)

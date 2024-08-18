@@ -33,8 +33,6 @@ protected:
 	TObjectPtr<UStaticMeshComponent> StaticMesh;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	void Pickup(AActor* Actor) override;
 

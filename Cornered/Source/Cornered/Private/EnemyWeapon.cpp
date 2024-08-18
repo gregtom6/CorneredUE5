@@ -13,11 +13,6 @@ EItemType UEnemyWeapon::GetEquippedWeapon() const {
 	return inventory->GetWeapon();
 }
 
-void UEnemyWeapon::BeginPlay() {
-
-	Super::BeginPlay();
-}
-
 void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 	if (bIsReadyToShoot)
 	{
@@ -47,14 +42,14 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			);
 
 
-			if (/*bHit && HitResult.GetActor() == pawn && */pawnSensing->CouldSeePawn(pawn)) {
+			if (pawnSensing->CouldSeePawn(pawn)) {
 				ShootWithEquippedWeapon();
 			}
 		}
 	}
 }
 
-void UEnemyWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) {
+void UEnemyWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const {
 	FVector Origin = shotRayDatas.Origin;
 
 	FVector End = shotRayDatas.End;

@@ -21,8 +21,6 @@ struct FSingleObjectPool
 		TArray<TObjectPtr<UCorneredPooledObject>> _PooledObjects;
 };
 
-
-
 USTRUCT(BlueprintType)
 struct FPooledObjectData
 {
@@ -53,7 +51,6 @@ class CORNERED_API ACorneredObjectPool : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	ACorneredObjectPool();
 
 	UPROPERTY()
@@ -72,7 +69,6 @@ public:
 		void RecycleActor(AActor* pooledActor);
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere)
@@ -82,8 +78,6 @@ protected:
 		TArray<FSingleObjectPool> _Pools;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	FInitializationHappened InitializationHappened;
 

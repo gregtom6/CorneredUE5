@@ -15,19 +15,15 @@ class CORNERED_API UHideSpotFinder : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	UHideSpotFinder();
 
 protected:
-	// Called when the game starts
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
 		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION()
 		TOptional<FVector> GetClosestHidingSpot();
@@ -39,9 +35,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		UConfig_AI* AIConfig;
-
-	UFUNCTION()
-		void SortHitsBasedOnDistance();
 
 	UFUNCTION()
 		void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);

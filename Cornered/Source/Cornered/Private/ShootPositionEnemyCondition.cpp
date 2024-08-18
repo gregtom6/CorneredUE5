@@ -1,10 +1,5 @@
 #include "ShootPositionEnemyCondition.h"
 
-FShootPositionEnemyCondition::FShootPositionEnemyCondition()
-{
-	
-}
-
 bool FShootPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Context) const
 {
 	// Retrieve instance data from the context

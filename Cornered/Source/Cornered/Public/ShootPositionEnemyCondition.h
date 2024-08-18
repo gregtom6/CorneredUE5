@@ -40,9 +40,6 @@ struct FShootPositionEnemyCondition : public FStateTreeConditionCommonBase
 
 public:
 
-	// Constructor
-	FShootPositionEnemyCondition();
-
 	// This function is where the actual condition logic will be implemented
 	virtual bool TestCondition(FStateTreeExecutionContext& Context) const override;
 };

@@ -15,12 +15,9 @@ class CORNERED_API UEquipmentVisualizer : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	UEquipmentVisualizer();
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:	
@@ -45,8 +42,6 @@ public:
 private:
 	UPROPERTY()
 		TObjectPtr<AActor> SpawnedEquippedWeapon;
-
-	
 
 	UFUNCTION()
 		FName GetNameOfSocket(AProduct* Product);

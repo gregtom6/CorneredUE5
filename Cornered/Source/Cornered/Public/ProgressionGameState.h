@@ -21,8 +21,6 @@ public:
 	UPROPERTY()
 		int UnlockLevel;
 
-	AProgressionGameState();
-
 	UFUNCTION()
 		void ResetProgress();
 

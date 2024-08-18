@@ -11,11 +11,6 @@
 #include "LevelManager.h"
 #include "ConfigLevelsDevSettings.h"
 
-ACorneredGameMode::ACorneredGameMode()
-{
-
-}
-
 void ACorneredGameMode::StartPlay()
 {
 	Super::StartPlay();

@@ -21,16 +21,3 @@ EStateTreeRunStatus FShootPositionEnemyState::EnterState(FStateTreeExecutionCont
 
 	return EStateTreeRunStatus::Succeeded;
 }
-
-void FShootPositionEnemyState::ExitState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const
-{
-	// ExitState logic here
-}
-
-EStateTreeRunStatus FShootPositionEnemyState::Tick(FStateTreeExecutionContext& Context, const float DeltaTime) const
-{
-	
-
-	// Continue running
-	return EStateTreeRunStatus::Running;
-}

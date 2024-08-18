@@ -8,11 +8,9 @@
 #include "BeltElement.h"
 #include "CorneredButton.h"
 
-// Sets default values
 ABeltController::ABeltController()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	SpawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnPointComp"));
 
@@ -22,7 +20,6 @@ ABeltController::ABeltController()
 	SpawnPointComp->OnComponentEndOverlap.AddDynamic(this, &ABeltController::OnOverlapEnd);
 }
 
-// Called when the game starts or when spawned
 void ABeltController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -51,14 +48,6 @@ void ABeltController::PressHappened() {
 
 void ABeltController::SwitchBeltSpeed() {
 	CurrentBeltSpeed = CurrentBeltSpeed == EBeltSpeed::Normal ? EBeltSpeed::Fastened : EBeltSpeed::Normal;
-}
-
-// Called every frame
-void ABeltController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-
 }
 
 float ABeltController::GetCurrentMultiplier()

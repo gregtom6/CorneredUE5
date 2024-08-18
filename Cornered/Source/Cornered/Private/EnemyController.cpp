@@ -12,12 +12,9 @@
 
 AEnemyController::AEnemyController()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
-// Called when the game starts or when spawned
 void AEnemyController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -60,7 +57,6 @@ void AEnemyController::HideFromPlayer() {
 		MoveToLocation(closestHidingSpot.GetValue());
 		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), 100.f, 12, FColor::Red, false, -1.f, 0, 1.0f);
 	}
-
 }
 
 EMovementState AEnemyController::GetMovementState() const {

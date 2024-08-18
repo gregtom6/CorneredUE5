@@ -58,13 +58,6 @@ void ARedLightController::OnTimerOverHappened()
 	}
 }
 
-// Called every frame
-void ARedLightController::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void ARedLightController::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
 	UActorSequencePlayer* player = BlinkingSequ->GetSequencePlayer();
 	if (player) {

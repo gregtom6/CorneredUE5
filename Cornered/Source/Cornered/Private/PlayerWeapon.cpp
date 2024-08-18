@@ -31,7 +31,7 @@ void UPlayerWeapon::ShootHappened() {
 	ShootWithEquippedWeapon();
 }
 
-void UPlayerWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) {
+void UPlayerWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const {
 	FVector Origin = shotRayDatas.Origin;
 
 	FVector End = shotRayDatas.End;

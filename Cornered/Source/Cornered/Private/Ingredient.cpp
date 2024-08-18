@@ -11,7 +11,7 @@
 AIngredient::AIngredient()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh"));
 	SetRootComponent(StaticMesh);
@@ -23,13 +23,6 @@ void AIngredient::BeginPlay()
 	Super::BeginPlay();
 	
 	StaticMesh->SetSimulatePhysics(true);
-}
-
-// Called every frame
-void AIngredient::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void AIngredient::Pickup(AActor* Actor) {

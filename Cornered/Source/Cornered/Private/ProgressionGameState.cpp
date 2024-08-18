@@ -8,11 +8,6 @@
 #include "GameFramework/Character.h"
 #include "CorneredGameInstance.h"
 
-AProgressionGameState::AProgressionGameState() {
-
-	
-}
-
 void AProgressionGameState::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
 
 	if (DefeatedCharacter->IsA<AEnemyCharacter>()) {

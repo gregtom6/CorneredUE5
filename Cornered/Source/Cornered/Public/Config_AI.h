@@ -6,9 +6,6 @@
 #include "Engine/DataAsset.h"
 #include "Config_AI.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UConfig_AI : public UDataAsset
 {

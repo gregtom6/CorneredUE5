@@ -2,7 +2,3 @@
 
 
 #include "PlayerCharacterAnimInstance.h"
-
-void UPlayerCharacterAnimInstance::OnStateAnimationEnds() {
-
-}

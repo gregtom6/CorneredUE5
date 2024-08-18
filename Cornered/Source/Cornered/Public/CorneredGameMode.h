@@ -23,8 +23,6 @@ class CORNERED_API ACorneredGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-		ACorneredGameMode();
-
 protected:
 	virtual void BeginPlay() override;
 

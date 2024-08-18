@@ -31,32 +31,13 @@ class CORNERED_API AEnemyCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AEnemyCharacter();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-private:
-
-	APawn* ChasedTarget = nullptr;
-
-	UFUNCTION()
-		void Chase(APawn* targetPawn);
-	/*
-	UPROPERTY(BlueprintReadWrite, BlueprintGetter = GetLifeForAttack)
-		float AttackWhenLifeMoreThanPercentage;
-
-	UPROPERTY(BlueprintReadWrite, BlueprintGetter = GetLifeForHide)
-		float HideWhenLifeLessThanPercentage;
-		*/
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UEnemyWeapon> EnemyWeaponComp;
@@ -102,13 +83,6 @@ public:
 
 	UFUNCTION()
 		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
-	/*
-	UFUNCTION(BlueprintGetter)
-		float GetLifeForAttack();
-
-	UFUNCTION(BlueprintGetter)
-		float GetLifeForHide();
-		*/
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 };

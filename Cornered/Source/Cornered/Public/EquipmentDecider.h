@@ -13,20 +13,11 @@ class AEnemyCharacter;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FEquipmentDecidedDelegate, FItemDatas, Weapon, FItemDatas, Shield, FItemDatas, Additional);
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UEquipmentDecider : public UWorldSubsystem
 {
 	GENERATED_BODY()
 	
-private:
-	bool IsWorldInArray(UWorld* World) const;
-
-	UFUNCTION()
-		FString RemoveBeforeUnderscore(const FString& Input) const;
-
 protected:
 	UFUNCTION()
 		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);

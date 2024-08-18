@@ -21,17 +21,12 @@ struct FItemData
 
 };
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API AMixingItemDetector : public ATriggerBox
 {
 	GENERATED_BODY()
 	
 public:
-
-	AMixingItemDetector();
 
 	UFUNCTION()
 		TArray<FItemData> GetDetectedItems();

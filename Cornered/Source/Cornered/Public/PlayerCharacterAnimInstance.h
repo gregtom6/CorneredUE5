@@ -22,7 +22,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool UseWeapon;
-
-	UFUNCTION(BlueprintCallable)
-		void OnStateAnimationEnds();
 };

@@ -23,10 +23,8 @@
 #include "Components/StateTreeComponent.h"
 #include "HideSpotFinder.h"
 
-// Sets default values
 AEnemyCharacter::AEnemyCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	EnemyWeaponComp = CreateDefaultSubobject<UEnemyWeapon>(TEXT("EnemyWeaponComp"));
@@ -58,7 +56,6 @@ AEnemyCharacter::AEnemyCharacter()
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
 }
 
-// Called when the game starts or when spawned
 void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
@@ -78,7 +75,6 @@ void AEnemyCharacter::BeginPlay()
 	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, EnemyWeaponComp);
 }
 
-// Called every frame
 void AEnemyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -97,29 +93,16 @@ void AEnemyCharacter::Tick(float DeltaTime)
 	}
 }
 
-// Called to bind functionality to input
-void AEnemyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-
-void AEnemyCharacter::Chase(APawn* TargetPawn) {
-
-}
-
 void AEnemyCharacter::SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
 	ExternalEquipperComp->Equip(weapon, shield, additional);
 }
 
 float AEnemyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	// Pass damage to the health component
 	if (EnemyHealthComp)
 	{
 		EnemyHealthComp->DamageHealth(DamageAmount);
 	}
 
-	// Call base class implementation
 	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 }

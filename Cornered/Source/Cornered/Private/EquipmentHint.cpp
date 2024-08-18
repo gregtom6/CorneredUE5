@@ -8,11 +8,9 @@
 #include "Config_Hint.h"
 #include "EquipmentDecider.h"
 
-// Sets default values
 AEquipmentHint::AEquipmentHint()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
@@ -27,7 +25,6 @@ AEquipmentHint::AEquipmentHint()
 	WeaponMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
-// Called when the game starts or when spawned
 void AEquipmentHint::BeginPlay()
 {
 	Super::BeginPlay();
@@ -37,14 +34,6 @@ void AEquipmentHint::BeginPlay()
 	{
 		MySubsystem->OnEquipmentDecided.AddDynamic(this, &AEquipmentHint::OnEquipmentDecided);
 	}
-	
-}
-
-// Called every frame
-void AEquipmentHint::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void AEquipmentHint::OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional) {

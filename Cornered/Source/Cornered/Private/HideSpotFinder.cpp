@@ -12,18 +12,11 @@
 #include "DrawDebugHelpers.h"
 #include "PlayerCharacter.h"
 
-// Sets default values for this component's properties
 UHideSpotFinder::UHideSpotFinder()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
-
-// Called when the game starts
 void UHideSpotFinder::BeginPlay()
 {
 	Super::BeginPlay();
@@ -37,19 +30,6 @@ void UHideSpotFinder::BeginPlay()
 
 void UHideSpotFinder::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
 	Enemy = EnemyCharacter;
-}
-
-
-// Called every frame
-void UHideSpotFinder::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
-
-void UHideSpotFinder::SortHitsBasedOnDistance() {
-
 }
 
 void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots) {
@@ -102,10 +82,8 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 
 	FVector forwardVector = cameraComp->GetForwardVector();
 
-	// Create a rotation around the Y-axis by currentAngle degrees
 	FRotator rotation(0.0f, CurrentAngle, 0.0f);
 
-	// Convert the FRotator to a quaternion for the rotation
 	FQuat quaternionRotation = FQuat(rotation);
 
 	Direction = quaternionRotation.RotateVector(forwardVector);
@@ -124,14 +102,14 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 	Hit = bHit;
 	
 	DrawDebugLine(
-		GetWorld(),         // World context (you can usually get this from an actor)
-		Origin,      // Start location of the line
-		End,        // End location of the line
-		FColor::Red,          // Color of the line
-		false,              // Whether the line should persist or not (false means it will disappear after lifeTime)
-		0.001f,           // Time in seconds before the line disappears
-		0,                  // Depth priority (0 is default)
-		2.0f       // Thickness of the line
+		GetWorld(),         
+		Origin,      
+		End,       
+		FColor::Red,          
+		false,              
+		0.001f,          
+		0,                  
+		2.0f       
 	);
 	
 
@@ -178,14 +156,9 @@ bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) {
 bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent) {
 	const FTransform ComponentTransform = ImpactedComponent->GetComponentTransform();
 
-	// Transform the point from world space to local space
-	//FVector LocalPoint = ComponentTransform.InverseTransformPosition(WorldPoint);
-
-	// Get the component's bounds
 	const FBoxSphereBounds ComponentBounds = ImpactedComponent->CalcBounds(ComponentTransform);
 	const FBox& BoundingBox = ComponentBounds.GetBox();
 
-	// Check if the local point is within the bounding box
 	return !BoundingBox.IsInside(CurrentPoint);
 }
 
@@ -208,8 +181,6 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 
 		if (Hit && ThisRayIsNotHittingPlayer(raycastHits))
 		{
-			//SortHitsBasedOnDistance(raycastHits);
-
 			FindingPossiblePositionsAlongCurrentRay(raycastHits.ImpactPoint, raycastHits.Component, Direction, possibleHideSpots);
 		}
 
@@ -220,7 +191,6 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 	{
 		SortPointsByDistance(possibleHideSpots);
 
-		//m_MovementTargetPoint.position = possibleHideSpots[0];
 		return possibleHideSpots[0];
 	}
 
@@ -228,17 +198,14 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 }
 
 void UHideSpotFinder::SortPointsByDistance(TArray<FVector>& PointsArray) {
-	//possibleHideSpots.Sort((a, b) = > Vector3.Distance(a, m_EnemyTransform.position).CompareTo(Vector3.Distance(b, m_EnemyTransform.position)));
 
 	FVector ActorLocation = Enemy->GetActorLocation();
 
-	// Lambda function to calculate distance between two points
 	auto DistanceToActor = [ActorLocation](const FVector& Point)
 	{
-		return FVector::DistSquared(ActorLocation, Point); // Use DistSquared to avoid sqrt for efficiency
+		return FVector::DistSquared(ActorLocation, Point); 
 	};
 
-	// Sort the array using a lambda function as a comparator
 	Algo::Sort(PointsArray, [DistanceToActor](const FVector& A, const FVector& B)
 		{
 			return DistanceToActor(A) < DistanceToActor(B);

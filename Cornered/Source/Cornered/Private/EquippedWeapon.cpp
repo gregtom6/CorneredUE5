@@ -11,12 +11,9 @@
 #include <Camera/CameraComponent.h>
 #include "Components/AudioComponent.h"
 
-
-// Sets default values
 AEquippedWeapon::AEquippedWeapon()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
@@ -39,19 +36,11 @@ AEquippedWeapon::AEquippedWeapon()
 	ShotAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
-// Called when the game starts or when spawned
 void AEquippedWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 	
 	PointLightComp->SetIntensity(0.f);
-}
-
-// Called every frame
-void AEquippedWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void AEquippedWeapon::ShotHappened() {
@@ -88,8 +77,6 @@ void AEquippedWeapon::SetEquipperActor(AActor* equipper) {
 	EquipperActor = equipper;
 }
 
-UE_DISABLE_OPTIMIZATION
-
 FShotRayDatas AEquippedWeapon::GetShotRayDatas() {
 	FShotRayDatas ShotDatas;
 
@@ -100,5 +87,3 @@ FShotRayDatas AEquippedWeapon::GetShotRayDatas() {
 
 	return ShotDatas;
 }
-
-UE_ENABLE_OPTIMIZATION

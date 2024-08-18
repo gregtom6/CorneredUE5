@@ -7,33 +7,16 @@
 #include <Kismet/GameplayStatics.h>
 #include "EquippedWeapon.h"
 
-// Sets default values for this component's properties
 UCharacterWeapon::UCharacterWeapon()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
-
-// Called when the game starts
 void UCharacterWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
 	bIsReadyToShoot = false;
-	
-}
-
-
-// Called every frame
-void UCharacterWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 bool UCharacterWeapon::IsThereEquippedWeapon() const {
@@ -98,10 +81,6 @@ float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 	
 	return 1.0f;
 	
-}
-
-void UCharacterWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) {
-
 }
 
 bool UCharacterWeapon::IsReadyToShoot() {

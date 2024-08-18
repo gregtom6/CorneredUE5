@@ -31,6 +31,16 @@ void UEquipmentVisualizer::BeginPlay()
 
 }
 
+void UEquipmentVisualizer::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+
+	if (EndPlayReason == EEndPlayReason::Destroyed && SpawnedEquippedWeapon)
+	{
+		SpawnedEquippedWeapon->Destroy();
+	}
+}
+
 
 // Called every frame
 void UEquipmentVisualizer::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

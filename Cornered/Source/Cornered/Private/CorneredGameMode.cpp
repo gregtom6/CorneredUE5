@@ -40,6 +40,7 @@ void ACorneredGameMode::PreparingTimeEnded() {
 }
 
 void ACorneredGameMode::WaitTimeEndedBetweenMatches() {
+	RestartTimer();
 	InitiateNewMatch();
 }
 

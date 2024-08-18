@@ -47,9 +47,14 @@ void ARedLightController::OnTimerOverHappened()
 		}
 	}
 
+	UActorSequencePlayer* stpper = DisabledSequ->GetSequencePlayer();
+	if (stpper) {
+		stpper->Stop();
+	}
+
 	UActorSequencePlayer* player = BlinkingSequ->GetSequencePlayer();
 	if (player) {
-		player->Play();
+		player->PlayLooping();
 	}
 }
 

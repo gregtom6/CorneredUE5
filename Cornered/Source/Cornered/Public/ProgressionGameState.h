@@ -27,6 +27,12 @@ public:
 		void ResetProgress();
 
 	UFUNCTION()
+		void StepProgress();
+
+	UFUNCTION()
+		void SaveProgress();
+
+	UFUNCTION()
 		bool IsAbilityAlreadyUnlocked(EAbility Ability);
 
 protected:

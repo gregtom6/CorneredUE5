@@ -23,6 +23,7 @@ class CORNERED_API UCharacterSpawner : public UWorldSubsystem
 	
 public:
     virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	virtual void Deinitialize() override;
 
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 
@@ -49,4 +50,7 @@ private:
 
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+
+protected:
+	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 };

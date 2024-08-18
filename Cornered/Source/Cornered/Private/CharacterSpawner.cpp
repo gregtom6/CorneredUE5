@@ -17,11 +17,21 @@
 #include "Config_Character_General.h"
 #include "CorneredGameMode.h"
 #include "GameFramework/Character.h"
-
+#include "Engine/World.h"
 
 void UCharacterSpawner::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
+}
+
+void UCharacterSpawner::Deinitialize()
+{
+	Super::Deinitialize();
+}
+
+void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
+{
+	Super::OnWorldBeginPlay(InWorld);
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
@@ -36,7 +46,7 @@ void UCharacterSpawner::OnLevelLoaded(ULevel* LoadedLevel, UWorld* World)
 }
 
 void UCharacterSpawner::OnNewMatchStarted() {
-	
+
 	FVector SelectedPosition = GetRandomPosition();
 
 	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();

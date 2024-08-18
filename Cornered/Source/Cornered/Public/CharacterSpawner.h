@@ -25,7 +25,6 @@ public:
 
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 
-	UPROPERTY()
 		FEnemyGeneratedDelegate OnEnemyGenerated;
 private:
 	UFUNCTION()

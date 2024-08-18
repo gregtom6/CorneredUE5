@@ -38,7 +38,6 @@ private:
 	UFUNCTION()
 		void ShowState();
 
-	UPROPERTY()
 		EMainMenuState MainMenuState;
 
 	UFUNCTION()
@@ -47,7 +46,6 @@ private:
 	UFUNCTION()
 		void BackToMain();
 
-	UPROPERTY()
 		int32 CurrentPageIndex;
 
 	UPROPERTY(EditAnywhere)
@@ -95,7 +93,6 @@ private:
 public:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY()
 		FUIPressHappenedDelegate UIPressHappened;
 
 protected:

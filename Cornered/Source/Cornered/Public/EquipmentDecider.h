@@ -27,7 +27,6 @@ protected:
 
 public:
 
-	UPROPERTY()
 		FEquipmentDecidedDelegate OnEquipmentDecided;
 
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;

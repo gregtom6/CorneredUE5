@@ -47,7 +47,6 @@ private:
 
 	FTimerHandle TimerHandle;
 
-	UPROPERTY()
 		bool bShouldReloadHealth;
 
 };

@@ -47,7 +47,6 @@ protected:
 
 private:
 
-	UPROPERTY()
 		EMovementState MovementState;
 
 	UPROPERTY(EditAnywhere)

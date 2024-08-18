@@ -36,8 +36,6 @@ public:
 		void RemovePickable();
 
 private:
-	
-	UPROPERTY()
 		bool bPickupDropHappenedInThisFrame;
 
 	IIPickable* PickedPickable;

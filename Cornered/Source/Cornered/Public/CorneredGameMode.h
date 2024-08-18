@@ -41,13 +41,10 @@ public:
 	UFUNCTION()
 		float GetPreparingTimeLeft();
 
-	UPROPERTY()
 		FTimeOverHappenedDelegate TimeOverHappened;
 
-	UPROPERTY()
 		FCharacterDefeatedDelegate CharacterDefeated;
 
-	UPROPERTY()
 		FNewMatchStartedDelegate NewMatchStarted;
 
 	virtual void StartPlay() override;
@@ -57,10 +54,8 @@ public:
 
 private:
 
-	UPROPERTY()
 	float StartTime;
 
-	UPROPERTY()
 		bool bIsPreparingTime;
 
 	UPROPERTY(EditAnywhere)
@@ -68,7 +63,6 @@ private:
 
 	FTimerHandle TimerHandle;
 
-	UPROPERTY()
 		int MatchIndex;
 
 	UFUNCTION()

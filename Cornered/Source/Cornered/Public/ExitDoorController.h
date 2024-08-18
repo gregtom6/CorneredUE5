@@ -61,15 +61,12 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<AExitButtonMover> ExitButtonParent;
 
-	UPROPERTY()
 		bool bOpeningInProgress;
 
-	UPROPERTY()
 		float OpeningPercentage;
 
 	UFUNCTION()
 		void PrintPercentageText();
 
-	UPROPERTY()
 		bool bDoorOpened;
 };

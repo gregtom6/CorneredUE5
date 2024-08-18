@@ -53,7 +53,6 @@ class CORNERED_API ACorneredObjectPool : public AActor
 public:	
 	ACorneredObjectPool();
 
-	UPROPERTY()
 		FPoolerCleanupSignature OnPoolerCleanup;
 
 	UFUNCTION()
@@ -81,7 +80,6 @@ public:
 
 	FInitializationHappened InitializationHappened;
 
-	UPROPERTY()
 		bool bAlreadyInitialized;
 
 private:

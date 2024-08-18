@@ -42,10 +42,7 @@ public:
 
 private:
 
-	UPROPERTY()
 	EItemType Weapon;
-	UPROPERTY()
 	EItemType Shield;
-	UPROPERTY()
 	EItemType Additional;
 };

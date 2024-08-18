@@ -49,8 +49,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		EItemType ItemType;
-
-	UPROPERTY()
 		EItemState ItemState;
 
 	UFUNCTION()

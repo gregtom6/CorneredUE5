@@ -45,8 +45,6 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UBoxComponent> DespawnPointComp;
 
-
-	UPROPERTY()
 		EBeltSpeed CurrentBeltSpeed;
 
 	UPROPERTY(EditAnywhere)

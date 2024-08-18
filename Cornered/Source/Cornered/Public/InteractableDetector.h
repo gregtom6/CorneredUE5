@@ -35,9 +35,7 @@ private:
 	UPROPERTY()
 		TObjectPtr<UWorld> CachedWorld;
 
-	UPROPERTY()
 		bool bIsValidHit;
 
-	UPROPERTY()
 		FHitResult HitResult;
 };

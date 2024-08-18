@@ -103,26 +103,19 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
 
-	UPROPERTY()
 		EMovementState MovementState;
 
 public:
 
-	UPROPERTY()
 		FPickupInteractionHappenedDelegate PickupHappenedInstance;
 
-	UPROPERTY()
 		FDropInteractionHappenedDelegate DropHappenedInstance;
 
-	UPROPERTY()
 		FEquipInteractionHappenedDelegate EquipHappenedInstance;
 
-	UPROPERTY()
 		FShootInteractionHappenedDelegate ShootHappenedInstance;
 
-	UPROPERTY()
 		FInteractStartedDelegate InteractStartedInstance;
 
-	UPROPERTY()
 		FInteractHappenedDelegate InteractHappenedInstance;
 };

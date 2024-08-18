@@ -23,7 +23,6 @@ public:
 
 	void Interact() override;
 
-	UPROPERTY()
 		FPressHappenedDelegate PressHappened;
 
 private:

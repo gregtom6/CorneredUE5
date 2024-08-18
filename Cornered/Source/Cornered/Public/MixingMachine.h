@@ -59,7 +59,6 @@ private:
 	UFUNCTION()
 		void BurnPressHappened();
 
-	UPROPERTY()
 		EMixingMachineState State;
 
 	UFUNCTION()

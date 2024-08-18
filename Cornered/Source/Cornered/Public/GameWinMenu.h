@@ -21,7 +21,6 @@ class CORNERED_API UGameWinMenu : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY()
 		FUIPressHappenedDelegate UIPressHappened;
 
 protected:

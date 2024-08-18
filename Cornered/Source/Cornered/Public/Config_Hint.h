@@ -18,7 +18,7 @@ struct FItemHintMaterialEntry
 		EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		UMaterialInterface* Material;
+		TObjectPtr<UMaterialInterface> Material;
 
 };
 

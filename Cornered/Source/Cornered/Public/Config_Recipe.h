@@ -51,7 +51,7 @@ struct FIngredientRadiatingMaterialEntry {
         EItemType Key;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        UMaterialInterface* Material;
+        TObjectPtr<UMaterialInterface> Material;
 };
 
 USTRUCT(BlueprintType)
@@ -63,7 +63,7 @@ struct FEffectRadiatingMaterialEntry {
         EItemState Key;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        UMaterialInterface* Material;
+        TObjectPtr<UMaterialInterface> Material;
 };
 
 USTRUCT(BlueprintType)
@@ -72,7 +72,7 @@ struct FMaterialArray
     GENERATED_BODY()
 
         UPROPERTY(EditAnywhere, BlueprintReadWrite)
-        TArray<UMaterialInterface*> Materials;
+        TArray<TObjectPtr<UMaterialInterface>> Materials;
 };
 
 /**
@@ -111,10 +111,10 @@ private:
 
 public:
     UPROPERTY(EditAnywhere)
-        UMaterialInterface* RecipeShowPlusMaterial;
+        TObjectPtr<UMaterialInterface> RecipeShowPlusMaterial;
 
     UPROPERTY(EditAnywhere)
-        UMaterialInterface* RecipeShowEqualMaterial;
+        TObjectPtr<UMaterialInterface> RecipeShowEqualMaterial;
 
     UPROPERTY(EditAnywhere)
         TSubclassOf<AActor> RecipeShowElementClass;

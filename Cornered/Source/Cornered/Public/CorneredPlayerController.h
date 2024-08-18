@@ -46,32 +46,32 @@ class CORNERED_API ACorneredPlayerController : public APlayerController
 public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionMovement;
+		TObjectPtr<UInputAction> ActionMovement;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionLook;
+		TObjectPtr<UInputAction> ActionLook;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionLookUp;
+		TObjectPtr<UInputAction> ActionLookUp;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionLookDown;
+		TObjectPtr<UInputAction> ActionLookDown;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionLookLeft;
+		TObjectPtr<UInputAction> ActionLookLeft;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionLookRight;
+		TObjectPtr<UInputAction> ActionLookRight;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionInteract;
+		TObjectPtr<UInputAction> ActionInteract;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionPickup;
+		TObjectPtr<UInputAction> ActionPickup;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionDrop;
+		TObjectPtr<UInputAction> ActionDrop;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionEquip;
+		TObjectPtr<UInputAction> ActionEquip;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		UInputAction* ActionShoot;
+		TObjectPtr<UInputAction> ActionShoot;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Character_General* ConfigCharacter;
+		TObjectPtr<UConfig_Character_General> ConfigCharacter;
 
 	UFUNCTION()
 		EMovementState GetMovementState() const;

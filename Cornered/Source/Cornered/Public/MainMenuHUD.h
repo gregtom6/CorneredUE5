@@ -29,13 +29,13 @@ protected:
 private:
 
 	UPROPERTY()
-	UUserWidget* UserWidgetInstance;
+	TObjectPtr<UUserWidget> UserWidgetInstance;
 
 	UPROPERTY(EditAnywhere)
-		UAudioComponent* MainMenuBGMComp;
+		TObjectPtr<UAudioComponent> MainMenuBGMComp;
 
 	UPROPERTY(EditAnywhere)
-		UAudioComponent* SFXComp;
+		TObjectPtr<UAudioComponent> SFXComp;
 
 	UFUNCTION()
 		void UIPressHappened();

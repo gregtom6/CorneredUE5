@@ -55,7 +55,7 @@ private:
 			bool bFromSweep, const FHitResult& SweepResult);
 
 	UPROPERTY()
-		UActorSequenceComponent* OpenSequ;
+		TObjectPtr<UActorSequenceComponent> OpenSequ;
 	UPROPERTY()
-		UActorSequenceComponent* CloseSequ;
+		TObjectPtr<UActorSequenceComponent> CloseSequ;
 };

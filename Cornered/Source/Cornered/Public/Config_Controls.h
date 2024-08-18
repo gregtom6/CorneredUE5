@@ -14,10 +14,10 @@ struct FControlsPageDatas
     GENERATED_BODY()
 
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        UTexture2D* ImageOfGameInteraction;
+        TObjectPtr<UTexture2D> ImageOfGameInteraction;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        UTexture2D* ImageOfControl;
+        TObjectPtr<UTexture2D> ImageOfControl;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         FString Text;

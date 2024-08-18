@@ -24,11 +24,11 @@ public:
 		void SetComponents(USceneComponent* parent, UCharacterWeapon* weapon);
 
 	UPROPERTY(VisibleAnywhere)
-		USceneComponent* CooldownIndicatorParentComp;
+		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		UCharacterWeapon* CharacterWeapon;
+		TObjectPtr<UCharacterWeapon> CharacterWeapon;
 
 	UPROPERTY(VisibleAnywhere)
-		UPaperSpriteComponent* CooldownIndicatorPaperSprite;
+		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorPaperSprite;
 };

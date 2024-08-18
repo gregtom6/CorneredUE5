@@ -30,13 +30,13 @@ protected:
 private:
 
 	UPROPERTY()
-		UUserWidget* UserWidgetInstance;
+		TObjectPtr<UUserWidget> UserWidgetInstance;
 
 	UPROPERTY(EditAnywhere)
-		UAudioComponent* GameOverBGMComp;
+		TObjectPtr<UAudioComponent> GameOverBGMComp;
 
 	UPROPERTY(EditAnywhere)
-		UAudioComponent* SFXComp;
+		TObjectPtr<UAudioComponent> SFXComp;
 
 	UFUNCTION()
 		void UIPressHappened();

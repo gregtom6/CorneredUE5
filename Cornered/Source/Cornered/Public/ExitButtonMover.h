@@ -30,8 +30,8 @@ public:
 private:
 
 	UPROPERTY()
-		UActorSequenceComponent* OpenSequ;
+		TObjectPtr<UActorSequenceComponent> OpenSequ;
 
 	UPROPERTY(EditAnywhere)
-		USceneComponent* Root;
+		TObjectPtr<USceneComponent> Root;
 };

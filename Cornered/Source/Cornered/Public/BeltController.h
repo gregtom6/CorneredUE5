@@ -50,7 +50,7 @@ private:
 		EBeltSpeed CurrentBeltSpeed;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Belt* BeltConfig;
+		TObjectPtr<UConfig_Belt> BeltConfig;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredObjectPool> ObjectPool;

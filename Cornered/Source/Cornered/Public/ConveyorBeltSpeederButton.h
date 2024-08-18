@@ -38,8 +38,8 @@ private:
 		TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Belt* BeltConfig;
+		TObjectPtr<UConfig_Belt> BeltConfig;
 
 	UPROPERTY(EditAnywhere)
-		ABeltController* BeltController;
+		TObjectPtr<ABeltController> BeltController;
 };

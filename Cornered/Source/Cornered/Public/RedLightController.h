@@ -29,9 +29,9 @@ protected:
 public:	
 
 	UPROPERTY()
-		UActorSequenceComponent* DisabledSequ;
+		TObjectPtr<UActorSequenceComponent> DisabledSequ;
 	UPROPERTY()
-		UActorSequenceComponent* BlinkingSequ;
+		TObjectPtr<UActorSequenceComponent> BlinkingSequ;
 
 private:
 	FTimerHandle TimerHandle;

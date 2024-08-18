@@ -26,7 +26,7 @@ protected:
 		float MaxHealth;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Character_General* CharacterConfig;
+		TObjectPtr<UConfig_Character_General> CharacterConfig;
 
 	void HealthReloadWaitTimeEnded();
 

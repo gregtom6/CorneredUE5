@@ -14,7 +14,7 @@ struct FTutorialPageDatas
     GENERATED_BODY()
 
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        UTexture2D* Image;
+        TObjectPtr<UTexture2D> Image;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         FString Text;

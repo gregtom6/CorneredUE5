@@ -33,6 +33,6 @@ public:
 private:
 
 	UPROPERTY()
-		UCorneredSaveGame* CurrentSaveGame;
+		TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
 
 };

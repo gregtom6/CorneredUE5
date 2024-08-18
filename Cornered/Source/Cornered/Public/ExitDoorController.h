@@ -50,10 +50,10 @@ private:
 		TObjectPtr<UTextRenderComponent> ProgressText;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_ExitDoor* ExitDoorConfig;
+		TObjectPtr<UConfig_ExitDoor> ExitDoorConfig;
 
 	UPROPERTY()
-		UActorSequenceComponent* OpenSequ;
+		TObjectPtr<UActorSequenceComponent> OpenSequ;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<AHoldableButton> HoldableButton;

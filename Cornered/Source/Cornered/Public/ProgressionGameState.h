@@ -43,5 +43,5 @@ private:
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Progress* ProgressConfig;
+		TObjectPtr<UConfig_Progress> ProgressConfig;
 };

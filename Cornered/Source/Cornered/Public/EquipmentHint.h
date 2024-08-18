@@ -44,7 +44,7 @@ private:
 		TObjectPtr<UStaticMeshComponent> WeaponMeshComp;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Hint* HintConfig;
+		TObjectPtr<UConfig_Hint> HintConfig;
 
 	UFUNCTION()
 		void OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional);

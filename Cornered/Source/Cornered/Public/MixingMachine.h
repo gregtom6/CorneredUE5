@@ -81,25 +81,25 @@ private:
 		TObjectPtr<ACorneredButton> FreezeButton;
 
 	UPROPERTY()
-		UActorSequenceComponent* TopLidOpenComp;
+		TObjectPtr<UActorSequenceComponent> TopLidOpenComp;
 
 	UPROPERTY()
-		UActorSequenceComponent* TopLidCloseComp;
+		TObjectPtr<UActorSequenceComponent> TopLidCloseComp;
 
 	UPROPERTY(VisibleAnywhere)
-		UNiagaraComponent* BurningComp;
+		TObjectPtr<UNiagaraComponent> BurningComp;
 
 	UPROPERTY(VisibleAnywhere)
-		UNiagaraComponent* FreezingComp;
+		TObjectPtr<UNiagaraComponent> FreezingComp;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<AMixingItemDetector> MixingItemDetector;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_MixingMachine* MixingMachineConfig;
+		TObjectPtr<UConfig_MixingMachine> MixingMachineConfig;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Recipe* RecipeConfig;
+		TObjectPtr<UConfig_Recipe> RecipeConfig;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> BurnAudio;

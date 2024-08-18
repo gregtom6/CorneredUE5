@@ -16,9 +16,6 @@ class UEquippable : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class CORNERED_API IEquippable
 {
 	GENERATED_BODY()

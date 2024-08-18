@@ -64,7 +64,7 @@ private:
 		bool bIsPreparingTime;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Time* TimeConfig;
+		TObjectPtr<UConfig_Time> TimeConfig;
 
 	FTimerHandle TimerHandle;
 

@@ -79,7 +79,7 @@ public:
 		TObjectPtr<UStateTreeComponent> StateTreeComp;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_AI* AIConfig;
+		TObjectPtr<UConfig_AI> AIConfig;
 
 	UFUNCTION()
 		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);

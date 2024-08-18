@@ -48,7 +48,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPointLightComponent> PointLightComp;
 	UPROPERTY()
-		UActorSequenceComponent* ShotSequ;
+		TObjectPtr<UActorSequenceComponent> ShotSequ;
 
 	UFUNCTION()
 		void ShotHappened();
@@ -62,7 +62,7 @@ public:
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		UNiagaraComponent* NiagaraComp;
+		TObjectPtr<UNiagaraComponent> NiagaraComp;
 		
 	UPROPERTY()
 		TObjectPtr<AActor> EquipperActor;

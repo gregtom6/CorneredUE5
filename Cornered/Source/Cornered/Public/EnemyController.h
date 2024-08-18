@@ -51,5 +51,5 @@ private:
 		EMovementState MovementState;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_AI* AIConfig;
+		TObjectPtr<UConfig_AI> AIConfig;
 };

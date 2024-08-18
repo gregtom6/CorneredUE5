@@ -34,10 +34,10 @@ private:
 		TObjectPtr<USceneComponent> ItemPivot;
 
 	UPROPERTY()
-		ABeltController* BeltController;
+		TObjectPtr<ABeltController> BeltController;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_IngredientGeneration* IngredientGenConfig;
+		TObjectPtr<UConfig_IngredientGeneration> IngredientGenConfig;
 
 	FTimerHandle TimerHandle;
 

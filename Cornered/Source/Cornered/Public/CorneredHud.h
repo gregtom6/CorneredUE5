@@ -22,10 +22,10 @@ class CORNERED_API ACorneredHud : public AHUD
 private:
 
 	UPROPERTY(EditAnywhere)
-		UAudioComponent* BGMComp;
+		TObjectPtr<UAudioComponent> BGMComp;
 
 	UPROPERTY(EditAnywhere)
-		UAudioComponent* AmbientComp;
+		TObjectPtr<UAudioComponent> AmbientComp;
 
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
@@ -39,7 +39,7 @@ protected:
 		TArray<TSubclassOf<UUserWidget>> WidgetClasses;
 
 	UPROPERTY()
-		TArray<UUserWidget*> WidgetInstances;
+		TArray<TObjectPtr<UUserWidget>> WidgetInstances;
 
 	UFUNCTION()
 		void OnTimerOverHappened();

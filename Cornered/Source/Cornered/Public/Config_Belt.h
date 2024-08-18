@@ -25,7 +25,7 @@ struct FBeltSpeedMaterialEntry
 		EBeltSpeed Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		UMaterialInterface* Material;
+		TObjectPtr<UMaterialInterface> Material;
 
 };
 

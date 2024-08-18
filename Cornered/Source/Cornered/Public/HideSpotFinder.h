@@ -34,7 +34,7 @@ private:
 		TObjectPtr<AEnemyCharacter> Enemy;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_AI* AIConfig;
+		TObjectPtr<UConfig_AI> AIConfig;
 
 	UFUNCTION()
 		void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);

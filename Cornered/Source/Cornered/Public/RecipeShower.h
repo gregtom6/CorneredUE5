@@ -44,10 +44,10 @@ private:
 		float VerticalGapSize;
 
 	UPROPERTY()
-		TArray<AActor*> RecipeVisualElements;
+		TArray<TObjectPtr<AActor>> RecipeVisualElements;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Recipe* RecipeConfig;
+		TObjectPtr<UConfig_Recipe> RecipeConfig;
 
 	UFUNCTION()
 		void GenerateRecipeVisuals();

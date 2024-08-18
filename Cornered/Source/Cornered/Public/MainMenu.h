@@ -51,10 +51,10 @@ private:
 		int32 CurrentPageIndex;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Tutorial* TutorialConfig;
+		TObjectPtr<UConfig_Tutorial> TutorialConfig;
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Controls* ControlsConfig;
+		TObjectPtr<UConfig_Controls> ControlsConfig;
 
 	UFUNCTION()
 		void ShowCurrentControlsPage();

@@ -7,6 +7,11 @@
 #include <CorneredPlayerController.h>
 #include "Perception/PawnSensingComponent.h"
 
+UEnemyWeapon::UEnemyWeapon()
+{
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
 EItemType UEnemyWeapon::GetEquippedWeapon() const {
 
 	UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));

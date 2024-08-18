@@ -9,7 +9,7 @@
 
 UCharacterWeapon::UCharacterWeapon()
 {
-	PrimaryComponentTick.bCanEverTick = false;
+	PrimaryComponentTick.bCanEverTick = true;
 }
 
 void UCharacterWeapon::BeginPlay()

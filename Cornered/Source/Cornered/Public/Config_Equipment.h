@@ -13,118 +13,134 @@ class AProduct;
 USTRUCT(BlueprintType)
 struct FItemDatas
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EItemType Key;
+		FItemDatas()
+		: Key(EItemType::Count),
+		Value(EItemState::Count) { }
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EItemState Value;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemType Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemState Value;
 };
 
 
 USTRUCT(BlueprintType)
 struct FEquippedProductEntry
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EItemType Key;
+		FEquippedProductEntry()
+		: Key(EItemType::Count) { }
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        TSubclassOf<AActor> Value;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemType Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		TSubclassOf<AActor> Value;
 };
 
 USTRUCT(BlueprintType)
 struct FWeaponSettingsEntry
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EItemType Key;
+		FWeaponSettingsEntry()
+		: Key(EItemType::Count), CooldownTimeInSec(0.f), Damage(0.f) { }
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        float CooldownTimeInSec;
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        float Damage;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemType Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		float CooldownTimeInSec;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		float Damage;
 
 };
 
 USTRUCT(BlueprintType)
 struct FShieldSettingsEntry
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EItemType Key;
+		FShieldSettingsEntry()
+		: Key(EItemType::Count), DamageDivider(0.f) { }
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        float DamageDivider;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemType Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		float DamageDivider;
 
 };
 
 USTRUCT(BlueprintType)
 struct FAdditionalSettingsEntry
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EItemType Key;
+		FAdditionalSettingsEntry()
+		: Key(EItemType::Count), Multiplier(0.f) { }
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        float Multiplier;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EItemType Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		float Multiplier;
 
 };
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UConfig_Equipment : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 private:
 
-    UPROPERTY(EditAnywhere)
-        TArray<FItemDatas> Weapons;
-    UPROPERTY(EditAnywhere)
-        TArray<FItemDatas> Shields;
-    UPROPERTY(EditAnywhere)
-        TArray<FItemDatas> Additionals;
+	UPROPERTY(EditAnywhere)
+		TArray<FItemDatas> Weapons;
+	UPROPERTY(EditAnywhere)
+		TArray<FItemDatas> Shields;
+	UPROPERTY(EditAnywhere)
+		TArray<FItemDatas> Additionals;
 
-    UPROPERTY(EditAnywhere, Category = "Dictionary")
-        TArray<FEquippedProductEntry> EquippedProductEntries;
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
+		TArray<FEquippedProductEntry> EquippedProductEntries;
 
-    UPROPERTY(EditAnywhere, Category = "Dictionary")
-        TArray<FWeaponSettingsEntry> WeaponSettingsEntries;
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
+		TArray<FWeaponSettingsEntry> WeaponSettingsEntries;
 
-    UPROPERTY(EditAnywhere, Category = "Dictionary")
-        TArray<FShieldSettingsEntry> ShieldSettingsEntries;
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
+		TArray<FShieldSettingsEntry> ShieldSettingsEntries;
 
-    UPROPERTY(EditAnywhere, Category = "Dictionary")
-        TArray<FAdditionalSettingsEntry> AdditionalSettingsEntries;
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
+		TArray<FAdditionalSettingsEntry> AdditionalSettingsEntries;
 
 public:
 
-    UFUNCTION()
-        TSubclassOf<AActor> GetEquippedProduct(EItemType itemType) const;
+	UFUNCTION()
+		TSubclassOf<AActor> GetEquippedProduct(EItemType itemType) const;
 
-    UFUNCTION()
-        FWeaponSettingsEntry GetWeaponSettings(EItemType itemType) const;
+	UFUNCTION()
+		FWeaponSettingsEntry GetWeaponSettings(EItemType itemType) const;
 
-    UFUNCTION()
-        FShieldSettingsEntry GetShieldSettings(EItemType itemType) const;
+	UFUNCTION()
+		FShieldSettingsEntry GetShieldSettings(EItemType itemType) const;
 
-    UFUNCTION()
-        FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
+	UFUNCTION()
+		FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
 
-    UFUNCTION()
-        FItemDatas GetRandomWeapon();
+	UFUNCTION()
+		FItemDatas GetRandomWeapon();
 
-    UFUNCTION()
-        FItemDatas GetRandomShield();
+	UFUNCTION()
+		FItemDatas GetRandomShield();
 
-    UFUNCTION()
-        FItemDatas GetRandomAdditional();
+	UFUNCTION()
+		FItemDatas GetRandomAdditional();
 };

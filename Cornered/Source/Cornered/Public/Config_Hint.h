@@ -14,6 +14,9 @@ struct FItemHintMaterialEntry
 {
 	GENERATED_BODY()
 
+		FItemHintMaterialEntry()
+		: Key(EItemType::Count) { }
+
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType Key;
 

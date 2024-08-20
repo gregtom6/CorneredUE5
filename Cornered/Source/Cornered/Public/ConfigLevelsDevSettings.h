@@ -21,6 +21,9 @@ struct FLevelEntry
 {
     GENERATED_BODY()
 
+        FLevelEntry()
+        : Key(ELevelIdentifier::Count) { }
+
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         ELevelIdentifier Key;
 

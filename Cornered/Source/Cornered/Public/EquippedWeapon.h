@@ -16,6 +16,10 @@ class UAudioComponent;
 USTRUCT(BlueprintType)
 struct FShotRayDatas
 {
+	FShotRayDatas()
+		: Origin(0.f,0.f,0.f), End(0.f,0.f,0.f) { }
+
+
 	GENERATED_BODY()
 
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")

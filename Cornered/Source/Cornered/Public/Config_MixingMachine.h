@@ -21,6 +21,9 @@ struct FAbilityProcessTimeEntry
 {
     GENERATED_BODY()
 
+        FAbilityProcessTimeEntry()
+        : Key(EAbility::Count), ProcessTime(0.f) { }
+
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         EAbility Key;
 

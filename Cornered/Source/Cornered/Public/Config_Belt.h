@@ -21,6 +21,9 @@ struct FBeltSpeedMaterialEntry
 {
 	GENERATED_BODY()
 
+		FBeltSpeedMaterialEntry()
+		: Key(EBeltSpeed::Count) { }
+
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EBeltSpeed Key;
 

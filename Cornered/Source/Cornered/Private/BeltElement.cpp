@@ -52,7 +52,7 @@ void ABeltElement::TimerFunction() {
 
 	UWorld* world = GetWorld();
 
-	if (ingredient && ItemPivot && this) {
+	if (ingredient && ItemPivot) {
 		FVector pos = ItemPivot->GetComponentLocation();
 		FVector WorldPosition = GetTransform().TransformPosition(pos);
 		GetWorld()->SpawnActor<AActor>(ingredient, ItemPivot->GetComponentLocation(), FRotator::ZeroRotator);

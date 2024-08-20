@@ -18,6 +18,9 @@ struct FRecipeEntry
 {
     GENERATED_BODY()
 
+        FRecipeEntry()
+        : Key(EItemType::Count), NecessaryAbilityToUSe(EAbility::Count){ }
+
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         EItemType Key;
 
@@ -34,6 +37,9 @@ struct FProductClassEntry
 {
     GENERATED_BODY()
 
+        FProductClassEntry()
+        : Key(EItemType::Count) { }
+
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         EItemType Key;
 
@@ -47,6 +53,9 @@ struct FIngredientRadiatingMaterialEntry {
 
     GENERATED_BODY()
 
+        FIngredientRadiatingMaterialEntry()
+        : Key(EItemType::Count) { }
+
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         EItemType Key;
 
@@ -58,6 +67,9 @@ USTRUCT(BlueprintType)
 struct FEffectRadiatingMaterialEntry {
 
     GENERATED_BODY()
+
+        FEffectRadiatingMaterialEntry()
+        : Key(EItemState::Count) { }
 
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         EItemState Key;

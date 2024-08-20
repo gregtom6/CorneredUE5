@@ -15,6 +15,9 @@ struct FStateTreeDefendConditionMagic
 {
 	GENERATED_BODY()
 
+		FStateTreeDefendConditionMagic()
+		: EnemyCurrentHealth(0.f), EnemyMaxHealth(0.f), HideWhenLifeLessThanPercentage(0.f), bIsReadyToShoot(false) { }
+
 		UPROPERTY(EditAnywhere, Category = "Input")
 		float EnemyCurrentHealth;
 

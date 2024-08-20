@@ -13,6 +13,9 @@ struct FItemData
 {
 	GENERATED_BODY()
 
+		FItemData()
+		: ItemType(EItemType::Count), ItemState(EItemState::Count) { }
+
 		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType ItemType;
 

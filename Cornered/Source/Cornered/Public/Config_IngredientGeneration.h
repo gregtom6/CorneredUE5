@@ -14,6 +14,9 @@ struct FIngredientEntry
 {
     GENERATED_BODY()
 
+        FIngredientEntry()
+        : Key(EItemType::Count), WeightForAppear(0) { }
+
         UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
         EItemType Key;
 

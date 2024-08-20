@@ -21,7 +21,6 @@ public:
 
 public:	
 
-	UFUNCTION()
 		void SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial);
 
 private:

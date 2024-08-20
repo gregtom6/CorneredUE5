@@ -65,7 +65,6 @@ private:
 
 		float OpeningPercentage;
 
-	UFUNCTION()
 		void PrintPercentageText();
 
 		bool bDoorOpened;

@@ -25,10 +25,10 @@ protected:
 
 public:
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		float GetCurrentMultiplier();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		EBeltSpeed GetCurrentBeltSpeed();
 
 private:
@@ -36,7 +36,6 @@ private:
 	UFUNCTION()
 		void PressHappened();
 
-	UFUNCTION()
 		void SwitchBeltSpeed();
 
 	UPROPERTY(VisibleAnywhere)

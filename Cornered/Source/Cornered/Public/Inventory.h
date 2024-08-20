@@ -25,19 +25,15 @@ protected:
 
 public:	
 
-	UFUNCTION()
 		void EquipItem(AProduct* Product);
 
-	UFUNCTION()
 		void EquipWeapon(FItemDatas itemDatas);
 
-	UFUNCTION()
 		void EquipShield(FItemDatas itemDatas);
 
-	UFUNCTION()
 		void EquipAdditional(FItemDatas itemDatas);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		EItemType GetWeapon() const;
 
 private:

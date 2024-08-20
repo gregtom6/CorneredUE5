@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Config_Equipment.h"
 #include "EnemyCharacter.generated.h"
 
 class UEnemyWeapon;
@@ -81,7 +82,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_AI> AIConfig;
 
-	UFUNCTION()
 		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;

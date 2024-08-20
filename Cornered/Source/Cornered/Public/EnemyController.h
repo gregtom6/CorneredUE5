@@ -13,9 +13,7 @@ class UPathFollowingComponent;
 class AEnemyCharacter;
 class UStateTreeComponent;
 class UConfig_AI;
-/**
- * 
- */
+
 UCLASS()
 class CORNERED_API AEnemyController : public AAIController
 {
@@ -26,13 +24,13 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		EMovementState GetMovementState() const;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void FollowPlayer();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 		void HideFromPlayer();
 
 protected:

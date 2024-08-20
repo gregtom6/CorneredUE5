@@ -31,8 +31,7 @@ public:
 
 	
 	IIPickable* GetPickedPickable() const;
-
-	UFUNCTION()
+	
 		void RemovePickable();
 
 private:

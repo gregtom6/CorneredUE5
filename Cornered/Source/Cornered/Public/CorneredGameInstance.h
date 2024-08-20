@@ -18,16 +18,13 @@ class CORNERED_API UCorneredGameInstance : public UGameInstance
 	
 public:
 
-	UFUNCTION(BlueprintCallable, Category = "SaveGame")
 		void SaveGame(int32 unlockLevel);
 
-	UFUNCTION(BlueprintCallable, Category = "SaveGame")
 		void LoadGame();
 
-	UFUNCTION(BlueprintCallable, Category = "SaveGame")
 		void ResetGame();
 
-	UFUNCTION(BlueprintCallable, Category = "SaveGame")
+	UFUNCTION(BlueprintPure)
 		int32 GetCurrentUnlockLevel() const;
 
 private:

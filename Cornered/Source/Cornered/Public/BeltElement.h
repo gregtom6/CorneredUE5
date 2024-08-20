@@ -20,7 +20,6 @@ public:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION()
 		void SetBeltController(ABeltController* controller);
 
 	virtual void SetActorHiddenInGame(bool bNewHidden) override;

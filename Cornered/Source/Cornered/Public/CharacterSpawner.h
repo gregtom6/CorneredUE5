@@ -30,10 +30,8 @@ private:
 	UFUNCTION()
 		void OnNewMatchStarted();
 
-	UFUNCTION()
 		FVector GetRandomPosition();
 
-	UFUNCTION()
 		TArray<AActor*> QueryAllTargetPoints();
 
 	bool bLevelLoaded;

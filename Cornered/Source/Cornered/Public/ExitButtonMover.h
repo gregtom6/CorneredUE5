@@ -24,7 +24,6 @@ protected:
 
 public:	
 
-	UFUNCTION()
 		void StartMoving();
 
 private:

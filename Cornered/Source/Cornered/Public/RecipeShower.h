@@ -49,33 +49,23 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Recipe> RecipeConfig;
 
-	UFUNCTION()
 		void GenerateRecipeVisuals();
 
-	UFUNCTION()
 		void DestroyElements();
 
-	UFUNCTION()
 		void CreateRecipeElement(UMaterialInterface* Material, UMaterialInterface* StateMaterial, FVector& PositionForGeneration);
 
-	UFUNCTION()
 		void AddOperatorIfNeeded(int32 Index, int32 MaterialCount, FVector& PositionForGeneration);
 
-	UFUNCTION()
 		bool IsIndexBeforeAlmostLastElement(int32 Index, int32 Count);
 
-	UFUNCTION()
 		bool IsIndexBeforeLastElement(int32 Index, int32 Count);
 
-	UFUNCTION()
 		void CreateOperator(UMaterialInterface* Material, FVector& PositionForGeneration);
 
-	UFUNCTION()
 		void MoveToNextRow(FVector& PositionForGeneration);
 
-	UFUNCTION()
 		void GenerateRecipeRow(FMaterialArray Materials, FMaterialArray StateMaterials, FVector& PositionForGeneration);
 
-	UFUNCTION()
 		void RecipeElementCreation(TSubclassOf<AActor> ClassOfElement, FVector& PositionForGeneration, UMaterialInterface* Material, float xDelta, UMaterialInterface* EffectMaterial = nullptr);
 };

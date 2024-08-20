@@ -5,9 +5,10 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "EquippedWeapon.h"
+#include "Config_Equipment.h"
 #include "EquipmentVisualizer.generated.h"
 
-class UConfig_Equipment;
+class AProduct;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CORNERED_API UEquipmentVisualizer : public UActorComponent
@@ -24,26 +25,21 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	UFUNCTION()
 		void VisualizeEquipment(AProduct* Product);
 
-	UFUNCTION()
 		void VisualizeWeaponDatas(FItemDatas ItemDatas);
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Equipment> ConfigEquipment;
 
-	UFUNCTION()
 		void PlayEquippedWeaponVisuals();
 
-	UFUNCTION()
 		FShotRayDatas GetShotRayDatas();
 
 private:
 	UPROPERTY()
 		TObjectPtr<AActor> SpawnedEquippedWeapon;
 
-	UFUNCTION()
 		FName GetNameOfSocket(AProduct* Product);
 
 		bool bWeaponSpawned;

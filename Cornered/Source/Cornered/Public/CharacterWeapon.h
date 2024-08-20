@@ -14,49 +14,44 @@ class CORNERED_API UCharacterWeapon : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	UCharacterWeapon();
 
 protected:
 	virtual void BeginPlay() override;
 
-    UFUNCTION()
-        virtual EItemType GetEquippedWeapon() const PURE_VIRTUAL(UCharacterWeapon::GetEquippedWeapon, return EItemType::Count;);
+	UFUNCTION(BlueprintPure)
+		virtual EItemType GetEquippedWeapon() const PURE_VIRTUAL(UCharacterWeapon::GetEquippedWeapon, return EItemType::Count;);
 
-    UFUNCTION()
-        void ShootWithEquippedWeapon();
+	void ShootWithEquippedWeapon();
 
-    UFUNCTION()
-        void ManageVisual();
+	void ManageVisual();
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
-        bool bIsReadyToShoot = true;
-
-    void ShootCooldownEnded();
-
-    UFUNCTION()
-        virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const PURE_VIRTUAL(UCharacterWeapon::InflictDamage, );
-
-public:	
-    UFUNCTION()
-        float GetCooldownTimeLeftPercentageBetween01();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
+		bool bIsReadyToShoot = true;
 
 	UFUNCTION()
+		void ShootCooldownEnded();
+
+	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const PURE_VIRTUAL(UCharacterWeapon::InflictDamage, );
+
+public:
+	float GetCooldownTimeLeftPercentageBetween01();
+
+	UFUNCTION(BlueprintPure)
 		bool IsThereEquippedWeapon() const;
 
-    UPROPERTY(EditAnywhere)
-        TObjectPtr<UConfig_Equipment> EquipmentConfig;
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
-    UFUNCTION()
-        void SetWeaponReadyToBeUsed();
+	void SetWeaponReadyToBeUsed();
 
-    UFUNCTION(BlueprintGetter)
-        bool IsReadyToShoot();
+	UFUNCTION(BlueprintGetter)
+		bool IsReadyToShoot();
 
 private:
-    FTimerHandle TimerHandle;
+	FTimerHandle TimerHandle;
 
-    UFUNCTION()
-        void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
+	void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
 
 };

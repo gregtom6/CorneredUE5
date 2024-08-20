@@ -8,12 +8,12 @@
 
 class UConfig_Character_General;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UCharacterHealth : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	UCharacterHealth();
 
 protected:
@@ -32,21 +32,20 @@ protected:
 
 	virtual float GetReloadWaitingMaxTime();
 
-public:	
+public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintGetter)
 		float GetCurrentHealth();
 
-		virtual float GetMaxHealth();
+	virtual float GetMaxHealth();
 
-		UFUNCTION()
-			void DamageHealth(float Damage);
+	void DamageHealth(float Damage);
 
 private:
 
 	FTimerHandle TimerHandle;
 
-		bool bShouldReloadHealth;
+	bool bShouldReloadHealth;
 
 };

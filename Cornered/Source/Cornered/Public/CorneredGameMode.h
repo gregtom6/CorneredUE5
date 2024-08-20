@@ -26,19 +26,19 @@ class CORNERED_API ACorneredGameMode : public AGameModeBase
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION()
 	void PreparingTimeEnded();
 
+	UFUNCTION()
 	void WaitTimeEndedBetweenMatches();
 
 public:
 
-	UFUNCTION()
 	void RestartTimer();
 
-	UFUNCTION()
 		void ZeroingTimer();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		float GetPreparingTimeLeft();
 
 		FTimeOverHappenedDelegate TimeOverHappened;
@@ -49,7 +49,6 @@ public:
 
 	virtual void StartPlay() override;
 
-	UFUNCTION()
 		void CharacterDied(ACharacter* Character);
 
 private:
@@ -65,9 +64,7 @@ private:
 
 		int MatchIndex;
 
-	UFUNCTION()
 		void InitiateNewMatch();
 
-	UFUNCTION()
 		void InitiateGameOver();
 };

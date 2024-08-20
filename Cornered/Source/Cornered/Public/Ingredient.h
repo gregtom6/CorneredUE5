@@ -44,16 +44,15 @@ public:
 
 	virtual IEquippable* GetEquippable() const;
 
-	UFUNCTION()
 		void SetState(EItemState state);
 
 	UPROPERTY(EditAnywhere)
 		EItemType ItemType;
 		EItemState ItemState;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		EItemType GetItemType() const;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		EItemState GetItemState() const;
 };

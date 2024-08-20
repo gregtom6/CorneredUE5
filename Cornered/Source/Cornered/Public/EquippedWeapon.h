@@ -50,13 +50,10 @@ public:
 	UPROPERTY()
 		TObjectPtr<UActorSequenceComponent> ShotSequ;
 
-	UFUNCTION()
 		void ShotHappened();
 
-	UFUNCTION()
 		void SetEquipperActor(AActor* equipper);
 
-	UFUNCTION()
 		FShotRayDatas GetShotRayDatas();
 	
 private:

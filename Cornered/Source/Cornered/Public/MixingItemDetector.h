@@ -28,20 +28,15 @@ class CORNERED_API AMixingItemDetector : public ATriggerBox
 	
 public:
 
-	UFUNCTION()
 		TArray<FItemData> GetDetectedItems();
 
-	UFUNCTION()
 		void DestroyAllItems();
 
-	UFUNCTION()
 		void BurnAllItems();
 
-	UFUNCTION()
 		void FreezeAllItems();
 
 private:
 
-	UFUNCTION()
 	void ChangeStateOfAllItems(EItemState itemState);
 };

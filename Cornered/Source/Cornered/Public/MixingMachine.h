@@ -5,13 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "CorneredButton.h"
+#include "Config_MixingMachine.h"
 #include "MixingMachine.generated.h"
 
 class UActorSequenceComponent;
 class UActorSequencePlayer;
 class UNiagaraComponent;
 class AMixingItemDetector;
-class UConfig_MixingMachine;
 class UConfig_Recipe;
 class UAudioComponent;
 
@@ -61,7 +61,6 @@ private:
 
 		EMixingMachineState State;
 
-	UFUNCTION()
 		float GetCurrentProcessTime(EAbility ability);
 
 	UPROPERTY()

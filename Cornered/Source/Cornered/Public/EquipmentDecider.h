@@ -22,7 +22,6 @@ protected:
 	UFUNCTION()
 		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
-	UFUNCTION()
 		void GenerateEquipment(AEnemyCharacter* EnemyCharacter);
 
 public:

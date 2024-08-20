@@ -19,7 +19,6 @@ public:
 
 public:	
 
-	UFUNCTION()
 		void Equip(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 		
 };

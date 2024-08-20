@@ -17,8 +17,5 @@ class CORNERED_API ULevelManager : public UGameInstanceSubsystem
 	
 public:
 
-
-
-	UFUNCTION()
 		void LoadLevel(ELevelIdentifier LevelIdentifier, UWorld* World);
 };

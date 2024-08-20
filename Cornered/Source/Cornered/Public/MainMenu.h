@@ -35,15 +35,12 @@ class CORNERED_API UMainMenu : public UUserWidget
 	
 private:
 
-	UFUNCTION()
 		void ShowState();
 
 		EMainMenuState MainMenuState;
 
-	UFUNCTION()
 		void SetMainMenuState(EMainMenuState state);
 
-	UFUNCTION()
 		void BackToMain();
 
 		int32 CurrentPageIndex;
@@ -54,16 +51,12 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Controls> ControlsConfig;
 
-	UFUNCTION()
 		void ShowCurrentControlsPage();
 
-	UFUNCTION()
 		void ShowCurrentTutorialPage();
 
-	UFUNCTION()
 		void ManageTutorialPageSteppingButtons();
 
-	UFUNCTION()
 		void ManageControlsPageSteppingButtons();
 
 	UPROPERTY(meta = (BindWidget))

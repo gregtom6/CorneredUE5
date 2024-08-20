@@ -13,9 +13,7 @@ class CORNERED_API AHoldActivable : public AActor
 
 public:	
 
-	UFUNCTION()
 		virtual void HoldProcessStarted() PURE_VIRTUAL(AHoldActivable::HoldProcessStarted, );
 
-	UFUNCTION()
 		virtual void HoldProcessEnded() PURE_VIRTUAL(AHoldActivable::HoldProcessEnded, );
 };

@@ -21,16 +21,13 @@ public:
 	UPROPERTY()
 		int UnlockLevel;
 
-	UFUNCTION()
 		void ResetProgress();
 
-	UFUNCTION()
 		void StepProgress();
 
-	UFUNCTION()
 		void SaveProgress();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		bool IsAbilityAlreadyUnlocked(EAbility Ability);
 
 protected:

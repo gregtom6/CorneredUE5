@@ -18,8 +18,6 @@ class CORNERED_API AProduct : public AIngredient, public IEquippable
 
 protected:
 
-		UFUNCTION()
-		// Inherited via IEquippable
 		virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;
 
 		virtual IEquippable* GetEquippable() const override;

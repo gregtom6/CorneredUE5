@@ -25,7 +25,6 @@ protected:
 
 public:	
 
-	UFUNCTION()
 		TOptional<FVector> GetClosestHidingSpot();
 
 private:
@@ -36,21 +35,15 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_AI> AIConfig;
 
-	UFUNCTION()
 		void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);
 
-	UFUNCTION()
 		FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit);
 
-	UFUNCTION()
 		bool ThisRayIsNotHittingPlayer(FHitResult raycastHits);
 
-	UFUNCTION()
 		bool IsThisPointNotVisibleByPlayer(FVector CurrentPoint);
 
-	UFUNCTION()
 		bool IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent);
 
-	UFUNCTION()
 		void SortPointsByDistance(TArray<FVector>& PointsArray);
 };

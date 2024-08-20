@@ -73,26 +73,39 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Character_General> ConfigCharacter;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure)
 		EMovementState GetMovementState() const;
 
 protected:
 
 	virtual void OnPossess(APawn*) override;
 	virtual void OnUnPossess() override;
-
+	
+	UFUNCTION()
 	void HandleMovement(const FInputActionValue& InputActionValue);
+	UFUNCTION()
 	void MovementCompleted(const FInputActionValue& InputActionValue);
+	UFUNCTION()
 	void HandleLook(const FInputActionValue& InputActionValue);
+	UFUNCTION()
 	void HandleLookUp();
+	UFUNCTION()
 	void HandleLookDown();
+	UFUNCTION()
 	void HandleLookLeft();
+	UFUNCTION()
 	void HandleLookRight();
+	UFUNCTION()
 	void HandleInteractStarted();
+	UFUNCTION()
 	void HandleInteractFinished();
+	UFUNCTION()
 	void HandlePickup();
+	UFUNCTION()
 	void HandleDrop();
+	UFUNCTION()
 	void HandleEquip();
+	UFUNCTION()
 	void HandleShoot();
 
 private:

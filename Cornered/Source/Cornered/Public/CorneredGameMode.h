@@ -48,7 +48,7 @@ public:
 	void ZeroingTimer();
 
 	UFUNCTION(BlueprintPure)
-		float GetPreparingTimeLeft();
+		float GetPreparingTimeLeft() const;
 
 
 	virtual void StartPlay() override;

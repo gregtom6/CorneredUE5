@@ -6,7 +6,7 @@
 #include <Kismet/GameplayStatics.h>
 #include "ProgressionGameState.h"
 
-bool UConfig_Progress::IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance) const {
+bool UConfig_Progress::IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance) {
     if (ability == EAbility::Default)
     {
         return true;
@@ -32,7 +32,7 @@ TArray<EAbility> UConfig_Progress::GetAlreadyUnlockedAbilities(int32 currentUnlo
     return abilities;
 }
 
-int UConfig_Progress::GetMaxUnlockLevel() {
+int UConfig_Progress::GetMaxUnlockLevel() const {
     return AbilitiesToUnlockPerLevel.Num();
 }
 

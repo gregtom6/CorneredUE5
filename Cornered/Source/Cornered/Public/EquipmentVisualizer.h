@@ -38,13 +38,13 @@ public:
 
 		void PlayEquippedWeaponVisuals();
 
-		FShotRayDatas GetShotRayDatas();
+		FShotRayDatas GetShotRayDatas() const;
 
 protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 private:
 
-		FName GetNameOfSocket(AProduct* Product);
+		FName GetNameOfSocket(AProduct* Product) const;
 
 };

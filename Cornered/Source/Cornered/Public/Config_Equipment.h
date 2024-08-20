@@ -92,9 +92,6 @@ struct FAdditionalSettingsEntry
 
 };
 
-/**
- *
- */
 UCLASS()
 class CORNERED_API UConfig_Equipment : public UDataAsset
 {
@@ -136,11 +133,11 @@ public:
 		FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
 
 	UFUNCTION()
-		FItemDatas GetRandomWeapon();
+		FItemDatas GetRandomWeapon() const;
 
 	UFUNCTION()
-		FItemDatas GetRandomShield();
+		FItemDatas GetRandomShield() const;
 
 	UFUNCTION()
-		FItemDatas GetRandomAdditional();
+		FItemDatas GetRandomAdditional() const;
 };

@@ -4,10 +4,10 @@
 #include "PlayerHealth.h"
 #include "Config_Character_General.h"
 
-float UPlayerHealth::GetMaxHealth() {
+float UPlayerHealth::GetMaxHealth() const {
 	return CharacterConfig->MaxHealth;
 }
 
-float UPlayerHealth::GetReloadWaitingMaxTime() {
+float UPlayerHealth::GetReloadWaitingMaxTime() const {
 	return CharacterConfig->WaitUntilHealthReloadStarts;
 }

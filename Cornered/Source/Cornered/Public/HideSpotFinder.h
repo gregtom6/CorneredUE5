@@ -35,13 +35,13 @@ protected:
 private:
 	void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);
 
-	FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit);
+	FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) const;
 
-	bool ThisRayIsNotHittingPlayer(FHitResult raycastHits);
+	bool ThisRayIsNotHittingPlayer(FHitResult raycastHits) const;
 
-	bool IsThisPointNotVisibleByPlayer(FVector CurrentPoint);
+	bool IsThisPointNotVisibleByPlayer(FVector CurrentPoint) const;
 
-	bool IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent);
+	bool IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent) const;
 
 	void SortPointsByDistance(TArray<FVector>& PointsArray);
 };

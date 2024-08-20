@@ -127,20 +127,20 @@ private:
 
 public:
 
-	TSubclassOf<AIngredient> GetResultItem(TArray<FItemData> detectedItems);
+	TSubclassOf<AIngredient> GetResultItem(TArray<FItemData> detectedItems) const;
 
     UFUNCTION()
-        TArray<FMaterialArray> GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance);
+        TArray<FMaterialArray> GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance) const;
 
 private:
 
     UFUNCTION()
-        int32 GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState);
+        int32 GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState) const;
 
     UFUNCTION()
-        UMaterialInterface* GetRadiatingMaterial(EItemType itemType);
+        UMaterialInterface* GetRadiatingMaterial(EItemType itemType) const;
 
     UFUNCTION()
-        UMaterialInterface* GetRadiatingEffectMaterial(EItemState itemState);
+        UMaterialInterface* GetRadiatingEffectMaterial(EItemState itemState) const;
 
 };

@@ -41,6 +41,6 @@ private:
 public:
 
     UFUNCTION()
-        TSubclassOf<AIngredient> GetWeightedRandomItemClass();
+        TSubclassOf<AIngredient> GetWeightedRandomItemClass() const;
 
 };

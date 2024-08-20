@@ -38,7 +38,7 @@ public:
 	void SetWeaponReadyToBeUsed();
 
 	UFUNCTION(BlueprintGetter)
-		bool IsReadyToShoot();
+		bool IsReadyToShoot() const;
 protected:
 	virtual void BeginPlay() override;
 

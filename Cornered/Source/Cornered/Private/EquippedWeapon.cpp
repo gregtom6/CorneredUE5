@@ -77,7 +77,7 @@ void AEquippedWeapon::SetEquipperActor(AActor* equipper) {
 	EquipperActor = equipper;
 }
 
-FShotRayDatas AEquippedWeapon::GetShotRayDatas() {
+FShotRayDatas AEquippedWeapon::GetShotRayDatas() const {
 	FShotRayDatas ShotDatas;
 
 	UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));

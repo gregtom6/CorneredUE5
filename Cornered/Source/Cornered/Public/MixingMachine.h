@@ -108,6 +108,6 @@ private:
 		void BurnPressHappened();
 
 
-		float GetCurrentProcessTime(EAbility ability);
+		float GetCurrentProcessTime(EAbility ability) const;
 
 };

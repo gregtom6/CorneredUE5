@@ -34,8 +34,8 @@ public:
 public:
 
     UFUNCTION()
-        FTutorialPageDatas GetTutorialPageDatas(int32 index);
+        FTutorialPageDatas GetTutorialPageDatas(int32 index) const;
 
     UFUNCTION()
-        int32 GetTutorialPageCount();
+        int32 GetTutorialPageCount() const;
 };

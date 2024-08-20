@@ -31,7 +31,7 @@ class CORNERED_API AMixingItemDetector : public ATriggerBox
 	
 public:
 
-		TArray<FItemData> GetDetectedItems();
+		TArray<FItemData> GetDetectedItems() const;
 
 		void DestroyAllItems();
 

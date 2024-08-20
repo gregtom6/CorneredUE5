@@ -83,6 +83,6 @@ float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 	
 }
 
-bool UCharacterWeapon::IsReadyToShoot() {
+bool UCharacterWeapon::IsReadyToShoot() const {
 	return bIsReadyToShoot;
 }

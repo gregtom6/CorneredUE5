@@ -40,10 +40,10 @@ public:
 	ABeltController();
 
 	UFUNCTION(BlueprintPure)
-		float GetCurrentMultiplier();
+		float GetCurrentMultiplier() const;
 
 	UFUNCTION(BlueprintPure)
-		EBeltSpeed GetCurrentBeltSpeed();
+		EBeltSpeed GetCurrentBeltSpeed() const;
 
 protected:
 	virtual void BeginPlay() override;

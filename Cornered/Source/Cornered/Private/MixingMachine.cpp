@@ -189,7 +189,7 @@ void AMixingMachine::FreezePressHappened() {
 	FreezeAudio->Play();
 }
 
-float AMixingMachine::GetCurrentProcessTime(EAbility ability) {
+float AMixingMachine::GetCurrentProcessTime(EAbility ability) const {
 	return MixingMachineConfig->GetProcessTime(ability);
 }
 

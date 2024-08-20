@@ -65,7 +65,7 @@ public:
 
 	void SetEquipperActor(AActor* equipper);
 
-	FShotRayDatas GetShotRayDatas();
+	FShotRayDatas GetShotRayDatas() const;
 
 protected:
 	virtual void BeginPlay() override;

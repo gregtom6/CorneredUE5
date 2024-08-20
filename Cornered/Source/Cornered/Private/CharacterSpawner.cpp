@@ -69,7 +69,7 @@ bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 	return false;
 }
 
-FVector UCharacterSpawner::GetRandomPosition() {
+FVector UCharacterSpawner::GetRandomPosition() const {
 	TArray<AActor*> FoundActors = QueryAllTargetPoints();
 	if (FoundActors.Num() > 0) {
 		int index = FMath::RandRange(0, FoundActors.Num() - 1);
@@ -79,7 +79,7 @@ FVector UCharacterSpawner::GetRandomPosition() {
 	return FVector::ZeroVector;
 }
 
-TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints()
+TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints() const
 {
 	UWorld* World = GetWorld();
 	TArray<AActor*> FoundActors;

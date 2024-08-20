@@ -88,7 +88,7 @@ void UEquipmentVisualizer::VisualizeWeaponDatas(FItemDatas ItemDatas) {
 	bWeaponSpawned = true;
 }
 
-FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) {
+FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) const {
 	if (Product->IsA(AWeaponProduct::StaticClass())) {
 		return FName("RightArmSocket");
 	}
@@ -110,7 +110,7 @@ void UEquipmentVisualizer::PlayEquippedWeaponVisuals() {
 	}
 }
 
-FShotRayDatas UEquipmentVisualizer::GetShotRayDatas() {
+FShotRayDatas UEquipmentVisualizer::GetShotRayDatas() const {
 	AEquippedWeapon* equippedWeapon = Cast<AEquippedWeapon>(SpawnedEquippedWeapon);
 	return equippedWeapon->GetShotRayDatas();
 }

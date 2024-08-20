@@ -32,9 +32,6 @@ struct FAbilityProcessTimeEntry
 
 };
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UConfig_MixingMachine : public UDataAsset
 {
@@ -48,6 +45,6 @@ private:
 public:
 
     UFUNCTION()
-        float GetProcessTime(EAbility ability);
+        float GetProcessTime(EAbility ability) const;
 	
 };

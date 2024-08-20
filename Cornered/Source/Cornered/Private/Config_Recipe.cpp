@@ -8,7 +8,7 @@
 #include "Config_Progress.h"
 #include "CorneredGameInstance.h"
 
-TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<FItemData> detectedItems) {
+TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<FItemData> detectedItems) const {
 
 	EItemType resultItemType;
 
@@ -39,7 +39,7 @@ TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<FItemData> detecte
 	return nullptr;
 }
 
-int32 UConfig_Recipe::GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState) {
+int32 UConfig_Recipe::GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState) const {
 	int32 count = 0;
 	for (int i = 0; i < array.Num(); i++) {
 		if (array[i].ItemType == element && array[i].ItemState == itemState) {
@@ -49,7 +49,7 @@ int32 UConfig_Recipe::GetOccurrenceNumber(TArray<FItemData> array, EItemType ele
 	return count;
 }
 
-TArray<FMaterialArray> UConfig_Recipe::GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance) {
+TArray<FMaterialArray> UConfig_Recipe::GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance) const {
 	TArray<FMaterialArray> Materials;
 	TArray<FMaterialArray> ItemStateMaterials;
 
@@ -95,7 +95,7 @@ TArray<FMaterialArray> UConfig_Recipe::GetRadiatingMaterialsOfAllRecipes(TArray<
 	return Materials;
 }
 
-UMaterialInterface* UConfig_Recipe::GetRadiatingMaterial(EItemType itemType) {
+UMaterialInterface* UConfig_Recipe::GetRadiatingMaterial(EItemType itemType) const {
 	for (int i = 0; i < IngredientRadiatingMaterialEntries.Num(); i++) {
 		if (IngredientRadiatingMaterialEntries[i].Key == itemType) {
 			return IngredientRadiatingMaterialEntries[i].Material;
@@ -105,7 +105,7 @@ UMaterialInterface* UConfig_Recipe::GetRadiatingMaterial(EItemType itemType) {
 	return nullptr;
 }
 
-UMaterialInterface* UConfig_Recipe::GetRadiatingEffectMaterial(EItemState itemState) {
+UMaterialInterface* UConfig_Recipe::GetRadiatingEffectMaterial(EItemState itemState) const {
 	for (int i = 0; i < EffectRadiatingMaterialEntries.Num(); i++) {
 		if (EffectRadiatingMaterialEntries[i].Key == itemState) {
 			return EffectRadiatingMaterialEntries[i].Material;

@@ -58,11 +58,11 @@ private:
 public:
 
 	UFUNCTION()
-		float GetCurrentMultiplier(EBeltSpeed beltSpeed);
+		float GetCurrentMultiplier(EBeltSpeed beltSpeed) const;
 
 	UFUNCTION()
-		TSubclassOf<ABeltElement> GetBeltElementClass();
+		TSubclassOf<ABeltElement> GetBeltElementClass() const;
 
 	UFUNCTION()
-		UMaterialInterface* GetMaterialBasedOnSpeed(EBeltSpeed speed);
+		UMaterialInterface* GetMaterialBasedOnSpeed(EBeltSpeed speed) const;
 };

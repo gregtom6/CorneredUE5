@@ -3,11 +3,11 @@
 
 #include "Config_Tutorial.h"
 
-int32 UConfig_Tutorial::GetTutorialPageCount() {
+int32 UConfig_Tutorial::GetTutorialPageCount() const {
 	return TutorialPageDatas.Num();
 }
 
-FTutorialPageDatas UConfig_Tutorial::GetTutorialPageDatas(int32 index) {
+FTutorialPageDatas UConfig_Tutorial::GetTutorialPageDatas(int32 index) const {
     if (index < TutorialPageDatas.Num())
     {
         return TutorialPageDatas[index];

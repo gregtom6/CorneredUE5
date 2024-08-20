@@ -35,11 +35,11 @@ void UCharacterHealth::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 	}
 }
 
-float UCharacterHealth::GetCurrentHealth() {
+float UCharacterHealth::GetCurrentHealth() const {
 	return CurrentHealth;
 }
 
-float UCharacterHealth::GetMaxHealth() {
+float UCharacterHealth::GetMaxHealth() const {
 	return MaxHealth;
 }
 
@@ -65,6 +65,6 @@ void UCharacterHealth::HealthReloadWaitTimeEnded() {
 	bShouldReloadHealth = true;
 }
 
-float UCharacterHealth::GetReloadWaitingMaxTime() {
+float UCharacterHealth::GetReloadWaitingMaxTime() const {
 	return 0.f;
 }

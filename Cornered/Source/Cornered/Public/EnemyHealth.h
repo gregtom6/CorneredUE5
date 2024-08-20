@@ -16,8 +16,8 @@ class CORNERED_API UEnemyHealth : public UCharacterHealth
 	
 public:
 
-		virtual float GetMaxHealth() override;
+		virtual float GetMaxHealth() const override;
 protected:
 
-	virtual float GetReloadWaitingMaxTime() override;
+	virtual float GetReloadWaitingMaxTime() const override;
 };

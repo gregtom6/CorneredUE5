@@ -40,7 +40,7 @@ private:
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 
-	FVector GetRandomPosition();
+	FVector GetRandomPosition() const;
 
-	TArray<AActor*> QueryAllTargetPoints();
+	TArray<AActor*> QueryAllTargetPoints() const;
 };

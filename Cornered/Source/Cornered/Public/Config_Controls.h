@@ -40,9 +40,9 @@ public:
 public:
 
     UFUNCTION()
-        FControlsPageDatas GetControlsPageDatas(int32 index);
+        FControlsPageDatas GetControlsPageDatas(int32 index) const;
 
     UFUNCTION()
-        int32 GetControlsPageCount();
+        int32 GetControlsPageCount() const;
 
 };

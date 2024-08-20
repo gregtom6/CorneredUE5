@@ -32,10 +32,10 @@ void UInteractableDetector::TickComponent(float DeltaTime, ELevelTick TickType, 
 	bIsValidHit = CachedWorld->LineTraceSingleByChannel(HitResult, origin, origin + LocalRightVector * rayLength, ECC_Visibility);
 }
 
-bool UInteractableDetector::ItWasValidHit() {
+bool UInteractableDetector::ItWasValidHit() const {
 	return bIsValidHit;
 }
 
-FHitResult UInteractableDetector::GetHitResult() {
+FHitResult UInteractableDetector::GetHitResult() const {
 	return HitResult;
 }

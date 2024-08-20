@@ -71,7 +71,7 @@ void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoin
 	} while (currentDistanceToCheckOnRay < 5000.f);
 }
 
-FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) {
+FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) const {
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APlayerCharacter* PlayerPawn = Cast<APlayerCharacter>(PlayerController->GetPawn());
@@ -116,7 +116,7 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 	return HitResult;
 }
 
-bool UHideSpotFinder::ThisRayIsNotHittingPlayer(FHitResult raycastHits) {
+bool UHideSpotFinder::ThisRayIsNotHittingPlayer(FHitResult raycastHits) const {
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
@@ -124,7 +124,7 @@ bool UHideSpotFinder::ThisRayIsNotHittingPlayer(FHitResult raycastHits) {
 	return raycastHits.GetActor()!=PlayerPawn;
 }
 
-bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) {
+bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) const {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
 
@@ -153,7 +153,7 @@ bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) {
 	return true;
 }
 
-bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent) {
+bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent) const {
 	const FTransform ComponentTransform = ImpactedComponent->GetComponentTransform();
 
 	const FBoxSphereBounds ComponentBounds = ImpactedComponent->CalcBounds(ComponentTransform);

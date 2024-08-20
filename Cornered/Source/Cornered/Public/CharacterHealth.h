@@ -36,9 +36,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintGetter)
-		float GetCurrentHealth();
+		float GetCurrentHealth() const;
 
-	virtual float GetMaxHealth();
+	virtual float GetMaxHealth() const;
 
 	void DamageHealth(float Damage);
 
@@ -48,5 +48,5 @@ protected:
 
 	void HealthReloadWaitTimeEnded();
 
-	virtual float GetReloadWaitingMaxTime();
+	virtual float GetReloadWaitingMaxTime() const;
 };

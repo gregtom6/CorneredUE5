@@ -50,7 +50,7 @@ void ABeltController::SwitchBeltSpeed() {
 	CurrentBeltSpeed = CurrentBeltSpeed == EBeltSpeed::Normal ? EBeltSpeed::Fastened : EBeltSpeed::Normal;
 }
 
-float ABeltController::GetCurrentMultiplier()
+float ABeltController::GetCurrentMultiplier() const
 {
 	return BeltConfig->GetCurrentMultiplier(CurrentBeltSpeed);
 }
@@ -80,6 +80,6 @@ void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 	}
 }
 
-EBeltSpeed ABeltController::GetCurrentBeltSpeed() {
+EBeltSpeed ABeltController::GetCurrentBeltSpeed() const {
 	return CurrentBeltSpeed;
 }

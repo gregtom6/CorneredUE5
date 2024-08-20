@@ -5,7 +5,7 @@
 #include "Components/ShapeComponent.h"
 #include "Ingredient.h"
 
-TArray<FItemData> AMixingItemDetector::GetDetectedItems() {
+TArray<FItemData> AMixingItemDetector::GetDetectedItems() const {
 	TArray<AActor*> OverlappingActors;
 	GetCollisionComponent()->GetOverlappingActors(OverlappingActors);
 

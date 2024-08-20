@@ -49,17 +49,17 @@ FAdditionalSettingsEntry UConfig_Equipment::GetAdditionalSettings(EItemType item
     return FAdditionalSettingsEntry();
 }
 
-FItemDatas UConfig_Equipment::GetRandomWeapon() {
+FItemDatas UConfig_Equipment::GetRandomWeapon() const {
     int index = FMath::RandRange(0, Weapons.Num() - 1);
     return Weapons[index];
 }
 
-FItemDatas UConfig_Equipment::GetRandomShield() {
+FItemDatas UConfig_Equipment::GetRandomShield() const {
     int index = FMath::RandRange(0, Shields.Num() - 1);
     return Shields[index];
 }
 
-FItemDatas UConfig_Equipment::GetRandomAdditional() {
+FItemDatas UConfig_Equipment::GetRandomAdditional() const {
     int index = FMath::RandRange(0, Additionals.Num() - 1);
     return Additionals[index];
 }

@@ -57,7 +57,7 @@ void ACorneredGameMode::ZeroingTimer() {
 	PreparingTimeEnded();
 }
 
-float ACorneredGameMode::GetPreparingTimeLeft() {
+float ACorneredGameMode::GetPreparingTimeLeft() const {
 
 	if (GetWorld()->GetTimerManager().IsTimerActive(TimerHandle)) {
 		return GetWorld()->GetTimerManager().GetTimerRemaining(TimerHandle);

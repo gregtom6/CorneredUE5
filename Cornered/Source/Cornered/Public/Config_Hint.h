@@ -25,10 +25,6 @@ struct FItemHintMaterialEntry
 
 };
 
-
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UConfig_Hint : public UDataAsset
 {
@@ -41,5 +37,5 @@ private:
 public:
 
 	UFUNCTION()
-		UMaterialInterface* GetMaterialBasedOnItemType(EItemType itemType);
+		UMaterialInterface* GetMaterialBasedOnItemType(EItemType itemType) const;
 };

@@ -11,23 +11,10 @@ class UStaticMeshComponent;
 class UConfig_Belt;
 class ABeltController;
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API AConveyorBeltSpeederButton : public ACorneredButton
 {
 	GENERATED_BODY()
-
-public:
-
-	AConveyorBeltSpeederButton();
-
-	void Interact() override;
-
-protected:
-
-	virtual void BeginPlay() override;
 
 private:
 
@@ -42,4 +29,15 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ABeltController> BeltController;
+
+public:
+
+	AConveyorBeltSpeederButton();
+
+	void Interact() override;
+
+protected:
+
+	virtual void BeginPlay() override;
+
 };

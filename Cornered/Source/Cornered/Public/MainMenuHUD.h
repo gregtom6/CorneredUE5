@@ -8,24 +8,12 @@
 
 class UUserWidget;
 class UAudioComponent;
-/**
- * 
- */
+
 UCLASS()
 class CORNERED_API AMainMenuHUD : public AHUD
 {
 	GENERATED_BODY()
 	
-public:
-
-	AMainMenuHUD();
-
-	virtual void BeginPlay() override;
-
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
-		TSubclassOf<UUserWidget> UserWidgetClass;
-
 private:
 
 	UPROPERTY()
@@ -37,6 +25,17 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> SFXComp;
 
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
+		TSubclassOf<UUserWidget> UserWidgetClass;
+public:
+
+	AMainMenuHUD();
+
+	virtual void BeginPlay() override;
+
+private:
 	UFUNCTION()
 		void UIPressHappened();
+
 };

@@ -8,18 +8,10 @@
 
 class UStaticMeshComponent;
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API ATimeZeroerButton : public ACorneredButton
 {
 	GENERATED_BODY()
-
-public:
-		ATimeZeroerButton();
-
-		void Interact() override;
 
 private:
 
@@ -28,5 +20,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> Root;
-	
+
+public:
+		ATimeZeroerButton();
+
+		void Interact() override;
+
 };

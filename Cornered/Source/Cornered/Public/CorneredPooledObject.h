@@ -13,22 +13,24 @@ class CORNERED_API UCorneredPooledObject : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	UCorneredPooledObject();
 
 public:	
 
 	UPROPERTY(VisibleInstanceOnly)
 		bool _IsActive;
 
+private:
+
+	TObjectPtr<ACorneredObjectPool> _ObjectPool;
+
+public:	
+	UCorneredPooledObject();
+
 	void Init(ACorneredObjectPool* owner);
 
 	UFUNCTION()
 		void RecycleSelf();
-
 private:
-
-	TObjectPtr<ACorneredObjectPool> _ObjectPool;
 
 	virtual void OnComponentDestroyed(bool bDestroyingHierarchy) override;
 };

@@ -21,22 +21,7 @@ class CORNERED_API AExitDoorController : public AHoldActivable
 {
 	GENERATED_BODY()
 
-public:
-
-	AExitDoorController();
-
-	virtual void Tick(float DeltaTime) override;
-
-	virtual void HoldProcessStarted() override;
-
-	virtual void HoldProcessEnded() override;
-
-protected:
-
-	virtual void BeginPlay() override;
-	
 private:
-
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
 
@@ -65,7 +50,24 @@ private:
 
 		float OpeningPercentage;
 
+		bool bDoorOpened;
+
+public:
+
+	AExitDoorController();
+
+	virtual void Tick(float DeltaTime) override;
+
+	virtual void HoldProcessStarted() override;
+
+	virtual void HoldProcessEnded() override;
+
+protected:
+
+	virtual void BeginPlay() override;
+	
+private:
+
 		void PrintPercentageText();
 
-		bool bDoorOpened;
 };

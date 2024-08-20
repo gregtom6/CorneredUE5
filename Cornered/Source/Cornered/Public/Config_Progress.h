@@ -27,6 +27,11 @@ class CORNERED_API UConfig_Progress : public UDataAsset
 {
 	GENERATED_BODY()
 
+private:
+
+    UPROPERTY(EditAnywhere)
+        TArray<FUnlockableAbilities> AbilitiesToUnlockPerLevel;
+
 public:
 
     UFUNCTION()
@@ -42,8 +47,4 @@ private:
 
     UFUNCTION()
         TArray<EAbility> GetAlreadyUnlockedAbilities(int currentUnlockLevel) const;
-
-    UPROPERTY(EditAnywhere)
-        TArray<FUnlockableAbilities> AbilitiesToUnlockPerLevel;
-	
 };

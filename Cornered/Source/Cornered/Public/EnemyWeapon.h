@@ -14,14 +14,14 @@ class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 {
 	GENERATED_BODY()
 	
-protected:
-	virtual EItemType GetEquippedWeapon() const override;
-
-	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const override;
-
 public:
 
 	UEnemyWeapon();
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+protected:
+	virtual EItemType GetEquippedWeapon() const override;
+
+	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const override;
+
 };

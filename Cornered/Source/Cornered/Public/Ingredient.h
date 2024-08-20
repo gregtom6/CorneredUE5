@@ -17,6 +17,15 @@ class CORNERED_API AIngredient : public AActor, public IIPickable
 {
 	GENERATED_BODY()
 
+public:
+	UPROPERTY(EditAnywhere)
+		EItemType ItemType;
+		EItemState ItemState;
+
+protected:
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStaticMeshComponent> StaticMesh;
+
 private:
 
 	bool bWasPickedAnyTime;
@@ -24,15 +33,6 @@ private:
 public:	
 	// Sets default values for this actor's properties
 	AIngredient();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStaticMeshComponent> StaticMesh;
-
-public:	
 
 	void Pickup(AActor* Actor) override;
 
@@ -46,13 +46,13 @@ public:
 
 		void SetState(EItemState state);
 
-	UPROPERTY(EditAnywhere)
-		EItemType ItemType;
-		EItemState ItemState;
-
 	UFUNCTION(BlueprintPure)
 		EItemType GetItemType() const;
 
 	UFUNCTION(BlueprintPure)
 		EItemState GetItemState() const;
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 };

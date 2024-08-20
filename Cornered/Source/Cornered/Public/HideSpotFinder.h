@@ -9,23 +9,10 @@
 class UConfig_AI;
 class AEnemyCharacter;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UHideSpotFinder : public UActorComponent
 {
 	GENERATED_BODY()
-
-public:	
-	UHideSpotFinder();
-
-protected:
-	virtual void BeginPlay() override;
-
-	UFUNCTION()
-		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
-
-public:	
-
-		TOptional<FVector> GetClosestHidingSpot();
 
 private:
 
@@ -35,15 +22,26 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_AI> AIConfig;
 
-		void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);
+public:
+	UHideSpotFinder();
+	TOptional<FVector> GetClosestHidingSpot();
 
-		FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit);
+protected:
+	virtual void BeginPlay() override;
 
-		bool ThisRayIsNotHittingPlayer(FHitResult raycastHits);
+	UFUNCTION()
+		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
-		bool IsThisPointNotVisibleByPlayer(FVector CurrentPoint);
+private:
+	void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);
 
-		bool IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent);
+	FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit);
 
-		void SortPointsByDistance(TArray<FVector>& PointsArray);
+	bool ThisRayIsNotHittingPlayer(FHitResult raycastHits);
+
+	bool IsThisPointNotVisibleByPlayer(FVector CurrentPoint);
+
+	bool IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent);
+
+	void SortPointsByDistance(TArray<FVector>& PointsArray);
 };

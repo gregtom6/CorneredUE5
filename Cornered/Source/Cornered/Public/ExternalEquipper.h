@@ -17,8 +17,5 @@ public:
 	// Sets default values for this component's properties
 	UExternalEquipper();
 
-public:	
-
 		void Equip(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
-		
 };

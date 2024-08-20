@@ -18,17 +18,6 @@ class CORNERED_API ARecipeShower : public AActor
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this actor's properties
-	ARecipeShower();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-	UFUNCTION()
-		void OnNewMatchStarted();
-
 private:
 
 	UPROPERTY(EditAnywhere)
@@ -49,6 +38,18 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Recipe> RecipeConfig;
 
+public:
+	// Sets default values for this actor's properties
+	ARecipeShower();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+		void OnNewMatchStarted();
+
+private:
 		void GenerateRecipeVisuals();
 
 		void DestroyElements();

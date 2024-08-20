@@ -8,20 +8,12 @@
 
 class UUserWidget;
 class UAudioComponent;
-/**
- * 
- */
+
 UCLASS()
 class CORNERED_API AGameWinHUD : public AHUD
 {
 	GENERATED_BODY()
 	
-public:
-
-	AGameWinHUD();
-
-	virtual void BeginPlay() override;
-
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
 		TSubclassOf<UUserWidget> UserWidgetClass;
@@ -36,6 +28,15 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> SFXComp;
+
+public:
+
+	AGameWinHUD();
+
+	virtual void BeginPlay() override;
+
+
+private:
 
 	UFUNCTION()
 		void UIPressHappened();

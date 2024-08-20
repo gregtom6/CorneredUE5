@@ -9,16 +9,13 @@
 
 class UButton;
 class UTextBlock;
-/**
- * 
- */
+
 UCLASS()
 class CORNERED_API UGameOverMenu : public UUserWidget
 {
 	GENERATED_BODY()
 	
 public:
-	virtual void NativeConstruct() override;
 
 		FUIPressHappenedDelegate UIPressHappened;
 
@@ -27,14 +24,17 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TSoftObjectPtr<UWorld> MainMenuLevel;
-
 protected:
-
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UButton> Restart;
 
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UButton> Quit;
+
+public:
+	virtual void NativeConstruct() override;
+
+protected:
 
 	UFUNCTION()
 		void RestartOnClick();

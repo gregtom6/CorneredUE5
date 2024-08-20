@@ -21,9 +21,6 @@ struct FTutorialPageDatas
 
 };
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UConfig_Tutorial : public UDataAsset
 {
@@ -33,6 +30,8 @@ public:
 
     UPROPERTY(EditAnywhere)
         TArray<FTutorialPageDatas> TutorialPageDatas;
+
+public:
 
     UFUNCTION()
         FTutorialPageDatas GetTutorialPageDatas(int32 index);

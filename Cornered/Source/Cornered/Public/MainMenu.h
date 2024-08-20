@@ -25,71 +25,15 @@ enum class EMainMenuState : uint8
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUIPressHappenedDelegate);
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UMainMenu : public UUserWidget
 {
 	GENERATED_BODY()
-	
-private:
-
-		void ShowState();
-
-		EMainMenuState MainMenuState;
-
-		void SetMainMenuState(EMainMenuState state);
-
-		void BackToMain();
-
-		int32 CurrentPageIndex;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Tutorial> TutorialConfig;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Controls> ControlsConfig;
-
-		void ShowCurrentControlsPage();
-
-		void ShowCurrentTutorialPage();
-
-		void ManageTutorialPageSteppingButtons();
-
-		void ManageControlsPageSteppingButtons();
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UImage> TutorialImage;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UImage> ControlsLeftImage;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UImage> ControlsRightImage;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UTextBlock> ControlsText;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UTextBlock> TutorialText;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UPanelWidget> MainMenuParent;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UPanelWidget> TutorialParent;
-
-	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UPanelWidget> ControlsParent;
 
 public:
-	virtual void NativeConstruct() override;
-
 		FUIPressHappenedDelegate UIPressHappened;
 
 protected:
-
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UButton> NewGame;
 
@@ -120,7 +64,42 @@ protected:
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UButton> ControlsRightPage;
 
+private:
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_Tutorial> TutorialConfig;
 
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_Controls> ControlsConfig;
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UImage> TutorialImage;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UImage> ControlsLeftImage;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UImage> ControlsRightImage;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UTextBlock> ControlsText;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UTextBlock> TutorialText;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UPanelWidget> MainMenuParent;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UPanelWidget> TutorialParent;
+
+	UPROPERTY(meta = (BindWidget))
+		TObjectPtr<UPanelWidget> ControlsParent;
+
+		EMainMenuState MainMenuState;
+	
+		int32 CurrentPageIndex;
+public:
+	virtual void NativeConstruct() override;
+protected:
 	UFUNCTION()
 		void NewGameOnClick();
 
@@ -150,4 +129,18 @@ protected:
 
 	UFUNCTION()
 		void ControlsRightPageOnClick();
+private:
+		void ShowState();
+
+		void SetMainMenuState(EMainMenuState state);
+
+		void BackToMain();
+
+		void ShowCurrentControlsPage();
+
+		void ShowCurrentTutorialPage();
+
+		void ManageTutorialPageSteppingButtons();
+
+		void ManageControlsPageSteppingButtons();
 };

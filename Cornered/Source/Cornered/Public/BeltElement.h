@@ -13,19 +13,8 @@ UCLASS()
 class CORNERED_API ABeltElement : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	ABeltElement();
-
-public:	
-	virtual void Tick(float DeltaTime) override;
-
-		void SetBeltController(ABeltController* controller);
-
-	virtual void SetActorHiddenInGame(bool bNewHidden) override;
 
 private:
-
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
 
@@ -41,6 +30,17 @@ private:
 	FTimerHandle TimerHandle;
 
 	FVector ItemPivotLocation;
+
+public:
+	ABeltElement();
+
+	virtual void Tick(float DeltaTime) override;
+
+	void SetBeltController(ABeltController* controller);
+
+	virtual void SetActorHiddenInGame(bool bNewHidden) override;
+
+private:
 
 	void TimerFunction();
 };

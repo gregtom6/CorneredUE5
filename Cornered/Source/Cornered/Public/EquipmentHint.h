@@ -26,12 +26,6 @@ class CORNERED_API AEquipmentHint : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	AEquipmentHint();
-
-protected:
-	virtual void BeginPlay() override;
-
 private:
 
 	UPROPERTY(VisibleAnywhere)
@@ -45,6 +39,15 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Hint> HintConfig;
+
+
+public:	
+	AEquipmentHint();
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
 
 	UFUNCTION()
 		void OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional);

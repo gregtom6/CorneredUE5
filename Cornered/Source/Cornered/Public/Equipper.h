@@ -13,11 +13,12 @@ class CORNERED_API UEquipper : public USceneComponent
 {
 	GENERATED_BODY()
 
-public:	
-	UEquipper();
-
+public:
 	UPROPERTY()
 		TObjectPtr<UPicker> PickerComp;
+
+public:	
+	UEquipper();
 
 protected:
 	virtual void BeginPlay() override;

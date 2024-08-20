@@ -24,18 +24,8 @@ UCLASS()
 class CORNERED_API APlayerCharacter : public ACharacter
 {
 	GENERATED_BODY()
-
-public:
-	// Sets default values for this character's properties
-	APlayerCharacter();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPlayerWeapon> PlayerWeaponComp;
@@ -79,5 +69,14 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPlayerHealth> PlayerHealthComp;
 
+public:
+	// Sets default values for this character's properties
+	APlayerCharacter();
+
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+	virtual void Tick(float DeltaTime) override;
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 };

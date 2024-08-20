@@ -30,15 +30,8 @@ UCLASS()
 class CORNERED_API AEquippedWeapon : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	AEquippedWeapon();
 
-protected:
-	virtual void BeginPlay() override;
-
-public:	
-
+public:
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
 
@@ -50,20 +43,26 @@ public:
 	UPROPERTY()
 		TObjectPtr<UActorSequenceComponent> ShotSequ;
 
-		void ShotHappened();
-
-		void SetEquipperActor(AActor* equipper);
-
-		FShotRayDatas GetShotRayDatas();
-	
 private:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UNiagaraComponent> NiagaraComp;
-		
+
 	UPROPERTY()
 		TObjectPtr<AActor> EquipperActor;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> ShotAudio;
+
+
+public:
+	AEquippedWeapon();
+	void ShotHappened();
+
+	void SetEquipperActor(AActor* equipper);
+
+	FShotRayDatas GetShotRayDatas();
+
+protected:
+	virtual void BeginPlay() override;
 };

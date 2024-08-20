@@ -37,6 +37,8 @@ public:
     UPROPERTY(EditAnywhere)
         TArray<FControlsPageDatas> ControlsPageDatas;
 
+public:
+
     UFUNCTION()
         FControlsPageDatas GetControlsPageDatas(int32 index);
 

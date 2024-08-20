@@ -15,16 +15,14 @@ class CORNERED_API UInventory : public UActorComponent
 {
 	GENERATED_BODY()
 
+private:
+
+	EItemType Weapon;
+	EItemType Shield;
+	EItemType Additional;
 public:	
 	// Sets default values for this component's properties
 	UInventory();
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
-public:	
-
 		void EquipItem(AProduct* Product);
 
 		void EquipWeapon(FItemDatas itemDatas);
@@ -36,9 +34,7 @@ public:
 	UFUNCTION(BlueprintPure)
 		EItemType GetWeapon() const;
 
-private:
-
-	EItemType Weapon;
-	EItemType Shield;
-	EItemType Additional;
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
 };

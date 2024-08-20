@@ -15,13 +15,19 @@ class CORNERED_API UEquipmentVisualizer : public UActorComponent
 {
 	GENERATED_BODY()
 
+public:
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_Equipment> ConfigEquipment;
+
+private:
+
+	UPROPERTY()
+		TObjectPtr<AActor> SpawnedEquippedWeapon;
+
+		bool bWeaponSpawned;
+
 public:	
 	UEquipmentVisualizer();
-
-protected:
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -29,18 +35,16 @@ public:
 
 		void VisualizeWeaponDatas(FItemDatas ItemDatas);
 
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Equipment> ConfigEquipment;
 
 		void PlayEquippedWeaponVisuals();
 
 		FShotRayDatas GetShotRayDatas();
 
+protected:
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 private:
-	UPROPERTY()
-		TObjectPtr<AActor> SpawnedEquippedWeapon;
 
 		FName GetNameOfSocket(AProduct* Product);
 
-		bool bWeaponSpawned;
 };

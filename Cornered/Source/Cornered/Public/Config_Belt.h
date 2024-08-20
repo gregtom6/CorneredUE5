@@ -39,6 +39,7 @@ class CORNERED_API UConfig_Belt : public UDataAsset
 {
 	GENERATED_BODY()
 	
+
 private:
 
 	UPROPERTY(EditAnywhere)

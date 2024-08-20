@@ -50,10 +50,22 @@ class CORNERED_API ACorneredObjectPool : public AActor
 {
 	GENERATED_BODY()
 	
+public:
+		FPoolerCleanupSignature OnPoolerCleanup;
+	FInitializationHappened InitializationHappened;
+
+		bool bAlreadyInitialized;
+	
+protected:
+	UPROPERTY(EditAnywhere)
+		TArray<FPooledObjectData> _PooledObjectData;
+
+	UPROPERTY(VisibleInstanceOnly)
+		TArray<FSingleObjectPool> _Pools;
+
 public:	
 	ACorneredObjectPool();
 
-		FPoolerCleanupSignature OnPoolerCleanup;
 
 	UFUNCTION()
 		void Broadcast_PoolerCleanup();
@@ -69,18 +81,6 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-
-	UPROPERTY(EditAnywhere)
-		TArray<FPooledObjectData> _PooledObjectData;
-
-	UPROPERTY(VisibleInstanceOnly)
-		TArray<FSingleObjectPool> _Pools;
-
-public:	
-
-	FInitializationHappened InitializationHappened;
-
-		bool bAlreadyInitialized;
 
 private:
 

@@ -29,9 +29,6 @@ struct FLevelEntry
 
 };
 
-/**
- * 
- */
 UCLASS(config = Game, defaultconfig)
 class CORNERED_API UConfigLevelsDevSettings : public UDeveloperSettings
 {
@@ -41,6 +38,8 @@ public:
 
     UPROPERTY(config, EditAnywhere)
         TArray<FLevelEntry> Levels;
+
+public:
 
     UFUNCTION()
         TSoftObjectPtr<UWorld> GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const;

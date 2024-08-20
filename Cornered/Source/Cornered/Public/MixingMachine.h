@@ -29,39 +29,10 @@ class CORNERED_API AMixingMachine : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	AMixingMachine();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-	void ConvertTimeEnded();
-
-	void BurnTimeEnded();
-
-	void FreezeTimeEnded();
-
 private:
-
-	UFUNCTION()
-		void OnNewMatchStarted();
-
 	FTimerHandle TimerHandle;
 
-	UFUNCTION()
-		void ConvertPressHappened();
-
-	UFUNCTION()
-		void FreezePressHappened();
-
-	UFUNCTION()
-		void BurnPressHappened();
-
 		EMixingMachineState State;
-
-		float GetCurrentProcessTime(EAbility ability);
 
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
@@ -107,4 +78,36 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> MixingAudio;
+public:	
+	// Sets default values for this actor's properties
+	AMixingMachine();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	void ConvertTimeEnded();
+
+	void BurnTimeEnded();
+
+	void FreezeTimeEnded();
+
+private:
+
+	UFUNCTION()
+		void OnNewMatchStarted();
+
+
+	UFUNCTION()
+		void ConvertPressHappened();
+
+	UFUNCTION()
+		void FreezePressHappened();
+
+	UFUNCTION()
+		void BurnPressHappened();
+
+
+		float GetCurrentProcessTime(EAbility ability);
+
 };

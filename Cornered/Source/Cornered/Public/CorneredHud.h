@@ -9,15 +9,18 @@
 class UUserWidget;
 class UAudioComponent;
 class ACharacter;
-/**
- * 
- */
+
 UCLASS()
 class CORNERED_API ACorneredHud : public AHUD
 {
 	GENERATED_BODY()
 
-		ACorneredHud();
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+		TArray<TSubclassOf<UUserWidget>> WidgetClasses;
+
+	UPROPERTY()
+		TArray<TObjectPtr<UUserWidget>> WidgetInstances;
 
 private:
 
@@ -27,19 +30,16 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> AmbientComp;
 
+private:
+
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
-	
+
 public:
+	ACorneredHud();
 	virtual void BeginPlay() override;
 
 protected:
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-		TArray<TSubclassOf<UUserWidget>> WidgetClasses;
-
-	UPROPERTY()
-		TArray<TObjectPtr<UUserWidget>> WidgetInstances;
 
 	UFUNCTION()
 		void OnTimerOverHappened();

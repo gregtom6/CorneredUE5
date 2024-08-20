@@ -13,9 +13,6 @@ class UInteractable : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class CORNERED_API IInteractable
 {
 	GENERATED_BODY()

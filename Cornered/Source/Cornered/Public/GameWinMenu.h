@@ -7,20 +7,15 @@
 #include "MainMenu.h"
 #include "GameWinMenu.generated.h"
 
-
 class UButton;
 class UTextBlock;
-/**
- * 
- */
+
 UCLASS()
 class CORNERED_API UGameWinMenu : public UUserWidget
 {
 	GENERATED_BODY()
-	
-public:
-	virtual void NativeConstruct() override;
 
+public:
 		FUIPressHappenedDelegate UIPressHappened;
 
 protected:
@@ -30,6 +25,11 @@ protected:
 
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UButton> Quit;
+	
+public:
+	virtual void NativeConstruct() override;
+
+protected:
 
 	UFUNCTION()
 		void RestartOnClick();

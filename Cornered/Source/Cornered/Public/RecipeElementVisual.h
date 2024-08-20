@@ -14,15 +14,6 @@ UCLASS()
 class CORNERED_API ARecipeElementVisual : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	ARecipeElementVisual();
-
-public:	
-
-		void SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial);
-
 private:
 
 	UPROPERTY(VisibleAnywhere)
@@ -33,4 +24,11 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPaperSpriteComponent> EffectSprite;
+	
+public:	
+	// Sets default values for this actor's properties
+	ARecipeElementVisual();
+
+		void SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial);
+
 };

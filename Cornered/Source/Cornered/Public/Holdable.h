@@ -13,9 +13,6 @@ class UHoldable : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class CORNERED_API IHoldable
 {
 	GENERATED_BODY()

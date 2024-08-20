@@ -15,6 +15,11 @@ class CORNERED_API UConfigEquipmentDevSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 	
+public:
+
+    UPROPERTY(config, EditAnywhere)
+        TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
+
 private:
 
     UPROPERTY(config, EditAnywhere)
@@ -35,6 +40,4 @@ public:
     UFUNCTION()
         FItemDatas GetRandomAdditional() const;
 
-    UPROPERTY(config, EditAnywhere)
-        TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
 };

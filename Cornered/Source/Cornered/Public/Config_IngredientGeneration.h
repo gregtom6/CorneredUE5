@@ -25,9 +25,6 @@ struct FIngredientEntry
 
 };
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API UConfig_IngredientGeneration : public UDataAsset
 {

@@ -83,6 +83,19 @@ class CORNERED_API UConfig_Recipe : public UDataAsset
 {
 	GENERATED_BODY()
 	
+public:
+    UPROPERTY(EditAnywhere)
+        TObjectPtr<UMaterialInterface> RecipeShowPlusMaterial;
+
+    UPROPERTY(EditAnywhere)
+        TObjectPtr<UMaterialInterface> RecipeShowEqualMaterial;
+
+    UPROPERTY(EditAnywhere)
+        TSubclassOf<AActor> RecipeShowElementClass;
+
+    UPROPERTY(EditAnywhere)
+        TSubclassOf<AActor> RecipeShowOperatorClass;
+
 private:
 
     UPROPERTY(EditAnywhere)
@@ -100,6 +113,15 @@ private:
     UPROPERTY(EditAnywhere, Category = "Dictionary")
         TArray< FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
 
+public:
+
+	TSubclassOf<AIngredient> GetResultItem(TArray<FItemData> detectedItems);
+
+    UFUNCTION()
+        TArray<FMaterialArray> GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance);
+
+private:
+
     UFUNCTION()
         int32 GetOccurrenceNumber(TArray<FItemData> array, EItemType element, EItemState itemState);
 
@@ -109,21 +131,4 @@ private:
     UFUNCTION()
         UMaterialInterface* GetRadiatingEffectMaterial(EItemState itemState);
 
-public:
-    UPROPERTY(EditAnywhere)
-        TObjectPtr<UMaterialInterface> RecipeShowPlusMaterial;
-
-    UPROPERTY(EditAnywhere)
-        TObjectPtr<UMaterialInterface> RecipeShowEqualMaterial;
-
-    UPROPERTY(EditAnywhere)
-        TSubclassOf<AActor> RecipeShowElementClass;
-
-    UPROPERTY(EditAnywhere)
-        TSubclassOf<AActor> RecipeShowOperatorClass;
-
-	TSubclassOf<AIngredient> GetResultItem(TArray<FItemData> detectedItems);
-
-    UFUNCTION()
-        TArray<FMaterialArray> GetRadiatingMaterialsOfAllRecipes(TArray<FMaterialArray>& EffectMaterials, UCorneredGameInstance* GameInstance);
 };

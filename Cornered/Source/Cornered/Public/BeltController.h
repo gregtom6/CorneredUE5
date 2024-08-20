@@ -18,26 +18,10 @@ class CORNERED_API ABeltController : public AActor
 	GENERATED_BODY()
 
 public:
-	ABeltController();
-
-protected:
-	virtual void BeginPlay() override;
-
-public:
-
-	UFUNCTION(BlueprintPure)
-		float GetCurrentMultiplier();
-
-	UFUNCTION(BlueprintPure)
-		EBeltSpeed GetCurrentBeltSpeed();
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<ACorneredButton> CorneredButton;
 
 private:
-
-	UFUNCTION()
-		void PressHappened();
-
-		void SwitchBeltSpeed();
-
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UBoxComponent> SpawnPointComp;
 
@@ -52,16 +36,31 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredObjectPool> ObjectPool;
 
+public:
+	ABeltController();
+
+	UFUNCTION(BlueprintPure)
+		float GetCurrentMultiplier();
+
+	UFUNCTION(BlueprintPure)
+		EBeltSpeed GetCurrentBeltSpeed();
+
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UFUNCTION()
+		void PressHappened();
+
 	UFUNCTION()
 		void ObjectPoolInitialized();
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<ACorneredButton> CorneredButton;
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
 		void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+		void SwitchBeltSpeed();
 
 };

@@ -13,10 +13,10 @@ class CORNERED_API UHealthBar : public UUserWidget
 {
 	GENERATED_BODY()
 	
-protected:
-    virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
-
 public:
     UPROPERTY(meta = (BindWidget))
         TObjectPtr<UProgressBar> Health;
+protected:
+    virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+
 };

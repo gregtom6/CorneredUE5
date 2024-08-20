@@ -13,11 +13,7 @@ class CORNERED_API UCharacterHealth : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:
-	UCharacterHealth();
-
 protected:
-	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = GetCurrentHealth)
 		float CurrentHealth;
@@ -28,11 +24,15 @@ protected:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Character_General> CharacterConfig;
 
-	void HealthReloadWaitTimeEnded();
+private:
 
-	virtual float GetReloadWaitingMaxTime();
+	FTimerHandle TimerHandle;
+
+	bool bShouldReloadHealth;
 
 public:
+	UCharacterHealth();
+
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintGetter)
@@ -42,10 +42,11 @@ public:
 
 	void DamageHealth(float Damage);
 
-private:
+protected:
+	virtual void BeginPlay() override;
 
-	FTimerHandle TimerHandle;
 
-	bool bShouldReloadHealth;
+	void HealthReloadWaitTimeEnded();
 
+	virtual float GetReloadWaitingMaxTime();
 };

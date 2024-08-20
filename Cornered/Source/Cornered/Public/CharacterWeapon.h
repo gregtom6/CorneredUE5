@@ -15,8 +15,30 @@ class CORNERED_API UCharacterWeapon : public UActorComponent
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_Equipment> EquipmentConfig;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
+		bool bIsReadyToShoot = true;
+
+private:
+
+	FTimerHandle TimerHandle;
+
+public:
 	UCharacterWeapon();
 
+	float GetCooldownTimeLeftPercentageBetween01();
+
+	UFUNCTION(BlueprintPure)
+		bool IsThereEquippedWeapon() const;
+
+
+	void SetWeaponReadyToBeUsed();
+
+	UFUNCTION(BlueprintGetter)
+		bool IsReadyToShoot();
 protected:
 	virtual void BeginPlay() override;
 
@@ -27,30 +49,13 @@ protected:
 
 	void ManageVisual();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
-		bool bIsReadyToShoot = true;
 
 	UFUNCTION()
 		void ShootCooldownEnded();
 
 	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const PURE_VIRTUAL(UCharacterWeapon::InflictDamage, );
 
-public:
-	float GetCooldownTimeLeftPercentageBetween01();
-
-	UFUNCTION(BlueprintPure)
-		bool IsThereEquippedWeapon() const;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Equipment> EquipmentConfig;
-
-	void SetWeaponReadyToBeUsed();
-
-	UFUNCTION(BlueprintGetter)
-		bool IsReadyToShoot();
-
 private:
-	FTimerHandle TimerHandle;
 
 	void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
 

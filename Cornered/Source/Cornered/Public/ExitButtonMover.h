@@ -13,19 +13,6 @@ UCLASS()
 class CORNERED_API AExitButtonMover : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	AExitButtonMover();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-
-		void StartMoving();
-
 private:
 
 	UPROPERTY()
@@ -33,4 +20,14 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<USceneComponent> Root;
+	
+public:	
+	// Sets default values for this actor's properties
+	AExitButtonMover();
+
+		void StartMoving();
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 };

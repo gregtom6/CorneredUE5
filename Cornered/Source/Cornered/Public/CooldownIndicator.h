@@ -9,19 +9,12 @@
 class UCharacterWeapon;
 class UPaperSpriteComponent;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UCooldownIndicator : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	UCooldownIndicator();
-
-public:	
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		void SetComponents(USceneComponent* parent, UCharacterWeapon* weapon);
-
+public:
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
 
@@ -30,4 +23,11 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorPaperSprite;
+
+public:
+	UCooldownIndicator();
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void SetComponents(USceneComponent* parent, UCharacterWeapon* weapon);
+
 };

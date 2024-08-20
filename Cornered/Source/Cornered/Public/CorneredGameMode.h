@@ -15,56 +15,59 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACharact
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FNewMatchStartedDelegate);
 
-/**
- * 
- */
 UCLASS()
 class CORNERED_API ACorneredGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
-protected:
-	virtual void BeginPlay() override;
-
-	UFUNCTION()
-	void PreparingTimeEnded();
-
-	UFUNCTION()
-	void WaitTimeEndedBetweenMatches();
-
 public:
 
-	void RestartTimer();
+	FTimeOverHappenedDelegate TimeOverHappened;
 
-		void ZeroingTimer();
+	FCharacterDefeatedDelegate CharacterDefeated;
 
-	UFUNCTION(BlueprintPure)
-		float GetPreparingTimeLeft();
-
-		FTimeOverHappenedDelegate TimeOverHappened;
-
-		FCharacterDefeatedDelegate CharacterDefeated;
-
-		FNewMatchStartedDelegate NewMatchStarted;
-
-	virtual void StartPlay() override;
-
-		void CharacterDied(ACharacter* Character);
+	FNewMatchStartedDelegate NewMatchStarted;
 
 private:
 
 	float StartTime;
 
-		bool bIsPreparingTime;
+	bool bIsPreparingTime;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Time> TimeConfig;
 
 	FTimerHandle TimerHandle;
 
-		int MatchIndex;
+	int MatchIndex;
 
-		void InitiateNewMatch();
+public:
 
-		void InitiateGameOver();
+	void RestartTimer();
+
+	void ZeroingTimer();
+
+	UFUNCTION(BlueprintPure)
+		float GetPreparingTimeLeft();
+
+
+	virtual void StartPlay() override;
+
+	void CharacterDied(ACharacter* Character);
+
+protected:
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+		void PreparingTimeEnded();
+
+	UFUNCTION()
+		void WaitTimeEndedBetweenMatches();
+
+private:
+
+
+	void InitiateNewMatch();
+
+	void InitiateGameOver();
 };

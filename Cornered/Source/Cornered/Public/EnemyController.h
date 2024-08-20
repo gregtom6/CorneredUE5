@@ -19,6 +19,15 @@ class CORNERED_API AEnemyController : public AAIController
 {
 	GENERATED_BODY()
 	
+protected:
+	bool bIsTimerOver;
+
+private:
+		EMovementState MovementState;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_AI> AIConfig;
+
 public:
 	AEnemyController();
 
@@ -38,15 +47,5 @@ protected:
 	UFUNCTION()
 		void OnTimerOverHappened();
 
-
 	virtual void BeginPlay() override;
-
-	bool bIsTimerOver;
-
-private:
-
-		EMovementState MovementState;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_AI> AIConfig;
 };

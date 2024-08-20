@@ -16,6 +16,17 @@ class CORNERED_API ARedLightController : public AActor
 	GENERATED_BODY()
 	
 public:	
+
+	UPROPERTY()
+		TObjectPtr<UActorSequenceComponent> DisabledSequ;
+	UPROPERTY()
+		TObjectPtr<UActorSequenceComponent> BlinkingSequ;
+
+private:
+
+	FTimerHandle TimerHandle;
+
+public:	
 	// Sets default values for this actor's properties
 	ARedLightController();
 
@@ -26,15 +37,7 @@ protected:
 	UFUNCTION()
 	void OnTimerOverHappened();
 
-public:	
-
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> DisabledSequ;
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> BlinkingSequ;
-
 private:
-	FTimerHandle TimerHandle;
 
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);

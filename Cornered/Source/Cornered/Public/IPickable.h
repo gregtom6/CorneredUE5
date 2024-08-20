@@ -14,9 +14,6 @@ class UIPickable : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class CORNERED_API IIPickable
 {
 	GENERATED_BODY()

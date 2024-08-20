@@ -14,18 +14,6 @@ class CORNERED_API ATimePrinter : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	ATimePrinter();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 private:
 
 	UPROPERTY()
@@ -36,4 +24,14 @@ private:
 
 	UPROPERTY()
 		TObjectPtr<ACorneredGameMode> CorneredGameMode;
+
+public:	
+	// Sets default values for this actor's properties
+	ATimePrinter();
+
+	virtual void Tick(float DeltaTime) override;
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 };

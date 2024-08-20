@@ -35,16 +35,12 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractStartedDelegate);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractHappenedDelegate);
 
-/**
- *
- */
 UCLASS(Abstract)
 class CORNERED_API ACorneredPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 		TObjectPtr<UInputAction> ActionMovement;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
@@ -73,6 +69,29 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Character_General> ConfigCharacter;
 
+		FPickupInteractionHappenedDelegate PickupHappenedInstance;
+
+		FDropInteractionHappenedDelegate DropHappenedInstance;
+
+		FEquipInteractionHappenedDelegate EquipHappenedInstance;
+
+		FShootInteractionHappenedDelegate ShootHappenedInstance;
+
+		FInteractStartedDelegate InteractStartedInstance;
+
+		FInteractHappenedDelegate InteractHappenedInstance;
+
+private:
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent = nullptr;
+
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
+
+		EMovementState MovementState;
+
+public:
 	UFUNCTION(BlueprintPure)
 		EMovementState GetMovementState() const;
 
@@ -107,28 +126,4 @@ protected:
 	void HandleEquip();
 	UFUNCTION()
 	void HandleShoot();
-
-private:
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent = nullptr;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
-
-		EMovementState MovementState;
-
-public:
-
-		FPickupInteractionHappenedDelegate PickupHappenedInstance;
-
-		FDropInteractionHappenedDelegate DropHappenedInstance;
-
-		FEquipInteractionHappenedDelegate EquipHappenedInstance;
-
-		FShootInteractionHappenedDelegate ShootHappenedInstance;
-
-		FInteractStartedDelegate InteractStartedInstance;
-
-		FInteractHappenedDelegate InteractHappenedInstance;
 };

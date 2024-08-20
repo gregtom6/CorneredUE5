@@ -32,14 +32,6 @@ class CORNERED_API AEnemyCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	AEnemyCharacter();
-
-protected:
-	virtual void BeginPlay() override;
-
-public:	
-	virtual void Tick(float DeltaTime) override;
-
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UEnemyWeapon> EnemyWeaponComp;
 
@@ -82,7 +74,15 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_AI> AIConfig;
 
+public:
+	AEnemyCharacter();
+
+	virtual void Tick(float DeltaTime) override;
+
+
 		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+protected:
+	virtual void BeginPlay() override;
 };

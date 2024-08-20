@@ -20,7 +20,12 @@ class CORNERED_API AProgressionGameState : public AGameStateBase
 public:
 	UPROPERTY()
 		int UnlockLevel;
+private:
 
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_Progress> ProgressConfig;
+
+public:
 		void ResetProgress();
 
 		void StepProgress();
@@ -39,6 +44,4 @@ private:
 	UFUNCTION()
 		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Progress> ProgressConfig;
 };

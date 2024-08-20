@@ -16,13 +16,6 @@ class CORNERED_API AGateController : public AActor
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this actor's properties
-	AGateController();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 private:
 
@@ -44,6 +37,21 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UBoxComponent> ExitDetectorComp;
 
+
+	UPROPERTY()
+		TObjectPtr<UActorSequenceComponent> OpenSequ;
+	UPROPERTY()
+		TObjectPtr<UActorSequenceComponent> CloseSequ;
+
+
+public:
+	// Sets default values for this actor's properties
+	AGateController();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+private:
 	UFUNCTION()
 		void OnEnterDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 			UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
@@ -53,9 +61,4 @@ private:
 		void OnExitDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 			UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
 			bool bFromSweep, const FHitResult& SweepResult);
-
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> OpenSequ;
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> CloseSequ;
 };

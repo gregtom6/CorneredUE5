@@ -14,33 +14,30 @@ class CORNERED_API UInteractor : public USceneComponent
 {
 	GENERATED_BODY()
 
+public:
+	UPROPERTY()
+		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
+private:
+		bool bInteractHappenedInThisFrame;
+
+		IHoldable* Holdable;
+
 public:	
 	// Sets default values for this component's properties
 	UInteractor();
 
-	UPROPERTY()
-		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 private:
 
-		bool bInteractHappenedInThisFrame;
 
 	UFUNCTION()
 		void InteractStarted();
 
 	UFUNCTION()
 		void InteractHappened();
-
-private:
-	
-		IHoldable* Holdable;
-
 };

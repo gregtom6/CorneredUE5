@@ -12,6 +12,8 @@ Input: Enhanced Input
 
 Audio: MetaSound
 
+AI: State Tree
+
 Particles: Niagara System
 
 Render Pipeline: Deferred rendering pipeline
@@ -26,6 +28,10 @@ Prefixes in names:
 
 Config_: DataAsset related file names are started with these
 
+Postfixes in names:
+
+DevSettings: UDeveloperSettings related file names are ended with these
+
 ///////////////////////////////////////////////////
 
 Architecture:
@@ -39,6 +45,10 @@ MainMenu level doesn't use a Pawn, so it's World Settings override the GameMode 
 ACorneredObjectPool is an Object Pool, and is able to manage different types of Actors. its being used by ABeltController to manage ABeltElements. 
 
 For Input, I have used the Enhanced Input. The InputAction and InputMappingContext assets are used from ACorneredPlayerController. 
+
+Managing gameplay progression happens with BP_ProgressionGameState, which is referred in the BP_CorneredGameMode. For simplicity, there's an integer member variable (UnlockLevel), which gets stepped, when the player unlocks the next group of features. It can be saved and loaded later, when the gameplay needs to preserve progression. 
+
+AI works with State Tree, because that's the successor of Behavior Tree. I wrote custom conditions and states to manage the BP_EnemyCharacter. These are FShootPositionEnemyCondition, FShootPositionEnemyState and FDefendPositionEnemyCondition, FDefendPositionEnemyState. 
 
 2D sounds (Main menu and gameplay background sounds) I have used AHUD subclasses (BP_MainMenuHUD, BP_GameplayHUD). MainMenuHUD subscribes to MainMenu userwidget button click events, and since they are Actors, they are using UAudioComponents to manage these sounds. Conveyor belt sound comes from AmbientSound Actors.  For randomizing weapon sounds, I have used MetaSound, because its a more modern approach of handling audio compared to using SoundCue. 
 

@@ -80,7 +80,7 @@ void AEquippedWeapon::SetEquipperActor(AActor* equipper) {
 FShotRayDatas AEquippedWeapon::GetShotRayDatas() const {
 	FShotRayDatas ShotDatas;
 
-	UCameraComponent* cameraComp = Cast<UCameraComponent>(EquipperActor->GetComponentByClass(UCameraComponent::StaticClass()));
+	UCameraComponent* cameraComp = EquipperActor->FindComponentByClass<UCameraComponent>();
 
 	ShotDatas.Origin = MuzzlePosition->GetComponentLocation();
 	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f);

@@ -18,8 +18,8 @@ UExternalEquipper::UExternalEquipper()
 
 void UExternalEquipper::Equip(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
 	
-	UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
-	UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
+	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
+	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
 
 	inventory->EquipWeapon(weapon);
 	inventory->EquipShield(shield);

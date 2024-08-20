@@ -49,7 +49,8 @@ void AEnemyController::FollowPlayer() {
 }
 
 void AEnemyController::HideFromPlayer() {
-	UHideSpotFinder* hideSpotFinder = Cast<UHideSpotFinder>(GetPawn()->GetComponentByClass(UHideSpotFinder::StaticClass()));
+
+	UHideSpotFinder* hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
 
 	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
 

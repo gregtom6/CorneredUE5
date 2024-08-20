@@ -64,7 +64,3 @@ void UCharacterHealth::DamageHealth(float Damage) {
 void UCharacterHealth::HealthReloadWaitTimeEnded() {
 	bShouldReloadHealth = true;
 }
-
-float UCharacterHealth::GetReloadWaitingMaxTime() const {
-	return 0.f;
-}

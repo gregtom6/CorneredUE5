@@ -95,7 +95,7 @@ void ACorneredObjectPool::RecyclePooledObject(UCorneredPooledObject* poolCompRef
 
 void ACorneredObjectPool::RecycleActor(AActor* pooledActor)
 {
-	if (UCorneredPooledObject* poolCompRef = Cast<UCorneredPooledObject>(pooledActor->GetComponentByClass(UCorneredPooledObject::StaticClass())))
+	if (UCorneredPooledObject* poolCompRef = pooledActor->FindComponentByClass<UCorneredPooledObject>())
 	{
 		RecyclePooledObject(poolCompRef);
 	}

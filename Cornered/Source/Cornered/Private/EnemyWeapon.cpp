@@ -14,14 +14,14 @@ UEnemyWeapon::UEnemyWeapon()
 
 EItemType UEnemyWeapon::GetEquippedWeapon() const {
 
-	UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
+	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
 	return inventory->GetWeapon();
 }
 
 void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 	if (bIsReadyToShoot)
 	{
-		UPawnSensingComponent* pawnSensing = Cast<UPawnSensingComponent>(GetOwner()->GetComponentByClass(UPawnSensingComponent::StaticClass()));
+		UPawnSensingComponent* pawnSensing = GetOwner()->FindComponentByClass<UPawnSensingComponent>();
 
 		if (pawnSensing)
 		{

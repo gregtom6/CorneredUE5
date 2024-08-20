@@ -76,7 +76,7 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APlayerCharacter* PlayerPawn = Cast<APlayerCharacter>(PlayerController->GetPawn());
 
-	UCameraComponent* cameraComp = Cast<UCameraComponent>(PlayerPawn->GetComponentByClass(UCameraComponent::StaticClass()));
+	UCameraComponent* cameraComp = PlayerPawn->FindComponentByClass<UCameraComponent>();
 
 	Origin = cameraComp->GetComponentLocation() + FVector(0.f, 0.f, 100.f);
 

@@ -33,7 +33,7 @@ void UEquipmentVisualizer::TickComponent(float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	if (bWeaponSpawned) {
-		UCharacterWeapon* characterWeapon = Cast<UCharacterWeapon>(GetOwner()->GetComponentByClass(UCharacterWeapon::StaticClass()));
+		UCharacterWeapon* characterWeapon = GetOwner()->FindComponentByClass<UCharacterWeapon>();
 		characterWeapon->SetWeaponReadyToBeUsed();
 
 		bWeaponSpawned = false;

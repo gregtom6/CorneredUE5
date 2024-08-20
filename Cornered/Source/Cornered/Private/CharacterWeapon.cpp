@@ -42,7 +42,7 @@ void UCharacterWeapon::ShootWithEquippedWeapon() {
 
 void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings) {
 
-	UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 
 	FShotRayDatas shotRayDatas = equipmentVisualizer->GetShotRayDatas();
 
@@ -54,7 +54,7 @@ void UCharacterWeapon::ShootCooldownEnded() {
 }
 
 void UCharacterWeapon::ManageVisual() {
-	UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
+	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 
 	if (equipmentVisualizer) {
 		equipmentVisualizer->PlayEquippedWeaponVisuals();

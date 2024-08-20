@@ -19,7 +19,7 @@ void UEquipper::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PickerComp = Cast<UPicker>(GetOwner()->GetComponentByClass(UPicker::StaticClass()));
+	PickerComp = GetOwner()->FindComponentByClass<UPicker>();
 
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (PlayerController)
@@ -38,10 +38,10 @@ void UEquipper::EquipHappened() {
 		IEquippable* equippable = PickerComp->GetPickedPickable()->GetEquippable();
 		if (equippable) {
 
-			UEquipmentVisualizer* equipmentVisualizer = Cast<UEquipmentVisualizer>(GetOwner()->GetComponentByClass(UEquipmentVisualizer::StaticClass()));
-			UAudioComponent* equipAudio = Cast<UAudioComponent>(GetOwner()->GetComponentByClass(UAudioComponent::StaticClass()));
+			UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
+			UAudioComponent* equipAudio = GetOwner()->FindComponentByClass<UAudioComponent>();
 
-			UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
+			UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
 
 			PickerComp->RemovePickable();
 			equippable->Equip(equipmentVisualizer, inventory);

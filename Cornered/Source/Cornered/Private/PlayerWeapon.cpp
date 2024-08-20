@@ -7,8 +7,8 @@
 #include <CorneredPlayerController.h>
 
 EItemType UPlayerWeapon::GetEquippedWeapon() const {
-	
-	UInventory* inventory = Cast<UInventory>(GetOwner()->GetComponentByClass(UInventory::StaticClass()));
+
+	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
 	return inventory->GetWeapon();
 }
 

@@ -48,5 +48,5 @@ protected:
 
 	void HealthReloadWaitTimeEnded();
 
-	virtual float GetReloadWaitingMaxTime() const;
+	virtual float GetReloadWaitingMaxTime() const PURE_VIRTUAL(UCharacterHealth::GetReloadWaitingMaxTime, return 0.f;);
 };

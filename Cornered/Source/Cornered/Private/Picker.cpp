@@ -23,7 +23,7 @@ void UPicker::BeginPlay()
 {
 	Super::BeginPlay();
 
-	InteractableDetectorComp = Cast<UInteractableDetector>(GetOwner()->GetComponentByClass(UInteractableDetector::StaticClass()));
+	InteractableDetectorComp = GetOwner()->FindComponentByClass<UInteractableDetector>();
 
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (PlayerController)

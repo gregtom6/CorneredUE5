@@ -14,7 +14,7 @@ void UHealthBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
     {
         APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
         APlayerCharacter* PlayerPawn = Cast<APlayerCharacter>(PlayerController->GetPawn());
-        UCharacterHealth* CharHealth = Cast<UCharacterHealth>(PlayerPawn->GetComponentByClass(UCharacterHealth::StaticClass()));
+        UCharacterHealth* CharHealth = PlayerPawn->FindComponentByClass<UCharacterHealth>();
 
         Health->SetPercent(CharHealth->GetCurrentHealth()/100.f); // Example: Set progress to 50%
     }

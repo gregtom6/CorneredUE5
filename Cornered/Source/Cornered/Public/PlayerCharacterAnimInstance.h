@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animation/AnimInstance.h"
+#include "CharacterAnimInstance.h"
 #include "PlayerCharacterAnimInstance.generated.h"
 
 
@@ -11,15 +11,9 @@
  * 
  */
 UCLASS()
-class CORNERED_API UPlayerCharacterAnimInstance : public UAnimInstance
+class CORNERED_API UPlayerCharacterAnimInstance : public UCharacterAnimInstance
 {
 	GENERATED_BODY()
 	
-public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int LegState;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool UseWeapon;
 };

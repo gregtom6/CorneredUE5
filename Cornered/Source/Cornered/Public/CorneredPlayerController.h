@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "MovableCharacter.h"
 #include "CorneredPlayerController.generated.h"
 
 class UEnhancedInputComponent;
@@ -13,15 +14,6 @@ class UInputMappingContext;
 struct FInputActionValue;
 class UCameraComponent;
 class UConfig_Character_General;
-
-UENUM(BlueprintType)
-enum class EMovementState : uint8 {
-	Standing,
-	Walking,
-	Strafing,
-
-	Count,
-};
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPickupInteractionHappenedDelegate);
 
@@ -36,7 +28,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractStartedDelegate);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FInteractHappenedDelegate);
 
 UCLASS(Abstract)
-class CORNERED_API ACorneredPlayerController : public APlayerController
+class CORNERED_API ACorneredPlayerController : public APlayerController, public IMovableCharacter
 {
 	GENERATED_BODY()
 
@@ -93,7 +85,7 @@ private:
 
 public:
 	UFUNCTION(BlueprintPure)
-		EMovementState GetMovementState() const;
+		virtual EMovementState GetMovementState() const override;
 
 protected:
 

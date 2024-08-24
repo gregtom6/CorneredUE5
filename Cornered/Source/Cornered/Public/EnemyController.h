@@ -6,6 +6,7 @@
 #include "AIController.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "CorneredPlayerController.h"
+#include "MovableCharacter.h"
 #include "EnemyController.generated.h"
 
 class ACorneredGameMode;
@@ -15,7 +16,7 @@ class UStateTreeComponent;
 class UConfig_AI;
 
 UCLASS()
-class CORNERED_API AEnemyController : public AAIController
+class CORNERED_API AEnemyController : public AAIController, public IMovableCharacter
 {
 	GENERATED_BODY()
 	
@@ -34,7 +35,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintPure)
-		EMovementState GetMovementState() const;
+		virtual EMovementState GetMovementState() const override;
 
 	UFUNCTION(BlueprintCallable)
 		void FollowPlayer();

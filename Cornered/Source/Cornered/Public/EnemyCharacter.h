@@ -3,46 +3,25 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "CorneredCharacter.h"
 #include "Config_Equipment.h"
 #include "EnemyCharacter.generated.h"
 
-class UEnemyWeapon;
-class UCameraComponent;
-class USkeletalMeshComponent;
-class UEquipmentVisualizer;
-class UInventory;
-class UPaperSpriteComponent;
-class UCooldownIndicator;
 class UPawnSensingComponent;
-class UEnemyHealth;
 class AEnemyController;
-class AGameModeBase;
-class APlayerController;
-class APawn;
-class AAIController;
+class AController;
 class UExternalEquipper;
 class UStateTreeComponent;
 class UConfig_AI;
 class UHideSpotFinder;
+class UCharacterAnimInstance;
 
 UCLASS()
-class CORNERED_API AEnemyCharacter : public ACharacter
+class CORNERED_API AEnemyCharacter : public ACorneredCharacter
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UEnemyWeapon> EnemyWeaponComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UCameraComponent> CameraComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInventory> InventoryComp;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UHideSpotFinder> HideSpotFinderComp;
@@ -51,22 +30,7 @@ public:
 		TObjectPtr<UExternalEquipper> ExternalEquipperComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> PaperSpriteComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
-
-	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPawnSensingComponent> PawnSensingComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UEnemyHealth> EnemyHealthComp;
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UStateTreeComponent> StateTreeComp;
@@ -77,12 +41,11 @@ public:
 public:
 	AEnemyCharacter();
 
-	virtual void Tick(float DeltaTime) override;
-
-
 		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 
-	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 protected:
-	virtual void BeginPlay() override;
+
+	virtual IMovableCharacter* GetOwnedController() const override;
+
+	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const override;
 };

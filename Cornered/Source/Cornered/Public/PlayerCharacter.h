@@ -3,32 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "CorneredCharacter.h"
 #include "PlayerCharacter.generated.h"
 
-class UPlayerWeapon;
 class UInteractableDetector;
 class UPicker;
 class UEquipper;
-class UCameraComponent;
-class USkeletalMeshComponent;
-class UEquipmentVisualizer;
-class UInventory;
-class UPaperSpriteComponent;
-class UCooldownIndicator;
 class UInteractor;
 class UAudioComponent;
-class UPlayerHealth;
+class UCharacterAnimInstance;
 
 UCLASS()
-class CORNERED_API APlayerCharacter : public ACharacter
+class CORNERED_API APlayerCharacter : public ACorneredCharacter
 {
 	GENERATED_BODY()
 public:	
 	// Called every frame
 
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPlayerWeapon> PlayerWeaponComp;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
@@ -42,41 +33,16 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UInteractor> InteractorComp;
 
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UCameraComponent> CameraComp;
-
-	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInventory> InventoryComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> PaperSpriteComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorComp;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
-
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UAudioComponent> EquipAudio;
-
-	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPlayerHealth> PlayerHealthComp;
 
 public:
 	// Sets default values for this character's properties
 	APlayerCharacter();
 
-	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
-
-	virtual void Tick(float DeltaTime) override;
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+
+	virtual IMovableCharacter* GetOwnedController() const override;
+
+	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const override;
 };

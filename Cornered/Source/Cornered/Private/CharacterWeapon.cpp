@@ -6,6 +6,7 @@
 #include <EquipmentVisualizer.h>
 #include <Kismet/GameplayStatics.h>
 #include "EquippedWeapon.h"
+#include "Inventory.h"
 
 UCharacterWeapon::UCharacterWeapon()
 {
@@ -21,6 +22,12 @@ void UCharacterWeapon::BeginPlay()
 
 bool UCharacterWeapon::IsThereEquippedWeapon() const {
 	return GetEquippedWeapon() != EItemType::Count;
+}
+
+EItemType UCharacterWeapon::GetEquippedWeapon() const {
+
+	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
+	return inventory->GetWeapon();
 }
 
 void UCharacterWeapon::ShootWithEquippedWeapon() {
@@ -85,4 +92,24 @@ float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 
 bool UCharacterWeapon::IsReadyToShoot() const {
 	return bIsReadyToShoot;
+}
+
+void UCharacterWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const {
+	FVector Origin = shotRayDatas.Origin;
+
+	FVector End = shotRayDatas.End;
+
+	FHitResult HitResult;
+
+	bool bHit = GetWorld()->LineTraceSingleByChannel(
+		HitResult,
+		Origin,
+		End,
+		GetOpponentTraceChannel()
+	);
+
+	if (bHit) {
+
+		UGameplayStatics::ApplyDamage(HitResult.GetActor(), weaponSettings.Damage, GetOwner()->GetInstigatorController(), GetOwner(), UDamageType::StaticClass());
+	}
 }

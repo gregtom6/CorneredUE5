@@ -12,12 +12,6 @@ UEnemyWeapon::UEnemyWeapon()
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
-EItemType UEnemyWeapon::GetEquippedWeapon() const {
-
-	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
-	return inventory->GetWeapon();
-}
-
 void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 	if (bIsReadyToShoot)
 	{
@@ -43,7 +37,7 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 				HitResult,
 				Origin,
 				End,
-				ECC_GameTraceChannel4
+				GetOpponentTraceChannel()
 			);
 
 
@@ -54,22 +48,6 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 	}
 }
 
-void UEnemyWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const {
-	FVector Origin = shotRayDatas.Origin;
-
-	FVector End = shotRayDatas.End;
-
-	FHitResult HitResult;
-
-	bool bHit = GetWorld()->LineTraceSingleByChannel(
-		HitResult,
-		Origin,
-		End,
-		ECC_GameTraceChannel4
-	);
-
-	if (bHit) {
-
-		UGameplayStatics::ApplyDamage(HitResult.GetActor(), weaponSettings.Damage, GetOwner()->GetInstigatorController(), GetOwner(), UDamageType::StaticClass());
-	}
+ECollisionChannel UEnemyWeapon::GetOpponentTraceChannel() const {
+	return ECC_GameTraceChannel4;
 }

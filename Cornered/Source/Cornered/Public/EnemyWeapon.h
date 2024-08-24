@@ -19,9 +19,8 @@ public:
 	UEnemyWeapon();
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-protected:
-	virtual EItemType GetEquippedWeapon() const override;
 
-	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const override;
+private:
 
+	virtual ECollisionChannel GetOpponentTraceChannel() const override;
 };

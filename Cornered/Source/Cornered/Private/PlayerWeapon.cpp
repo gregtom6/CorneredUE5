@@ -6,12 +6,6 @@
 #include <Kismet/GameplayStatics.h>
 #include <CorneredPlayerController.h>
 
-EItemType UPlayerWeapon::GetEquippedWeapon() const {
-
-	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
-	return inventory->GetWeapon();
-}
-
 void UPlayerWeapon::BeginPlay() {
 
 	Super::BeginPlay();
@@ -31,22 +25,6 @@ void UPlayerWeapon::ShootHappened() {
 	ShootWithEquippedWeapon();
 }
 
-void UPlayerWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const {
-	FVector Origin = shotRayDatas.Origin;
-
-	FVector End = shotRayDatas.End;
-
-	FHitResult HitResult;
-
-	bool bHit = GetWorld()->LineTraceSingleByChannel(
-		HitResult,
-		Origin,
-		End,
-		ECC_GameTraceChannel5
-	);
-
-	if (bHit) {
-
-		UGameplayStatics::ApplyDamage(HitResult.GetActor(), weaponSettings.Damage, GetOwner()->GetInstigatorController(), GetOwner(), UDamageType::StaticClass());
-	}
+ECollisionChannel UPlayerWeapon::GetOpponentTraceChannel() const {
+	return ECC_GameTraceChannel5;
 }

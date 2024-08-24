@@ -43,7 +43,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintPure)
-		virtual EItemType GetEquippedWeapon() const PURE_VIRTUAL(UCharacterWeapon::GetEquippedWeapon, return EItemType::Count;);
+		EItemType GetEquippedWeapon() const;
 
 	void ShootWithEquippedWeapon();
 
@@ -53,10 +53,11 @@ protected:
 	UFUNCTION()
 		void ShootCooldownEnded();
 
-	virtual void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const PURE_VIRTUAL(UCharacterWeapon::InflictDamage, );
+	void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const;
 
 private:
 
 	void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
 
+	virtual ECollisionChannel GetOpponentTraceChannel() const PURE_VIRTUAL(UCharacterWeapon::GetOpponentTraceChannel,return ECollisionChannel::ECC_Visibility;);
 };

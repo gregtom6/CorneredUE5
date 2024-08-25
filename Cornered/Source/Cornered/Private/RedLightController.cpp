@@ -1,11 +1,11 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 #include "RedLightController.h"
-#include "ActorSequenceComponent.h"
-#include "ActorSequencePlayer.h"
 #include "CorneredGameMode.h"
 #include "GameFramework/Character.h"
-
+#include "LevelSequence.h"
+#include "LevelSequenceActor.h"
+#include "LevelSequencePlayer.h"
 
 // Sets default values
 ARedLightController::ARedLightController()
@@ -25,47 +25,46 @@ void ARedLightController::BeginPlay()
 
 	CorneredGameMode->CharacterDefeated.AddDynamic(this, &ARedLightController::OnCharacterDefeated);
 	
+
+	if (!BlinkingSequenceAsset.IsValid())
+	{
+		BlinkingSequenceAsset.LoadSynchronous();
+	}
+
+	ULevelSequence* LevelSequence = BlinkingSequenceAsset.Get();
+
+	if (LevelSequence)
+	{
+		FMovieSceneSequencePlaybackSettings PlaybackSettings;
+
+		LevelSequencePlayer = ULevelSequencePlayer::CreateLevelSequencePlayer(
+			GetWorld(),
+			LevelSequence,
+			PlaybackSettings,
+			LevelSequenceActor
+		);
+
+		if (LevelSequencePlayer)
+		{
+			LevelSequencePlayer->Stop();
+		}
+	}
 }
 
 void ARedLightController::OnTimerOverHappened()
 {
-	// Your code here
 	UE_LOG(LogTemp, Warning, TEXT("TimerFunction has been called!"));
 
-	TArray<UActorSequenceComponent*> ActorSequenceComponents;
-	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
-
-	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
+	if (LevelSequencePlayer)
 	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("DefaultDisabledSequence"))
-		{
-			DisabledSequ = ActorSequenceComponents[i];
-		}
-		else if (ActorSequenceComponents[i]->GetFName() == FName("BlinkingSequence"))
-		{
-			BlinkingSequ = ActorSequenceComponents[i];
-		}
-	}
-
-	UActorSequencePlayer* stpper = DisabledSequ->GetSequencePlayer();
-	if (stpper) {
-		stpper->Stop();
-	}
-
-	UActorSequencePlayer* player = BlinkingSequ->GetSequencePlayer();
-	if (player) {
-		player->PlayLooping();
+		LevelSequencePlayer->PlayLooping();
 	}
 }
 
 void ARedLightController::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
-	UActorSequencePlayer* player = BlinkingSequ->GetSequencePlayer();
-	if (player) {
-		player->Stop();
-	}
 
-	UActorSequencePlayer* stpper = DisabledSequ->GetSequencePlayer();
-	if (stpper) {
-		stpper->Play();
+	if (LevelSequencePlayer)
+	{
+		LevelSequencePlayer->Stop();
 	}
 }

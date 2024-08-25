@@ -21,13 +21,13 @@ public:
 	UPROPERTY(EditAnywhere)
 		TSoftObjectPtr<ULevelSequence> BlinkingSequenceAsset;
 
-
-private:
 	UPROPERTY()
 		ULevelSequencePlayer* LevelSequencePlayer;
 
 	UPROPERTY()
-		ALevelSequenceActor* LevelSequenceActor;
+		class ALevelSequenceActor* LevelSequenceActor;
+
+private:
 
 	FTimerHandle TimerHandle;
 

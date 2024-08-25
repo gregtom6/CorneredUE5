@@ -11,11 +11,9 @@ ABeltElement::ABeltElement()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
-	SetRootComponent(Root);
-
 	ItemPivot = CreateDefaultSubobject<USceneComponent>(TEXT("ItemPivot"));
 
+	SetRootComponent(Root);
 	ItemPivot->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

@@ -8,13 +8,13 @@
 
 class ACorneredObjectPool;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UCorneredPooledObject : public UActorComponent
 {
 	GENERATED_BODY()
 
 
-public:	
+public:
 
 	UPROPERTY(VisibleInstanceOnly)
 		bool _IsActive;
@@ -23,7 +23,7 @@ private:
 
 	TObjectPtr<ACorneredObjectPool> _ObjectPool;
 
-public:	
+public:
 	UCorneredPooledObject();
 
 	void Init(ACorneredObjectPool* owner);

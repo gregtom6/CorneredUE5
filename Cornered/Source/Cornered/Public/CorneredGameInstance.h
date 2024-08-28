@@ -9,24 +9,24 @@
 class UCorneredSaveGame;
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UCorneredGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-	
+
 private:
 
 	UPROPERTY()
 		TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
 public:
 
-		void SaveGame(int32 unlockLevel);
+	void SaveGame(int32 unlockLevel);
 
-		void LoadGame();
+	void LoadGame();
 
-		void ResetGame();
+	void ResetGame();
 
 	UFUNCTION(BlueprintPure)
 		int32 GetCurrentUnlockLevel() const;

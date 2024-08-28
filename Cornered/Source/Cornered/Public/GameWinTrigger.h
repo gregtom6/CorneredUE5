@@ -7,13 +7,13 @@
 #include "GameWinTrigger.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API AGameWinTrigger : public ATriggerBox
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	AGameWinTrigger();

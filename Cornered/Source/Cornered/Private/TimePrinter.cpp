@@ -12,11 +12,9 @@ ATimePrinter::ATimePrinter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
-	SetRootComponent(Root);
-
 	TimeLeftComp = CreateDefaultSubobject<UTextRenderComponent>(TEXT("TimeLeftComp"));
 
+	SetRootComponent(Root);
 	TimeLeftComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

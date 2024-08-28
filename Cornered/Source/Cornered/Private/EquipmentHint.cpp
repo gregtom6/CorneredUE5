@@ -13,15 +13,11 @@ AEquipmentHint::AEquipmentHint()
 	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	ShieldMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ShieldMeshComp"));
-
 	WeaponMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMeshComp"));
 
 	SetRootComponent(Root);
-
 	ShieldMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	WeaponMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

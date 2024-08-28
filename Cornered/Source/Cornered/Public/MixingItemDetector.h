@@ -16,7 +16,7 @@ struct FItemData
 		FItemData()
 		: ItemType(EItemType::Count), ItemState(EItemState::Count) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType ItemType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
@@ -28,16 +28,16 @@ UCLASS()
 class CORNERED_API AMixingItemDetector : public ATriggerBox
 {
 	GENERATED_BODY()
-	
+
 public:
 
-		TArray<FItemData> GetDetectedItems() const;
+	TArray<FItemData> GetDetectedItems() const;
 
-		void DestroyAllItems();
+	void DestroyAllItems();
 
-		void BurnAllItems();
+	void BurnAllItems();
 
-		void FreezeAllItems();
+	void FreezeAllItems();
 
 private:
 

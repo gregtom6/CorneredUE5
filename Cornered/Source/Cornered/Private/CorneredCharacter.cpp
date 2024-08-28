@@ -18,17 +18,11 @@ ACorneredCharacter::ACorneredCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	CooldownIndicatorParentComp = CreateDefaultSubobject<USceneComponent>(TEXT("CooldownIndicatorParentComp"));
-
 	PaperSpriteComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("PaperSpriteComp"));
-
 	CooldownIndicatorComp = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("CooldownIndicatorComp"));
-
 	EquipmentVisualizer = CreateDefaultSubobject<UEquipmentVisualizer>(TEXT("EquipmentVisualizer"));
-
 	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
-
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
-
 	CooldownIndicatorManagementComp = CreateDefaultSubobject<UCooldownIndicator>(TEXT("CooldownIndicatorManagementComp"));
 
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
@@ -62,7 +56,6 @@ void ACorneredCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	IMovableCharacter* thisController = GetOwnedController();
-
 	UCharacterAnimInstance* thisAnimInstance = GetOwnedAnimInstance();
 	
 	if (thisAnimInstance) {

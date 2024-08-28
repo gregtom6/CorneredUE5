@@ -7,13 +7,13 @@
 #include "EnemyWeapon.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UEnemyWeapon();

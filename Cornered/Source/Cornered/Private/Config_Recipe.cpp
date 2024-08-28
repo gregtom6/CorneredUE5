@@ -21,7 +21,6 @@ TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<FItemData> detecte
 			if (GetOccurrenceNumber(RecipeEntries[i].Items, RecipeEntries[i].Items[j].ItemType, RecipeEntries[i].Items[j].ItemState) == GetOccurrenceNumber(detectedItems, RecipeEntries[i].Items[j].ItemType, RecipeEntries[i].Items[j].ItemState)) {
 				equalElements += 1;
 			}
-
 		}
 
 		if (equalElements == RecipeEntries[i].Items.Num() && equalElements == detectedItems.Num()) {
@@ -71,20 +70,14 @@ TArray<FMaterialArray> UConfig_Recipe::GetRadiatingMaterialsOfAllRecipes(TArray<
 		for (int32 k = 0; k < recipeEntry.Items.Num(); k++) {
 
 			UMaterialInterface* mat = GetRadiatingMaterial(recipeEntry.Items[k].ItemType);
-
 			Materials[i].Materials.Add(mat);
-
 			UMaterialInterface* stateMat = GetRadiatingEffectMaterial(recipeEntry.Items[k].ItemState);
-
 			ItemStateMaterials[i].Materials.Add(stateMat);
 		}
 
 		UMaterialInterface* endMat = GetRadiatingMaterial(recipeEntry.Key);
-
 		Materials[i].Materials.Add(endMat);
-
 		UMaterialInterface* stateEndMat = GetRadiatingEffectMaterial(EItemState::Normal);
-
 		ItemStateMaterials[i].Materials.Add(stateEndMat);
 
 		i++;

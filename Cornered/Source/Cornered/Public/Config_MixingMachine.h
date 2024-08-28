@@ -9,26 +9,26 @@
 UENUM(BlueprintType)
 enum class EAbility : uint8
 {
-    Default,
-    Burn,
-    Freeze,
+	Default,
+	Burn,
+	Freeze,
 
-    Count,
+	Count,
 };
 
 USTRUCT(BlueprintType)
 struct FAbilityProcessTimeEntry
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        FAbilityProcessTimeEntry()
-        : Key(EAbility::Count), ProcessTime(0.f) { }
+		FAbilityProcessTimeEntry()
+		: Key(EAbility::Count), ProcessTime(0.f) { }
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        EAbility Key;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		EAbility Key;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        float ProcessTime;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		float ProcessTime;
 
 };
 
@@ -39,12 +39,12 @@ class CORNERED_API UConfig_MixingMachine : public UDataAsset
 
 private:
 
-    UPROPERTY(EditAnywhere, Category = "Dictionary")
-        TArray<FAbilityProcessTimeEntry> AbilityProcessTimeEntries;
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
+		TArray<FAbilityProcessTimeEntry> AbilityProcessTimeEntries;
 
 public:
 
-    UFUNCTION()
-        float GetProcessTime(EAbility ability) const;
-	
+	UFUNCTION()
+		float GetProcessTime(EAbility ability) const;
+
 };

@@ -20,17 +20,17 @@ class CORNERED_API AIngredient : public AActor, public IIPickable
 public:
 	UPROPERTY(EditAnywhere)
 		EItemType ItemType;
-		EItemState ItemState;
+	EItemState ItemState;
 
 protected:
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStaticMeshComponent> StaticMesh;
+		TObjectPtr<UStaticMeshComponent> StaticMesh;
 
 private:
 
 	bool bWasPickedAnyTime;
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AIngredient();
 
@@ -44,7 +44,7 @@ public:
 
 	virtual IEquippable* GetEquippable() const;
 
-		void SetState(EItemState state);
+	void SetState(EItemState state);
 
 	UFUNCTION(BlueprintPure)
 		EItemType GetItemType() const;

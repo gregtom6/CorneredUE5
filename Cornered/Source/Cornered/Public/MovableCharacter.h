@@ -26,7 +26,7 @@ class CORNERED_API IMovableCharacter
 {
 	GENERATED_BODY()
 
-	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
+		// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
 	virtual EMovementState GetMovementState() const = 0;

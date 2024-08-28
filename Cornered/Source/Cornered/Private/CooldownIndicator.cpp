@@ -22,7 +22,6 @@ void UCooldownIndicator::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 	float percentage = CharacterWeapon->GetCooldownTimeLeftPercentageBetween01();
 
 	CooldownIndicatorParentComp->SetRelativeScale3D(FVector(CooldownIndicatorParentComp->GetRelativeScale3D().X, CooldownIndicatorParentComp->GetRelativeScale3D().Y, percentage));
-
 	CooldownIndicatorPaperSprite->SetSpriteColor(percentage >= 1.0f ? FLinearColor::Green : FLinearColor::Red);
 
 }

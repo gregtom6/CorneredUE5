@@ -21,31 +21,19 @@ AMixingMachine::AMixingMachine()
 	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	BurningComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("BurningComp"));
-
 	FreezingComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("FreezingComp"));
-
-	SetRootComponent(Root);
-
 	ResultTarget = CreateDefaultSubobject<USceneComponent>(TEXT("ResultTarget"));
-
 	BurnAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("BurnAudio"));
-
 	FreezeAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("FreezeAudio"));
-
 	MixingAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("MixingAudio"));
 
+	SetRootComponent(Root);
 	ResultTarget->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	BurningComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	FreezingComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	BurnAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	FreezeAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	MixingAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
@@ -56,12 +44,11 @@ void AMixingMachine::BeginPlay()
 
 	State = EMixingMachineState::Waiting;
 
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+
 	ConvertButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::ConvertPressHappened);
 	BurnButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::BurnPressHappened);
 	FreezeButton->PressHappened.AddUniqueDynamic(this, &AMixingMachine::FreezePressHappened);
-
-	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
-
 	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &AMixingMachine::OnNewMatchStarted);
 }
 

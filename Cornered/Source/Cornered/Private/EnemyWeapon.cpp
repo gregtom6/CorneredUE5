@@ -21,7 +21,6 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 		{
 			APawn* pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 
-
 			FVector Direction = pawn->GetActorLocation() - GetOwner()->GetActorLocation();
 
 			float Distance = 1000.f;
@@ -39,7 +38,6 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 				End,
 				GetOpponentTraceChannel()
 			);
-
 
 			if (pawnSensing->CouldSeePawn(pawn)) {
 				ShootWithEquippedWeapon();

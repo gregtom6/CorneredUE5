@@ -9,13 +9,13 @@
 class AEnemyCharacter;
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UConfig_Character_General : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

@@ -41,7 +41,7 @@ public:
 public:
 	AEnemyCharacter();
 
-		void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
+	void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 
 protected:
 

@@ -17,11 +17,9 @@ ARecipeShower::ARecipeShower()
 	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
-	SetRootComponent(Root);
-
 	StartingTransform = CreateDefaultSubobject<USceneComponent>(TEXT("StartingTransform"));
 
+	SetRootComponent(Root);
 	StartingTransform->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

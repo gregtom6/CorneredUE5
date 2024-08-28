@@ -22,8 +22,8 @@ private:
 		TObjectPtr<USceneComponent> Root;
 
 public:
-		ATimeZeroerButton();
+	ATimeZeroerButton();
 
-		void Interact() override;
+	void Interact() override;
 
 };

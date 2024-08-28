@@ -9,7 +9,7 @@
 
 class UInteractableDetector;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UInteractor : public USceneComponent
 {
 	GENERATED_BODY()
@@ -18,11 +18,11 @@ public:
 	UPROPERTY()
 		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 private:
-		bool bInteractHappenedInThisFrame;
+	bool bInteractHappenedInThisFrame;
 
-		IHoldable* Holdable;
+	IHoldable* Holdable;
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UInteractor();
 

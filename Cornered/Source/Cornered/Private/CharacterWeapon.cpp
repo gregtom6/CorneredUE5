@@ -74,7 +74,6 @@ void UCharacterWeapon::SetWeaponReadyToBeUsed() {
 
 float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 	
-
 	bool bIsTimerActive = GetWorld()->GetTimerManager().IsTimerActive(TimerHandle);
 
 	if (bIsTimerActive) {

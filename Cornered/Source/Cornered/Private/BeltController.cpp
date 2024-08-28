@@ -13,7 +13,6 @@ ABeltController::ABeltController()
 	PrimaryActorTick.bCanEverTick = false;
 
 	SpawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnPointComp"));
-
 	DespawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("DespawnPointComp"));
 
 	DespawnPointComp->OnComponentBeginOverlap.AddDynamic(this, &ABeltController::OnOverlapBegin);
@@ -27,7 +26,6 @@ void ABeltController::BeginPlay()
 	CurrentBeltSpeed = EBeltSpeed::Normal;
 
 	CorneredButton->PressHappened.AddUniqueDynamic(this, &ABeltController::PressHappened);
-
 	ObjectPool->InitializationHappened.AddUniqueDynamic(this, &ABeltController::ObjectPoolInitialized);
 
 	if (ObjectPool->bAlreadyInitialized) {

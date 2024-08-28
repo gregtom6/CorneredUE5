@@ -10,7 +10,7 @@
 
 class AProduct;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UEquipmentVisualizer : public UActorComponent
 {
 	GENERATED_BODY()
@@ -24,27 +24,27 @@ private:
 	UPROPERTY()
 		TObjectPtr<AActor> SpawnedEquippedWeapon;
 
-		bool bWeaponSpawned;
+	bool bWeaponSpawned;
 
-public:	
+public:
 	UEquipmentVisualizer();
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		void VisualizeEquipment(AProduct* Product);
+	void VisualizeEquipment(AProduct* Product);
 
-		void VisualizeWeaponDatas(FItemDatas ItemDatas);
+	void VisualizeWeaponDatas(FItemDatas ItemDatas);
 
 
-		void PlayEquippedWeaponVisuals();
+	void PlayEquippedWeaponVisuals();
 
-		FShotRayDatas GetShotRayDatas() const;
+	FShotRayDatas GetShotRayDatas() const;
 
 protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 private:
 
-		FName GetNameOfSocket(AProduct* Product) const;
+	FName GetNameOfSocket(AProduct* Product) const;
 
 };

@@ -13,8 +13,8 @@ UCLASS()
 class CORNERED_API ARedLightController : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		TObjectPtr<UActorSequenceComponent> SequenceComp;
@@ -25,7 +25,7 @@ private:
 
 	FTimerHandle TimerHandle;
 
-public:	
+public:
 	// Sets default values for this actor's properties
 	ARedLightController();
 
@@ -34,7 +34,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
-	void OnTimerOverHappened();
+		void OnTimerOverHappened();
 
 private:
 

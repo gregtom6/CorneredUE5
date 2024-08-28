@@ -9,7 +9,7 @@
 
 class UInteractableDetector;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UPicker : public USceneComponent
 {
 	GENERATED_BODY()
@@ -19,21 +19,21 @@ public:
 		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 private:
-		bool bPickupDropHappenedInThisFrame;
+	bool bPickupDropHappenedInThisFrame;
 
 	IIPickable* PickedPickable;
 
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UPicker();
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	
+
 	IIPickable* GetPickedPickable() const;
-	
-		void RemovePickable();
+
+	void RemovePickable();
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

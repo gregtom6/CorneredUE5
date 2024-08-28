@@ -11,13 +11,13 @@ class UTexture2D;
 USTRUCT(BlueprintType)
 struct FTutorialPageDatas
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        TObjectPtr<UTexture2D> Image;
+		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		TObjectPtr<UTexture2D> Image;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        FString Text;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		FString Text;
 
 };
 
@@ -25,17 +25,17 @@ UCLASS()
 class CORNERED_API UConfig_Tutorial : public UDataAsset
 {
 	GENERATED_BODY()
-	
-public:
-
-    UPROPERTY(EditAnywhere)
-        TArray<FTutorialPageDatas> TutorialPageDatas;
 
 public:
 
-    UFUNCTION()
-        FTutorialPageDatas GetTutorialPageDatas(int32 index) const;
+	UPROPERTY(EditAnywhere)
+		TArray<FTutorialPageDatas> TutorialPageDatas;
 
-    UFUNCTION()
-        int32 GetTutorialPageCount() const;
+public:
+
+	UFUNCTION()
+		FTutorialPageDatas GetTutorialPageDatas(int32 index) const;
+
+	UFUNCTION()
+		int32 GetTutorialPageCount() const;
 };

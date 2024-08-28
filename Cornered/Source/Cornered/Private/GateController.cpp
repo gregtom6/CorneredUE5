@@ -14,27 +14,17 @@ AGateController::AGateController()
 	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	GateVisualsParentComp = CreateDefaultSubobject<USceneComponent>(TEXT("GateVisualsParentComp"));
-
 	EnterDetectorParentComp= CreateDefaultSubobject<USceneComponent>(TEXT("EnterDetectorParentComp"));
-
 	ExitDetectorParentComp = CreateDefaultSubobject<USceneComponent>(TEXT("ExitDetectorParentComp"));
-
 	EnterDetectorComp = CreateDefaultSubobject<UBoxComponent>(TEXT("EnterDetectorComp"));
-
 	ExitDetectorComp = CreateDefaultSubobject<UBoxComponent>(TEXT("ExitDetectorComp"));
 
 	SetRootComponent(Root);
-
 	GateVisualsParentComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	EnterDetectorParentComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	ExitDetectorParentComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	EnterDetectorComp->AttachToComponent(EnterDetectorParentComp, FAttachmentTransformRules::KeepRelativeTransform);
-
 	ExitDetectorComp->AttachToComponent(ExitDetectorParentComp, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
@@ -44,7 +34,6 @@ void AGateController::BeginPlay()
 	Super::BeginPlay();
 	
 	EnterDetectorComp->OnComponentBeginOverlap.AddDynamic(this, &AGateController::OnEnterDetectorBeginOverlap);
-
 	ExitDetectorComp->OnComponentBeginOverlap.AddDynamic(this, &AGateController::OnExitDetectorBeginOverlap);
 }
 

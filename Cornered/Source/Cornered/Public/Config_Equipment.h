@@ -35,7 +35,7 @@ struct FEquippedProductEntry
 		FEquippedProductEntry()
 		: Key(EItemType::Count) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
@@ -50,7 +50,7 @@ struct FWeaponSettingsEntry
 		FWeaponSettingsEntry()
 		: Key(EItemType::Count), CooldownTimeInSec(0.f), Damage(0.f) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
@@ -68,7 +68,7 @@ struct FShieldSettingsEntry
 		FShieldSettingsEntry()
 		: Key(EItemType::Count), DamageDivider(0.f) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
@@ -84,7 +84,7 @@ struct FAdditionalSettingsEntry
 		FAdditionalSettingsEntry()
 		: Key(EItemType::Count), Multiplier(0.f) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")

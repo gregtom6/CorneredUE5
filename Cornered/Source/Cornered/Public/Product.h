@@ -18,7 +18,7 @@ class CORNERED_API AProduct : public AIngredient, public IEquippable
 
 protected:
 
-		virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;
+	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;
 
-		virtual IEquippable* GetEquippable() const override;
+	virtual IEquippable* GetEquippable() const override;
 };

@@ -61,17 +61,17 @@ public:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Character_General> ConfigCharacter;
 
-		FPickupInteractionHappenedDelegate PickupHappenedInstance;
+	FPickupInteractionHappenedDelegate PickupHappenedInstance;
 
-		FDropInteractionHappenedDelegate DropHappenedInstance;
+	FDropInteractionHappenedDelegate DropHappenedInstance;
 
-		FEquipInteractionHappenedDelegate EquipHappenedInstance;
+	FEquipInteractionHappenedDelegate EquipHappenedInstance;
 
-		FShootInteractionHappenedDelegate ShootHappenedInstance;
+	FShootInteractionHappenedDelegate ShootHappenedInstance;
 
-		FInteractStartedDelegate InteractStartedInstance;
+	FInteractStartedDelegate InteractStartedInstance;
 
-		FInteractHappenedDelegate InteractHappenedInstance;
+	FInteractHappenedDelegate InteractHappenedInstance;
 
 private:
 
@@ -81,7 +81,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
 
-		EMovementState MovementState;
+	EMovementState MovementState;
 
 public:
 	UFUNCTION(BlueprintPure)
@@ -91,31 +91,31 @@ protected:
 
 	virtual void OnPossess(APawn*) override;
 	virtual void OnUnPossess() override;
-	
+
 	UFUNCTION()
-	void HandleMovement(const FInputActionValue& InputActionValue);
+		void HandleMovement(const FInputActionValue& InputActionValue);
 	UFUNCTION()
-	void MovementCompleted(const FInputActionValue& InputActionValue);
+		void MovementCompleted(const FInputActionValue& InputActionValue);
 	UFUNCTION()
-	void HandleLook(const FInputActionValue& InputActionValue);
+		void HandleLook(const FInputActionValue& InputActionValue);
 	UFUNCTION()
-	void HandleLookUp();
+		void HandleLookUp();
 	UFUNCTION()
-	void HandleLookDown();
+		void HandleLookDown();
 	UFUNCTION()
-	void HandleLookLeft();
+		void HandleLookLeft();
 	UFUNCTION()
-	void HandleLookRight();
+		void HandleLookRight();
 	UFUNCTION()
-	void HandleInteractStarted();
+		void HandleInteractStarted();
 	UFUNCTION()
-	void HandleInteractFinished();
+		void HandleInteractFinished();
 	UFUNCTION()
-	void HandlePickup();
+		void HandlePickup();
 	UFUNCTION()
-	void HandleDrop();
+		void HandleDrop();
 	UFUNCTION()
-	void HandleEquip();
+		void HandleEquip();
 	UFUNCTION()
-	void HandleShoot();
+		void HandleShoot();
 };

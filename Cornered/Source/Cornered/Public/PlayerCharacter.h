@@ -17,7 +17,7 @@ UCLASS()
 class CORNERED_API APlayerCharacter : public ACorneredCharacter
 {
 	GENERATED_BODY()
-public:	
+public:
 	// Called every frame
 
 

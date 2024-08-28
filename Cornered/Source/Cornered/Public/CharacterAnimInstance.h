@@ -7,13 +7,13 @@
 #include "CharacterAnimInstance.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UCharacterAnimInstance : public UAnimInstance
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

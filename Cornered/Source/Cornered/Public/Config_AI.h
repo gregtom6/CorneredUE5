@@ -10,7 +10,7 @@ UCLASS()
 class CORNERED_API UConfig_AI : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UPROPERTY(EditAnywhere)

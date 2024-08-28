@@ -17,7 +17,7 @@ struct FItemHintMaterialEntry
 		FItemHintMaterialEntry()
 		: Key(EItemType::Count) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
@@ -29,9 +29,9 @@ UCLASS()
 class CORNERED_API UConfig_Hint : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 private:
-		UPROPERTY(EditAnywhere, Category = "Dictionary")
+	UPROPERTY(EditAnywhere, Category = "Dictionary")
 		TArray<FItemHintMaterialEntry> ItemHintMaterialDict;
 
 public:

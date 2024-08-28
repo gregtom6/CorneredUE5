@@ -7,12 +7,10 @@
 
 ATimeZeroerButton::ATimeZeroerButton() {
 
+	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	TimeButtonStaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TimeButtonStaticMeshComp"));
 
-	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	SetRootComponent(Root);
-
 	TimeButtonStaticMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

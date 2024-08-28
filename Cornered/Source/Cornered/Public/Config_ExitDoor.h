@@ -7,13 +7,13 @@
 #include "Config_ExitDoor.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UConfig_ExitDoor : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UPROPERTY(EditAnywhere)

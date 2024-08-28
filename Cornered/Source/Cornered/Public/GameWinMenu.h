@@ -16,7 +16,7 @@ class CORNERED_API UGameWinMenu : public UUserWidget
 	GENERATED_BODY()
 
 public:
-		FUIPressHappenedDelegate UIPressHappened;
+	FUIPressHappenedDelegate UIPressHappened;
 
 protected:
 
@@ -25,7 +25,7 @@ protected:
 
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UButton> Quit;
-	
+
 public:
 	virtual void NativeConstruct() override;
 

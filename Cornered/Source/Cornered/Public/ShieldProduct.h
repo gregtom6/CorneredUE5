@@ -9,13 +9,13 @@
 class UEquipmentVisualizer;
 class UInventory;
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API AShieldProduct : public AProduct
 {
 	GENERATED_BODY()
-	
+
 protected:
 
 	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;

@@ -7,13 +7,13 @@
 #include "Config_Time.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UConfig_Time : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UPROPERTY(EditAnywhere)

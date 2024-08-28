@@ -10,13 +10,13 @@ class UConfig_Character_General;
 class AActor;
 
 /**
- * 
+ *
  */
 UCLASS(config = Game, defaultconfig)
 class CORNERED_API UConfig_CharacterSpawner : public UDeveloperSettings
 {
 	GENERATED_BODY()
-	
+
 public:
 
 	UPROPERTY(config, EditAnywhere)

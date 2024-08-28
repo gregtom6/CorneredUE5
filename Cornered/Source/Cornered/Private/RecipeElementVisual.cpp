@@ -12,22 +12,17 @@ ARecipeElementVisual::ARecipeElementVisual()
 	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	ElementSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("ElementSprite"));
-
 	EffectSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("EffectSprite"));
 
 	SetRootComponent(Root);
-
 	ElementSprite->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	EffectSprite->AttachToComponent(ElementSprite, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 void ARecipeElementVisual::SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial) {
 
 	ElementSprite->SetMaterial(0, ElementMaterial);
-
 	EffectSprite->SetMaterial(0, EffectMaterial);
 
 	EffectSprite->SetVisibility(EffectMaterial != nullptr);

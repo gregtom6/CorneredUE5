@@ -50,23 +50,23 @@ protected:
 		void OnNewMatchStarted();
 
 private:
-		void GenerateRecipeVisuals();
+	void GenerateRecipeVisuals();
 
-		void DestroyElements();
+	void DestroyElements();
 
-		void CreateRecipeElement(UMaterialInterface* Material, UMaterialInterface* StateMaterial, FVector& PositionForGeneration);
+	void CreateRecipeElement(UMaterialInterface* Material, UMaterialInterface* StateMaterial, FVector& PositionForGeneration);
 
-		void AddOperatorIfNeeded(int32 Index, int32 MaterialCount, FVector& PositionForGeneration);
+	void AddOperatorIfNeeded(int32 Index, int32 MaterialCount, FVector& PositionForGeneration);
 
-		bool IsIndexBeforeAlmostLastElement(int32 Index, int32 Count);
+	bool IsIndexBeforeAlmostLastElement(int32 Index, int32 Count);
 
-		bool IsIndexBeforeLastElement(int32 Index, int32 Count);
+	bool IsIndexBeforeLastElement(int32 Index, int32 Count);
 
-		void CreateOperator(UMaterialInterface* Material, FVector& PositionForGeneration);
+	void CreateOperator(UMaterialInterface* Material, FVector& PositionForGeneration);
 
-		void MoveToNextRow(FVector& PositionForGeneration);
+	void MoveToNextRow(FVector& PositionForGeneration);
 
-		void GenerateRecipeRow(FMaterialArray Materials, FMaterialArray StateMaterials, FVector& PositionForGeneration);
+	void GenerateRecipeRow(FMaterialArray Materials, FMaterialArray StateMaterials, FVector& PositionForGeneration);
 
-		void RecipeElementCreation(TSubclassOf<AActor> ClassOfElement, FVector& PositionForGeneration, UMaterialInterface* Material, float xDelta, UMaterialInterface* EffectMaterial = nullptr);
+	void RecipeElementCreation(TSubclassOf<AActor> ClassOfElement, FVector& PositionForGeneration, UMaterialInterface* Material, float xDelta, UMaterialInterface* EffectMaterial = nullptr);
 };

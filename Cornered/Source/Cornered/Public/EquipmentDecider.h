@@ -17,9 +17,9 @@ UCLASS()
 class CORNERED_API UEquipmentDecider : public UWorldSubsystem
 {
 	GENERATED_BODY()
-	
+
 public:
-		FEquipmentDecidedDelegate OnEquipmentDecided;
+	FEquipmentDecidedDelegate OnEquipmentDecided;
 
 public:
 
@@ -33,6 +33,6 @@ protected:
 	UFUNCTION()
 		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
-		void GenerateEquipment(AEnemyCharacter* EnemyCharacter);
+	void GenerateEquipment(AEnemyCharacter* EnemyCharacter);
 
 };

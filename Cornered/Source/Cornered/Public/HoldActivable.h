@@ -11,9 +11,9 @@ class CORNERED_API AHoldActivable : public AActor
 {
 	GENERATED_BODY()
 
-public:	
+public:
 
-		virtual void HoldProcessStarted() PURE_VIRTUAL(AHoldActivable::HoldProcessStarted, );
+	virtual void HoldProcessStarted() PURE_VIRTUAL(AHoldActivable::HoldProcessStarted, );
 
-		virtual void HoldProcessEnded() PURE_VIRTUAL(AHoldActivable::HoldProcessEnded, );
+	virtual void HoldProcessEnded() PURE_VIRTUAL(AHoldActivable::HoldProcessEnded, );
 };

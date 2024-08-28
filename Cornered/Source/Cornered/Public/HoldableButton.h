@@ -13,13 +13,13 @@ UCLASS()
 class CORNERED_API AHoldableButton : public AActor, public IHoldable
 {
 	GENERATED_BODY()
-	
+
 private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<AHoldActivable> HoldActivable;
 
-public:	
+public:
 	// Sets default values for this actor's properties
 	AHoldableButton();
 

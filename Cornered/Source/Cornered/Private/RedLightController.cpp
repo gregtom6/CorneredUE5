@@ -21,7 +21,6 @@ void ARedLightController::BeginPlay()
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
 	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ARedLightController::OnTimerOverHappened);
-
 	CorneredGameMode->CharacterDefeated.AddDynamic(this, &ARedLightController::OnCharacterDefeated);
 
 	if (SequenceComp) {

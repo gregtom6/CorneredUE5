@@ -15,17 +15,17 @@ UCLASS()
 class CORNERED_API ACorneredButton : public AActor, public IInteractable
 {
 	GENERATED_BODY()
-	
+
 private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> PressAudio;
 
-public:	
+public:
 	ACorneredButton();
 
 	void Interact() override;
 
-		FPressHappenedDelegate PressHappened;
+	FPressHappenedDelegate PressHappened;
 
 };

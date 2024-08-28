@@ -16,23 +16,15 @@ AEquippedWeapon::AEquippedWeapon()
 	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
-	SetRootComponent(Root);
-
 	MuzzlePosition = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzlePosition"));
-
 	PointLightComp = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLightComp"));
-
 	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComp"));
-
 	ShotAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("ShotAudio"));
 
+	SetRootComponent(Root);
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	NiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	ShotAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

@@ -13,7 +13,7 @@ UCLASS()
 class CORNERED_API ATimePrinter : public AActor
 {
 	GENERATED_BODY()
-	
+
 private:
 
 	UPROPERTY()
@@ -25,7 +25,7 @@ private:
 	UPROPERTY()
 		TObjectPtr<ACorneredGameMode> CorneredGameMode;
 
-public:	
+public:
 	// Sets default values for this actor's properties
 	ATimePrinter();
 

@@ -26,16 +26,13 @@ APlayerCharacter::APlayerCharacter()
 	PickerComp = CreateDefaultSubobject<UPicker>(TEXT("PickerComp"));
 	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
 	InteractorComp = CreateDefaultSubobject<UInteractor>(TEXT("InteractorComp"));
-
 	EquipAudio= CreateDefaultSubobject<UAudioComponent>(TEXT("EquipAudio"));
-
 	CharacterHealthComp = CreateDefaultSubobject<UPlayerHealth>(TEXT("PlayerHealthComp"));
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	InteractorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
-
 	EquipAudio->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

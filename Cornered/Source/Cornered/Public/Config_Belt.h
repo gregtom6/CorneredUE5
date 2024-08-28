@@ -24,7 +24,7 @@ struct FBeltSpeedMaterialEntry
 		FBeltSpeedMaterialEntry()
 		: Key(EBeltSpeed::Count) { }
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 		EBeltSpeed Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
@@ -35,13 +35,13 @@ struct FBeltSpeedMaterialEntry
 
 class ABeltElement;
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UConfig_Belt : public UDataAsset
 {
 	GENERATED_BODY()
-	
+
 
 private:
 

@@ -19,12 +19,12 @@ UCLASS()
 class CORNERED_API AEnemyController : public AAIController, public IMovableCharacter
 {
 	GENERATED_BODY()
-	
+
 protected:
 	bool bIsTimerOver;
 
 private:
-		EMovementState MovementState;
+	EMovementState MovementState;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_AI> AIConfig;

@@ -59,5 +59,5 @@ private:
 
 	void DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings);
 
-	virtual ECollisionChannel GetOpponentTraceChannel() const PURE_VIRTUAL(UCharacterWeapon::GetOpponentTraceChannel,return ECollisionChannel::ECC_Visibility;);
+	virtual ECollisionChannel GetOpponentTraceChannel() const PURE_VIRTUAL(UCharacterWeapon::GetOpponentTraceChannel, return ECollisionChannel::ECC_Visibility;);
 };

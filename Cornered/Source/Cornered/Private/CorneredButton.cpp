@@ -17,6 +17,5 @@ ACorneredButton::ACorneredButton()
 void ACorneredButton::Interact() {
 
 	PressAudio->Play();
-
 	PressHappened.Broadcast();
 }

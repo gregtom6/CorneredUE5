@@ -7,15 +7,15 @@
 #include "CorneredSaveGame.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UCorneredSaveGame : public USaveGame
 {
 	GENERATED_BODY()
-	
+
 public:
-    UPROPERTY(EditAnywhere)
-        int32 CurrentUnlockLevel;
+	UPROPERTY(EditAnywhere)
+		int32 CurrentUnlockLevel;
 
 };

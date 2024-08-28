@@ -8,14 +8,14 @@
 #include "ExternalEquipper.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UExternalEquipper : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UExternalEquipper();
 
-		void Equip(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
+	void Equip(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
 };

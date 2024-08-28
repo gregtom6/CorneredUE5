@@ -24,11 +24,11 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPaperSpriteComponent> EffectSprite;
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ARecipeElementVisual();
 
-		void SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial);
+	void SetElement(UMaterialInterface* ElementMaterial, UMaterialInterface* EffectMaterial);
 
 };

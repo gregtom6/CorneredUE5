@@ -15,7 +15,6 @@ EStateTreeRunStatus FDefendPositionEnemyState::EnterState(FStateTreeExecutionCon
 		FDefendTest* Data = Context.GetInstanceDataPtr<FDefendTest>(*this);
 
 		AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(Context.GetOwner());
-
 		AEnemyController* enemyController = Cast<AEnemyController>(EnemyCharacter->GetController());
 
 		enemyController->HideFromPlayer();
@@ -31,7 +30,6 @@ EStateTreeRunStatus FDefendPositionEnemyState::Tick(FStateTreeExecutionContext& 
 	FDefendTest& InstanceData = Context.GetInstanceData<FDefendTest>(*this);
 
 	AController* enemyControllerPawn = InstanceData.EnemyCharacter->GetController();
-
 	AEnemyController* enemyController = Cast<AEnemyController>(enemyControllerPawn);
 
 	enemyController->HideFromPlayer();

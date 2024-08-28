@@ -20,7 +20,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UStaticMeshComponent> BeltButtonStaticMeshComp;
-	
+
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> Root;
 

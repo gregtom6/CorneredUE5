@@ -8,7 +8,7 @@
 
 class UPicker;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UEquipper : public USceneComponent
 {
 	GENERATED_BODY()
@@ -17,7 +17,7 @@ public:
 	UPROPERTY()
 		TObjectPtr<UPicker> PickerComp;
 
-public:	
+public:
 	UEquipper();
 
 protected:

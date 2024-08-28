@@ -8,14 +8,14 @@
 #include "LevelManager.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API ULevelManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
-	
+
 public:
 
-		void LoadLevel(ELevelIdentifier LevelIdentifier, UWorld* World);
+	void LoadLevel(ELevelIdentifier LevelIdentifier, UWorld* World);
 };

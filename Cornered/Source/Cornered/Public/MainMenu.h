@@ -31,7 +31,7 @@ class CORNERED_API UMainMenu : public UUserWidget
 	GENERATED_BODY()
 
 public:
-		FUIPressHappenedDelegate UIPressHappened;
+	FUIPressHappenedDelegate UIPressHappened;
 
 protected:
 	UPROPERTY(meta = (BindWidget))
@@ -94,9 +94,9 @@ private:
 	UPROPERTY(meta = (BindWidget))
 		TObjectPtr<UPanelWidget> ControlsParent;
 
-		EMainMenuState MainMenuState;
-	
-		int32 CurrentPageIndex;
+	EMainMenuState MainMenuState;
+
+	int32 CurrentPageIndex;
 public:
 	virtual void NativeConstruct() override;
 protected:
@@ -130,17 +130,17 @@ protected:
 	UFUNCTION()
 		void ControlsRightPageOnClick();
 private:
-		void ShowState();
+	void ShowState();
 
-		void SetMainMenuState(EMainMenuState state);
+	void SetMainMenuState(EMainMenuState state);
 
-		void BackToMain();
+	void BackToMain();
 
-		void ShowCurrentControlsPage();
+	void ShowCurrentControlsPage();
 
-		void ShowCurrentTutorialPage();
+	void ShowCurrentTutorialPage();
 
-		void ManageTutorialPageSteppingButtons();
+	void ManageTutorialPageSteppingButtons();
 
-		void ManageControlsPageSteppingButtons();
+	void ManageControlsPageSteppingButtons();
 };

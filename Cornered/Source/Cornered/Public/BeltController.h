@@ -28,7 +28,7 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UBoxComponent> DespawnPointComp;
 
-		EBeltSpeed CurrentBeltSpeed;
+	EBeltSpeed CurrentBeltSpeed;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_Belt> BeltConfig;
@@ -61,6 +61,6 @@ private:
 	UFUNCTION()
 		void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-		void SwitchBeltSpeed();
+	void SwitchBeltSpeed();
 
 };

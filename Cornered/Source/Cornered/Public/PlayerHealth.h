@@ -7,7 +7,7 @@
 #include "PlayerHealth.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UPlayerHealth : public UCharacterHealth
@@ -15,9 +15,9 @@ class CORNERED_API UPlayerHealth : public UCharacterHealth
 	GENERATED_BODY()
 
 public:
-	
-		virtual float GetMaxHealth() const override;
-	
+
+	virtual float GetMaxHealth() const override;
+
 protected:
 
 	virtual float GetReloadWaitingMaxTime() const override;

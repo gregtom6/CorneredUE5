@@ -10,13 +10,13 @@
 class UConfig_Progress;
 class ACharacter;
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API AProgressionGameState : public AGameStateBase
 {
 	GENERATED_BODY()
-	
+
 public:
 	UPROPERTY()
 		int UnlockLevel;
@@ -26,11 +26,11 @@ private:
 		TObjectPtr<UConfig_Progress> ProgressConfig;
 
 public:
-		void ResetProgress();
+	void ResetProgress();
 
-		void StepProgress();
+	void StepProgress();
 
-		void SaveProgress();
+	void SaveProgress();
 
 	UFUNCTION(BlueprintPure)
 		bool IsAbilityAlreadyUnlocked(EAbility Ability);

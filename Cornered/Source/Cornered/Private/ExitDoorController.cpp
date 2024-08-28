@@ -11,20 +11,15 @@
 #include "ExitButtonMover.h"
 
 AExitDoorController::AExitDoorController() {
+
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
 	DoorVisuals = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorVisuals"));
-
 	PercentageText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("PercentageText"));
-
 	ProgressText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("ProgressText"));
 
 	SetRootComponent(Root);
-
 	DoorVisuals->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-
 	PercentageText->AttachToComponent(DoorVisuals, FAttachmentTransformRules::KeepRelativeTransform);
-
 	ProgressText->AttachToComponent(DoorVisuals, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
@@ -46,7 +41,6 @@ void AExitDoorController::Tick(float DeltaTime)
 	}
 
 	OpeningPercentage += ExitDoorConfig->ButtonHoldingOpenMultiplier * DeltaTime;
-
 	OpeningPercentage = FMath::Clamp(OpeningPercentage, ExitDoorConfig->MinPercentage, ExitDoorConfig->MaxPercentage);
 
 	PrintPercentageText();

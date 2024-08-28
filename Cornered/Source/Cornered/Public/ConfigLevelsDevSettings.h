@@ -8,27 +8,27 @@
 
 UENUM()
 enum class ELevelIdentifier : uint8 {
-    MainMenu,
-    MainScene,
-    GameOverScene,
-    GameWinScene, 
+	MainMenu,
+	MainScene,
+	GameOverScene,
+	GameWinScene,
 
-    Count,
+	Count,
 };
 
 USTRUCT(BlueprintType)
 struct FLevelEntry
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
-        FLevelEntry()
-        : Key(ELevelIdentifier::Count) { }
+		FLevelEntry()
+		: Key(ELevelIdentifier::Count) { }
 
-        UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        ELevelIdentifier Key;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		ELevelIdentifier Key;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-        TSoftObjectPtr<UWorld> LevelToLoad;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+		TSoftObjectPtr<UWorld> LevelToLoad;
 
 };
 
@@ -39,11 +39,11 @@ class CORNERED_API UConfigLevelsDevSettings : public UDeveloperSettings
 
 public:
 
-    UPROPERTY(config, EditAnywhere)
-        TArray<FLevelEntry> Levels;
+	UPROPERTY(config, EditAnywhere)
+		TArray<FLevelEntry> Levels;
 
 public:
 
-    UFUNCTION()
-        TSoftObjectPtr<UWorld> GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const;
+	UFUNCTION()
+		TSoftObjectPtr<UWorld> GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const;
 };

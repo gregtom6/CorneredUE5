@@ -23,10 +23,10 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<USceneComponent> Root;
 
-public:	
+public:
 	// Sets default values for this actor's properties
 	AExitButtonMover();
 
-		void StartMoving();
+	void StartMoving();
 
 };

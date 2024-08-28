@@ -28,7 +28,7 @@ UCLASS()
 class CORNERED_API AMixingMachine : public AActor
 {
 	GENERATED_BODY()
-	
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -40,7 +40,7 @@ protected:
 private:
 	FTimerHandle TimerHandle;
 
-		EMixingMachineState State;
+	EMixingMachineState State;
 
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
@@ -81,7 +81,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> MixingAudio;
-public:	
+public:
 	// Sets default values for this actor's properties
 	AMixingMachine();
 
@@ -111,6 +111,6 @@ private:
 		void BurnPressHappened();
 
 
-		float GetCurrentProcessTime(EAbility ability) const;
+	float GetCurrentProcessTime(EAbility ability) const;
 
 };

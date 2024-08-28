@@ -34,7 +34,6 @@ void ACorneredHud::BeginPlay()
     ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
     CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ACorneredHud::OnTimerOverHappened);
-
     CorneredGameMode->CharacterDefeated.AddDynamic(this, &ACorneredHud::OnCharacterDefeated);
 }
 

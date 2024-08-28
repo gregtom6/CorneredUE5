@@ -14,7 +14,7 @@ class UConfig_ExitDoor;
 class AHoldableButton;
 class AExitButtonMover;
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API AExitDoorController : public AHoldActivable
@@ -49,11 +49,11 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<AExitButtonMover> ExitButtonParent;
 
-		bool bOpeningInProgress;
+	bool bOpeningInProgress;
 
-		float OpeningPercentage;
+	float OpeningPercentage;
 
-		bool bDoorOpened;
+	bool bDoorOpened;
 
 public:
 
@@ -68,9 +68,9 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
-	
+
 private:
 
-		void PrintPercentageText();
+	void PrintPercentageText();
 
 };

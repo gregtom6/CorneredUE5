@@ -13,11 +13,11 @@ UCLASS()
 class CORNERED_API AMainMenuHUD : public AHUD
 {
 	GENERATED_BODY()
-	
+
 private:
 
 	UPROPERTY()
-	TObjectPtr<UUserWidget> UserWidgetInstance;
+		TObjectPtr<UUserWidget> UserWidgetInstance;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UAudioComponent> MainMenuBGMComp;

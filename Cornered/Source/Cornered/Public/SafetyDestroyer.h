@@ -7,7 +7,7 @@
 #include "SafetyDestroyer.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API ASafetyDestroyer : public ATriggerBox
@@ -15,7 +15,7 @@ class CORNERED_API ASafetyDestroyer : public ATriggerBox
 	GENERATED_BODY()
 
 public:
-		ASafetyDestroyer();
+	ASafetyDestroyer();
 
 private:
 

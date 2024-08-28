@@ -10,7 +10,7 @@
 
 class AProduct;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UInventory : public UActorComponent
 {
 	GENERATED_BODY()
@@ -20,16 +20,16 @@ private:
 	EItemType Weapon;
 	EItemType Shield;
 	EItemType Additional;
-public:	
+public:
 	// Sets default values for this component's properties
 	UInventory();
-		void EquipItem(AProduct* Product);
+	void EquipItem(AProduct* Product);
 
-		void EquipWeapon(FItemDatas itemDatas);
+	void EquipWeapon(FItemDatas itemDatas);
 
-		void EquipShield(FItemDatas itemDatas);
+	void EquipShield(FItemDatas itemDatas);
 
-		void EquipAdditional(FItemDatas itemDatas);
+	void EquipAdditional(FItemDatas itemDatas);
 
 	UFUNCTION(BlueprintPure)
 		EItemType GetWeapon() const;

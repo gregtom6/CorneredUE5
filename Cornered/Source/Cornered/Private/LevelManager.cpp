@@ -16,5 +16,4 @@ void ULevelManager::LoadLevel(ELevelIdentifier LevelIdentifier, UWorld* World) {
 			UGameplayStatics::OpenLevelBySoftObjectPtr(this, LevelToLoad);
 		}
 	}
-
 }

@@ -25,7 +25,7 @@ UCLASS()
 class CORNERED_API AEquipmentHint : public AActor
 {
 	GENERATED_BODY()
-	
+
 private:
 
 	UPROPERTY(VisibleAnywhere)
@@ -41,7 +41,7 @@ private:
 		TObjectPtr<UConfig_Hint> HintConfig;
 
 
-public:	
+public:
 	AEquipmentHint();
 
 protected:

@@ -49,13 +49,13 @@ UCLASS()
 class CORNERED_API ACorneredObjectPool : public AActor
 {
 	GENERATED_BODY()
-	
+
 public:
-		FPoolerCleanupSignature OnPoolerCleanup;
+	FPoolerCleanupSignature OnPoolerCleanup;
 	FInitializationHappened InitializationHappened;
 
-		bool bAlreadyInitialized;
-	
+	bool bAlreadyInitialized;
+
 protected:
 	UPROPERTY(EditAnywhere)
 		TArray<FPooledObjectData> _PooledObjectData;
@@ -63,7 +63,7 @@ protected:
 	UPROPERTY(VisibleInstanceOnly)
 		TArray<FSingleObjectPool> _Pools;
 
-public:	
+public:
 	ACorneredObjectPool();
 
 

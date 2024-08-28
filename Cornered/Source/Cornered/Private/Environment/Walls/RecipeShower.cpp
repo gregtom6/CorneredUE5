@@ -1,14 +1,14 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "RecipeShower.h"
+#include "Environment/Walls/RecipeShower.h"
 #include "Materials/MaterialInterface.h"
-#include "Config_Recipe.h"
+#include "Configs/DataAssets/Config_Recipe.h"
 #include "Components/SceneComponent.h"
-#include "CorneredGameInstance.h"
+#include "System/CorneredGameInstance.h"
 #include "GameFramework/GameModeBase.h"
-#include "RecipeElementVisual.h"
-#include "CorneredGameMode.h"
+#include "Environment/Walls/RecipeElementVisual.h"
+#include "System/CorneredGameMode.h"
 
 // Sets default values
 ARecipeShower::ARecipeShower()

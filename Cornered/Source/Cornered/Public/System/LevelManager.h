@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "ConfigLevelsDevSettings.h"
+#include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 #include "LevelManager.generated.h"
 
 /**

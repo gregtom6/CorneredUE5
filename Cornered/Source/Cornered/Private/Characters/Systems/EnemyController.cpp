@@ -1,14 +1,14 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EnemyController.h"
-#include "CorneredGameMode.h"
+#include "Characters/Systems/EnemyController.h"
+#include "System/CorneredGameMode.h"
 #include "Navigation/PathFollowingComponent.h"
-#include "EnemyCharacter.h"
+#include "Characters/Systems/EnemyCharacter.h"
 #include "Components/StateTreeComponent.h"
-#include "HideSpotFinder.h"
+#include "Characters/ActorComponents/HideSpotFinder.h"
 #include "DrawDebugHelpers.h"
-#include "Config_AI.h"
+#include "Configs/DataAssets/Config_AI.h"
 
 AEnemyController::AEnemyController()
 {

@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "BeltElement.h"
-#include "BeltController.h"
-#include "Config_IngredientGeneration.h"
-#include "Ingredient.h"
+#include "Environment/ConveyorBelt/BeltElement.h"
+#include "Environment/ConveyorBelt/BeltController.h"
+#include "Configs/DataAssets/Config_IngredientGeneration.h"
+#include "Items/Ingredient.h"
 
 ABeltElement::ABeltElement()
 {

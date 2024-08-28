@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "Equippable.h"
+#include "Items/Equippable.h"
 #include "IPickable.generated.h"
 
 // This class does not need to be modified.

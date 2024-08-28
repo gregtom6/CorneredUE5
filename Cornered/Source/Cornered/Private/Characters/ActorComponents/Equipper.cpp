@@ -1,13 +1,13 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Equipper.h"
-#include "Picker.h"
+#include "Characters/ActorComponents/Equipper.h"
+#include "Characters/ActorComponents/Picker.h"
 #include <Kismet/GameplayStatics.h>
-#include "Equippable.h"
-#include <CorneredPlayerController.h>
-#include "EquipmentVisualizer.h"
-#include "Inventory.h"
+#include "Items/Equippable.h"
+#include "System/CorneredPlayerController.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
+#include "Characters/ActorComponents/Inventory.h"
 #include "Components/AudioComponent.h"
 
 UEquipper::UEquipper()

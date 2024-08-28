@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Holdable.h"
+#include "Environment/Interactables/Holdable.h"
 #include "HoldableButton.generated.h"
 
 class AHoldActivable;

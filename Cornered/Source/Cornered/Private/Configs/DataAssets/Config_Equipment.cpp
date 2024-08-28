@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Equipment.h"
-#include "CharacterWeapon.h"
-#include "Product.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+#include "Characters/ActorComponents/CharacterWeapon.h"
+#include "Items/Product.h"
 
 TSubclassOf<AActor> UConfig_Equipment::GetEquippedProduct(EItemType itemType) const {
 

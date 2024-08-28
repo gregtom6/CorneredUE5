@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "GameOverMenu.h"
+#include "Menus/GameOverMenu.h"
 #include "Components/Button.h"
 #include <Kismet/GameplayStatics.h>
 #include "Components/TextBlock.h"

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CharacterAnimInstance.h"
+#include "Characters/Systems/CharacterAnimInstance.h"
 #include "PlayerCharacterAnimInstance.generated.h"
 
 

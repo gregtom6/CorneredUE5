@@ -1,15 +1,15 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "MainMenu.h"
+#include "Menus/MainMenu.h"
 #include "Components/Button.h"
 #include <Kismet/GameplayStatics.h>
-#include "Config_Controls.h"
-#include "Config_Tutorial.h"
+#include "Configs/DataAssets/Config_Controls.h"
+#include "Configs/DataAssets/Config_Tutorial.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
-#include "LevelManager.h"
-#include "ConfigLevelsDevSettings.h"
+#include "System/LevelManager.h"
+#include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 
 void UMainMenu::NativeConstruct()
 {

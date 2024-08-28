@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredButton.h"
+#include "Environment/Interactables/CorneredButton.h"
 #include "Components/AudioComponent.h"
 
 

@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "MixingItemDetector.h"
+#include "Environment/MixingMachine/MixingItemDetector.h"
 #include "Components/ShapeComponent.h"
-#include "Ingredient.h"
+#include "Items/Ingredient.h"
 
 TArray<FItemData> AMixingItemDetector::GetDetectedItems() const {
 	TArray<AActor*> OverlappingActors;

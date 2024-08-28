@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameStateBase.h"
-#include "Config_MixingMachine.h"
+#include "Configs/DataAssets/Config_MixingMachine.h"
 #include "ProgressionGameState.generated.h"
 
 class UConfig_Progress;

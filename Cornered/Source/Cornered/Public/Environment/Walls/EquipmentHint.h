@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Config_Equipment.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "EquipmentHint.generated.h"
 
 class USceneComponent;

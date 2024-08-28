@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Interactable.h"
+#include "Items/Interactable.h"
 #include "CorneredButton.generated.h"
 
 class UAudioComponent;

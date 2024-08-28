@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ConfigEquipmentDevSettings.h"
+#include "Configs/DeveloperSettings/ConfigEquipmentDevSettings.h"
 
 FItemDatas UConfigEquipmentDevSettings::GetRandomWeapon() const {
     int index = FMath::RandRange(0, Weapons.Num() - 1);

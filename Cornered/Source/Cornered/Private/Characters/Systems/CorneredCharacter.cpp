@@ -1,15 +1,15 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredCharacter.h"
+#include "Characters/Systems/CorneredCharacter.h"
 #include "Camera/CameraComponent.h"
-#include "EquipmentVisualizer.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
 #include "Components/SceneComponent.h"
-#include "Inventory.h"
+#include "Characters/ActorComponents/Inventory.h"
 #include "PaperSpriteComponent.h"
-#include "CooldownIndicator.h"
-#include "CharacterHealth.h"
-#include "CharacterAnimInstance.h"
+#include "Characters/ActorComponents/CooldownIndicator.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
+#include "Characters/Systems/CharacterAnimInstance.h"
 
 // Sets default values
 ACorneredCharacter::ACorneredCharacter()

@@ -1,8 +1,8 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredGameInstance.h"
-#include "CorneredSaveGame.h"
+#include "System/CorneredGameInstance.h"
+#include "System/CorneredSaveGame.h"
 #include <Kismet/GameplayStatics.h>
 
 void UCorneredGameInstance::SaveGame(int32 unlockLevel)

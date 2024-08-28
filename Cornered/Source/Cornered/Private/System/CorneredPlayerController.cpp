@@ -1,13 +1,13 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredPlayerController.h"
+#include "System/CorneredPlayerController.h"
 #include "EnhancedInputComponent.h"
-#include "PlayerCharacter.h"
+#include "Characters/Systems/PlayerCharacter.h"
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
-#include "Config_Character_General.h"
+#include "Configs/DataAssets/Config_Character_General.h"
 
 void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	Super::OnPossess(aPawn);

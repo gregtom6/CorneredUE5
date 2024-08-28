@@ -1,21 +1,21 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CharacterSpawner.h"
+#include "Characters/Systems/CharacterSpawner.h"
 #include "Engine/World.h"
 #include "Engine/LevelStreaming.h"
-#include "Config_Character_General.h"
-#include "EnemyCharacter.h"
+#include "Configs/DataAssets/Config_Character_General.h"
+#include "Characters/Systems/EnemyCharacter.h"
 #include <Kismet/GameplayStatics.h>
 #include "Engine/TargetPoint.h"
-#include "Config_CharacterSpawner.h"
+#include "Configs/DataAssets/Config_CharacterSpawner.h"
 #include "Engine/World.h"
 #include "Engine/Engine.h"
 #include "Engine/TargetPoint.h"
 #include "Engine/LevelStreaming.h"
-#include "EnemyCharacter.h"
-#include "Config_Character_General.h"
-#include "CorneredGameMode.h"
+#include "Characters/Systems/EnemyCharacter.h"
+#include "Configs/DataAssets/Config_Character_General.h"
+#include "System/CorneredGameMode.h"
 #include "GameFramework/Character.h"
 #include "Engine/World.h"
 

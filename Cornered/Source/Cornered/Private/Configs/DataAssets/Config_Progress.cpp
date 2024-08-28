@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Progress.h"
-#include "CorneredGameInstance.h"
+#include "Configs/DataAssets/Config_Progress.h"
+#include "System/CorneredGameInstance.h"
 #include <Kismet/GameplayStatics.h>
-#include "ProgressionGameState.h"
+#include "System/ProgressionGameState.h"
 
 bool UConfig_Progress::IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance) {
     if (ability == EAbility::Default)

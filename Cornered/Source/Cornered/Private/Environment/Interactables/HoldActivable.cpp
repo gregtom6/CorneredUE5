@@ -1,4 +1,4 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "HoldActivable.h"
+#include "Environment/Interactables/HoldActivable.h"

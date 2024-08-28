@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ConveyorBeltSpeederButton.h"
+#include "Environment/Interactables/ConveyorBeltSpeederButton.h"
 #include "Components/StaticMeshComponent.h"
-#include "Config_Belt.h"
-#include "BeltController.h"
+#include "Configs/DataAssets/Config_Belt.h"
+#include "Environment/ConveyorBelt/BeltController.h"
 
 AConveyorBeltSpeederButton::AConveyorBeltSpeederButton() {
 

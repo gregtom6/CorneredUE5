@@ -1,8 +1,8 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "HoldableButton.h"
-#include "HoldActivable.h"
+#include "Environment/Interactables/HoldableButton.h"
+#include "Environment/Interactables/HoldActivable.h"
 
 // Sets default values
 AHoldableButton::AHoldableButton()

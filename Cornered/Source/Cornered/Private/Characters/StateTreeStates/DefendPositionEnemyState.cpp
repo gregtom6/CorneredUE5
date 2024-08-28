@@ -1,13 +1,13 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "DefendPositionEnemyState.h"
+#include "Characters/StateTreeStates/DefendPositionEnemyState.h"
 #include "StateTreeExecutionTypes.h"
 #include "StateTreeExecutionContext.h"
 #include "StateTreeInstanceData.h"
 #include "StateTreeTaskBase.h"
-#include "EnemyController.h"
-#include "EnemyCharacter.h"
+#include "Characters/Systems/EnemyController.h"
+#include "Characters/Systems/EnemyCharacter.h"
 
 EStateTreeRunStatus FDefendPositionEnemyState::EnterState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const
 {

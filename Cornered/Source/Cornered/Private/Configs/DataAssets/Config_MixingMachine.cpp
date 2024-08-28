@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_MixingMachine.h"
+#include "Configs/DataAssets/Config_MixingMachine.h"
 
 float UConfig_MixingMachine::GetProcessTime(EAbility ability) const {
 	for (int i = 0; i < AbilityProcessTimeEntries.Num(); i++) {

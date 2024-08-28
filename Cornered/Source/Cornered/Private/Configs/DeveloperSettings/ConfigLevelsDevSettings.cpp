@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ConfigLevelsDevSettings.h"
+#include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 
 TSoftObjectPtr<UWorld> UConfigLevelsDevSettings::GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const {
 	for (int i = 0; i < Levels.Num(); i++) {

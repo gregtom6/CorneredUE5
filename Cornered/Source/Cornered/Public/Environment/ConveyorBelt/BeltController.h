@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Config_Belt.h"
+#include "Configs/DataAssets/Config_Belt.h"
 #include "BeltController.generated.h"
 
 class UBoxComponent;

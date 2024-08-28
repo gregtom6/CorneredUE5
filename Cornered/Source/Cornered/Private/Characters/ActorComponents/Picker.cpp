@@ -1,11 +1,11 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Picker.h"
-#include "InteractableDetector.h"
+#include "Characters/ActorComponents/Picker.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
 #include <Kismet/GameplayStatics.h>
-#include <CorneredPlayerController.h>
-#include "IPickable.h"
+#include "System/CorneredPlayerController.h"
+#include "Items/IPickable.h"
 
 // Sets default values for this component's properties
 UPicker::UPicker()

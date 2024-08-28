@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Config_Recipe.h"
+#include "Configs/DataAssets/Config_Recipe.h"
 #include "RecipeShower.generated.h"
 
 class UMaterialInterface;

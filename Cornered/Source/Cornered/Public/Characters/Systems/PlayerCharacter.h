@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CorneredCharacter.h"
+#include "Characters/Systems/CorneredCharacter.h"
 #include "PlayerCharacter.generated.h"
 
 class UInteractableDetector;

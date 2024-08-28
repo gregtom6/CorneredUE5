@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "CorneredButton.h"
-#include "Config_MixingMachine.h"
+#include "Environment/Interactables/CorneredButton.h"
+#include "Configs/DataAssets/Config_MixingMachine.h"
 #include "MixingMachine.generated.h"
 
 class UActorSequenceComponent;

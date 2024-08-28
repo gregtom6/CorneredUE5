@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "AdditionalProduct.h"
-#include "EquipmentVisualizer.h"
-#include "Inventory.h"
+#include "Items/AdditionalProduct.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
+#include "Characters/ActorComponents/Inventory.h"
 
 void AAdditionalProduct::Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) {
 

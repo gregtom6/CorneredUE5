@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EquippedWeapon.h"
+#include "Items/EquippedWeapon.h"
 #include "Components/SceneComponent.h"
 #include "Components/PointLightComponent.h"
 #include "ActorSequenceComponent.h"

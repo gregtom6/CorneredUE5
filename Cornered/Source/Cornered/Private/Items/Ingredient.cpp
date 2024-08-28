@@ -1,11 +1,11 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Ingredient.h"
+#include "Items/Ingredient.h"
 #include "Components/StaticMeshComponent.h"
 #include <Camera/CameraComponent.h>
 #include "GameFramework/Actor.h"
-#include <Picker.h>
+#include "Characters/ActorComponents/Picker.h"
 
 // Sets default values
 AIngredient::AIngredient()

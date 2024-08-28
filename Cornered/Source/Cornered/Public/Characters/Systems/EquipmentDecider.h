@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
-#include "Config_Equipment.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "EquipmentDecider.generated.h"
 
 class UCharacterSpawner;

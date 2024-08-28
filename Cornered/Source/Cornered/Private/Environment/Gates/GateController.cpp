@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "GateController.h"
+#include "Environment/Gates/GateController.h"
 #include "Components/SceneComponent.h"
 #include "Components/BoxComponent.h"
 #include "ActorSequenceComponent.h"

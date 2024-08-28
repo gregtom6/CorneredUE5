@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CharacterHealth.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 #include "PlayerHealth.generated.h"
 
 /**

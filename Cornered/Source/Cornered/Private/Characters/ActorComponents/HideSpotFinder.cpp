@@ -1,16 +1,16 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "HideSpotFinder.h"
-#include "Config_AI.h"
+#include "Characters/ActorComponents/HideSpotFinder.h"
+#include "Configs/DataAssets/Config_AI.h"
 #include "NavigationSystem.h"
 #include "NavigationPath.h"
 #include "Algo/Sort.h"
-#include "CharacterSpawner.h"
-#include "EnemyCharacter.h"
+#include "Characters/Systems/CharacterSpawner.h"
+#include "Characters/Systems/EnemyCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "DrawDebugHelpers.h"
-#include "PlayerCharacter.h"
+#include "Characters/Systems/PlayerCharacter.h"
 
 UHideSpotFinder::UHideSpotFinder()
 {

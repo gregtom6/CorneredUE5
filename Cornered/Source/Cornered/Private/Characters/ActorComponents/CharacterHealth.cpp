@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CharacterHealth.h"
-#include "Config_Character_General.h"
-#include "CorneredGameMode.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
+#include "Configs/DataAssets/Config_Character_General.h"
+#include "System/CorneredGameMode.h"
 #include "GameFramework/Character.h"
 
 UCharacterHealth::UCharacterHealth()

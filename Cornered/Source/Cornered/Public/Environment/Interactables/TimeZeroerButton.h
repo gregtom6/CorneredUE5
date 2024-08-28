@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CorneredButton.h"
+#include "Environment/Interactables/CorneredButton.h"
 #include "TimeZeroerButton.generated.h"
 
 class UStaticMeshComponent;

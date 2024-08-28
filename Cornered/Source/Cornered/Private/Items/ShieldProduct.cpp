@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ShieldProduct.h"
-#include "EquipmentVisualizer.h"
-#include "Inventory.h"
+#include "Items/ShieldProduct.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
+#include "Characters/ActorComponents/Inventory.h"
 
 void AShieldProduct::Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) {
 

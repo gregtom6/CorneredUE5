@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ExitButtonMover.h"
+#include "Environment/ExitDoor/ExitButtonMover.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 

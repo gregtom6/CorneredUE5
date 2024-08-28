@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EnemyWeapon.h"
-#include "Inventory.h"
+#include "Characters/ActorComponents/EnemyWeapon.h"
+#include "Characters/ActorComponents/Inventory.h"
 #include <Kismet/GameplayStatics.h>
-#include <CorneredPlayerController.h>
+#include "System/CorneredPlayerController.h"
 #include "Perception/PawnSensingComponent.h"
 
 UEnemyWeapon::UEnemyWeapon()

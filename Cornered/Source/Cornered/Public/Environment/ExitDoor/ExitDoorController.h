@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "HoldActivable.h"
+#include "Environment/Interactables/HoldActivable.h"
 #include "ExitDoorController.generated.h"
 
 class UTextRenderComponent;

@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ExternalEquipper.h"
-#include "EquipmentVisualizer.h"
-#include "Inventory.h"
-#include "Equippable.h"
+#include "Characters/ActorComponents/ExternalEquipper.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
+#include "Characters/ActorComponents/Inventory.h"
+#include "Items/Equippable.h"
 
 // Sets default values for this component's properties
 UExternalEquipper::UExternalEquipper()

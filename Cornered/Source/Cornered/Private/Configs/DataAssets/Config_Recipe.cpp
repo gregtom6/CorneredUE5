@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Recipe.h"
-#include "Ingredient.h"
-#include "MixingItemDetector.h"
+#include "Configs/DataAssets/Config_Recipe.h"
+#include "Items/Ingredient.h"
+#include "Environment/MixingMachine/MixingItemDetector.h"
 #include "Materials/MaterialInterface.h"
-#include "Config_Progress.h"
-#include "CorneredGameInstance.h"
+#include "Configs/DataAssets/Config_Progress.h"
+#include "System/CorneredGameInstance.h"
 
 TSubclassOf<AIngredient> UConfig_Recipe::GetResultItem(TArray<FItemData> detectedItems) const {
 

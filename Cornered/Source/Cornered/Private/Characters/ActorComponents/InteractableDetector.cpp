@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "InteractableDetector.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
 
 // Sets default values for this component's properties
 UInteractableDetector::UInteractableDetector()

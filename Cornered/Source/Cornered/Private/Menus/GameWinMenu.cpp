@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "GameWinMenu.h"
+#include "Menus/GameWinMenu.h"
 #include "Components/Button.h"
 #include <Kismet/GameplayStatics.h>
 #include "Components/TextBlock.h"
-#include "LevelManager.h"
-#include "ConfigLevelsDevSettings.h"
+#include "System/LevelManager.h"
+#include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 
 void UGameWinMenu::NativeConstruct()
 {

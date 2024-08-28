@@ -1,4 +1,4 @@
-#include "ShootPositionEnemyCondition.h"
+#include "Characters/StateTreeConditions/ShootPositionEnemyCondition.h"
 
 bool FShootPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Context) const
 {

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "MainMenu.h"
+#include "Menus/MainMenu.h"
 #include "GameOverMenu.generated.h"
 
 class UButton;

@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EquipmentHint.h"
+#include "Environment/Walls/EquipmentHint.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "Config_Equipment.h"
-#include "Config_Hint.h"
-#include "EquipmentDecider.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+#include "Configs/DataAssets/Config_Hint.h"
+#include "Characters/Systems/EquipmentDecider.h"
 
 AEquipmentHint::AEquipmentHint()
 {

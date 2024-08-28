@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CorneredCharacter.h"
-#include "Config_Equipment.h"
+#include "Characters/Systems/CorneredCharacter.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "EnemyCharacter.generated.h"
 
 class UPawnSensingComponent;

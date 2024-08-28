@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "EquippedWeapon.h"
-#include "Config_Equipment.h"
+#include "Items/EquippedWeapon.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "EquipmentVisualizer.generated.h"
 
 class AProduct;

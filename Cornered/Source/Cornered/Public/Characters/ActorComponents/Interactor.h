@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "Holdable.h"
+#include "Environment/Interactables/Holdable.h"
 #include "Interactor.generated.h"
 
 class UInteractableDetector;

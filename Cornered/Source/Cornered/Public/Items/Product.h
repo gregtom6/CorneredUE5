@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Ingredient.h"
+#include "Items/Ingredient.h"
 #include "Product.generated.h"
 
 class UEquipmentVisualizer;

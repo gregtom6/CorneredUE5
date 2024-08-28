@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "GameWinTrigger.h"
-#include "LevelManager.h"
-#include "ConfigLevelsDevSettings.h"
+#include "Environment/ExitDoor/GameWinTrigger.h"
+#include "System/LevelManager.h"
+#include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 
 AGameWinTrigger::AGameWinTrigger()
 {

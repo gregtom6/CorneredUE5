@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "LevelManager.h"
+#include "System/LevelManager.h"
 #include <Kismet/GameplayStatics.h>
 
 void ULevelManager::LoadLevel(ELevelIdentifier LevelIdentifier, UWorld* World) {

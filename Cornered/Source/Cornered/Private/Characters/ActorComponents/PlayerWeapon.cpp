@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "PlayerWeapon.h"
-#include "Inventory.h"
+#include "Characters/ActorComponents/PlayerWeapon.h"
+#include "Characters/ActorComponents/Inventory.h"
 #include <Kismet/GameplayStatics.h>
-#include <CorneredPlayerController.h>
+#include "System/CorneredPlayerController.h"
 
 void UPlayerWeapon::BeginPlay() {
 

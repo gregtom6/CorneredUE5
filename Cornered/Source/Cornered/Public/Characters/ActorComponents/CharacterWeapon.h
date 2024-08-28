@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "ItemType.h"
-#include "EquippedWeapon.h"
-#include "Config_Equipment.h"
+#include "Items/ItemType.h"
+#include "Items/EquippedWeapon.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "CharacterWeapon.generated.h"
 
 UCLASS(Abstract, ClassGroup = (Custom))

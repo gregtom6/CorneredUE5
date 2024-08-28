@@ -1,9 +1,9 @@
-#include "DefendPositionEnemyCondition.h"
+#include "Characters/StateTreeConditions/DefendPositionEnemyCondition.h"
 #include "StateTreeExecutionTypes.h"
 #include "StateTreeExecutionContext.h"
 #include "StateTreeTaskBase.h"
 #include "StateTreeConditionBase.h"
-#include "Config_CharacterSpawner.h"
+#include "Configs/DataAssets/Config_CharacterSpawner.h"
 
 bool FDefendPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Context) const
 {

@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Inventory.h"
-#include "Product.h"
-#include "WeaponProduct.h"
-#include "AdditionalProduct.h"
-#include "ShieldProduct.h"
-#include "Config_Equipment.h"
+#include "Characters/ActorComponents/Inventory.h"
+#include "Items/Product.h"
+#include "Items/WeaponProduct.h"
+#include "Items/AdditionalProduct.h"
+#include "Items/ShieldProduct.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 
 // Sets default values for this component's properties
 UInventory::UInventory()

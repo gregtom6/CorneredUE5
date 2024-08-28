@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "GameOverHUD.h"
+#include "System/GameOverHUD.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/AudioComponent.h"
-#include "GameOverMenu.h"
+#include "Menus/GameOverMenu.h"
 #include <Blueprint/WidgetBlueprintLibrary.h>
 
 AGameOverHUD::AGameOverHUD() {

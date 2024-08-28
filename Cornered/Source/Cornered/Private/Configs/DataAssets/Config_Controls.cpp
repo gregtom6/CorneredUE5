@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Controls.h"
+#include "Configs/DataAssets/Config_Controls.h"
 
 int32 UConfig_Controls::GetControlsPageCount() const {
     return ControlsPageDatas.Num();

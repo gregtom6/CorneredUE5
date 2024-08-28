@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Config_Equipment.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "ExternalEquipper.generated.h"
 
 

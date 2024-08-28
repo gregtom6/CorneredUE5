@@ -1,19 +1,19 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "PlayerCharacter.h"
+#include "Characters/Systems/PlayerCharacter.h"
 #include <Kismet/GameplayStatics.h>
-#include "CorneredPlayerController.h"
-#include <PlayerCharacterAnimInstance.h>
-#include "InteractableDetector.h"
-#include "Picker.h"
-#include "Equipper.h"
-#include "PlayerWeapon.h"
+#include "System/CorneredPlayerController.h"
+#include "Characters/Systems/PlayerCharacterAnimInstance.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
+#include "Characters/ActorComponents/Picker.h"
+#include "Characters/ActorComponents/Equipper.h"
+#include "Characters/ActorComponents/PlayerWeapon.h"
 #include "Camera/CameraComponent.h"
-#include "Interactor.h"
+#include "Characters/ActorComponents/Interactor.h"
 #include "Components/AudioComponent.h"
-#include "PlayerHealth.h"
-#include "CharacterAnimInstance.h"
+#include "Characters/ActorComponents/PlayerHealth.h"
+#include "Characters/Systems/CharacterAnimInstance.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()

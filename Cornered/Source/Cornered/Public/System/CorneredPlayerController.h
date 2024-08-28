@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "MovableCharacter.h"
+#include "Characters/Systems/MovableCharacter.h"
 #include "CorneredPlayerController.generated.h"
 
 class UEnhancedInputComponent;

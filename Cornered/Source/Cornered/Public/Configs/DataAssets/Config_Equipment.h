@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "ItemType.h"
-#include "MixingItemDetector.h"
+#include "Items/ItemType.h"
+#include "Environment/MixingMachine/MixingItemDetector.h"
 #include "Config_Equipment.generated.h"
 
 class AProduct;

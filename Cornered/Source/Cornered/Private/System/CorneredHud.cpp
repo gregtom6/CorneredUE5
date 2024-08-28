@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredHud.h"
+#include "System/CorneredHud.h"
 #include "Blueprint/UserWidget.h"
-#include "CorneredGameMode.h"
+#include "System/CorneredGameMode.h"
 #include "Components/AudioComponent.h"
 #include "GameFramework/Character.h"
 

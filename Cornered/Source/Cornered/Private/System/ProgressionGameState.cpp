@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ProgressionGameState.h"
-#include "EnemyCharacter.h"
-#include "Config_Progress.h"
-#include "CorneredGameMode.h"
+#include "System/ProgressionGameState.h"
+#include "Characters/Systems/EnemyCharacter.h"
+#include "Configs/DataAssets/Config_Progress.h"
+#include "System/CorneredGameMode.h"
 #include "GameFramework/Character.h"
-#include "CorneredGameInstance.h"
+#include "System/CorneredGameInstance.h"
 
 void AProgressionGameState::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
 

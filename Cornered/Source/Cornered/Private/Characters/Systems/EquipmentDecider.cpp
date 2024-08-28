@@ -1,11 +1,11 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EquipmentDecider.h"
-#include "CharacterSpawner.h"
-#include "Config_Equipment.h"
-#include "EnemyCharacter.h"
-#include "ConfigEquipmentDevSettings.h"
+#include "Characters/Systems/EquipmentDecider.h"
+#include "Characters/Systems/CharacterSpawner.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+#include "Characters/Systems/EnemyCharacter.h"
+#include "Configs/DeveloperSettings/ConfigEquipmentDevSettings.h"
 
 
 void UEquipmentDecider::Initialize(FSubsystemCollectionBase& Collection)

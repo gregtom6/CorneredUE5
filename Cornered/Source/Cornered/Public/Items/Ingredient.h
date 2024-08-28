@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "IPickable.h"
-#include "Equippable.h"
-#include "CharacterWeapon.h"
-#include "MixingItemDetector.h"
+#include "Items/IPickable.h"
+#include "Items/Equippable.h"
+#include "Characters/ActorComponents/CharacterWeapon.h"
+#include "Environment/MixingMachine/MixingItemDetector.h"
 #include "Ingredient.generated.h"
 
 class UStaticMeshComponent;

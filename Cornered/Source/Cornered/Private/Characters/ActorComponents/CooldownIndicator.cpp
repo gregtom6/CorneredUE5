@@ -1,8 +1,8 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CooldownIndicator.h"
-#include "CharacterWeapon.h"
+#include "Characters/ActorComponents/CooldownIndicator.h"
+#include "Characters/ActorComponents/CharacterWeapon.h"
 #include "PaperSpriteComponent.h"
 
 UCooldownIndicator::UCooldownIndicator()

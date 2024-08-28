@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Hint.h"
+#include "Configs/DataAssets/Config_Hint.h"
 
 UMaterialInterface* UConfig_Hint::GetMaterialBasedOnItemType(EItemType itemType) const {
 	for (int i = 0; i < ItemHintMaterialDict.Num();i++) {

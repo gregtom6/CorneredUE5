@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Belt.h"
+#include "Configs/DataAssets/Config_Belt.h"
 
 float UConfig_Belt::GetCurrentMultiplier(EBeltSpeed beltSpeed) const {
 	return beltSpeed == EBeltSpeed::Normal ? NormalMultiplier : SpeedMultiplier;

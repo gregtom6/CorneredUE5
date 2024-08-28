@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Product.h"
+#include "Items/Product.h"
 #include "ShieldProduct.generated.h"
 
 class UEquipmentVisualizer;

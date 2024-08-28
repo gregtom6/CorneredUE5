@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Interactor.h"
-#include <CorneredPlayerController.h>
+#include "Characters/ActorComponents/Interactor.h"
+#include "System/CorneredPlayerController.h"
 #include <Kismet/GameplayStatics.h>
-#include "Interactable.h"
-#include "InteractableDetector.h"
-#include "Holdable.h"
+#include "Items/Interactable.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
+#include "Environment/Interactables/Holdable.h"
 
 // Sets default values for this component's properties
 UInteractor::UInteractor()

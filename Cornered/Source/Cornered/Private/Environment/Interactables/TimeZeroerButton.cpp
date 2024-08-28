@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "TimeZeroerButton.h"
+#include "Environment/Interactables/TimeZeroerButton.h"
 #include "Components/StaticMeshComponent.h"
-#include "CorneredGameMode.h"
+#include "System/CorneredGameMode.h"
 
 ATimeZeroerButton::ATimeZeroerButton() {
 

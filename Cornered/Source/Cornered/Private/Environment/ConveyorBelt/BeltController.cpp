@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "BeltController.h"
+#include "Environment/ConveyorBelt/BeltController.h"
 #include "Components/BoxComponent.h"
-#include "Config_Belt.h"
-#include "CorneredObjectPool.h"
-#include "BeltElement.h"
-#include "CorneredButton.h"
+#include "Configs/DataAssets/Config_Belt.h"
+#include "System/CorneredObjectPool.h"
+#include "Environment/ConveyorBelt/BeltElement.h"
+#include "Environment/Interactables/CorneredButton.h"
 
 ABeltController::ABeltController()
 {

@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
-#include "ItemType.h"
-#include "ItemState.h"
+#include "Items/ItemType.h"
+#include "Items/ItemState.h"
 #include "MixingItemDetector.generated.h"
 
 USTRUCT(BlueprintType)

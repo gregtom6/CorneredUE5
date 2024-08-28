@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "GameWinHUD.h"
+#include "System/GameWinHUD.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/AudioComponent.h"
-#include "GameWinMenu.h"
+#include "Menus/GameWinMenu.h"
 #include <Blueprint/WidgetBlueprintLibrary.h>
 
 AGameWinHUD::AGameWinHUD() {

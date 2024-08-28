@@ -1,8 +1,8 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredPooledObject.h"
-#include "CorneredObjectPool.h"
+#include "System/CorneredPooledObject.h"
+#include "System/CorneredObjectPool.h"
 
 UCorneredPooledObject::UCorneredPooledObject()
 {

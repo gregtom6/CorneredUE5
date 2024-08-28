@@ -1,24 +1,24 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EnemyCharacter.h"
+#include "Characters/Systems/EnemyCharacter.h"
 #include <Kismet/GameplayStatics.h>
-#include <PlayerCharacterAnimInstance.h>
-#include "EnemyWeapon.h"
+#include "Characters/Systems/PlayerCharacterAnimInstance.h"
+#include "Characters/ActorComponents/EnemyWeapon.h"
 #include "PaperSpriteComponent.h"
-#include "CooldownIndicator.h"
+#include "Characters/ActorComponents/CooldownIndicator.h"
 #include "Perception/PawnSensingComponent.h"
-#include "EnemyHealth.h"
-#include "EnemyController.h"
+#include "Characters/ActorComponents/EnemyHealth.h"
+#include "Characters/Systems/EnemyController.h"
 #include "GameFramework/GameModeBase.h"
 #include "GameFramework/PlayerController.h"
 #include "AIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Config_Equipment.h"
-#include "ExternalEquipper.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+#include "Characters/ActorComponents/ExternalEquipper.h"
 #include "Components/StateTreeComponent.h"
-#include "HideSpotFinder.h"
-#include "CharacterAnimInstance.h"
+#include "Characters/ActorComponents/HideSpotFinder.h"
+#include "Characters/Systems/CharacterAnimInstance.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {

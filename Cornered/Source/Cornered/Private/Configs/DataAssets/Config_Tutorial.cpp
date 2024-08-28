@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_Tutorial.h"
+#include "Configs/DataAssets/Config_Tutorial.h"
 
 int32 UConfig_Tutorial::GetTutorialPageCount() const {
 	return TutorialPageDatas.Num();

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "MovableCharacter.h"
+#include "Characters/Systems/MovableCharacter.h"
 #include "CorneredCharacter.generated.h"
 
 class UCharacterWeapon;

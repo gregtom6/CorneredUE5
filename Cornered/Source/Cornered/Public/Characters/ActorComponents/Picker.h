@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "IPickable.h"
+#include "Items/IPickable.h"
 #include "Picker.generated.h"
 
 class UInteractableDetector;

@@ -1,8 +1,8 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Config_IngredientGeneration.h"
-#include "Ingredient.h"
+#include "Configs/DataAssets/Config_IngredientGeneration.h"
+#include "Items/Ingredient.h"
 
 TSubclassOf<AIngredient> UConfig_IngredientGeneration::GetWeightedRandomItemClass() const {
     int SumOfWeights = 0;

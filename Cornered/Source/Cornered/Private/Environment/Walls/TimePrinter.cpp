@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "TimePrinter.h"
+#include "Environment/Walls/TimePrinter.h"
 #include "Components/TextRenderComponent.h"
-#include "CorneredGameMode.h"
+#include "System/CorneredGameMode.h"
 
 // Sets default values
 ATimePrinter::ATimePrinter()

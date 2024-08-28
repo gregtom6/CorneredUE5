@@ -1,18 +1,18 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "MixingMachine.h"
+#include "Environment/MixingMachine/MixingMachine.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Config_MixingMachine.h"
-#include "MixingItemDetector.h"
-#include "Ingredient.h"
-#include "Config_Recipe.h"
+#include "Configs/DataAssets/Config_MixingMachine.h"
+#include "Environment/MixingMachine/MixingItemDetector.h"
+#include "Items/Ingredient.h"
+#include "Configs/DataAssets/Config_Recipe.h"
 #include "Components/AudioComponent.h"
-#include "ProgressionGameState.h"
-#include "CorneredGameMode.h"
+#include "System/ProgressionGameState.h"
+#include "System/CorneredGameMode.h"
 
 // Sets default values
 AMixingMachine::AMixingMachine()

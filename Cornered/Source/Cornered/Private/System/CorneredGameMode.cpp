@@ -1,15 +1,15 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CorneredGameMode.h"
-#include <CorneredHud.h>
+#include "System/CorneredGameMode.h"
+#include "System/CorneredHud.h"
 #include <Kismet/GameplayStatics.h>
-#include "Config_Time.h"
-#include "CharacterSpawner.h"
+#include "Configs/DataAssets/Config_Time.h"
+#include "Characters/Systems/CharacterSpawner.h"
 #include "GameFramework/Character.h"
-#include "EnemyCharacter.h"
-#include "LevelManager.h"
-#include "ConfigLevelsDevSettings.h"
+#include "Characters/Systems/EnemyCharacter.h"
+#include "System/LevelManager.h"
+#include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 
 void ACorneredGameMode::StartPlay()
 {

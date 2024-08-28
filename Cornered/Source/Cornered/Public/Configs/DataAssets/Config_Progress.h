@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "Config_MixingMachine.h"
+#include "Configs/DataAssets/Config_MixingMachine.h"
 #include "Config_Progress.generated.h"
 
 USTRUCT(BlueprintType)

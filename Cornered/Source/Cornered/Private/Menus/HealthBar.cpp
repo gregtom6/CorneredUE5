@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "HealthBar.h"
+#include "Menus/HealthBar.h"
 #include "Components/ProgressBar.h"
-#include "PlayerCharacter.h"
-#include "CharacterHealth.h"
+#include "Characters/Systems/PlayerCharacter.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 
 void UHealthBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {

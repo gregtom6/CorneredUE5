@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "CharacterWeapon.h"
+#include "Characters/ActorComponents/CharacterWeapon.h"
 #include "Config_IngredientGeneration.generated.h"
 
 class AIngredient;

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
-#include "Config_Equipment.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 #include "ConfigEquipmentDevSettings.generated.h"
 
 /**

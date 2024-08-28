@@ -1,15 +1,15 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "EquipmentVisualizer.h"
-#include "Config_Equipment.h"
-#include "Product.h"
-#include "PlayerCharacter.h"
-#include "WeaponProduct.h"
-#include "ShieldProduct.h"
-#include "AdditionalProduct.h"
-#include <EquippedWeapon.h>
-#include "CharacterWeapon.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+#include "Items/Product.h"
+#include "Characters/Systems/PlayerCharacter.h"
+#include "Items/WeaponProduct.h"
+#include "Items/ShieldProduct.h"
+#include "Items/AdditionalProduct.h"
+#include "Items/EquippedWeapon.h"
+#include "Characters/ActorComponents/CharacterWeapon.h"
 
 UEquipmentVisualizer::UEquipmentVisualizer()
 {

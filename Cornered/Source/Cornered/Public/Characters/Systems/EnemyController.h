@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "AIController.h"
 #include "Navigation/PathFollowingComponent.h"
-#include "CorneredPlayerController.h"
-#include "MovableCharacter.h"
+#include "System/CorneredPlayerController.h"
+#include "Characters/Systems/MovableCharacter.h"
 #include "EnemyController.generated.h"
 
 class ACorneredGameMode;

@@ -1,12 +1,12 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "CharacterWeapon.h"
-#include "Config_Equipment.h"
-#include <EquipmentVisualizer.h>
+#include "Characters/ActorComponents/CharacterWeapon.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
 #include <Kismet/GameplayStatics.h>
-#include "EquippedWeapon.h"
-#include "Inventory.h"
+#include "Items/EquippedWeapon.h"
+#include "Characters/ActorComponents/Inventory.h"
 
 UCharacterWeapon::UCharacterWeapon()
 {

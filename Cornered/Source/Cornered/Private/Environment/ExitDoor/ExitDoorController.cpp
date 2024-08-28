@@ -1,14 +1,14 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "ExitDoorController.h"
+#include "Environment/ExitDoor/ExitDoorController.h"
 #include "Components/TextRenderComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
-#include "Config_ExitDoor.h"
-#include "HoldableButton.h"
-#include "ExitButtonMover.h"
+#include "Configs/DataAssets/Config_ExitDoor.h"
+#include "Environment/Interactables/HoldableButton.h"
+#include "Environment/ExitDoor/ExitButtonMover.h"
 
 AExitDoorController::AExitDoorController() {
 

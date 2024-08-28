@@ -1,10 +1,10 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "MainMenuHUD.h"
+#include "System/MainMenuHUD.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/AudioComponent.h"
-#include "MainMenu.h"
+#include "Menus/MainMenu.h"
 #include <Blueprint/WidgetBlueprintLibrary.h>
 
 AMainMenuHUD::AMainMenuHUD() {

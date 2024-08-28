@@ -21,6 +21,11 @@ class CORNERED_API AExitDoorController : public AHoldActivable
 {
 	GENERATED_BODY()
 
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		TObjectPtr<UActorSequenceComponent> OpenSequ;
+
 private:
 	UPROPERTY()
 		TObjectPtr<USceneComponent> Root;
@@ -37,8 +42,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<UConfig_ExitDoor> ExitDoorConfig;
 
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> OpenSequ;
 
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<AHoldableButton> HoldableButton;

@@ -53,21 +53,6 @@ AMixingMachine::AMixingMachine()
 void AMixingMachine::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	TArray<UActorSequenceComponent*> ActorSequenceComponents;
-	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
-
-	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
-	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("TopLidOpen"))
-		{
-			TopLidOpenComp = ActorSequenceComponents[i];
-		}
-		else if (ActorSequenceComponents[i]->GetFName() == FName("TopLidClose"))
-		{
-			TopLidCloseComp = ActorSequenceComponents[i];
-		}
-	}
 
 	State = EMixingMachineState::Waiting;
 
@@ -82,9 +67,8 @@ void AMixingMachine::BeginPlay()
 
 void AMixingMachine::ConvertPressHappened() {
 	
-	UActorSequencePlayer* player = TopLidCloseComp->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (TopLidCloseComp) {
+		TopLidCloseComp->PlaySequence();
 	}
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::ConvertTimeEnded, GetCurrentProcessTime(EAbility::Default), false);
@@ -98,9 +82,8 @@ void AMixingMachine::ConvertPressHappened() {
 void AMixingMachine::ConvertTimeEnded() {
 	State = EMixingMachineState::Waiting;
 
-	UActorSequencePlayer* player = TopLidOpenComp->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (TopLidOpenComp) {
+		TopLidOpenComp->PlaySequence();
 	}
 
 	TArray<FItemData> detectedItems = MixingItemDetector->GetDetectedItems();
@@ -124,9 +107,8 @@ void AMixingMachine::ConvertTimeEnded() {
 void AMixingMachine::BurnTimeEnded() {
 	State = EMixingMachineState::Waiting;
 
-	UActorSequencePlayer* player = TopLidOpenComp->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (TopLidOpenComp) {
+		TopLidOpenComp->PlaySequence();
 	}
 
 	if (BurningComp) {
@@ -141,9 +123,8 @@ void AMixingMachine::BurnTimeEnded() {
 void AMixingMachine::FreezeTimeEnded() {
 	State = EMixingMachineState::Waiting;
 
-	UActorSequencePlayer* player = TopLidOpenComp->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (TopLidOpenComp) {
+		TopLidOpenComp->PlaySequence();
 	}
 
 	if (FreezingComp) {
@@ -156,9 +137,8 @@ void AMixingMachine::FreezeTimeEnded() {
 }
 
 void AMixingMachine::BurnPressHappened() {
-	UActorSequencePlayer* player = TopLidCloseComp->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (TopLidCloseComp) {
+		TopLidCloseComp->PlaySequence();
 	}
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::BurnTimeEnded, GetCurrentProcessTime(EAbility::Burn), false);
@@ -173,9 +153,8 @@ void AMixingMachine::BurnPressHappened() {
 }
 
 void AMixingMachine::FreezePressHappened() {
-	UActorSequencePlayer* player = TopLidCloseComp->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (TopLidCloseComp) {
+		TopLidCloseComp->PlaySequence();
 	}
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::FreezeTimeEnded, GetCurrentProcessTime(EAbility::Freeze), false);

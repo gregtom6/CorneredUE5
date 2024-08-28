@@ -45,22 +45,9 @@ void AEquippedWeapon::BeginPlay()
 
 void AEquippedWeapon::ShotHappened() {
 
-	TArray<UActorSequenceComponent*> ActorSequenceComponents;
-	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
-
-	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
-	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("ShotSequence"))
-		{
-			ShotSequ = ActorSequenceComponents[i];
-			break;
-		}
-	}
-
-	UActorSequencePlayer* player = ShotSequ->GetSequencePlayer();
-	if (player) {
-		player->Stop();
-		player->Play();
+	if (ShotSequ) {
+		ShotSequ->StopSequence();
+		ShotSequ->PlaySequence();
 
 		FShotRayDatas ShotDatas = GetShotRayDatas();
 

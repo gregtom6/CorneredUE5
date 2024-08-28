@@ -29,6 +29,14 @@ class CORNERED_API AMixingMachine : public AActor
 {
 	GENERATED_BODY()
 	
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		TObjectPtr<UActorSequenceComponent> TopLidOpenComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		TObjectPtr<UActorSequenceComponent> TopLidCloseComp;
+
 private:
 	FTimerHandle TimerHandle;
 
@@ -49,11 +57,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredButton> FreezeButton;
 
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> TopLidOpenComp;
-
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> TopLidCloseComp;
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UNiagaraComponent> BurningComp;

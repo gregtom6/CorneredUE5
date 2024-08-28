@@ -16,26 +16,8 @@ AExitButtonMover::AExitButtonMover()
 	SetRootComponent(Root);
 }
 
-// Called when the game starts or when spawned
-void AExitButtonMover::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	TArray<UActorSequenceComponent*> ActorSequenceComponents;
-	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
-
-	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
-	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("OpenSequence"))
-		{
-			OpenSequ = ActorSequenceComponents[i];
-		}
-	}
-}
-
 void AExitButtonMover::StartMoving() {
-	UActorSequencePlayer* player = OpenSequ->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (OpenSequ) {
+		OpenSequ->PlaySequence();
 	}
 }

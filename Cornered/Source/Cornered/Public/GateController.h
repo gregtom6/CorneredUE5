@@ -16,6 +16,12 @@ class CORNERED_API AGateController : public AActor
 {
 	GENERATED_BODY()
 
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		TObjectPtr<UActorSequenceComponent> OpenSequ;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		TObjectPtr<UActorSequenceComponent> CloseSequ;
 
 private:
 
@@ -38,10 +44,6 @@ private:
 		TObjectPtr<UBoxComponent> ExitDetectorComp;
 
 
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> OpenSequ;
-	UPROPERTY()
-		TObjectPtr<UActorSequenceComponent> CloseSequ;
 
 
 public:

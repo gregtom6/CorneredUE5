@@ -32,17 +32,6 @@ void AExitDoorController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	TArray<UActorSequenceComponent*> ActorSequenceComponents;
-	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
-
-	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
-	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("OpenSequence"))
-		{
-			OpenSequ = ActorSequenceComponents[i];
-		}
-	}
-
 	PrintPercentageText();
 
 	HoldableButton->AttachToActor(ExitButtonParent, FAttachmentTransformRules::KeepWorldTransform);
@@ -63,9 +52,8 @@ void AExitDoorController::Tick(float DeltaTime)
 	PrintPercentageText();
 
 	if (OpeningPercentage>= ExitDoorConfig->MaxPercentage && !bDoorOpened) {
-		UActorSequencePlayer* player = OpenSequ->GetSequencePlayer();
-		if (player) {
-			player->Play();
+		if (OpenSequ) {
+			OpenSequ->PlaySequence();
 
 			ExitButtonParent->StartMoving();
 

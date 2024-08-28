@@ -17,9 +17,9 @@ class CORNERED_API ARedLightController : public AActor
 public:	
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		UActorSequenceComponent* SequenceComp = nullptr;
+		TObjectPtr<UActorSequenceComponent> SequenceComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		UActorSequenceComponent* DisabledSequComp = nullptr;
+		TObjectPtr<UActorSequenceComponent> DisabledSequComp;
 
 private:
 

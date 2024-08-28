@@ -44,7 +44,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<UPointLightComponent> PointLightComp;
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		TObjectPtr<UActorSequenceComponent> ShotSequ;
 
 private:

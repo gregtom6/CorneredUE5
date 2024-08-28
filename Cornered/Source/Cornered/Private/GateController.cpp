@@ -46,30 +46,14 @@ void AGateController::BeginPlay()
 	EnterDetectorComp->OnComponentBeginOverlap.AddDynamic(this, &AGateController::OnEnterDetectorBeginOverlap);
 
 	ExitDetectorComp->OnComponentBeginOverlap.AddDynamic(this, &AGateController::OnExitDetectorBeginOverlap);
-
-	TArray<UActorSequenceComponent*> ActorSequenceComponents;
-	GetComponents<UActorSequenceComponent>(ActorSequenceComponents);
-
-	for (int i = 0; i < ActorSequenceComponents.Num(); i++)
-	{
-		if (ActorSequenceComponents[i]->GetFName() == FName("OpenSequence"))
-		{
-			OpenSequ = ActorSequenceComponents[i];
-		}
-		else if (ActorSequenceComponents[i]->GetFName() == FName("CloseSequence"))
-		{
-			CloseSequ = ActorSequenceComponents[i];
-		}
-	}
 }
 
 void AGateController::OnEnterDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
 	bool bFromSweep, const FHitResult& SweepResult) {
 
-	UActorSequencePlayer* player = OpenSequ->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (OpenSequ) {
+		OpenSequ->PlaySequence();
 	}
 }
 
@@ -77,8 +61,7 @@ void AGateController::OnExitDetectorBeginOverlap(UPrimitiveComponent* Overlapped
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
 	bool bFromSweep, const FHitResult& SweepResult) {
 
-	UActorSequencePlayer* player = CloseSequ->GetSequencePlayer();
-	if (player) {
-		player->Play();
+	if (CloseSequ) {
+		CloseSequ->PlaySequence();
 	}
 }

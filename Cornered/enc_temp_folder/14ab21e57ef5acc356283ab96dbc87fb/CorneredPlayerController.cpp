@@ -16,8 +16,6 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 
 	EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
 
-	SetInputMode(FInputModeGameOnly());
-
 	//TODO: checkf for these two
 
 	if (ActionMovement) {

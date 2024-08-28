@@ -5,7 +5,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameWinMenu.h"
-#include <Blueprint/WidgetBlueprintLibrary.h>
 
 AGameWinHUD::AGameWinHUD() {
     GameWinBGMComp = CreateDefaultSubobject<UAudioComponent>(TEXT("GameWinBGMComp"));
@@ -22,9 +21,6 @@ void AGameWinHUD::BeginPlay()
         if (UserWidgetInstance)
         {
             UserWidgetInstance->AddToViewport();
-
-            UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(GetOwningPlayerController(), UserWidgetInstance);
-
             UGameWinMenu* mainMenu = Cast<UGameWinMenu>(UserWidgetInstance);
 
             if (mainMenu) {

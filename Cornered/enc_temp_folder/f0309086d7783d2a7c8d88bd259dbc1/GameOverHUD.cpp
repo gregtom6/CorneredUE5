@@ -5,7 +5,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/AudioComponent.h"
 #include "GameOverMenu.h"
-#include <Blueprint/WidgetBlueprintLibrary.h>
 
 AGameOverHUD::AGameOverHUD() {
     GameOverBGMComp = CreateDefaultSubobject<UAudioComponent>(TEXT("GameOverBGMComp"));
@@ -22,9 +21,6 @@ void AGameOverHUD::BeginPlay()
         if (UserWidgetInstance)
         {
             UserWidgetInstance->AddToViewport();
-
-            UWidgetBlueprintLibrary::SetInputMode_GameAndUIEx(GetOwningPlayerController(), UserWidgetInstance);
-
             UGameOverMenu* mainMenu = Cast<UGameOverMenu>(UserWidgetInstance);
 
             if (mainMenu) {

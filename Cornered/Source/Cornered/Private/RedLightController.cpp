@@ -3,14 +3,13 @@
 #include "RedLightController.h"
 #include "CorneredGameMode.h"
 #include "GameFramework/Character.h"
-#include "LevelSequence.h"
-#include "LevelSequenceActor.h"
-#include "LevelSequencePlayer.h"
+#include "ActorSequenceComponent.h"
+#include "ActorSequencePlayer.h"
 
 // Sets default values
 ARedLightController::ARedLightController()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 }
 
@@ -24,30 +23,13 @@ void ARedLightController::BeginPlay()
 	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ARedLightController::OnTimerOverHappened);
 
 	CorneredGameMode->CharacterDefeated.AddDynamic(this, &ARedLightController::OnCharacterDefeated);
-	
 
-	if (!BlinkingSequenceAsset.IsValid())
-	{
-		BlinkingSequenceAsset.LoadSynchronous();
+	if (SequenceComp) {
+		SequenceComp->StopSequence();
 	}
 
-	ULevelSequence* LevelSequence = BlinkingSequenceAsset.Get();
-
-	if (LevelSequence)
-	{
-		FMovieSceneSequencePlaybackSettings PlaybackSettings;
-
-		LevelSequencePlayer = ULevelSequencePlayer::CreateLevelSequencePlayer(
-			GetWorld(),
-			LevelSequence,
-			PlaybackSettings,
-			LevelSequenceActor
-		);
-
-		if (LevelSequencePlayer)
-		{
-			LevelSequencePlayer->Stop();
-		}
+	if (DisabledSequComp) {
+		DisabledSequComp->PlaySequence();
 	}
 }
 
@@ -55,16 +37,25 @@ void ARedLightController::OnTimerOverHappened()
 {
 	UE_LOG(LogTemp, Warning, TEXT("TimerFunction has been called!"));
 
-	if (LevelSequencePlayer)
-	{
-		LevelSequencePlayer->PlayLooping();
+	if (DisabledSequComp) {
+		DisabledSequComp->StopSequence();
+	}
+
+	if (SequenceComp) {
+		UActorSequencePlayer* riot = SequenceComp->GetSequencePlayer();
+		if (riot) {
+			riot->PlayLooping();
+		}
 	}
 }
 
 void ARedLightController::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
 
-	if (LevelSequencePlayer)
-	{
-		LevelSequencePlayer->Stop();
+	if (SequenceComp) {
+		SequenceComp->StopSequence();
+	}
+
+	if (DisabledSequComp) {
+		DisabledSequComp->PlaySequence();
 	}
 }

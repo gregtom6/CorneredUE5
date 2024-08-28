@@ -7,9 +7,7 @@
 #include "RedLightController.generated.h"
 
 class ACharacter;
-class ULevelSequence;
-class ULevelSequencePlayer;
-class ALevelSequenceActor;
+class UActorSequenceComponent;
 
 UCLASS()
 class CORNERED_API ARedLightController : public AActor
@@ -18,16 +16,12 @@ class CORNERED_API ARedLightController : public AActor
 	
 public:	
 
-	UPROPERTY(EditAnywhere)
-		TSoftObjectPtr<ULevelSequence> BlinkingSequenceAsset;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		UActorSequenceComponent* SequenceComp = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		UActorSequenceComponent* DisabledSequComp = nullptr;
 
 private:
-	UPROPERTY()
-		ULevelSequencePlayer* LevelSequencePlayer;
-
-	UPROPERTY()
-		ALevelSequenceActor* LevelSequenceActor;
 
 	FTimerHandle TimerHandle;
 

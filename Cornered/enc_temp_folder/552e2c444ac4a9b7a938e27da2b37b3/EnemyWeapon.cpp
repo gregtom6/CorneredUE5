@@ -14,6 +14,8 @@ UEnemyWeapon::UEnemyWeapon()
 
 void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 
+	return;
+
 	if (bIsReadyToShoot)
 	{
 		UPawnSensingComponent* pawnSensing = GetOwner()->FindComponentByClass<UPawnSensingComponent>();

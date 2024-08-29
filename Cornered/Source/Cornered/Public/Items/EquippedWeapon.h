@@ -36,7 +36,7 @@ class CORNERED_API AEquippedWeapon : public AActor
 	GENERATED_BODY()
 
 public:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere)
 		TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)

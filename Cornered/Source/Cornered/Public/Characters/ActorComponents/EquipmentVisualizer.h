@@ -47,4 +47,7 @@ private:
 
 	FName GetNameOfSocket(AProduct* Product) const;
 
+	FName GetNameOfSocketBasedOnItemType(EItemType ItemType) const;
+
+	void ActualVisualization(EItemType ItemType, FName SocketName);
 };

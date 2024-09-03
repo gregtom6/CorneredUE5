@@ -84,5 +84,11 @@ protected:
 
 private:
 
+	UCorneredPooledObject* SpawnAndSetupPooledObject(FActorSpawnParameters spawnParams, AActor*& SpawnedActor, int poolIndex);
+
+	void SetupActorSpawnParameters(FActorSpawnParameters& spawnParams, int poolIndex);
+
+	void SetActorVisibility(AActor* Actor, bool ShouldActivate, AActor* Parent);
+
 	void RegenItem(int poolIndex, int positionIndex);
 };

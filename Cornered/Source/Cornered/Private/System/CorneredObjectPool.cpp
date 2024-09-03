@@ -54,10 +54,8 @@ AActor* ACorneredObjectPool::GetPooledActor(FString name)
 		UCorneredPooledObject* toReturn = _Pools[currentPool]._PooledObjects[firstAvailable];
 		OnPoolerCleanup.AddUniqueDynamic(toReturn, &UCorneredPooledObject::RecycleSelf);
 		AActor* toReturnActor = toReturn->GetOwner();
-		toReturnActor->AttachToActor(nullptr, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-		toReturnActor->SetActorHiddenInGame(false);
-		toReturnActor->SetActorEnableCollision(true);
-		toReturnActor->SetActorTickEnabled(true);
+
+		SetActorVisibility(toReturnActor, true, nullptr);
 		toReturn->_IsActive = true;
 		return toReturnActor;
 	}
@@ -66,15 +64,10 @@ AActor* ACorneredObjectPool::GetPooledActor(FString name)
 
 
 	FActorSpawnParameters spawnParams;
-	spawnParams.Name = FName(FString::Printf(TEXT("%s"), *_PooledObjectData[currentPool]._ActorName));
-	spawnParams.NameMode = FActorSpawnParameters::ESpawnActorNameMode::Requested;
-	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	AActor* spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[currentPool]._ActorTemplate,
-		&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
-	UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);
-	poolComp->RegisterComponent();
-	spawnedActor->AddInstanceComponent(poolComp);
-	poolComp->Init(this);
+	AActor* spawnedActor = nullptr;
+	SetupActorSpawnParameters(spawnParams, currentPool);
+	UCorneredPooledObject* poolComp = SpawnAndSetupPooledObject(spawnParams, spawnedActor, currentPool);
+
 	_Pools[currentPool]._PooledObjects.Add(poolComp);
 	spawnedActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	OnPoolerCleanup.AddUniqueDynamic(poolComp, &UCorneredPooledObject::RecycleSelf);
@@ -87,10 +80,8 @@ void ACorneredObjectPool::RecyclePooledObject(UCorneredPooledObject* poolCompRef
 	OnPoolerCleanup.RemoveDynamic(poolCompRef, &UCorneredPooledObject::RecycleSelf);
 	poolCompRef->_IsActive = false;
 	AActor* returningActor = poolCompRef->GetOwner();
-	returningActor->SetActorHiddenInGame(true);
-	returningActor->SetActorEnableCollision(false);
-	returningActor->SetActorTickEnabled(false);
-	returningActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+
+	SetActorVisibility(returningActor, false, this);
 }
 
 void ACorneredObjectPool::RecycleActor(AActor* pooledActor)
@@ -110,23 +101,15 @@ void ACorneredObjectPool::BeginPlay()
 	for (int poolIndex = 0; poolIndex < _PooledObjectData.Num(); poolIndex++)
 	{
 		FSingleObjectPool currentPool;
-		spawnParams.Name = FName(FString::Printf(TEXT("%s"), *_PooledObjectData[poolIndex]._ActorName));
-		spawnParams.NameMode = FActorSpawnParameters::ESpawnActorNameMode::Requested;
-		spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		SetupActorSpawnParameters(spawnParams, poolIndex);
+		
 		for (int objectIndex = 0; objectIndex < _PooledObjectData[poolIndex]._PoolSize; objectIndex++)
 		{
+			AActor* spawnedActor = nullptr;
+			UCorneredPooledObject* poolComp = SpawnAndSetupPooledObject(spawnParams,spawnedActor, poolIndex);
+			SetActorVisibility(spawnedActor, false, this);
 
-			AActor* spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,
-				&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
-			UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);
-			poolComp->RegisterComponent();
-			spawnedActor->AddInstanceComponent(poolComp);
-			poolComp->Init(this);
 			currentPool._PooledObjects.Add(poolComp);
-			spawnedActor->SetActorHiddenInGame(true);
-			spawnedActor->SetActorEnableCollision(false);
-			spawnedActor->SetActorTickEnabled(false);
-			spawnedActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 		}
 		_Pools.Add(currentPool);
 	}
@@ -135,21 +118,36 @@ void ACorneredObjectPool::BeginPlay()
 	InitializationHappened.Broadcast();
 }
 
-void ACorneredObjectPool::RegenItem(int poolIndex, int positionIndex)
-{
-	FActorSpawnParameters spawnParams;
+void ACorneredObjectPool::SetupActorSpawnParameters(FActorSpawnParameters& spawnParams, int poolIndex) {
 	spawnParams.Name = FName(FString::Printf(TEXT("%s"), *_PooledObjectData[poolIndex]._ActorName));
 	spawnParams.NameMode = FActorSpawnParameters::ESpawnActorNameMode::Requested;
 	spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	AActor* spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,
+}
+
+void ACorneredObjectPool::RegenItem(int poolIndex, int positionIndex)
+{
+	FActorSpawnParameters spawnParams;
+	SetupActorSpawnParameters(spawnParams, poolIndex);
+	AActor* spawnedActor = nullptr;
+	UCorneredPooledObject* poolComp=SpawnAndSetupPooledObject(spawnParams, spawnedActor, poolIndex);
+	SetActorVisibility(spawnedActor, false, this);
+	_Pools[poolIndex]._PooledObjects.Insert(poolComp, positionIndex);
+}
+
+UCorneredPooledObject* ACorneredObjectPool::SpawnAndSetupPooledObject(FActorSpawnParameters spawnParams, AActor*& spawnedActor,int poolIndex) {
+	spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,
 		&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
 	UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);
 	poolComp->RegisterComponent();
 	spawnedActor->AddInstanceComponent(poolComp);
 	poolComp->Init(this);
-	_Pools[poolIndex]._PooledObjects.Insert(poolComp, positionIndex);
-	spawnedActor->SetActorHiddenInGame(true);
-	spawnedActor->SetActorEnableCollision(false);
-	spawnedActor->SetActorTickEnabled(false);
-	spawnedActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+
+	return poolComp;
+}
+
+void ACorneredObjectPool::SetActorVisibility(AActor* Actor, bool ShouldActivate, AActor* parent) {
+	Actor->SetActorHiddenInGame(!ShouldActivate);
+	Actor->SetActorEnableCollision(ShouldActivate);
+	Actor->SetActorTickEnabled(ShouldActivate);
+	Actor->AttachToActor(parent, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 }

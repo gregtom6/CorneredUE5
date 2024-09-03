@@ -33,8 +33,8 @@ void AGateController::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	EnterDetectorComp->OnComponentBeginOverlap.AddDynamic(this, &AGateController::OnEnterDetectorBeginOverlap);
-	ExitDetectorComp->OnComponentBeginOverlap.AddDynamic(this, &AGateController::OnExitDetectorBeginOverlap);
+	EnterDetectorComp->OnComponentBeginOverlap.AddUniqueDynamic(this, &AGateController::OnEnterDetectorBeginOverlap);
+	ExitDetectorComp->OnComponentBeginOverlap.AddUniqueDynamic(this, &AGateController::OnExitDetectorBeginOverlap);
 }
 
 void AGateController::OnEnterDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,

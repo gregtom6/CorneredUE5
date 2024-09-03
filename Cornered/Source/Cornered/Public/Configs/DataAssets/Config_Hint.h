@@ -36,6 +36,5 @@ private:
 
 public:
 
-	UFUNCTION()
 		UMaterialInterface* GetMaterialBasedOnItemType(EItemType itemType) const;
 };

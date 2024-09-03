@@ -8,7 +8,7 @@
 AGameWinTrigger::AGameWinTrigger()
 {
     // Bind the overlap event to the function
-    OnActorBeginOverlap.AddDynamic(this, &AGameWinTrigger::OnOverlapBegin);
+    OnActorBeginOverlap.AddUniqueDynamic(this, &AGameWinTrigger::OnOverlapBegin);
 }
 
 void AGameWinTrigger::OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor)

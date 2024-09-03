@@ -44,6 +44,5 @@ public:
 
 public:
 
-	UFUNCTION()
 		TSoftObjectPtr<UWorld> GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const;
 };

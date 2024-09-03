@@ -31,13 +31,10 @@ private:
 
 public:
 
-	UFUNCTION()
 		FItemDatas GetRandomWeapon() const;
 
-	UFUNCTION()
 		FItemDatas GetRandomShield() const;
 
-	UFUNCTION()
 		FItemDatas GetRandomAdditional() const;
 
 };

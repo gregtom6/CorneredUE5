@@ -26,7 +26,7 @@ void AProgressionGameState::BeginPlay()
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
-	CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &AProgressionGameState::OnCharacterDefeated);
+	CorneredGameMode->CharacterDefeated.AddDynamic(this, &AProgressionGameState::OnCharacterDefeated);
 }
 
 void AProgressionGameState::ResetProgress() {

@@ -87,9 +87,6 @@ struct FMaterialArray
 		TArray<TObjectPtr<UMaterialInterface>> Materials;
 };
 
-/**
- *
- */
 UCLASS()
 class CORNERED_API UConfig_Recipe : public UDataAsset
 {

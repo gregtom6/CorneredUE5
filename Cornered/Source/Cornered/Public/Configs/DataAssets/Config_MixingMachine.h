@@ -44,7 +44,6 @@ private:
 
 public:
 
-	UFUNCTION()
 		float GetProcessTime(EAbility ability) const;
 
 };

@@ -12,12 +12,12 @@ void UGameOverMenu::NativeConstruct()
 
 	if (Restart)
 	{
-		Restart->OnClicked.AddDynamic(this, &UGameOverMenu::RestartOnClick);
+		Restart->OnClicked.AddUniqueDynamic(this, &UGameOverMenu::RestartOnClick);
 	}
 
 	if (Quit)
 	{
-		Quit->OnClicked.AddDynamic(this, &UGameOverMenu::QuitOnClick);
+		Quit->OnClicked.AddUniqueDynamic(this, &UGameOverMenu::QuitOnClick);
 	}
 }
 

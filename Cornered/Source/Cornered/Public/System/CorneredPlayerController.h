@@ -118,4 +118,10 @@ protected:
 		void HandleEquip();
 	UFUNCTION()
 		void HandleShoot();
+
+private:
+
+	void HandleVerticalLook(float Multiplier);
+
+	void MovingCameraPitch(UCameraComponent* CameraComponent, FRotator Rotator, float Delta);
 };

@@ -54,7 +54,6 @@ void AExitDoorController::Tick(float DeltaTime)
 			bDoorOpened = true;
 		}
 	}
-
 }
 
 void AExitDoorController::HoldProcessStarted() {

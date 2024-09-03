@@ -28,7 +28,7 @@ void AEquipmentHint::BeginPlay()
 	UEquipmentDecider* MySubsystem = GetWorld()->GetSubsystem<UEquipmentDecider>();
 	if (MySubsystem)
 	{
-		MySubsystem->OnEquipmentDecided.AddDynamic(this, &AEquipmentHint::OnEquipmentDecided);
+		MySubsystem->OnEquipmentDecided.AddUniqueDynamic(this, &AEquipmentHint::OnEquipmentDecided);
 	}
 }
 

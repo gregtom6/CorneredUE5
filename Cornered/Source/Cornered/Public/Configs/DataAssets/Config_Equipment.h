@@ -120,24 +120,17 @@ private:
 
 public:
 
-	UFUNCTION()
 		TSubclassOf<AActor> GetEquippedProduct(EItemType itemType) const;
 
-	UFUNCTION()
 		FWeaponSettingsEntry GetWeaponSettings(EItemType itemType) const;
 
-	UFUNCTION()
 		FShieldSettingsEntry GetShieldSettings(EItemType itemType) const;
 
-	UFUNCTION()
 		FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
 
-	UFUNCTION()
 		FItemDatas GetRandomWeapon() const;
 
-	UFUNCTION()
 		FItemDatas GetRandomShield() const;
 
-	UFUNCTION()
 		FItemDatas GetRandomAdditional() const;
 };

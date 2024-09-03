@@ -14,12 +14,12 @@ void UGameWinMenu::NativeConstruct()
 
 	if (Restart)
 	{
-		Restart->OnClicked.AddDynamic(this, &UGameWinMenu::RestartOnClick);
+		Restart->OnClicked.AddUniqueDynamic(this, &UGameWinMenu::RestartOnClick);
 	}
 
 	if (Quit)
 	{
-		Quit->OnClicked.AddDynamic(this, &UGameWinMenu::QuitOnClick);
+		Quit->OnClicked.AddUniqueDynamic(this, &UGameWinMenu::QuitOnClick);
 	}
 }
 

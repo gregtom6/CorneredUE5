@@ -39,10 +39,8 @@ public:
 
 public:
 
-	UFUNCTION()
 		FControlsPageDatas GetControlsPageDatas(int32 index) const;
 
-	UFUNCTION()
 		int32 GetControlsPageCount() const;
 
 };

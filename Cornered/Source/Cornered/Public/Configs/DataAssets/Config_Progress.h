@@ -34,17 +34,13 @@ private:
 
 public:
 
-	UFUNCTION()
-		bool IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance);
+	bool IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance);
 
-	UFUNCTION()
-		int GetMaxUnlockLevel() const;
+	int GetMaxUnlockLevel() const;
 
-	UFUNCTION()
-		bool IsAbilityUnlocked(EAbility Ability, AProgressionGameState* GameState);
+	bool IsAbilityUnlocked(EAbility Ability, AProgressionGameState* GameState);
 
 private:
 
-	UFUNCTION()
-		TArray<EAbility> GetAlreadyUnlockedAbilities(int currentUnlockLevel) const;
+	TArray<EAbility> GetAlreadyUnlockedAbilities(int currentUnlockLevel) const;
 };

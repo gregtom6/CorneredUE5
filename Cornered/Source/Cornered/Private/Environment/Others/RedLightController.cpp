@@ -21,7 +21,7 @@ void ARedLightController::BeginPlay()
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
 	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ARedLightController::OnTimerOverHappened);
-	CorneredGameMode->CharacterDefeated.AddDynamic(this, &ARedLightController::OnCharacterDefeated);
+	CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &ARedLightController::OnCharacterDefeated);
 
 	if (SequenceComp) {
 		SequenceComp->StopSequence();
@@ -34,8 +34,6 @@ void ARedLightController::BeginPlay()
 
 void ARedLightController::OnTimerOverHappened()
 {
-	UE_LOG(LogTemp, Warning, TEXT("TimerFunction has been called!"));
-
 	if (DisabledSequComp) {
 		DisabledSequComp->StopSequence();
 	}

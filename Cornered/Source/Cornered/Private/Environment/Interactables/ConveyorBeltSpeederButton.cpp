@@ -17,14 +17,17 @@ AConveyorBeltSpeederButton::AConveyorBeltSpeederButton() {
 
 void AConveyorBeltSpeederButton::BeginPlay() {
 
-	UMaterialInterface* materialInstance= BeltConfig->GetMaterialBasedOnSpeed(BeltController->GetCurrentBeltSpeed());
-	BeltButtonStaticMeshComp->SetMaterial(0, materialInstance);
+	SetMaterialBasedOnSpeed();
 }
 
 void AConveyorBeltSpeederButton::Interact() {
 	
 	ACorneredButton::Interact();
 
+	SetMaterialBasedOnSpeed();
+}
+
+void AConveyorBeltSpeederButton::SetMaterialBasedOnSpeed() {
 	UMaterialInterface* materialInstance = BeltConfig->GetMaterialBasedOnSpeed(BeltController->GetCurrentBeltSpeed());
 	BeltButtonStaticMeshComp->SetMaterial(0, materialInstance);
 }

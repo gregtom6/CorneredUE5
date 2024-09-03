@@ -107,36 +107,33 @@ void ACorneredPlayerController::HandleLook(const FInputActionValue& InputActionV
 	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
 	if (CameraComponent) {
 		FRotator CameraRotation = CameraComponent->GetComponentRotation();
-		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch + LookAxisVector.Y && CameraRotation.Pitch + LookAxisVector.Y < ConfigCharacter->HeadMaxRotY) {
-			CameraRotation.Pitch += LookAxisVector.Y;
-
-			CameraComponent->SetWorldRotation(CameraRotation);
-		}
+		MovingCameraPitch(CameraComponent, CameraRotation, LookAxisVector.Y);
 	}
 }
 
 void ACorneredPlayerController::HandleLookUp() {
-	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
-	if (CameraComponent) {
-		FRotator CameraRotation = CameraComponent->GetComponentRotation();
-		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch + ConfigCharacter->LookVerticalSensitivity && CameraRotation.Pitch + ConfigCharacter->LookVerticalSensitivity < ConfigCharacter->HeadMaxRotY) {
-			CameraRotation.Pitch += ConfigCharacter->LookVerticalSensitivity;
 
-			CameraComponent->SetWorldRotation(CameraRotation);
-		}
-	}
+	HandleVerticalLook(1.f);
 }
 
 void ACorneredPlayerController::HandleLookDown() {
 
+	HandleVerticalLook(-1.0f);
+}
+
+void ACorneredPlayerController::HandleVerticalLook(float Multiplier) {
 	UCameraComponent* CameraComponent = PlayerCharacter->FindComponentByClass<UCameraComponent>();
 	if (CameraComponent) {
 		FRotator CameraRotation = CameraComponent->GetComponentRotation();
-		if (ConfigCharacter->HeadMinRotY < CameraRotation.Pitch - ConfigCharacter->LookVerticalSensitivity && CameraRotation.Pitch - ConfigCharacter->LookVerticalSensitivity < ConfigCharacter->HeadMaxRotY) {
-			CameraRotation.Pitch += -ConfigCharacter->LookVerticalSensitivity;
+		MovingCameraPitch(CameraComponent, CameraRotation, Multiplier * ConfigCharacter->LookVerticalSensitivity);
+	}
+}
 
-			CameraComponent->SetWorldRotation(CameraRotation);
-		}
+void ACorneredPlayerController::MovingCameraPitch(UCameraComponent* CameraComponent,FRotator Rotator, float Delta) {
+	if (ConfigCharacter->HeadMinRotY < Rotator.Pitch + Delta && Rotator.Pitch + Delta < ConfigCharacter->HeadMaxRotY) {
+		Rotator.Pitch += Delta;
+
+		CameraComponent->SetWorldRotation(Rotator);
 	}
 }
 

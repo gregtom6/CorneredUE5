@@ -23,52 +23,52 @@ void UMainMenu::NativeConstruct()
 
 	if (NewGame)
 	{
-		NewGame->OnClicked.AddDynamic(this, &UMainMenu::NewGameOnClick);
+		NewGame->OnClicked.AddUniqueDynamic(this, &UMainMenu::NewGameOnClick);
 	}
 
 	if (Hint)
 	{
-		Hint->OnClicked.AddDynamic(this, &UMainMenu::HintOnClick);
+		Hint->OnClicked.AddUniqueDynamic(this, &UMainMenu::HintOnClick);
 	}
 
 	if (Controls)
 	{
-		Controls->OnClicked.AddDynamic(this, &UMainMenu::ControlsOnClick);
+		Controls->OnClicked.AddUniqueDynamic(this, &UMainMenu::ControlsOnClick);
 	}
 
 	if (Quit)
 	{
-		Quit->OnClicked.AddDynamic(this, &UMainMenu::QuitOnClick);
+		Quit->OnClicked.AddUniqueDynamic(this, &UMainMenu::QuitOnClick);
 	}
 
 	if (FromTutorialToMainMenu)
 	{
-		FromTutorialToMainMenu->OnClicked.AddDynamic(this, &UMainMenu::FromTutorialToMainMenuOnClick);
+		FromTutorialToMainMenu->OnClicked.AddUniqueDynamic(this, &UMainMenu::FromTutorialToMainMenuOnClick);
 	}
 
 	if (TutorialLeftPage)
 	{
-		TutorialLeftPage->OnClicked.AddDynamic(this, &UMainMenu::TutorialLeftPageOnClick);
+		TutorialLeftPage->OnClicked.AddUniqueDynamic(this, &UMainMenu::TutorialLeftPageOnClick);
 	}
 
 	if (TutorialRightPage)
 	{
-		TutorialRightPage->OnClicked.AddDynamic(this, &UMainMenu::TutorialRightPageOnClick);
+		TutorialRightPage->OnClicked.AddUniqueDynamic(this, &UMainMenu::TutorialRightPageOnClick);
 	}
 
 	if (FromControlsToMainMenu)
 	{
-		FromControlsToMainMenu->OnClicked.AddDynamic(this, &UMainMenu::FromControlsToMainMenuOnClick);
+		FromControlsToMainMenu->OnClicked.AddUniqueDynamic(this, &UMainMenu::FromControlsToMainMenuOnClick);
 	}
 
 	if (ControlsLeftPage)
 	{
-		ControlsLeftPage->OnClicked.AddDynamic(this, &UMainMenu::ControlsLeftPageOnClick);
+		ControlsLeftPage->OnClicked.AddUniqueDynamic(this, &UMainMenu::ControlsLeftPageOnClick);
 	}
 
 	if (ControlsRightPage)
 	{
-		ControlsRightPage->OnClicked.AddDynamic(this, &UMainMenu::ControlsRightPageOnClick);
+		ControlsRightPage->OnClicked.AddUniqueDynamic(this, &UMainMenu::ControlsRightPageOnClick);
 	}
 }
 

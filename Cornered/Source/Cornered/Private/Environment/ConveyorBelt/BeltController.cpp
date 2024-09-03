@@ -15,8 +15,8 @@ ABeltController::ABeltController()
 	SpawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnPointComp"));
 	DespawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("DespawnPointComp"));
 
-	DespawnPointComp->OnComponentBeginOverlap.AddDynamic(this, &ABeltController::OnOverlapBegin);
-	SpawnPointComp->OnComponentEndOverlap.AddDynamic(this, &ABeltController::OnOverlapEnd);
+	DespawnPointComp->OnComponentBeginOverlap.AddUniqueDynamic(this, &ABeltController::OnOverlapBegin);
+	SpawnPointComp->OnComponentEndOverlap.AddUniqueDynamic(this, &ABeltController::OnOverlapEnd);
 }
 
 void ABeltController::BeginPlay()

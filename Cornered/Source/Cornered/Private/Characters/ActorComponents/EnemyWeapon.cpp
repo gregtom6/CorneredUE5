@@ -16,24 +16,27 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 	if (bIsReadyToShoot)
 	{
-		UPawnSensingComponent* pawnSensing = GetOwner()->FindComponentByClass<UPawnSensingComponent>();
+		AActor* Owner = GetOwner();
+		UWorld* World = GetWorld();
+
+		UPawnSensingComponent* pawnSensing = Owner->FindComponentByClass<UPawnSensingComponent>();
 
 		if (pawnSensing)
 		{
-			APawn* pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+			APawn* pawn = UGameplayStatics::GetPlayerPawn(World, 0);
 
-			FVector Direction = pawn->GetActorLocation() - GetOwner()->GetActorLocation();
+			FVector Direction = pawn->GetActorLocation() - Owner->GetActorLocation();
 
 			float Distance = 1000.f;
 			Direction.Normalize();
 
-			FVector Origin = GetOwner()->GetActorLocation();
+			FVector Origin = Owner->GetActorLocation();
 
 			FVector End = Origin + (Direction * Distance);
 
 			FHitResult HitResult;
 
-			bool bHit = GetWorld()->LineTraceSingleByChannel(
+			bool bHit = World->LineTraceSingleByChannel(
 				HitResult,
 				Origin,
 				End,

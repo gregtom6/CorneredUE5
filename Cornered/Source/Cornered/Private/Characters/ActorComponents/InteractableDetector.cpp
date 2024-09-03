@@ -3,15 +3,12 @@
 
 #include "Characters/ActorComponents/InteractableDetector.h"
 
-// Sets default values for this component's properties
 UInteractableDetector::UInteractableDetector()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 	PrimaryComponentTick.bTickEvenWhenPaused = true;
 }
 
-
-// Called when the game starts
 void UInteractableDetector::BeginPlay()
 {
 	Super::BeginPlay();

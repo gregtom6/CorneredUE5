@@ -54,8 +54,11 @@ void UCharacterHealth::DamageHealth(float Damage) {
 		CorneredGameMode->CharacterDied(Cast<ACharacter>(GetOwner()));
 	}
 	else {
-		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UCharacterHealth::HealthReloadWaitTimeEnded, GetReloadWaitingMaxTime(), false);
+
+		FTimerManager& TimerManager = GetWorld()->GetTimerManager();
+
+		TimerManager.ClearTimer(TimerHandle);
+		TimerManager.SetTimer(TimerHandle, this, &UCharacterHealth::HealthReloadWaitTimeEnded, GetReloadWaitingMaxTime(), false);
 	}
 }
 

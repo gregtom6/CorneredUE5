@@ -10,15 +10,11 @@
 #include "DefendPositionEnemyState.generated.h"
 
 class UStruct;
-class AEnemyCharacter;
 
 USTRUCT()
 struct FDefendTest
 {
 	GENERATED_BODY()
-
-		UPROPERTY(EditAnywhere)
-		TObjectPtr<AEnemyCharacter> EnemyCharacter;
 };
 
 USTRUCT(DisplayName = "DefendPositionState")

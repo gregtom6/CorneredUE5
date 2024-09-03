@@ -26,7 +26,6 @@ void UEquipmentVisualizer::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	}
 }
 
-
 // Called every frame
 void UEquipmentVisualizer::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -53,10 +52,9 @@ void UEquipmentVisualizer::VisualizeWeaponDatas(FItemDatas ItemDatas) {
 void UEquipmentVisualizer::ActualVisualization(EItemType ItemType, FName SocketName) {
 	TSubclassOf<AActor> product = ConfigEquipment->GetEquippedProduct(ItemType);
 
-	SpawnedEquippedWeapon = GetWorld()->SpawnActor<AActor>(product);
-
 	ACharacter* character = Cast<ACharacter>(GetOwner());
 
+	SpawnedEquippedWeapon = GetWorld()->SpawnActor<AActor>(product);
 	SpawnedEquippedWeapon->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, SocketName);
 
 	bWeaponSpawned = true;

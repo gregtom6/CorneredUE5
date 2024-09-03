@@ -25,7 +25,7 @@ void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
-	CorneredGameMode->CharacterDefeated.AddDynamic(this, &UCharacterSpawner::OnCharacterDefeated);
+	CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &UCharacterSpawner::OnCharacterDefeated);
 	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &UCharacterSpawner::OnNewMatchStarted);
 }
 

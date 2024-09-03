@@ -10,15 +10,11 @@
 #include "ShootPositionEnemyState.generated.h"
 
 class UStruct;
-class AEnemyCharacter;
 
 USTRUCT()
 struct FMyInstanceData
 {
 	GENERATED_BODY()
-
-		UPROPERTY(EditAnywhere)
-		TObjectPtr<AEnemyCharacter> EnemyCharacter;
 };
 
 USTRUCT(DisplayName = "ShootPositionState")

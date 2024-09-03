@@ -18,6 +18,8 @@ void UCharacterWeapon::BeginPlay()
 	Super::BeginPlay();
 
 	bIsReadyToShoot = false;
+
+	TimerManager = &GetWorld()->GetTimerManager();
 }
 
 bool UCharacterWeapon::IsThereEquippedWeapon() const {
@@ -43,8 +45,8 @@ void UCharacterWeapon::ShootWithEquippedWeapon() {
 
 	DamageTheOtherOneIfCan(weaponSettings);
 
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UCharacterWeapon::ShootCooldownEnded, weaponSettings.CooldownTimeInSec, false);
+	TimerManager->ClearTimer(TimerHandle);
+	TimerManager->SetTimer(TimerHandle, this, &UCharacterWeapon::ShootCooldownEnded, weaponSettings.CooldownTimeInSec, false);
 }
 
 void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSettings) {
@@ -74,13 +76,13 @@ void UCharacterWeapon::SetWeaponReadyToBeUsed() {
 
 float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
 	
-	bool bIsTimerActive = GetWorld()->GetTimerManager().IsTimerActive(TimerHandle);
+	bool bIsTimerActive = TimerManager->IsTimerActive(TimerHandle);
 
 	if (bIsTimerActive) {
 
 		FWeaponSettingsEntry weaponSettings = EquipmentConfig->GetWeaponSettings(GetEquippedWeapon());
 
-		float ElapsedTime = GetWorld()->GetTimerManager().GetTimerElapsed(TimerHandle);
+		float ElapsedTime = TimerManager->GetTimerElapsed(TimerHandle);
 
 		return FMath::Clamp(ElapsedTime / weaponSettings.CooldownTimeInSec, 0.f, 1.f);
 	}

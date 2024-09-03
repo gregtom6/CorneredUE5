@@ -26,6 +26,8 @@ private:
 
 	FTimerHandle TimerHandle;
 
+	FTimerManager* TimerManager;
+
 public:
 	UCharacterWeapon();
 

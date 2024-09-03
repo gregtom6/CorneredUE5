@@ -15,7 +15,7 @@ void UEquipmentDecider::Initialize(FSubsystemCollectionBase& Collection)
 	UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
 	if (MySubsystem)
 	{
-		MySubsystem->OnEnemyGenerated.AddDynamic(this, &UEquipmentDecider::OnEnemyGenerated);
+		MySubsystem->OnEnemyGenerated.AddUniqueDynamic(this, &UEquipmentDecider::OnEnemyGenerated);
 	}
 }
 

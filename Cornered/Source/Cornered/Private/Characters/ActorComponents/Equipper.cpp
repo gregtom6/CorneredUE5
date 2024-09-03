@@ -40,12 +40,10 @@ void UEquipper::EquipHappened() {
 
 			UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 			UAudioComponent* equipAudio = GetOwner()->FindComponentByClass<UAudioComponent>();
-
 			UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();
 
 			PickerComp->RemovePickable();
 			equippable->Equip(equipmentVisualizer, inventory);
-
 			equipAudio->Play();
 		}
 	}

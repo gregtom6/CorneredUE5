@@ -5,6 +5,7 @@
 #include "Components/BoxComponent.h"
 #include "Configs/DataAssets/Config_Belt.h"
 #include "System/CorneredObjectPool.h"
+#include "System/CorneredPooledObject.h"
 #include "Environment/ConveyorBelt/BeltElement.h"
 #include "Environment/Interactables/CorneredButton.h"
 
@@ -74,6 +75,10 @@ void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 			beltElement->SetActorTickEnabled(true);
 			ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
 			beltElementComp->SetBeltController(this);
+			UCorneredPooledObject* pooledObject= beltElement->GetComponentByClass<UCorneredPooledObject>();
+			if (pooledObject) {
+				pooledObject->Activated.Broadcast();
+			}
 		}
 	}
 }

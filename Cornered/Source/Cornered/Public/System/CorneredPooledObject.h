@@ -8,6 +8,8 @@
 
 class ACorneredObjectPool;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FActivatedDelegate);
+
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UCorneredPooledObject : public UActorComponent
 {
@@ -18,6 +20,8 @@ public:
 
 	UPROPERTY(VisibleInstanceOnly)
 		bool _IsActive;
+
+	FActivatedDelegate Activated;
 
 private:
 

@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "System/CorneredInitializable.h"
 #include "BeltElement.generated.h"
 
 class ABeltController;
 class UConfig_IngredientGeneration;
 
 UCLASS()
-class CORNERED_API ABeltElement : public AActor
+class CORNERED_API ABeltElement : public AActor, public ICorneredInitializable
 {
 	GENERATED_BODY()
 
@@ -38,9 +39,10 @@ public:
 
 	void SetBeltController(ABeltController* controller);
 
-	virtual void SetActorHiddenInGame(bool bNewHidden) override;
+	void InitializeHappened() override;
 
 private:
 
-	void TimerFunction();
+	UFUNCTION()
+	void ActivateHappened();
 };

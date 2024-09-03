@@ -5,6 +5,7 @@
 #include "Environment/ConveyorBelt/BeltController.h"
 #include "Configs/DataAssets/Config_IngredientGeneration.h"
 #include "Items/Ingredient.h"
+#include "System/CorneredPooledObject.h"
 
 ABeltElement::ABeltElement()
 {
@@ -31,21 +32,12 @@ void ABeltElement::SetBeltController(ABeltController* controller) {
 	BeltController = controller;
 }
 
-void ABeltElement::SetActorHiddenInGame(bool bNewHidden)
-{
-	Super::SetActorHiddenInGame(bNewHidden);
-
-	if (!bNewHidden) {
-
-		//TODO: remove timer and use a function which gets called, when GetComponentLocation already gives back world coordinates instead of local. 
-		//tried in BeginPlay, tried in PostInitializeComponents, in both of them GetComponentLocation was invalid, probably because of the Object Pool
-
-		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABeltElement::TimerFunction, 0.001f, false);
-	}
+void ABeltElement::InitializeHappened() {
+	UCorneredPooledObject* poolCompRef = FindComponentByClass<UCorneredPooledObject>();
+	poolCompRef->Activated.AddUniqueDynamic(this, &ABeltElement::ActivateHappened);
 }
 
-void ABeltElement::TimerFunction() {
+void ABeltElement::ActivateHappened() {
 	TSubclassOf<AIngredient> ingredient = IngredientGenConfig->GetWeightedRandomItemClass();
 
 	UWorld* world = GetWorld();

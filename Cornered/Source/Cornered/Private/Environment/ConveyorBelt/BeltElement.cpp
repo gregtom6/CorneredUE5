@@ -9,27 +9,13 @@
 
 ABeltElement::ABeltElement()
 {
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	ItemPivot = CreateDefaultSubobject<USceneComponent>(TEXT("ItemPivot"));
 
 	SetRootComponent(Root);
 	ItemPivot->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-}
-
-void ABeltElement::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-	float currentBeltSpeed = BeltController->GetCurrentMultiplier();
-
-	FVector NewLocation = GetActorLocation() + (currentBeltSpeed * DeltaTime * GetActorForwardVector());
-	SetActorLocation(NewLocation);
-}
-
-void ABeltElement::SetBeltController(ABeltController* controller) {
-	BeltController = controller;
 }
 
 void ABeltElement::InitializeHappened() {

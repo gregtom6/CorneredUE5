@@ -36,11 +36,12 @@ private:
 	UPROPERTY(EditAnywhere)
 		TObjectPtr<ACorneredObjectPool> ObjectPool;
 
+	TArray<AActor*> CurrentlyVisibleBeltElements;
+
 public:
 	ABeltController();
 
-	UFUNCTION(BlueprintPure)
-		float GetCurrentMultiplier() const;
+	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintPure)
 		EBeltSpeed GetCurrentBeltSpeed() const;
@@ -49,6 +50,8 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+	UFUNCTION(BlueprintPure)
+		float GetCurrentMultiplier() const;
 	UFUNCTION()
 		void PressHappened();
 

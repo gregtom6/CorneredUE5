@@ -11,7 +11,7 @@
 
 ABeltController::ABeltController()
 {
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
 	SpawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnPointComp"));
 	DespawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("DespawnPointComp"));
@@ -36,9 +36,9 @@ void ABeltController::BeginPlay()
 
 void ABeltController::ObjectPoolInitialized() {
 	AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
-	ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
-	beltElementComp->SetBeltController(this);
 	beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
+
+	CurrentlyVisibleBeltElements.Add(beltElement);
 }
 
 void ABeltController::PressHappened() {
@@ -54,11 +54,28 @@ float ABeltController::GetCurrentMultiplier() const
 	return BeltConfig->GetCurrentMultiplier(CurrentBeltSpeed);
 }
 
+void ABeltController::Tick(float DeltaTime) {
+	Super::Tick(DeltaTime);
+
+	for (int i = 0; i < CurrentlyVisibleBeltElements.Num(); i++) {
+		AActor* currentBeltElement = CurrentlyVisibleBeltElements[i];
+
+		if (currentBeltElement) {
+			float currentBeltSpeed = GetCurrentMultiplier();
+
+			FVector NewLocation = currentBeltElement->GetActorLocation() + (currentBeltSpeed * DeltaTime * GetActorForwardVector());
+			currentBeltElement->SetActorLocation(NewLocation);
+		}
+	}
+}
+
 void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool)
 	{
 		ObjectPool->RecycleActor(OtherActor);
+
+		CurrentlyVisibleBeltElements.Remove(OtherActor);
 	}
 }
 
@@ -73,12 +90,12 @@ void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 			beltElement->SetActorHiddenInGame(false);
 			beltElement->SetActorEnableCollision(true);
 			beltElement->SetActorTickEnabled(true);
-			ABeltElement* beltElementComp = Cast<ABeltElement>(beltElement);
-			beltElementComp->SetBeltController(this);
-			UCorneredPooledObject* pooledObject= beltElement->GetComponentByClass<UCorneredPooledObject>();
+			UCorneredPooledObject* pooledObject = beltElement->GetComponentByClass<UCorneredPooledObject>();
 			if (pooledObject) {
 				pooledObject->Activated.Broadcast();
 			}
+
+			CurrentlyVisibleBeltElements.Add(beltElement);
 		}
 	}
 }

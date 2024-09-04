@@ -35,10 +35,6 @@ private:
 public:
 	ABeltElement();
 
-	virtual void Tick(float DeltaTime) override;
-
-	void SetBeltController(ABeltController* controller);
-
 	void InitializeHappened() override;
 
 private:

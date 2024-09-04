@@ -6,6 +6,8 @@
 #include "Characters/ActorComponents/CharacterWeapon.h"
 #include "EnemyWeapon.generated.h"
 
+class UConfig_AI;
+
 /**
  *
  */
@@ -13,6 +15,10 @@ UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 {
 	GENERATED_BODY()
+
+private:
+	UPROPERTY(EditAnywhere)
+		TObjectPtr<UConfig_AI> AIConfig;
 
 public:
 

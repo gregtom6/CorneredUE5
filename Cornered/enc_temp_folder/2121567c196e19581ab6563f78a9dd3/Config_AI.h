@@ -23,7 +23,7 @@ public:
 		float PreserveDistanceBetweenPlayerAndMe;
 
 	UPROPERTY(EditAnywhere)
-		float EnemyAttackVisionDistance;
+		float EnemyAttackVisionDistance; //1000.f
 
 	UPROPERTY(EditAnywhere)
 		float NavmeshSamplePositionDistance;
@@ -32,35 +32,35 @@ public:
 		float RayTraverseStepSizeToDiscoverHidingPlace;
 
 	UPROPERTY(EditAnywhere)
-		float AngleRotationChecksToDetectHidingSpot;
+		float AngleRotationChecksToDetectHidingSpot; //10.f
 
 	UPROPERTY(EditAnywhere)
-		float RayLengthToFindObstacle;
+		float RayLengthToFindObstacle; //1500.f
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotFinderDebugLineLifeTime;
+		float HideSpotFinderDebugLineLifeTime; // 0.001f
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotFinderDebugLineThickness;
+		float HideSpotFinderDebugLineThickness; //2.0f
 
 	UPROPERTY(EditAnywhere)
-		FVector HideSpotFinderOriginOffset;
+		FVector HideSpotFinderOriginOffset; //FVector(0.f, 0.f, 100.f)
 
 	UPROPERTY(EditAnywhere)
-		float ObstacleFindingRayStartingStepCount;
+		float ObstacleFindingRayStartingStepCount; //5.f
 
 	UPROPERTY(EditAnywhere)
-		float ObstacleFindingRayDeltaStepSize;
+		float ObstacleFindingRayDeltaStepSize; //1.f
 
 	UPROPERTY(EditAnywhere)
-		float ObstacleFindingRayMaxDistance;
+		float ObstacleFindingRayMaxDistance; //5000.f
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotDebugSphereRadius;
+		float HideSpotDebugSphereRadius; //100.f
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotDebugSphereSegments;
+		float HideSpotDebugSphereSegments; //12
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotDebugSphereThickness;
+		float HideSpotDebugSphereThickness; //1.0f
 };

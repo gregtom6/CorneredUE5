@@ -34,7 +34,7 @@ void UHideSpotFinder::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
 
 void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots) {
 	float currentDistanceToCheckOnRay = 0.f;
-	float stepCount = 5.f;
+	float stepCount = AIConfig->ObstacleFindingRayStartingStepCount;
 
 	UNavigationSystemV1* NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
 
@@ -42,7 +42,7 @@ void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoin
 	{
 		currentDistanceToCheckOnRay = AIConfig->RayTraverseStepSizeToDiscoverHidingPlace * stepCount;
 
-		if (currentDistanceToCheckOnRay >= 5000.f)
+		if (currentDistanceToCheckOnRay >= AIConfig->ObstacleFindingRayMaxDistance)
 		{
 			continue;
 		}
@@ -62,9 +62,9 @@ void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoin
 		}
 		else
 		{
-			stepCount += 1.f;
+			stepCount += AIConfig->ObstacleFindingRayDeltaStepSize;
 		}
-	} while (currentDistanceToCheckOnRay < 5000.f);
+	} while (currentDistanceToCheckOnRay < AIConfig->ObstacleFindingRayMaxDistance);
 }
 
 FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) const {
@@ -74,7 +74,7 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 
 	UCameraComponent* cameraComp = PlayerPawn->FindComponentByClass<UCameraComponent>();
 
-	Origin = cameraComp->GetComponentLocation() + FVector(0.f, 0.f, 100.f);
+	Origin = cameraComp->GetComponentLocation() + AIConfig->HideSpotFinderOriginOffset;
 
 	FVector forwardVector = cameraComp->GetForwardVector();
 
@@ -98,14 +98,14 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 	Hit = bHit;
 	
 	DrawDebugLine(
-		GetWorld(),         
-		Origin,      
-		End,       
-		FColor::Red,          
-		false,              
-		0.001f,          
+		GetWorld(),
+		Origin,
+		End,
+		FColor::Red,
+		false,
+		AIConfig->HideSpotFinderDebugLineLifeTime,
 		0,                  
-		2.0f       
+		AIConfig->HideSpotFinderDebugLineThickness
 	);
 	
 
@@ -159,12 +159,9 @@ bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObj
 }
 
 TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
+
 	float currentAngle = 0.f;
-	float angleRotationChecks = 10.f;
-	float rayLength = 1500.f;
-
 	TOptional<FVector> PossibleHideSpot;
-
 	TArray<FVector> possibleHideSpots;
 
 	do
@@ -173,14 +170,14 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 		FVector Direction;
 		bool Hit;
 
-		FHitResult raycastHits = MakeRaycastInSelectedAngle(currentAngle, rayLength, Origin, Direction, Hit);
+		FHitResult raycastHits = MakeRaycastInSelectedAngle(currentAngle, AIConfig->RayLengthToFindObstacle, Origin, Direction, Hit);
 
 		if (Hit && ThisRayIsNotHittingPlayer(raycastHits))
 		{
 			FindingPossiblePositionsAlongCurrentRay(raycastHits.ImpactPoint, raycastHits.Component, Direction, possibleHideSpots);
 		}
 
-		currentAngle += angleRotationChecks;
+		currentAngle += AIConfig->AngleRotationChecksToDetectHidingSpot;
 	} while (currentAngle < 360.f);
 
 	if (possibleHideSpots.Num() > 0)

@@ -56,7 +56,7 @@ void AEnemyController::HideFromPlayer() {
 
 	if (closestHidingSpot.IsSet()) {
 		MoveToLocation(closestHidingSpot.GetValue());
-		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), 100.f, 12, FColor::Red, false, -1.f, 0, 1.0f);
+		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
 	}
 }
 

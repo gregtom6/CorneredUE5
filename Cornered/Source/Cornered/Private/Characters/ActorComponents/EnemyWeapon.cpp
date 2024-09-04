@@ -6,6 +6,7 @@
 #include <Kismet/GameplayStatics.h>
 #include "System/CorneredPlayerController.h"
 #include "Perception/PawnSensingComponent.h"
+#include "Configs/DataAssets/Config_AI.h"
 
 UEnemyWeapon::UEnemyWeapon()
 {
@@ -26,13 +27,10 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			APawn* pawn = UGameplayStatics::GetPlayerPawn(World, 0);
 
 			FVector Direction = pawn->GetActorLocation() - Owner->GetActorLocation();
-
-			float Distance = 1000.f;
 			Direction.Normalize();
 
 			FVector Origin = Owner->GetActorLocation();
-
-			FVector End = Origin + (Direction * Distance);
+			FVector End = Origin + (Direction * AIConfig->EnemyAttackVisionDistance);
 
 			FHitResult HitResult;
 

@@ -21,22 +21,22 @@ class CORNERED_API ARecipeShower : public AActor
 private:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<USceneComponent> StartingTransform;
+	TObjectPtr<USceneComponent> StartingTransform;
 
 	UPROPERTY(EditAnywhere)
-		float HorizontalGapSize;
+	float HorizontalGapSize;
 
 	UPROPERTY(EditAnywhere)
-		float VerticalGapSize;
+	float VerticalGapSize;
 
 	UPROPERTY()
-		TArray<TObjectPtr<AActor>> RecipeVisualElements;
+	TArray<TObjectPtr<AActor>> RecipeVisualElements;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Recipe> RecipeConfig;
+	TObjectPtr<UConfig_Recipe> RecipeConfig;
 
 public:
 	// Sets default values for this actor's properties
@@ -47,7 +47,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
-		void OnNewMatchStarted();
+	void OnNewMatchStarted();
 
 private:
 	void GenerateRecipeVisuals();

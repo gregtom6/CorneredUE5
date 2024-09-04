@@ -15,7 +15,7 @@ class CORNERED_API UEquipper : public USceneComponent
 
 public:
 	UPROPERTY()
-		TObjectPtr<UPicker> PickerComp;
+	TObjectPtr<UPicker> PickerComp;
 
 public:
 	UEquipper();
@@ -25,5 +25,5 @@ protected:
 
 private:
 	UFUNCTION()
-		void EquipHappened();
+	void EquipHappened();
 };

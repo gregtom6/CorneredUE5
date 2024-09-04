@@ -13,14 +13,14 @@ struct FControlsPageDatas
 {
 	GENERATED_BODY()
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TObjectPtr<UTexture2D> ImageOfGameInteraction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	TObjectPtr<UTexture2D> ImageOfGameInteraction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TObjectPtr<UTexture2D> ImageOfControl;
+	TObjectPtr<UTexture2D> ImageOfControl;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		FString Text;
+	FString Text;
 
 };
 
@@ -35,12 +35,12 @@ class CORNERED_API UConfig_Controls : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere)
-		TArray<FControlsPageDatas> ControlsPageDatas;
+	TArray<FControlsPageDatas> ControlsPageDatas;
 
 public:
 
-		FControlsPageDatas GetControlsPageDatas(int32 index) const;
+	FControlsPageDatas GetControlsPageDatas(int32 index) const;
 
-		int32 GetControlsPageCount() const;
+	int32 GetControlsPageCount() const;
 
 };

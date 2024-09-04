@@ -15,20 +15,20 @@ struct FStateTreeDefendConditionMagic
 {
 	GENERATED_BODY()
 
-		FStateTreeDefendConditionMagic()
+	FStateTreeDefendConditionMagic()
 		: EnemyCurrentHealth(0.f), EnemyMaxHealth(0.f), HideWhenLifeLessThanPercentage(0.f), bIsReadyToShoot(false) { }
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-		float EnemyCurrentHealth;
+	float EnemyCurrentHealth;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-		float EnemyMaxHealth;
+	float EnemyMaxHealth;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-		float HideWhenLifeLessThanPercentage;
+	float HideWhenLifeLessThanPercentage;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-		bool bIsReadyToShoot;
+	bool bIsReadyToShoot;
 };
 
 
@@ -37,7 +37,7 @@ struct FDefendPositionEnemyCondition : public FStateTreeConditionCommonBase
 {
 	GENERATED_BODY()
 
-		using FMyMagic = FStateTreeDefendConditionMagic;
+	using FMyMagic = FStateTreeDefendConditionMagic;
 
 	virtual const UStruct* GetInstanceDataType() const override { return FMyMagic::StaticStruct(); }
 

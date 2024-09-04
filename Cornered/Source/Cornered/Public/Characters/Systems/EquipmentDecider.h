@@ -31,7 +31,7 @@ public:
 
 protected:
 	UFUNCTION()
-		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
+	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
 	void GenerateEquipment(AEnemyCharacter* EnemyCharacter);
 

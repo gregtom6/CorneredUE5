@@ -17,10 +17,10 @@ class CORNERED_API UHideSpotFinder : public UActorComponent
 private:
 
 	UPROPERTY()
-		TObjectPtr<AEnemyCharacter> Enemy;
+	TObjectPtr<AEnemyCharacter> Enemy;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_AI> AIConfig;
+	TObjectPtr<UConfig_AI> AIConfig;
 
 public:
 	UHideSpotFinder();
@@ -30,7 +30,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
-		void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
+	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
 private:
 	void FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots);

@@ -18,17 +18,17 @@ struct FRecipeEntry
 {
 	GENERATED_BODY()
 
-		FRecipeEntry()
+	FRecipeEntry()
 		: Key(EItemType::Count), NecessaryAbilityToUSe(EAbility::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EAbility NecessaryAbilityToUSe;
+	EAbility NecessaryAbilityToUSe;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TArray<FItemData> Items;
+	TArray<FItemData> Items;
 
 };
 
@@ -37,14 +37,14 @@ struct FProductClassEntry
 {
 	GENERATED_BODY()
 
-		FProductClassEntry()
+	FProductClassEntry()
 		: Key(EItemType::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TSubclassOf<AIngredient> IngredientClass;
+	TSubclassOf<AIngredient> IngredientClass;
 
 };
 
@@ -53,14 +53,14 @@ struct FIngredientRadiatingMaterialEntry {
 
 	GENERATED_BODY()
 
-		FIngredientRadiatingMaterialEntry()
+	FIngredientRadiatingMaterialEntry()
 		: Key(EItemType::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TObjectPtr<UMaterialInterface> Material;
+	TObjectPtr<UMaterialInterface> Material;
 };
 
 USTRUCT(BlueprintType)
@@ -68,14 +68,14 @@ struct FEffectRadiatingMaterialEntry {
 
 	GENERATED_BODY()
 
-		FEffectRadiatingMaterialEntry()
+	FEffectRadiatingMaterialEntry()
 		: Key(EItemState::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemState Key;
+	EItemState Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TObjectPtr<UMaterialInterface> Material;
+	TObjectPtr<UMaterialInterface> Material;
 };
 
 USTRUCT(BlueprintType)
@@ -83,8 +83,8 @@ struct FMaterialArray
 {
 	GENERATED_BODY()
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		TArray<TObjectPtr<UMaterialInterface>> Materials;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TObjectPtr<UMaterialInterface>> Materials;
 };
 
 UCLASS()
@@ -94,33 +94,33 @@ class CORNERED_API UConfig_Recipe : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UMaterialInterface> RecipeShowPlusMaterial;
+	TObjectPtr<UMaterialInterface> RecipeShowPlusMaterial;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UMaterialInterface> RecipeShowEqualMaterial;
+	TObjectPtr<UMaterialInterface> RecipeShowEqualMaterial;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<AActor> RecipeShowElementClass;
+	TSubclassOf<AActor> RecipeShowElementClass;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<AActor> RecipeShowOperatorClass;
+	TSubclassOf<AActor> RecipeShowOperatorClass;
 
 private:
 
 	UPROPERTY(EditAnywhere)
-		UConfig_Progress* ProgressConfig;
+	UConfig_Progress* ProgressConfig;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FRecipeEntry> RecipeEntries;
+	TArray<FRecipeEntry> RecipeEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FProductClassEntry> ProductClassEntries;
+	TArray<FProductClassEntry> ProductClassEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray< FIngredientRadiatingMaterialEntry> IngredientRadiatingMaterialEntries;
+	TArray< FIngredientRadiatingMaterialEntry> IngredientRadiatingMaterialEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray< FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
+	TArray< FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
 
 public:
 

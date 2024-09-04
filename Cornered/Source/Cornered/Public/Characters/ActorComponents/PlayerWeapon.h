@@ -22,7 +22,7 @@ protected:
 private:
 
 	UFUNCTION()
-		void ShootHappened();
+	void ShootHappened();
 
 	virtual ECollisionChannel GetOpponentTraceChannel() const override;
 };

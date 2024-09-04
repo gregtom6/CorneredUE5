@@ -19,22 +19,22 @@ class CORNERED_API ABeltController : public AActor
 
 public:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<ACorneredButton> CorneredButton;
+	TObjectPtr<ACorneredButton> CorneredButton;
 
 private:
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UBoxComponent> SpawnPointComp;
+	TObjectPtr<UBoxComponent> SpawnPointComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UBoxComponent> DespawnPointComp;
+	TObjectPtr<UBoxComponent> DespawnPointComp;
 
 	EBeltSpeed CurrentBeltSpeed;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Belt> BeltConfig;
+	TObjectPtr<UConfig_Belt> BeltConfig;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<ACorneredObjectPool> ObjectPool;
+	TObjectPtr<ACorneredObjectPool> ObjectPool;
 
 	TArray<AActor*> CurrentlyVisibleBeltElements;
 
@@ -44,25 +44,25 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintPure)
-		EBeltSpeed GetCurrentBeltSpeed() const;
+	EBeltSpeed GetCurrentBeltSpeed() const;
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
 	UFUNCTION(BlueprintPure)
-		float GetCurrentMultiplier() const;
+	float GetCurrentMultiplier() const;
 	UFUNCTION()
-		void PressHappened();
+	void PressHappened();
 
 	UFUNCTION()
-		void ObjectPoolInitialized();
+	void ObjectPoolInitialized();
 
 	UFUNCTION()
-		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
-		void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	void OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	void SwitchBeltSpeed();
 

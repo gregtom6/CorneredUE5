@@ -16,10 +16,10 @@ class CORNERED_API ATimeZeroerButton : public ACorneredButton
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UStaticMeshComponent> TimeButtonStaticMeshComp;
+	TObjectPtr<UStaticMeshComponent> TimeButtonStaticMeshComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 public:
 	ATimeZeroerButton();

@@ -17,8 +17,8 @@ class CORNERED_API UConfig_Time : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere)
-		float PrepareTimeEndInSec;
+	float PrepareTimeEndInSec;
 
 	UPROPERTY(EditAnywhere)
-		float WaitBetweenPreviousAndNewMatchInSec;
+	float WaitBetweenPreviousAndNewMatchInSec;
 };

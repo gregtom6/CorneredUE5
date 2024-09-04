@@ -15,7 +15,7 @@ class CORNERED_API UHealthBar : public UUserWidget
 
 public:
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UProgressBar> Health;
+	TObjectPtr<UProgressBar> Health;
 protected:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 

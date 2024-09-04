@@ -17,7 +17,7 @@ class CORNERED_API IInteractable
 {
 	GENERATED_BODY()
 
-		// Add interface functions to this class. This is the class that will be inherited to implement this interface.
+	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
 	virtual void Interact() = 0;

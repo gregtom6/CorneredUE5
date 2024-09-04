@@ -17,7 +17,7 @@ class CORNERED_API AHoldableButton : public AActor, public IHoldable
 private:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<AHoldActivable> HoldActivable;
+	TObjectPtr<AHoldActivable> HoldActivable;
 
 public:
 	// Sets default values for this actor's properties

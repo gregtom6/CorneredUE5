@@ -8,12 +8,12 @@
 
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UPlayerCharacterAnimInstance : public UCharacterAnimInstance
 {
 	GENERATED_BODY()
-	
+
 
 };

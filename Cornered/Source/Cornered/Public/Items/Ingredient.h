@@ -19,12 +19,12 @@ class CORNERED_API AIngredient : public AActor, public IIPickable
 
 public:
 	UPROPERTY(EditAnywhere)
-		EItemType ItemType;
+	EItemType ItemType;
 	EItemState ItemState;
 
 protected:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UStaticMeshComponent> StaticMesh;
+	TObjectPtr<UStaticMeshComponent> StaticMesh;
 
 private:
 
@@ -47,10 +47,10 @@ public:
 	void SetState(EItemState state);
 
 	UFUNCTION(BlueprintPure)
-		EItemType GetItemType() const;
+	EItemType GetItemType() const;
 
 	UFUNCTION(BlueprintPure)
-		EItemState GetItemState() const;
+	EItemState GetItemState() const;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

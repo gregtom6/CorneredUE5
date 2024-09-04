@@ -22,11 +22,11 @@ struct FShotRayDatas
 
 	GENERATED_BODY()
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		FVector Origin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	FVector Origin;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		FVector End;
+	FVector End;
 
 };
 
@@ -37,26 +37,26 @@ class CORNERED_API AEquippedWeapon : public AActor
 
 public:
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> MuzzlePosition;
+	TObjectPtr<USceneComponent> MuzzlePosition;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPointLightComponent> PointLightComp;
+	TObjectPtr<UPointLightComponent> PointLightComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> ShotSequ;
+	TObjectPtr<UActorSequenceComponent> ShotSequ;
 
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UNiagaraComponent> NiagaraComp;
+	TObjectPtr<UNiagaraComponent> NiagaraComp;
 
 	UPROPERTY()
-		TObjectPtr<AActor> EquipperActor;
+	TObjectPtr<AActor> EquipperActor;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> ShotAudio;
+	TObjectPtr<UAudioComponent> ShotAudio;
 
 
 public:

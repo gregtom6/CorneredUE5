@@ -17,13 +17,13 @@ class CORNERED_API ARecipeElementVisual : public AActor
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> ElementSprite;
+	TObjectPtr<UPaperSpriteComponent> ElementSprite;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> EffectSprite;
+	TObjectPtr<UPaperSpriteComponent> EffectSprite;
 
 public:
 	// Sets default values for this actor's properties

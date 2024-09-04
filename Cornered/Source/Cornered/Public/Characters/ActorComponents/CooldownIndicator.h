@@ -16,13 +16,13 @@ class CORNERED_API UCooldownIndicator : public UActorComponent
 
 public:
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
+	TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UCharacterWeapon> CharacterWeapon;
+	TObjectPtr<UCharacterWeapon> CharacterWeapon;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorPaperSprite;
+	TObjectPtr<UPaperSpriteComponent> CooldownIndicatorPaperSprite;
 
 public:
 	UCooldownIndicator();

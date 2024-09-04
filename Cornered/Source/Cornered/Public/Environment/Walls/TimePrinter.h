@@ -17,13 +17,13 @@ class CORNERED_API ATimePrinter : public AActor
 private:
 
 	UPROPERTY()
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UTextRenderComponent> TimeLeftComp;
+	TObjectPtr<UTextRenderComponent> TimeLeftComp;
 
 	UPROPERTY()
-		TObjectPtr<ACorneredGameMode> CorneredGameMode;
+	TObjectPtr<ACorneredGameMode> CorneredGameMode;
 
 public:
 	// Sets default values for this actor's properties

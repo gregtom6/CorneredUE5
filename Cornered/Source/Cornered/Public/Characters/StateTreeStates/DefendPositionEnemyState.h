@@ -22,7 +22,7 @@ struct CORNERED_API FDefendPositionEnemyState : public FStateTreeTaskCommonBase
 {
 	GENERATED_BODY()
 
-		using FInstanceDataType = FDefendTest;
+	using FInstanceDataType = FDefendTest;
 
 	virtual EStateTreeRunStatus EnterState(FStateTreeExecutionContext& Context, const FStateTreeTransitionResult& Transition) const override;
 

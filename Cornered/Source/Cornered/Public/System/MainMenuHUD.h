@@ -17,17 +17,17 @@ class CORNERED_API AMainMenuHUD : public AHUD
 private:
 
 	UPROPERTY()
-		TObjectPtr<UUserWidget> UserWidgetInstance;
+	TObjectPtr<UUserWidget> UserWidgetInstance;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> MainMenuBGMComp;
+	TObjectPtr<UAudioComponent> MainMenuBGMComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> SFXComp;
+	TObjectPtr<UAudioComponent> SFXComp;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
-		TSubclassOf<UUserWidget> UserWidgetClass;
+	TSubclassOf<UUserWidget> UserWidgetClass;
 public:
 
 	AMainMenuHUD();
@@ -36,6 +36,6 @@ public:
 
 private:
 	UFUNCTION()
-		void UIPressHappened();
+	void UIPressHappened();
 
 };

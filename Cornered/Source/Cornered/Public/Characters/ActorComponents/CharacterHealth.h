@@ -16,13 +16,13 @@ class CORNERED_API UCharacterHealth : public UActorComponent
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = GetCurrentHealth)
-		float CurrentHealth;
+	float CurrentHealth;
 
 	UPROPERTY(BlueprintReadWrite)
-		float MaxHealth;
+	float MaxHealth;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Character_General> CharacterConfig;
+	TObjectPtr<UConfig_Character_General> CharacterConfig;
 
 private:
 
@@ -36,7 +36,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintGetter)
-		float GetCurrentHealth() const;
+	float GetCurrentHealth() const;
 
 	virtual float GetMaxHealth() const;
 

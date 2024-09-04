@@ -17,11 +17,11 @@ class CORNERED_API UConfig_ExitDoor : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere)
-		float ButtonHoldingOpenMultiplier;
+	float ButtonHoldingOpenMultiplier;
 
 	UPROPERTY(EditAnywhere)
-		float MinPercentage;
+	float MinPercentage;
 
 	UPROPERTY(EditAnywhere)
-		float MaxPercentage;
+	float MaxPercentage;
 };

@@ -29,16 +29,16 @@ class CORNERED_API AEquipmentHint : public AActor
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UStaticMeshComponent> ShieldMeshComp;
+	TObjectPtr<UStaticMeshComponent> ShieldMeshComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UStaticMeshComponent> WeaponMeshComp;
+	TObjectPtr<UStaticMeshComponent> WeaponMeshComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Hint> HintConfig;
+	TObjectPtr<UConfig_Hint> HintConfig;
 
 
 public:
@@ -50,5 +50,5 @@ protected:
 private:
 
 	UFUNCTION()
-		void OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional);
+	void OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional);
 };

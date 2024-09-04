@@ -32,10 +32,10 @@ class CORNERED_API AMixingMachine : public AActor
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> TopLidOpenComp;
+	TObjectPtr<UActorSequenceComponent> TopLidOpenComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> TopLidCloseComp;
+	TObjectPtr<UActorSequenceComponent> TopLidCloseComp;
 
 private:
 	FTimerHandle TimerHandle;
@@ -43,44 +43,44 @@ private:
 	EMixingMachineState State;
 
 	UPROPERTY()
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> ResultTarget;
+	TObjectPtr<USceneComponent> ResultTarget;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<ACorneredButton> ConvertButton;
+	TObjectPtr<ACorneredButton> ConvertButton;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<ACorneredButton> BurnButton;
+	TObjectPtr<ACorneredButton> BurnButton;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<ACorneredButton> FreezeButton;
+	TObjectPtr<ACorneredButton> FreezeButton;
 
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UNiagaraComponent> BurningComp;
+	TObjectPtr<UNiagaraComponent> BurningComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UNiagaraComponent> FreezingComp;
+	TObjectPtr<UNiagaraComponent> FreezingComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<AMixingItemDetector> MixingItemDetector;
+	TObjectPtr<AMixingItemDetector> MixingItemDetector;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_MixingMachine> MixingMachineConfig;
+	TObjectPtr<UConfig_MixingMachine> MixingMachineConfig;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Recipe> RecipeConfig;
+	TObjectPtr<UConfig_Recipe> RecipeConfig;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> BurnAudio;
+	TObjectPtr<UAudioComponent> BurnAudio;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> FreezeAudio;
+	TObjectPtr<UAudioComponent> FreezeAudio;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> MixingAudio;
+	TObjectPtr<UAudioComponent> MixingAudio;
 public:
 	// Sets default values for this actor's properties
 	AMixingMachine();
@@ -98,17 +98,17 @@ protected:
 private:
 
 	UFUNCTION()
-		void OnNewMatchStarted();
+	void OnNewMatchStarted();
 
 
 	UFUNCTION()
-		void ConvertPressHappened();
+	void ConvertPressHappened();
 
 	UFUNCTION()
-		void FreezePressHappened();
+	void FreezePressHappened();
 
 	UFUNCTION()
-		void BurnPressHappened();
+	void BurnPressHappened();
 
 
 	float GetCurrentProcessTime(EAbility ability) const;

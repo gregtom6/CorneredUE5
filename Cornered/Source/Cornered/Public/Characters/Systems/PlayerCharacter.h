@@ -22,19 +22,19 @@ public:
 
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
+	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UPicker> PickerComp;
+	TObjectPtr<UPicker> PickerComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEquipper> EquipperComp;
+	TObjectPtr<UEquipper> EquipperComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInteractor> InteractorComp;
+	TObjectPtr<UInteractor> InteractorComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UAudioComponent> EquipAudio;
+	TObjectPtr<UAudioComponent> EquipAudio;
 
 public:
 	// Sets default values for this character's properties

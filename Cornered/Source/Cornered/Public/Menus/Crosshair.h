@@ -7,11 +7,11 @@
 #include "Crosshair.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class CORNERED_API UCrosshair : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 };

@@ -32,7 +32,7 @@ public:
 	void EquipAdditional(FItemDatas itemDatas);
 
 	UFUNCTION(BlueprintPure)
-		EItemType GetWeapon() const;
+	EItemType GetWeapon() const;
 
 protected:
 	// Called when the game starts

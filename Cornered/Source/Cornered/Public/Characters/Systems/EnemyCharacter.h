@@ -24,19 +24,19 @@ class CORNERED_API AEnemyCharacter : public ACorneredCharacter
 public:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UHideSpotFinder> HideSpotFinderComp;
+	TObjectPtr<UHideSpotFinder> HideSpotFinderComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UExternalEquipper> ExternalEquipperComp;
+	TObjectPtr<UExternalEquipper> ExternalEquipperComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPawnSensingComponent> PawnSensingComp;
+	TObjectPtr<UPawnSensingComponent> PawnSensingComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UStateTreeComponent> StateTreeComp;
+	TObjectPtr<UStateTreeComponent> StateTreeComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_AI> AIConfig;
+	TObjectPtr<UConfig_AI> AIConfig;
 
 public:
 	AEnemyCharacter();

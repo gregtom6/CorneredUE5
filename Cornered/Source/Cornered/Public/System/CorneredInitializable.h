@@ -14,7 +14,7 @@ class UCorneredInitializable : public UInterface
 };
 
 /**
- * 
+ *
  */
 class CORNERED_API ICorneredInitializable
 {

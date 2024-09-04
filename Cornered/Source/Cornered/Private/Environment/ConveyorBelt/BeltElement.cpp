@@ -10,6 +10,7 @@
 ABeltElement::ABeltElement()
 {
 	PrimaryActorTick.bCanEverTick = false;
+	UAnimNotify
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	ItemPivot = CreateDefaultSubobject<USceneComponent>(TEXT("ItemPivot"));

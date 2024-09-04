@@ -19,35 +19,35 @@ class CORNERED_API UConfig_Character_General : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float RunSpeed;
+	float RunSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float EnemyRunSpeed;
+	float EnemyRunSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float HeadMinRotY;
+	float HeadMinRotY;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float HeadMaxRotY;
+	float HeadMaxRotY;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float MinHealth;
+	float MinHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float MaxHealth;
+	float MaxHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float EnemyMaxHealth;
+	float EnemyMaxHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float WaitUntilHealthReloadStarts;
+	float WaitUntilHealthReloadStarts;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float EnemyWaitUntilHealthReloadStarts;
+	float EnemyWaitUntilHealthReloadStarts;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float HealHealthDelta;
+	float HealHealthDelta;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float FastBootsSpeedMultiplier;
+	float FastBootsSpeedMultiplier;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float LookVerticalSensitivity;
+	float LookVerticalSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float LookHorizontalSensitivity;
+	float LookHorizontalSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float MovementMultiplier;
+	float MovementMultiplier;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<AEnemyCharacter> EnemyCharacterClass;
+	TSubclassOf<AEnemyCharacter> EnemyCharacterClass;
 };

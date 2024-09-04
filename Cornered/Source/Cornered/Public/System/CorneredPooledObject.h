@@ -19,7 +19,7 @@ class CORNERED_API UCorneredPooledObject : public UActorComponent
 public:
 
 	UPROPERTY(VisibleInstanceOnly)
-		bool _IsActive;
+	bool _IsActive;
 
 	FActivatedDelegate Activated;
 
@@ -33,7 +33,7 @@ public:
 	void Init(ACorneredObjectPool* owner);
 
 	UFUNCTION()
-		void RecycleSelf();
+	void RecycleSelf();
 private:
 
 	virtual void OnComponentDestroyed(bool bDestroyingHierarchy) override;

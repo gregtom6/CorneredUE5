@@ -17,9 +17,9 @@ class CORNERED_API ARedLightController : public AActor
 public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> SequenceComp;
+	TObjectPtr<UActorSequenceComponent> SequenceComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> DisabledSequComp;
+	TObjectPtr<UActorSequenceComponent> DisabledSequComp;
 
 private:
 
@@ -34,10 +34,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
-		void OnTimerOverHappened();
+	void OnTimerOverHappened();
 
 private:
 
 	UFUNCTION()
-		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 };

@@ -12,8 +12,8 @@ struct FUnlockableAbilities
 {
 	GENERATED_BODY()
 
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TArray<EAbility> Abilities;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	TArray<EAbility> Abilities;
 };
 
 class UCorneredGameInstance;
@@ -30,7 +30,7 @@ class CORNERED_API UConfig_Progress : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere)
-		TArray<FUnlockableAbilities> AbilitiesToUnlockPerLevel;
+	TArray<FUnlockableAbilities> AbilitiesToUnlockPerLevel;
 
 public:
 

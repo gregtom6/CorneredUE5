@@ -21,14 +21,14 @@ struct FAbilityProcessTimeEntry
 {
 	GENERATED_BODY()
 
-		FAbilityProcessTimeEntry()
+	FAbilityProcessTimeEntry()
 		: Key(EAbility::Count), ProcessTime(0.f) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EAbility Key;
+	EAbility Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		float ProcessTime;
+	float ProcessTime;
 
 };
 
@@ -40,10 +40,10 @@ class CORNERED_API UConfig_MixingMachine : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FAbilityProcessTimeEntry> AbilityProcessTimeEntries;
+	TArray<FAbilityProcessTimeEntry> AbilityProcessTimeEntries;
 
 public:
 
-		float GetProcessTime(EAbility ability) const;
+	float GetProcessTime(EAbility ability) const;
 
 };

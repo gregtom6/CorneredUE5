@@ -19,7 +19,7 @@ class CORNERED_API ACorneredButton : public AActor, public IInteractable
 private:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> PressAudio;
+	TObjectPtr<UAudioComponent> PressAudio;
 
 public:
 	ACorneredButton();

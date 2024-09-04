@@ -35,10 +35,10 @@ protected:
 
 private:
 	UFUNCTION()
-		void OnNewMatchStarted();
+	void OnNewMatchStarted();
 
 	UFUNCTION()
-		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 
 	FVector GetRandomPosition() const;
 

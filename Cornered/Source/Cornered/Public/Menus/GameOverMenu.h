@@ -20,16 +20,16 @@ public:
 	FUIPressHappenedDelegate UIPressHappened;
 
 	UPROPERTY(EditAnywhere)
-		TSoftObjectPtr<UWorld> GameLevel;
+	TSoftObjectPtr<UWorld> GameLevel;
 
 	UPROPERTY(EditAnywhere)
-		TSoftObjectPtr<UWorld> MainMenuLevel;
+	TSoftObjectPtr<UWorld> MainMenuLevel;
 protected:
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> Restart;
+	TObjectPtr<UButton> Restart;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> Quit;
+	TObjectPtr<UButton> Quit;
 
 public:
 	virtual void NativeConstruct() override;
@@ -37,8 +37,8 @@ public:
 protected:
 
 	UFUNCTION()
-		void RestartOnClick();
+	void RestartOnClick();
 
 	UFUNCTION()
-		void QuitOnClick();
+	void QuitOnClick();
 };

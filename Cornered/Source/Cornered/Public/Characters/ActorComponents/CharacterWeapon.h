@@ -16,11 +16,11 @@ class CORNERED_API UCharacterWeapon : public UActorComponent
 
 public:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Equipment> EquipmentConfig;
+	TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
-		bool bIsReadyToShoot = true;
+	bool bIsReadyToShoot = true;
 
 private:
 
@@ -34,18 +34,18 @@ public:
 	float GetCooldownTimeLeftPercentageBetween01();
 
 	UFUNCTION(BlueprintPure)
-		bool IsThereEquippedWeapon() const;
+	bool IsThereEquippedWeapon() const;
 
 
 	void SetWeaponReadyToBeUsed();
 
 	UFUNCTION(BlueprintGetter)
-		bool IsReadyToShoot() const;
+	bool IsReadyToShoot() const;
 protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintPure)
-		EItemType GetEquippedWeapon() const;
+	EItemType GetEquippedWeapon() const;
 
 	void ShootWithEquippedWeapon();
 
@@ -53,7 +53,7 @@ protected:
 
 
 	UFUNCTION()
-		void ShootCooldownEnded();
+	void ShootCooldownEnded();
 
 	void InflictDamage(FWeaponSettingsEntry weaponSettings, FShotRayDatas shotRayDatas) const;
 

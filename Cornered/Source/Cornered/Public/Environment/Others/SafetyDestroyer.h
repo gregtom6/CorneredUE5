@@ -20,5 +20,5 @@ public:
 private:
 
 	UFUNCTION()
-		void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
+	void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
 };

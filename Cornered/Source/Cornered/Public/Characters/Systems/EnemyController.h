@@ -27,7 +27,7 @@ private:
 	EMovementState MovementState;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_AI> AIConfig;
+	TObjectPtr<UConfig_AI> AIConfig;
 
 public:
 	AEnemyController();
@@ -35,18 +35,18 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintPure)
-		virtual EMovementState GetMovementState() const override;
+	virtual EMovementState GetMovementState() const override;
 
 	UFUNCTION(BlueprintCallable)
-		void FollowPlayer();
+	void FollowPlayer();
 
 	UFUNCTION(BlueprintCallable)
-		void HideFromPlayer();
+	void HideFromPlayer();
 
 protected:
 
 	UFUNCTION()
-		void OnTimerOverHappened();
+	void OnTimerOverHappened();
 
 	virtual void BeginPlay() override;
 };

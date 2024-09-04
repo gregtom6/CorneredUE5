@@ -15,15 +15,15 @@ struct FItemDatas
 {
 	GENERATED_BODY()
 
-		FItemDatas()
+	FItemDatas()
 		: Key(EItemType::Count),
 		Value(EItemState::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemState Value;
+	EItemState Value;
 };
 
 
@@ -32,14 +32,14 @@ struct FEquippedProductEntry
 {
 	GENERATED_BODY()
 
-		FEquippedProductEntry()
+	FEquippedProductEntry()
 		: Key(EItemType::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TSubclassOf<AActor> Value;
+	TSubclassOf<AActor> Value;
 };
 
 USTRUCT(BlueprintType)
@@ -47,16 +47,16 @@ struct FWeaponSettingsEntry
 {
 	GENERATED_BODY()
 
-		FWeaponSettingsEntry()
+	FWeaponSettingsEntry()
 		: Key(EItemType::Count), CooldownTimeInSec(0.f), Damage(0.f) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		float CooldownTimeInSec;
+	float CooldownTimeInSec;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		float Damage;
+	float Damage;
 
 };
 
@@ -65,14 +65,14 @@ struct FShieldSettingsEntry
 {
 	GENERATED_BODY()
 
-		FShieldSettingsEntry()
+	FShieldSettingsEntry()
 		: Key(EItemType::Count), DamageDivider(0.f) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		float DamageDivider;
+	float DamageDivider;
 
 };
 
@@ -81,14 +81,14 @@ struct FAdditionalSettingsEntry
 {
 	GENERATED_BODY()
 
-		FAdditionalSettingsEntry()
+	FAdditionalSettingsEntry()
 		: Key(EItemType::Count), Multiplier(0.f) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		float Multiplier;
+	float Multiplier;
 
 };
 
@@ -100,37 +100,37 @@ class CORNERED_API UConfig_Equipment : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere)
-		TArray<FItemDatas> Weapons;
+	TArray<FItemDatas> Weapons;
 	UPROPERTY(EditAnywhere)
-		TArray<FItemDatas> Shields;
+	TArray<FItemDatas> Shields;
 	UPROPERTY(EditAnywhere)
-		TArray<FItemDatas> Additionals;
+	TArray<FItemDatas> Additionals;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FEquippedProductEntry> EquippedProductEntries;
+	TArray<FEquippedProductEntry> EquippedProductEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FWeaponSettingsEntry> WeaponSettingsEntries;
+	TArray<FWeaponSettingsEntry> WeaponSettingsEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FShieldSettingsEntry> ShieldSettingsEntries;
+	TArray<FShieldSettingsEntry> ShieldSettingsEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FAdditionalSettingsEntry> AdditionalSettingsEntries;
+	TArray<FAdditionalSettingsEntry> AdditionalSettingsEntries;
 
 public:
 
-		TSubclassOf<AActor> GetEquippedProduct(EItemType itemType) const;
+	TSubclassOf<AActor> GetEquippedProduct(EItemType itemType) const;
 
-		FWeaponSettingsEntry GetWeaponSettings(EItemType itemType) const;
+	FWeaponSettingsEntry GetWeaponSettings(EItemType itemType) const;
 
-		FShieldSettingsEntry GetShieldSettings(EItemType itemType) const;
+	FShieldSettingsEntry GetShieldSettings(EItemType itemType) const;
 
-		FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
+	FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
 
-		FItemDatas GetRandomWeapon() const;
+	FItemDatas GetRandomWeapon() const;
 
-		FItemDatas GetRandomShield() const;
+	FItemDatas GetRandomShield() const;
 
-		FItemDatas GetRandomAdditional() const;
+	FItemDatas GetRandomAdditional() const;
 };

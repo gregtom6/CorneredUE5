@@ -18,7 +18,7 @@ class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 
 private:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_AI> AIConfig;
+	TObjectPtr<UConfig_AI> AIConfig;
 
 public:
 

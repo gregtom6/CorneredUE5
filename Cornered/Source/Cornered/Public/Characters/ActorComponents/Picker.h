@@ -16,7 +16,7 @@ class CORNERED_API UPicker : public USceneComponent
 
 public:
 	UPROPERTY()
-		TObjectPtr<UInteractableDetector> InteractableDetectorComp;
+	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 private:
 	bool bPickupDropHappenedInThisFrame;
@@ -40,8 +40,8 @@ protected:
 private:
 
 	UFUNCTION()
-		void PickupHappened();
+	void PickupHappened();
 
 	UFUNCTION()
-		void DropHappened();
+	void DropHappened();
 };

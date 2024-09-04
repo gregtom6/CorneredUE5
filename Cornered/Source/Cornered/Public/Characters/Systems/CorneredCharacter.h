@@ -24,31 +24,31 @@ class CORNERED_API ACorneredCharacter : public ACharacter
 public:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UCharacterWeapon> CharacterWeaponComp;
+	TObjectPtr<UCharacterWeapon> CharacterWeaponComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
+	TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UCameraComponent> CameraComp;
+	TObjectPtr<UCameraComponent> CameraComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UInventory> InventoryComp;
+	TObjectPtr<UInventory> InventoryComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
+	TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> PaperSpriteComp;
+	TObjectPtr<UPaperSpriteComponent> PaperSpriteComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UPaperSpriteComponent> CooldownIndicatorComp;
+	TObjectPtr<UPaperSpriteComponent> CooldownIndicatorComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
+	TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UCharacterHealth> CharacterHealthComp;
+	TObjectPtr<UCharacterHealth> CharacterHealthComp;
 
 public:
 	// Sets default values for this character's properties

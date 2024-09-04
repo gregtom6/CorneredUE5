@@ -20,8 +20,8 @@ class CORNERED_API UConfig_CharacterSpawner : public UDeveloperSettings
 public:
 
 	UPROPERTY(config, EditAnywhere)
-		TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
+	TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
 
 	UPROPERTY(config, EditAnywhere)
-		TSoftObjectPtr<UConfig_Character_General> CharacterConfig;
+	TSoftObjectPtr<UConfig_Character_General> CharacterConfig;
 };

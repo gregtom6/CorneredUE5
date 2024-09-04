@@ -19,29 +19,29 @@ class CORNERED_API AGateController : public AActor
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> OpenSequ;
+	TObjectPtr<UActorSequenceComponent> OpenSequ;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> CloseSequ;
+	TObjectPtr<UActorSequenceComponent> CloseSequ;
 
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> GateVisualsParentComp;
+	TObjectPtr<USceneComponent> GateVisualsParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> EnterDetectorParentComp;
+	TObjectPtr<USceneComponent> EnterDetectorParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> ExitDetectorParentComp;
+	TObjectPtr<USceneComponent> ExitDetectorParentComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UBoxComponent> EnterDetectorComp;
+	TObjectPtr<UBoxComponent> EnterDetectorComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UBoxComponent> ExitDetectorComp;
+	TObjectPtr<UBoxComponent> ExitDetectorComp;
 
 
 
@@ -55,12 +55,12 @@ protected:
 	virtual void BeginPlay() override;
 private:
 	UFUNCTION()
-		void OnEnterDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-			UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
-			bool bFromSweep, const FHitResult& SweepResult);
+	void OnEnterDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+		bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION()
-		void OnExitDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-			UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
-			bool bFromSweep, const FHitResult& SweepResult);
+	void OnExitDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+		bool bFromSweep, const FHitResult& SweepResult);
 };

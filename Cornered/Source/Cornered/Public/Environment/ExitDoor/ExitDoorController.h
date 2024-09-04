@@ -24,30 +24,30 @@ class CORNERED_API AExitDoorController : public AHoldActivable
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> OpenSequ;
+	TObjectPtr<UActorSequenceComponent> OpenSequ;
 
 private:
 	UPROPERTY()
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UStaticMeshComponent> DoorVisuals;
+	TObjectPtr<UStaticMeshComponent> DoorVisuals;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UTextRenderComponent> PercentageText;
+	TObjectPtr<UTextRenderComponent> PercentageText;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UTextRenderComponent> ProgressText;
+	TObjectPtr<UTextRenderComponent> ProgressText;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_ExitDoor> ExitDoorConfig;
+	TObjectPtr<UConfig_ExitDoor> ExitDoorConfig;
 
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<AHoldableButton> HoldableButton;
+	TObjectPtr<AHoldableButton> HoldableButton;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<AExitButtonMover> ExitButtonParent;
+	TObjectPtr<AExitButtonMover> ExitButtonParent;
 
 	bool bOpeningInProgress;
 

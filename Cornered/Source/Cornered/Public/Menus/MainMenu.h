@@ -35,64 +35,64 @@ public:
 
 protected:
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> NewGame;
+	TObjectPtr<UButton> NewGame;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> Hint;
+	TObjectPtr<UButton> Hint;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> Controls;
+	TObjectPtr<UButton> Controls;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> Quit;
+	TObjectPtr<UButton> Quit;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> FromTutorialToMainMenu;
+	TObjectPtr<UButton> FromTutorialToMainMenu;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> TutorialLeftPage;
+	TObjectPtr<UButton> TutorialLeftPage;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> TutorialRightPage;
+	TObjectPtr<UButton> TutorialRightPage;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> FromControlsToMainMenu;
+	TObjectPtr<UButton> FromControlsToMainMenu;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> ControlsLeftPage;
+	TObjectPtr<UButton> ControlsLeftPage;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UButton> ControlsRightPage;
+	TObjectPtr<UButton> ControlsRightPage;
 
 private:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Tutorial> TutorialConfig;
+	TObjectPtr<UConfig_Tutorial> TutorialConfig;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Controls> ControlsConfig;
+	TObjectPtr<UConfig_Controls> ControlsConfig;
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UImage> TutorialImage;
+	TObjectPtr<UImage> TutorialImage;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UImage> ControlsLeftImage;
+	TObjectPtr<UImage> ControlsLeftImage;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UImage> ControlsRightImage;
+	TObjectPtr<UImage> ControlsRightImage;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UTextBlock> ControlsText;
+	TObjectPtr<UTextBlock> ControlsText;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UTextBlock> TutorialText;
+	TObjectPtr<UTextBlock> TutorialText;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UPanelWidget> MainMenuParent;
+	TObjectPtr<UPanelWidget> MainMenuParent;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UPanelWidget> TutorialParent;
+	TObjectPtr<UPanelWidget> TutorialParent;
 
 	UPROPERTY(meta = (BindWidget))
-		TObjectPtr<UPanelWidget> ControlsParent;
+	TObjectPtr<UPanelWidget> ControlsParent;
 
 	EMainMenuState MainMenuState;
 
@@ -101,34 +101,34 @@ public:
 	virtual void NativeConstruct() override;
 protected:
 	UFUNCTION()
-		void NewGameOnClick();
+	void NewGameOnClick();
 
 	UFUNCTION()
-		void HintOnClick();
+	void HintOnClick();
 
 	UFUNCTION()
-		void ControlsOnClick();
+	void ControlsOnClick();
 
 	UFUNCTION()
-		void QuitOnClick();
+	void QuitOnClick();
 
 	UFUNCTION()
-		void FromTutorialToMainMenuOnClick();
+	void FromTutorialToMainMenuOnClick();
 
 	UFUNCTION()
-		void TutorialLeftPageOnClick();
+	void TutorialLeftPageOnClick();
 
 	UFUNCTION()
-		void TutorialRightPageOnClick();
+	void TutorialRightPageOnClick();
 
 	UFUNCTION()
-		void FromControlsToMainMenuOnClick();
+	void FromControlsToMainMenuOnClick();
 
 	UFUNCTION()
-		void ControlsLeftPageOnClick();
+	void ControlsLeftPageOnClick();
 
 	UFUNCTION()
-		void ControlsRightPageOnClick();
+	void ControlsRightPageOnClick();
 private:
 	void ShowState();
 

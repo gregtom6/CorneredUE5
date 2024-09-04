@@ -19,16 +19,16 @@ class CORNERED_API AConveyorBeltSpeederButton : public ACorneredButton
 private:
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<UStaticMeshComponent> BeltButtonStaticMeshComp;
+	TObjectPtr<UStaticMeshComponent> BeltButtonStaticMeshComp;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Belt> BeltConfig;
+	TObjectPtr<UConfig_Belt> BeltConfig;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<ABeltController> BeltController;
+	TObjectPtr<ABeltController> BeltController;
 
 public:
 

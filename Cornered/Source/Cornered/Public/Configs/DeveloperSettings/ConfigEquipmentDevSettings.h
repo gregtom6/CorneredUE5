@@ -18,23 +18,23 @@ class CORNERED_API UConfigEquipmentDevSettings : public UDeveloperSettings
 public:
 
 	UPROPERTY(config, EditAnywhere)
-		TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
+	TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
 
 private:
 
 	UPROPERTY(config, EditAnywhere)
-		TArray<FItemDatas> Weapons;
+	TArray<FItemDatas> Weapons;
 	UPROPERTY(config, EditAnywhere)
-		TArray<FItemDatas> Shields;
+	TArray<FItemDatas> Shields;
 	UPROPERTY(config, EditAnywhere)
-		TArray<FItemDatas> Additionals;
+	TArray<FItemDatas> Additionals;
 
 public:
 
-		FItemDatas GetRandomWeapon() const;
+	FItemDatas GetRandomWeapon() const;
 
-		FItemDatas GetRandomShield() const;
+	FItemDatas GetRandomShield() const;
 
-		FItemDatas GetRandomAdditional() const;
+	FItemDatas GetRandomAdditional() const;
 
 };

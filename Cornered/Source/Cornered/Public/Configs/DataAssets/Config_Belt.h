@@ -21,14 +21,14 @@ struct FBeltSpeedMaterialEntry
 {
 	GENERATED_BODY()
 
-		FBeltSpeedMaterialEntry()
+	FBeltSpeedMaterialEntry()
 		: Key(EBeltSpeed::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EBeltSpeed Key;
+	EBeltSpeed Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TObjectPtr<UMaterialInterface> Material;
+	TObjectPtr<UMaterialInterface> Material;
 
 };
 
@@ -46,14 +46,14 @@ class CORNERED_API UConfig_Belt : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere)
-		float NormalMultiplier;
+	float NormalMultiplier;
 	UPROPERTY(EditAnywhere)
-		float SpeedMultiplier;
+	float SpeedMultiplier;
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<ABeltElement> BeltElementClass;
+	TSubclassOf<ABeltElement> BeltElementClass;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FBeltSpeedMaterialEntry> BeltSpeedMaterialEntries;
+	TArray<FBeltSpeedMaterialEntry> BeltSpeedMaterialEntries;
 
 public:
 

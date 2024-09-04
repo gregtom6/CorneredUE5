@@ -19,5 +19,5 @@ public:
 	AGameWinTrigger();
 
 	UFUNCTION()
-		void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
+	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
 };

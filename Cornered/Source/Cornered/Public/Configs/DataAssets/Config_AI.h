@@ -14,53 +14,53 @@ class CORNERED_API UConfig_AI : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere)
-		float HideWhenLifeLessThanPercentage;
+	float HideWhenLifeLessThanPercentage;
 
 	UPROPERTY(EditAnywhere)
-		float AttackWhenLifeMoreThanPercentage;
+	float AttackWhenLifeMoreThanPercentage;
 
 	UPROPERTY(EditAnywhere)
-		float PreserveDistanceBetweenPlayerAndMe;
+	float PreserveDistanceBetweenPlayerAndMe;
 
 	UPROPERTY(EditAnywhere)
-		float EnemyAttackVisionDistance;
+	float EnemyAttackVisionDistance;
 
 	UPROPERTY(EditAnywhere)
-		float NavmeshSamplePositionDistance;
+	float NavmeshSamplePositionDistance;
 
 	UPROPERTY(EditAnywhere)
-		float RayTraverseStepSizeToDiscoverHidingPlace;
+	float RayTraverseStepSizeToDiscoverHidingPlace;
 
 	UPROPERTY(EditAnywhere)
-		float AngleRotationChecksToDetectHidingSpot;
+	float AngleRotationChecksToDetectHidingSpot;
 
 	UPROPERTY(EditAnywhere)
-		float RayLengthToFindObstacle;
+	float RayLengthToFindObstacle;
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotFinderDebugLineLifeTime;
+	float HideSpotFinderDebugLineLifeTime;
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotFinderDebugLineThickness;
+	float HideSpotFinderDebugLineThickness;
 
 	UPROPERTY(EditAnywhere)
-		FVector HideSpotFinderOriginOffset;
+	FVector HideSpotFinderOriginOffset;
 
 	UPROPERTY(EditAnywhere)
-		float ObstacleFindingRayStartingStepCount;
+	float ObstacleFindingRayStartingStepCount;
 
 	UPROPERTY(EditAnywhere)
-		float ObstacleFindingRayDeltaStepSize;
+	float ObstacleFindingRayDeltaStepSize;
 
 	UPROPERTY(EditAnywhere)
-		float ObstacleFindingRayMaxDistance;
+	float ObstacleFindingRayMaxDistance;
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotDebugSphereRadius;
+	float HideSpotDebugSphereRadius;
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotDebugSphereSegments;
+	float HideSpotDebugSphereSegments;
 
 	UPROPERTY(EditAnywhere)
-		float HideSpotDebugSphereThickness;
+	float HideSpotDebugSphereThickness;
 };

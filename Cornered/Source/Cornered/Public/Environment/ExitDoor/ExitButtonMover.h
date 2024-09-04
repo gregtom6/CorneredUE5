@@ -16,12 +16,12 @@ class CORNERED_API AExitButtonMover : public AActor
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		TObjectPtr<UActorSequenceComponent> OpenSequ;
+	TObjectPtr<UActorSequenceComponent> OpenSequ;
 private:
 
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 public:
 	// Sets default values for this actor's properties

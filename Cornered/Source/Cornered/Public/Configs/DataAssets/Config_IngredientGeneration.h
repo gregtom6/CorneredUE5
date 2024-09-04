@@ -14,17 +14,17 @@ struct FIngredientEntry
 {
 	GENERATED_BODY()
 
-		FIngredientEntry()
+	FIngredientEntry()
 		: Key(EItemType::Count), WeightForAppear(0) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		EItemType Key;
+	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		int WeightForAppear;
+	int WeightForAppear;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TSubclassOf<AIngredient> IngredientClass;
+	TSubclassOf<AIngredient> IngredientClass;
 
 };
 
@@ -36,10 +36,10 @@ class CORNERED_API UConfig_IngredientGeneration : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-		TArray<FIngredientEntry> IngredientGenerationEntries;
+	TArray<FIngredientEntry> IngredientGenerationEntries;
 
 public:
 
-		TSubclassOf<AIngredient> GetWeightedRandomItemClass() const;
+	TSubclassOf<AIngredient> GetWeightedRandomItemClass() const;
 
 };

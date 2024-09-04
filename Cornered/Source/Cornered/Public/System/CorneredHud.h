@@ -17,23 +17,23 @@ class CORNERED_API ACorneredHud : public AHUD
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-		TArray<TSubclassOf<UUserWidget>> WidgetClasses;
+	TArray<TSubclassOf<UUserWidget>> WidgetClasses;
 
 	UPROPERTY()
-		TArray<TObjectPtr<UUserWidget>> WidgetInstances;
+	TArray<TObjectPtr<UUserWidget>> WidgetInstances;
 
 private:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> BGMComp;
+	TObjectPtr<UAudioComponent> BGMComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> AmbientComp;
+	TObjectPtr<UAudioComponent> AmbientComp;
 
 private:
 
 	UFUNCTION()
-		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 
 public:
 	ACorneredHud();
@@ -42,5 +42,5 @@ public:
 protected:
 
 	UFUNCTION()
-		void OnTimerOverHappened();
+	void OnTimerOverHappened();
 };

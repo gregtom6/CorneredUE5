@@ -35,7 +35,7 @@ private:
 	bool bIsPreparingTime;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Time> TimeConfig;
+	TObjectPtr<UConfig_Time> TimeConfig;
 
 	FTimerHandle TimerHandle;
 
@@ -48,7 +48,7 @@ public:
 	void ZeroingTimer();
 
 	UFUNCTION(BlueprintPure)
-		float GetPreparingTimeLeft() const;
+	float GetPreparingTimeLeft() const;
 
 
 	virtual void StartPlay() override;
@@ -59,10 +59,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
-		void PreparingTimeEnded();
+	void PreparingTimeEnded();
 
 	UFUNCTION()
-		void WaitTimeEndedBetweenMatches();
+	void WaitTimeEndedBetweenMatches();
 
 private:
 

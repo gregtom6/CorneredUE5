@@ -17,8 +17,8 @@ class CORNERED_API UCharacterAnimInstance : public UAnimInstance
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int LegState;
+	int LegState;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool UseWeapon;
+	bool UseWeapon;
 };

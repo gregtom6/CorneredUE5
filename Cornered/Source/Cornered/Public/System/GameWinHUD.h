@@ -16,18 +16,18 @@ class CORNERED_API AGameWinHUD : public AHUD
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
-		TSubclassOf<UUserWidget> UserWidgetClass;
+	TSubclassOf<UUserWidget> UserWidgetClass;
 
 private:
 
 	UPROPERTY()
-		TObjectPtr<UUserWidget> UserWidgetInstance;
+	TObjectPtr<UUserWidget> UserWidgetInstance;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> GameWinBGMComp;
+	TObjectPtr<UAudioComponent> GameWinBGMComp;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UAudioComponent> SFXComp;
+	TObjectPtr<UAudioComponent> SFXComp;
 
 public:
 
@@ -39,5 +39,5 @@ public:
 private:
 
 	UFUNCTION()
-		void UIPressHappened();
+	void UIPressHappened();
 };

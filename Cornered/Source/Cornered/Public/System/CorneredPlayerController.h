@@ -34,32 +34,32 @@ class CORNERED_API ACorneredPlayerController : public APlayerController, public 
 
 public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionMovement;
+	TObjectPtr<UInputAction> ActionMovement;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionLook;
+	TObjectPtr<UInputAction> ActionLook;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionLookUp;
+	TObjectPtr<UInputAction> ActionLookUp;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionLookDown;
+	TObjectPtr<UInputAction> ActionLookDown;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionLookLeft;
+	TObjectPtr<UInputAction> ActionLookLeft;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionLookRight;
+	TObjectPtr<UInputAction> ActionLookRight;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionInteract;
+	TObjectPtr<UInputAction> ActionInteract;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionPickup;
+	TObjectPtr<UInputAction> ActionPickup;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionDrop;
+	TObjectPtr<UInputAction> ActionDrop;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionEquip;
+	TObjectPtr<UInputAction> ActionEquip;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputAction> ActionShoot;
+	TObjectPtr<UInputAction> ActionShoot;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
-		TObjectPtr<UInputMappingContext> InputMappingContext;
+	TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Character_General> ConfigCharacter;
+	TObjectPtr<UConfig_Character_General> ConfigCharacter;
 
 	FPickupInteractionHappenedDelegate PickupHappenedInstance;
 
@@ -76,16 +76,16 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent = nullptr;
+	TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent = nullptr;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
+	TObjectPtr<APlayerCharacter> PlayerCharacter = nullptr;
 
 	EMovementState MovementState;
 
 public:
 	UFUNCTION(BlueprintPure)
-		virtual EMovementState GetMovementState() const override;
+	virtual EMovementState GetMovementState() const override;
 
 protected:
 
@@ -93,31 +93,31 @@ protected:
 	virtual void OnUnPossess() override;
 
 	UFUNCTION()
-		void HandleMovement(const FInputActionValue& InputActionValue);
+	void HandleMovement(const FInputActionValue& InputActionValue);
 	UFUNCTION()
-		void MovementCompleted(const FInputActionValue& InputActionValue);
+	void MovementCompleted(const FInputActionValue& InputActionValue);
 	UFUNCTION()
-		void HandleLook(const FInputActionValue& InputActionValue);
+	void HandleLook(const FInputActionValue& InputActionValue);
 	UFUNCTION()
-		void HandleLookUp();
+	void HandleLookUp();
 	UFUNCTION()
-		void HandleLookDown();
+	void HandleLookDown();
 	UFUNCTION()
-		void HandleLookLeft();
+	void HandleLookLeft();
 	UFUNCTION()
-		void HandleLookRight();
+	void HandleLookRight();
 	UFUNCTION()
-		void HandleInteractStarted();
+	void HandleInteractStarted();
 	UFUNCTION()
-		void HandleInteractFinished();
+	void HandleInteractFinished();
 	UFUNCTION()
-		void HandlePickup();
+	void HandlePickup();
 	UFUNCTION()
-		void HandleDrop();
+	void HandleDrop();
 	UFUNCTION()
-		void HandleEquip();
+	void HandleEquip();
 	UFUNCTION()
-		void HandleShoot();
+	void HandleShoot();
 
 private:
 

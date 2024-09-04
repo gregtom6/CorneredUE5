@@ -17,12 +17,12 @@ class CORNERED_API UEquipmentVisualizer : public UActorComponent
 
 public:
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Equipment> ConfigEquipment;
+	TObjectPtr<UConfig_Equipment> ConfigEquipment;
 
 private:
 
 	UPROPERTY()
-		TObjectPtr<AActor> SpawnedEquippedWeapon;
+	TObjectPtr<AActor> SpawnedEquippedWeapon;
 
 	bool bWeaponSpawned;
 

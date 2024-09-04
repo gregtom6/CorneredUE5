@@ -19,11 +19,11 @@ class CORNERED_API AProgressionGameState : public AGameStateBase
 
 public:
 	UPROPERTY()
-		int UnlockLevel;
+	int UnlockLevel;
 private:
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_Progress> ProgressConfig;
+	TObjectPtr<UConfig_Progress> ProgressConfig;
 
 public:
 	void ResetProgress();
@@ -33,7 +33,7 @@ public:
 	void SaveProgress();
 
 	UFUNCTION(BlueprintPure)
-		bool IsAbilityAlreadyUnlocked(EAbility Ability);
+	bool IsAbilityAlreadyUnlocked(EAbility Ability);
 
 protected:
 
@@ -42,6 +42,6 @@ protected:
 private:
 
 	UFUNCTION()
-		void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
 
 };

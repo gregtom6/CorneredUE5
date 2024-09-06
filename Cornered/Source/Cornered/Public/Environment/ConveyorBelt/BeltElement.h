@@ -17,16 +17,16 @@ class CORNERED_API ABeltElement : public AActor, public ICorneredInitializable
 
 private:
 	UPROPERTY()
-		TObjectPtr<USceneComponent> Root;
+	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)
-		TObjectPtr<USceneComponent> ItemPivot;
+	TObjectPtr<USceneComponent> ItemPivot;
 
 	UPROPERTY()
-		TObjectPtr<ABeltController> BeltController;
+	TObjectPtr<ABeltController> BeltController;
 
 	UPROPERTY(EditAnywhere)
-		TObjectPtr<UConfig_IngredientGeneration> IngredientGenConfig;
+	TObjectPtr<UConfig_IngredientGeneration> IngredientGenConfig;
 
 	FTimerHandle TimerHandle;
 

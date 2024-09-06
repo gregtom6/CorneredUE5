@@ -21,14 +21,14 @@ struct FLevelEntry
 {
 	GENERATED_BODY()
 
-		FLevelEntry()
+	FLevelEntry()
 		: Key(ELevelIdentifier::Count) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		ELevelIdentifier Key;
+	ELevelIdentifier Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-		TSoftObjectPtr<UWorld> LevelToLoad;
+	TSoftObjectPtr<UWorld> LevelToLoad;
 
 };
 
@@ -40,9 +40,9 @@ class CORNERED_API UConfigLevelsDevSettings : public UDeveloperSettings
 public:
 
 	UPROPERTY(config, EditAnywhere)
-		TArray<FLevelEntry> Levels;
+	TArray<FLevelEntry> Levels;
 
 public:
 
-		TSoftObjectPtr<UWorld> GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const;
+	TSoftObjectPtr<UWorld> GetLevelBasedOnEnum(ELevelIdentifier LevelIdentifier) const;
 };

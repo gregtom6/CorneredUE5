@@ -60,9 +60,9 @@ void ACorneredCharacter::Tick(float DeltaTime)
 
 float ACorneredCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	if (CharacterHealthComp)
+	if (CharacterHealth)
 	{
-		CharacterHealthComp->DamageHealth(DamageAmount);
+		CharacterHealth->DamageHealth(DamageAmount);
 	}
 
 	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);

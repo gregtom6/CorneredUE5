@@ -3,7 +3,7 @@
 #include "StateTreeExecutionContext.h"
 #include "StateTreeTaskBase.h"
 #include "StateTreeConditionBase.h"
-#include "Configs/DataAssets/Config_CharacterSpawner.h"
+#include "Configs/DeveloperSettings/Config_CharacterSpawner.h"
 
 bool FDefendPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Context) const
 {

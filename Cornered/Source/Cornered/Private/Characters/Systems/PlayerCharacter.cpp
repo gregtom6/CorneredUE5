@@ -12,7 +12,7 @@
 #include "Camera/CameraComponent.h"
 #include "Characters/ActorComponents/Interactor.h"
 #include "Components/AudioComponent.h"
-#include "Characters/ActorComponents/PlayerHealth.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
 
 // Sets default values
@@ -27,7 +27,7 @@ APlayerCharacter::APlayerCharacter()
 	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
 	InteractorComp = CreateDefaultSubobject<UInteractor>(TEXT("InteractorComp"));
 	EquipAudio= CreateDefaultSubobject<UAudioComponent>(TEXT("EquipAudio"));
-	CharacterHealthComp = CreateDefaultSubobject<UPlayerHealth>(TEXT("PlayerHealthComp"));
+	CharacterHealth = CreateDefaultSubobject<UCharacterHealth>(TEXT("HealthComp"));
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);

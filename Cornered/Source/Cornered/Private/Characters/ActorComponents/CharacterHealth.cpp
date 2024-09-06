@@ -3,6 +3,7 @@
 
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Configs/DataAssets/Config_Character_General.h"
+#include "Configs/DataAssets/Config_CharacterSpecific.h"
 #include "System/CorneredGameMode.h"
 #include "GameFramework/Character.h"
 
@@ -19,19 +20,27 @@ void UCharacterHealth::BeginPlay()
 	bShouldReloadHealth = true;
 }
 
+float UCharacterHealth::GetMaxHealth() const {
+	return SpecificCharacterConfig->MaxHealth;
+}
+
+float UCharacterHealth::GetReloadWaitingMaxTime() const {
+	return SpecificCharacterConfig->WaitUntilHealthReloadStarts;
+}
+
 void UCharacterHealth::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	if (CurrentHealth >= GetMaxHealth() ||
-		CurrentHealth <= CharacterConfig->MinHealth)
+		CurrentHealth <= GeneralCharacterConfig->MinHealth)
 	{
 		return;
 	}
 
 	if (bShouldReloadHealth)
 	{
-		CurrentHealth = FMath::Clamp(CurrentHealth += CharacterConfig->HealHealthDelta * DeltaTime, CharacterConfig->MinHealth, GetMaxHealth());
+		CurrentHealth = FMath::Clamp(CurrentHealth += GeneralCharacterConfig->HealHealthDelta * DeltaTime, GeneralCharacterConfig->MinHealth, GetMaxHealth());
 	}
 }
 
@@ -39,16 +48,12 @@ float UCharacterHealth::GetCurrentHealth() const {
 	return CurrentHealth;
 }
 
-float UCharacterHealth::GetMaxHealth() const {
-	return MaxHealth;
-}
-
 void UCharacterHealth::DamageHealth(float Damage) {
-	CurrentHealth = FMath::Clamp(CurrentHealth += Damage, CharacterConfig->MinHealth, GetMaxHealth());
+	CurrentHealth = FMath::Clamp(CurrentHealth += Damage, GeneralCharacterConfig->MinHealth, GetMaxHealth());
 
 	bShouldReloadHealth = false;
 
-	if (CurrentHealth <= CharacterConfig->MinHealth)
+	if (CurrentHealth <= GeneralCharacterConfig->MinHealth)
 	{
 		ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 		CorneredGameMode->CharacterDied(Cast<ACharacter>(GetOwner()));

@@ -7,6 +7,7 @@
 #include "CharacterHealth.generated.h"
 
 class UConfig_Character_General;
+class UConfig_CharacterSpecific;
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UCharacterHealth : public UActorComponent
@@ -22,7 +23,10 @@ protected:
 	float MaxHealth;
 
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UConfig_Character_General> CharacterConfig;
+	TObjectPtr<UConfig_Character_General> GeneralCharacterConfig;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_CharacterSpecific> SpecificCharacterConfig;
 
 private:
 
@@ -38,7 +42,7 @@ public:
 	UFUNCTION(BlueprintGetter)
 	float GetCurrentHealth() const;
 
-	virtual float GetMaxHealth() const;
+	float GetMaxHealth() const;
 
 	void DamageHealth(float Damage);
 
@@ -48,5 +52,6 @@ protected:
 
 	void HealthReloadWaitTimeEnded();
 
-	virtual float GetReloadWaitingMaxTime() const PURE_VIRTUAL(UCharacterHealth::GetReloadWaitingMaxTime, return 0.f;);
+private:
+	float GetReloadWaitingMaxTime() const;
 };

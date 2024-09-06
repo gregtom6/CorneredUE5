@@ -8,7 +8,6 @@
 #include "PaperSpriteComponent.h"
 #include "Characters/ActorComponents/CooldownIndicator.h"
 #include "Perception/PawnSensingComponent.h"
-#include "Characters/ActorComponents/EnemyHealth.h"
 #include "Characters/Systems/EnemyController.h"
 #include "GameFramework/GameModeBase.h"
 #include "GameFramework/PlayerController.h"
@@ -19,6 +18,7 @@
 #include "Components/StateTreeComponent.h"
 #include "Characters/ActorComponents/HideSpotFinder.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -27,7 +27,7 @@ AEnemyCharacter::AEnemyCharacter()
 	CharacterWeaponComp = CreateDefaultSubobject<UEnemyWeapon>(TEXT("EnemyWeaponComp"));
 	HideSpotFinderComp = CreateDefaultSubobject<UHideSpotFinder>(TEXT("HideSpotFinderComp"));
 	ExternalEquipperComp = CreateDefaultSubobject<UExternalEquipper>(TEXT("ExternalEquipperComp"));
-	CharacterHealthComp = CreateDefaultSubobject<UEnemyHealth>(TEXT("EnemyHealthComp"));
+	CharacterHealth = CreateDefaultSubobject<UCharacterHealth>(TEXT("HealthComp"));
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	StateTreeComp = CreateDefaultSubobject<UStateTreeComponent>(TEXT("StateTreeComp"));
 }

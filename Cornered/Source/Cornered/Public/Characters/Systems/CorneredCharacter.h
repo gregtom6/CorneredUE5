@@ -47,8 +47,8 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
 
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UCharacterHealth> CharacterHealthComp;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UCharacterHealth> CharacterHealth;
 
 public:
 	// Sets default values for this character's properties

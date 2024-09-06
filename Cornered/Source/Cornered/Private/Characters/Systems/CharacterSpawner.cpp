@@ -8,7 +8,7 @@
 #include "Characters/Systems/EnemyCharacter.h"
 #include <Kismet/GameplayStatics.h>
 #include "Engine/TargetPoint.h"
-#include "Configs/DataAssets/Config_CharacterSpawner.h"
+#include "Configs/DeveloperSettings/Config_CharacterSpawner.h"
 #include "Engine/World.h"
 #include "Engine/Engine.h"
 #include "Engine/TargetPoint.h"

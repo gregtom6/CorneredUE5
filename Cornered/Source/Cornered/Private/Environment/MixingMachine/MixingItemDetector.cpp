@@ -36,12 +36,8 @@ void AMixingItemDetector::DestroyAllItems() {
 	}
 }
 
-void AMixingItemDetector::BurnAllItems() {
-	ChangeStateOfAllItems(EItemState::Burned);
-}
-
-void AMixingItemDetector::FreezeAllItems() {
-	ChangeStateOfAllItems(EItemState::Freezed);
+void AMixingItemDetector::AddStateToAllItems(EItemState State) {
+	ChangeStateOfAllItems(State);
 }
 
 void AMixingItemDetector::ChangeStateOfAllItems(EItemState itemState) {

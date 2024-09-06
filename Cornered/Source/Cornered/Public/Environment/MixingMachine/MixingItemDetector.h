@@ -35,9 +35,7 @@ public:
 
 	void DestroyAllItems();
 
-	void BurnAllItems();
-
-	void FreezeAllItems();
+	void AddStateToAllItems(EItemState State);
 
 private:
 

@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Environment/Interactables/CorneredButton.h"
-#include "Configs/DataAssets/Config_MixingMachine.h"
 #include "MixingMachine.generated.h"
 
 class UActorSequenceComponent;
@@ -14,6 +12,8 @@ class UNiagaraComponent;
 class AMixingItemDetector;
 class UConfig_Recipe;
 class UAudioComponent;
+class UMixingMachineAbility;
+class ACorneredButton;
 
 UENUM(BlueprintType)
 enum class EMixingMachineState :uint8
@@ -48,39 +48,21 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> ResultTarget;
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<ACorneredButton> ConvertButton;
+	TArray<TObjectPtr<UMixingMachineAbility>> AbilityComponents;
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<ACorneredButton> BurnButton;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<ACorneredButton> FreezeButton;
-
+	TObjectPtr<UMixingMachineAbility> CurrentlyUsedAbility;
 
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UNiagaraComponent> BurningComp;
-
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UNiagaraComponent> FreezingComp;
+	TObjectPtr<UNiagaraComponent> AbilityComp;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<AMixingItemDetector> MixingItemDetector;
 
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UConfig_MixingMachine> MixingMachineConfig;
-
-	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Recipe> RecipeConfig;
 
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UAudioComponent> BurnAudio;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UAudioComponent> FreezeAudio;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UAudioComponent> MixingAudio;
+	TObjectPtr<UAudioComponent> AbilityAudio;
 public:
 	// Sets default values for this actor's properties
 	AMixingMachine();
@@ -89,28 +71,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	void ConvertTimeEnded();
-
-	void BurnTimeEnded();
-
-	void FreezeTimeEnded();
-
 private:
 
 	UFUNCTION()
 	void OnNewMatchStarted();
 
+	void AbilityTimeEnded();
 
 	UFUNCTION()
-	void ConvertPressHappened();
-
-	UFUNCTION()
-	void FreezePressHappened();
-
-	UFUNCTION()
-	void BurnPressHappened();
-
-
-	float GetCurrentProcessTime(EAbility ability) const;
-
+	void AbilityPressHappened(UMixingMachineAbility* SelectedAbility);
 };

@@ -8,7 +8,7 @@
 
 class UUserWidget;
 class UAudioComponent;
-class ACharacter;
+class ACorneredCharacter;
 
 UCLASS()
 class CORNERED_API ACorneredHud : public AHUD
@@ -33,7 +33,7 @@ private:
 private:
 
 	UFUNCTION()
-	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
 
 public:
 	ACorneredHud();

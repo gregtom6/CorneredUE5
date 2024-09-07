@@ -6,8 +6,8 @@
 #include <Kismet/GameplayStatics.h>
 #include "Configs/DataAssets/Config_Time.h"
 #include "Characters/Systems/CharacterSpawner.h"
-#include "GameFramework/Character.h"
 #include "Characters/Systems/EnemyCharacter.h"
+#include "Characters/Systems/CorneredCharacter.h"
 #include "System/LevelManager.h"
 #include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
 
@@ -39,7 +39,7 @@ void ACorneredGameMode::WaitTimeEndedBetweenMatches() {
 	InitiateNewMatch();
 }
 
-void ACorneredGameMode::CharacterDied(ACharacter* Character) {
+void ACorneredGameMode::CharacterDied(ACorneredCharacter* Character) {
 	CharacterDefeated.Broadcast(Character);
 
 	if (Character->IsA(AEnemyCharacter::StaticClass())) {
@@ -70,6 +70,13 @@ void ACorneredGameMode::InitiateNewMatch() {
 }
 
 void ACorneredGameMode::InitiateGameOver() {
+
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ACorneredGameMode::WaitUntilGameOverEnded, TimeConfig->WaitTimeUntilGameOver, false);
+}
+
+void ACorneredGameMode::WaitUntilGameOverEnded() {
+
 	ULevelManager* MySubsystem = GetGameInstance()->GetSubsystem<ULevelManager>();
 	MySubsystem->LoadLevel(ELevelIdentifier::GameOverScene, GetWorld());
 }

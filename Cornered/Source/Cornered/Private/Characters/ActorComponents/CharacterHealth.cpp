@@ -5,7 +5,7 @@
 #include "Configs/DataAssets/Config_Character_General.h"
 #include "Configs/DataAssets/Config_CharacterSpecific.h"
 #include "System/CorneredGameMode.h"
-#include "GameFramework/Character.h"
+#include "Characters/Systems/CorneredCharacter.h"
 
 UCharacterHealth::UCharacterHealth()
 {
@@ -56,7 +56,7 @@ void UCharacterHealth::DamageHealth(float Damage) {
 	if (CurrentHealth <= GeneralCharacterConfig->MinHealth)
 	{
 		ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
-		CorneredGameMode->CharacterDied(Cast<ACharacter>(GetOwner()));
+		CorneredGameMode->CharacterDied(Cast<ACorneredCharacter>(GetOwner()));
 	}
 	else {
 

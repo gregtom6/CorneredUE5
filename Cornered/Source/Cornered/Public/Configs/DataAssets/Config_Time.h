@@ -20,5 +20,8 @@ public:
 	float PrepareTimeEndInSec;
 
 	UPROPERTY(EditAnywhere)
+	float WaitTimeUntilGameOver;
+
+	UPROPERTY(EditAnywhere)
 	float WaitBetweenPreviousAndNewMatchInSec;
 };

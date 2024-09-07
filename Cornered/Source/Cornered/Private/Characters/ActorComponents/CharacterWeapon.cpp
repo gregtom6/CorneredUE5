@@ -7,6 +7,7 @@
 #include <Kismet/GameplayStatics.h>
 #include "Items/EquippedWeapon.h"
 #include "Characters/ActorComponents/Inventory.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 
 UCharacterWeapon::UCharacterWeapon()
 {
@@ -20,6 +21,8 @@ void UCharacterWeapon::BeginPlay()
 	bIsReadyToShoot = false;
 
 	TimerManager = &GetWorld()->GetTimerManager();
+
+	HealthComp = GetOwner()->FindComponentByClass<UCharacterHealth>();
 }
 
 bool UCharacterWeapon::IsThereEquippedWeapon() const {

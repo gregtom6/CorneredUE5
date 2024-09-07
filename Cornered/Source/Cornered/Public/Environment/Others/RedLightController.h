@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "RedLightController.generated.h"
 
-class ACharacter;
+class ACorneredCharacter;
 class UActorSequenceComponent;
 
 UCLASS()
@@ -39,5 +39,5 @@ protected:
 private:
 
 	UFUNCTION()
-	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
 };

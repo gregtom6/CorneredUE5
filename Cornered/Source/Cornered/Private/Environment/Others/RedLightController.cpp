@@ -2,7 +2,7 @@
 
 #include "Environment/Others/RedLightController.h"
 #include "System/CorneredGameMode.h"
-#include "GameFramework/Character.h"
+#include "Characters/Systems/CorneredCharacter.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 
@@ -46,7 +46,7 @@ void ARedLightController::OnTimerOverHappened()
 	}
 }
 
-void ARedLightController::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+void ARedLightController::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 	if (SequenceComp) {
 		SequenceComp->StopSequence();

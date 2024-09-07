@@ -90,8 +90,12 @@ TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints() const
 	return FoundActors;
 }
 
-void UCharacterSpawner::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+void UCharacterSpawner::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
+	/*
 	if (DefeatedCharacter->IsA(AEnemyCharacter::StaticClass())) {
 		DefeatedCharacter->Destroy();
 	}
+	*/
+
+	DefeatedCharacter->SetDieState();
 }

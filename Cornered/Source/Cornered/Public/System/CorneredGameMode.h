@@ -7,11 +7,11 @@
 #include "CorneredGameMode.generated.h"
 
 class UConfig_Time;
-class ACharacter;
+class ACorneredCharacter;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTimeOverHappenedDelegate);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACharacter*, Character);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACorneredCharacter*, Character);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FNewMatchStartedDelegate);
 
@@ -53,13 +53,16 @@ public:
 
 	virtual void StartPlay() override;
 
-	void CharacterDied(ACharacter* Character);
+	void CharacterDied(ACorneredCharacter* Character);
 
 protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
 	void PreparingTimeEnded();
+
+	UFUNCTION()
+	void WaitUntilGameOverEnded();
 
 	UFUNCTION()
 	void WaitTimeEndedBetweenMatches();

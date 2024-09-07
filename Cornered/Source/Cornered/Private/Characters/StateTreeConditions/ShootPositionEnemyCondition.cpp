@@ -12,5 +12,9 @@ bool FShootPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Con
 		return false;
 	}
 
+	if (InstanceData->EnemyCurrentHealth <= 0.f) {
+		return false;
+	}
+
 	return (InstanceData->EnemyCurrentHealth / InstanceData->EnemyMaxHealth) * 100.f >= InstanceData->AttackWhenLifeMoreThanPercentage && InstanceData->bIsReadyToShoot;
 }

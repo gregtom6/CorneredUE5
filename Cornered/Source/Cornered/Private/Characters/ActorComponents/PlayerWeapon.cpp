@@ -5,6 +5,7 @@
 #include "Characters/ActorComponents/Inventory.h"
 #include <Kismet/GameplayStatics.h>
 #include "System/CorneredPlayerController.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 
 void UPlayerWeapon::BeginPlay() {
 
@@ -22,6 +23,11 @@ void UPlayerWeapon::BeginPlay() {
 }
 
 void UPlayerWeapon::ShootHappened() {
+
+	if (HealthComp->GetCurrentHealth() <= 0.f) {
+		return;
+	}
+
 	ShootWithEquippedWeapon();
 }
 

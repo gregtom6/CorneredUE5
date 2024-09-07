@@ -8,7 +8,7 @@
 #include "ProgressionGameState.generated.h"
 
 class UConfig_Progress;
-class ACharacter;
+class ACorneredCharacter;
 /**
  *
  */
@@ -42,6 +42,6 @@ protected:
 private:
 
 	UFUNCTION()
-	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
 
 };

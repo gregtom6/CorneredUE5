@@ -7,6 +7,7 @@
 #include "System/CorneredPlayerController.h"
 #include "Perception/PawnSensingComponent.h"
 #include "Configs/DataAssets/Config_AI.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
 
 UEnemyWeapon::UEnemyWeapon()
 {
@@ -14,6 +15,10 @@ UEnemyWeapon::UEnemyWeapon()
 }
 
 void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
+
+	if (HealthComp->GetCurrentHealth() <= 0.f) {
+		return;
+	}
 
 	if (bIsReadyToShoot)
 	{

@@ -5,10 +5,10 @@
 #include "Characters/Systems/EnemyCharacter.h"
 #include "Configs/DataAssets/Config_Progress.h"
 #include "System/CorneredGameMode.h"
-#include "GameFramework/Character.h"
+#include "Characters/Systems/CorneredCharacter.h"
 #include "System/CorneredGameInstance.h"
 
-void AProgressionGameState::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+void AProgressionGameState::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 	if (DefeatedCharacter->IsA<AEnemyCharacter>()) {
 		StepProgress();

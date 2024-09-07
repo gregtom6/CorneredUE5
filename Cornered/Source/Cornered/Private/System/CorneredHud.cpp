@@ -5,7 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "System/CorneredGameMode.h"
 #include "Components/AudioComponent.h"
-#include "GameFramework/Character.h"
+#include "Characters/Systems/CorneredCharacter.h"
 
 
 ACorneredHud::ACorneredHud() {
@@ -42,7 +42,7 @@ void ACorneredHud::OnTimerOverHappened() {
     AmbientComp->Play();
 }
 
-void ACorneredHud::OnCharacterDefeated(ACharacter* DefeatedCharacter) {
+void ACorneredHud::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
     BGMComp->Stop();
     AmbientComp->Stop();
 }

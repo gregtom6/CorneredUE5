@@ -67,3 +67,7 @@ float ACorneredCharacter::TakeDamage(float DamageAmount, FDamageEvent const& Dam
 
 	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 }
+
+void ACorneredCharacter::SetDieState() {
+	GetMesh()->SetSimulatePhysics(true);
+}

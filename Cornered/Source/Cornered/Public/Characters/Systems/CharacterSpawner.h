@@ -10,6 +10,7 @@
 class UConfig_CharacterSpawner;
 class ATargetPoint;
 class AEnemyCharacter;
+class ACorneredCharacter;
 class UConfig_Character_General;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEnemyGeneratedDelegate, AEnemyCharacter*, EnemyCharacter);
@@ -38,7 +39,7 @@ private:
 	void OnNewMatchStarted();
 
 	UFUNCTION()
-	void OnCharacterDefeated(ACharacter* DefeatedCharacter);
+	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
 
 	FVector GetRandomPosition() const;
 

@@ -9,6 +9,8 @@
 #include "Configs/DataAssets/Config_Equipment.h"
 #include "CharacterWeapon.generated.h"
 
+class UCharacterHealth;
+
 UCLASS(Abstract, ClassGroup = (Custom))
 class CORNERED_API UCharacterWeapon : public UActorComponent
 {
@@ -21,12 +23,15 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
 	bool bIsReadyToShoot = true;
+	UPROPERTY()
+	TObjectPtr<UCharacterHealth> HealthComp;
 
 private:
 
 	FTimerHandle TimerHandle;
 
 	FTimerManager* TimerManager;
+
 
 public:
 	UCharacterWeapon();

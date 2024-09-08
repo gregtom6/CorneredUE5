@@ -194,6 +194,8 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 
 	if (possibleHideSpots.Num() > 0)
 	{
+		//SortPointsByCoordinate(possibleHideSpots);
+
 		FillHighlightedHideSpots(possibleHideSpots);
 
 		TArray<FVector> highlightedHideSpots = GetHighlightedHideSpots(possibleHideSpots);
@@ -204,6 +206,15 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 	}
 
 	return SelectedHideSpot;
+}
+
+void UHideSpotFinder::SortPointsByCoordinate(TArray<FObstacleHideSpots>& Obstacles) {
+	for (int i = 0; i < Obstacles.Num(); i++) {
+
+		Algo::Sort(Obstacles[i].PossibleHideSpots, [](const FVector& A, const FVector& B) {
+			return A.Y < B.Y;
+			});
+	}
 }
 
 TArray<FVector> UHideSpotFinder::GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles) {
@@ -220,15 +231,10 @@ void UHideSpotFinder::FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obsta
 	for (int i = 0; i < obstacles.Num(); i++) {
 		if (obstacles[i].PossibleHideSpots.Num() > 0) {
 
-			TArray<float> NormalizedAngles;
+			float middleAngle = (obstacles[i].Angles[0] + obstacles[i].Angles[obstacles[i].Angles.Num() - 1]) / 2.f;
+			float normalizedAngle = middleAngle - 360.f;
 
-			for (int j = 0; j < obstacles[i].Angles.Num(); j++) {
-				NormalizedAngles.Add(NormalizeAngle(obstacles[i].Angles[j]));
-			}
-
-			float MeanAngle = CalculateCircularMean(NormalizedAngles);
-
-			int closestAngleIndex = GetClosestIndex(NormalizedAngles, MeanAngle);
+			int closestAngleIndex = GetClosestIndex(obstacles[i].Angles, normalizedAngle);
 
 			if (closestAngleIndex >= 0) {
 				FVector middleElement = obstacles[i].PossibleHideSpots[closestAngleIndex];
@@ -236,28 +242,6 @@ void UHideSpotFinder::FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obsta
 			}
 		}
 	}
-}
-
-float UHideSpotFinder::CalculateCircularMean(const TArray<float>& Angles) {
-	float sumSin = 0.0f;
-	float sumCos = 0.0f;
-
-	for (float Angle : Angles) {
-		float Radians = FMath::DegreesToRadians(Angle);
-		sumSin += FMath::Sin(Radians);
-		sumCos += FMath::Cos(Radians);
-	}
-
-	float meanRadians = FMath::Atan2(sumSin, sumCos);
-
-	float meanDegrees = FMath::RadiansToDegrees(meanRadians);
-	return NormalizeAngle(meanDegrees);
-}
-
-float UHideSpotFinder::NormalizeAngle(float Angle) {
-	while (Angle >= 360.0f) Angle -= 360.0f;
-	while (Angle < 0.0f) Angle += 360.0f;
-	return Angle;
 }
 
 int UHideSpotFinder::GetClosestIndex(const TArray<float>& Array, float TargetValue)

@@ -61,6 +61,8 @@ private:
 
 	void SortPointsByDistance(TArray<FVector>& PointsArray);
 
+	void SortPointsByCoordinate(TArray<FObstacleHideSpots>& Obstacles);
+
 	bool IsObstacleAlreadyFound(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, FObstacleHideSpots& loadedObstacleDetails, int& foundInIndex);
 
 	void FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obstacles);
@@ -68,8 +70,4 @@ private:
 	TArray<FVector> GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles);
 
 	int GetClosestIndex(const TArray<float>& Array, float TargetValue);
-
-	float NormalizeAngle(float Angle);
-
-	float CalculateCircularMean(const TArray<float>& Angles);
 };

@@ -57,6 +57,8 @@ void UEquipmentVisualizer::ActualVisualization(EItemType ItemType, FName SocketN
 	SpawnedEquippedWeapon = GetWorld()->SpawnActor<AActor>(product);
 	SpawnedEquippedWeapon->AttachToComponent(character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, SocketName);
 
+	Cast<AEquippedWeapon>(SpawnedEquippedWeapon)->SetEquipperActor(character);
+
 	bWeaponSpawned = true;
 }
 
@@ -85,7 +87,6 @@ FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) const {
 void UEquipmentVisualizer::PlayEquippedWeaponVisuals() {
 	AEquippedWeapon* equippedWeapon = Cast<AEquippedWeapon>(SpawnedEquippedWeapon);
 	if (equippedWeapon) {
-		equippedWeapon->SetEquipperActor(GetOwner());
 		equippedWeapon->ShotHappened();
 	}
 }

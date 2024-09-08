@@ -36,18 +36,25 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 			FShotRayDatas ShotRayDatas = GetShotRayDatas();
 
-			FHitResult HitResult;
+			//FVector Origin = Owner->GetActorLocation();
+			//FVector End = Origin + (Direction * AIConfig->EnemyAttackVisionDistance);
 
-			bool bHit = GetWorld()->LineTraceSingleByChannel(
+			TArray<FHitResult> HitResult;
+
+			TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+			ObjectTypes.Add(UEngineTypes::ConvertToObjectType(GetOpponentTraceChannel()));         
+			ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECC_WorldStatic));  
+			ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECC_WorldDynamic)); 
+			ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECC_PhysicsBody));
+
+			bool bHit = World->LineTraceMultiByObjectType(
 				HitResult,
 				ShotRayDatas.Origin,
 				ShotRayDatas.End,
-				GetOpponentTraceChannel()
+				FCollisionObjectQueryParams(ObjectTypes)
 			);
 
-			DrawDebugLine(World, ShotRayDatas.Origin, ShotRayDatas.End, FColor::Green, false, 1.0f, 0, 1.0f);
-
-			if (bHit && HitResult.GetActor() == pawn && pawnSensing->CouldSeePawn(pawn)) {
+			if (bHit && HitResult[0].GetActor() == pawn && pawnSensing->CouldSeePawn(pawn)) {
 				ShootWithEquippedWeapon();
 			}
 		}

@@ -56,6 +56,7 @@ protected:
 
 	void ManageVisual();
 
+	FShotRayDatas GetShotRayDatas();
 
 	UFUNCTION()
 	void ShootCooldownEnded();

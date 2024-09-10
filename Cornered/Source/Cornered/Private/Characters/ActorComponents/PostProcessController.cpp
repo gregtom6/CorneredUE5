@@ -8,6 +8,9 @@
 #include "Camera/CameraComponent.h"
 #include "Components/PostProcessComponent.h"
 #include "Configs/DataAssets/Config_Time.h"
+#include <Kismet/GameplayStatics.h>
+#include "GameFramework/PlayerController.h"
+#include "Camera/PlayerCameraManager.h"
 
 // Sets default values for this component's properties
 UPostProcessController::UPostProcessController()
@@ -58,4 +61,7 @@ void UPostProcessController::OnCharacterDefeated(ACorneredCharacter* DefeatedCha
 
 	bPlayerDied = true;
 	TimeWhenPlayerDied = GetWorld()->GetTimeSeconds();
+
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+	PlayerController->PlayerCameraManager->StartCameraFade(0.f, 1.f, TimeConfig->WaitTimeUntilGameOver, FLinearColor::Black, false, true);
 }

@@ -5,6 +5,7 @@
 #include "Characters/Systems/CorneredCharacter.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
+#include "Characters/Systems/PlayerCharacter.h"
 
 // Sets default values
 ARedLightController::ARedLightController()
@@ -47,6 +48,10 @@ void ARedLightController::OnTimerOverHappened()
 }
 
 void ARedLightController::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
+
+	if (DefeatedCharacter->IsA<APlayerCharacter>()) {
+		return;
+	}
 
 	if (SequenceComp) {
 		SequenceComp->StopSequence();

@@ -14,6 +14,7 @@
 #include "Components/AudioComponent.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
+#include "Characters/ActorComponents/PostProcessController.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -28,6 +29,7 @@ APlayerCharacter::APlayerCharacter()
 	InteractorComp = CreateDefaultSubobject<UInteractor>(TEXT("InteractorComp"));
 	EquipAudio= CreateDefaultSubobject<UAudioComponent>(TEXT("EquipAudio"));
 	CharacterHealth = CreateDefaultSubobject<UCharacterHealth>(TEXT("HealthComp"));
+	PostProcessController = CreateDefaultSubobject<UPostProcessController>(TEXT("PostProcessComp"));
 
 	InteractableDetectorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	PickerComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);

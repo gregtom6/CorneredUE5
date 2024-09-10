@@ -12,6 +12,7 @@ class UEquipper;
 class UInteractor;
 class UAudioComponent;
 class UCharacterAnimInstance;
+class UPostProcessController;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACorneredCharacter
@@ -35,6 +36,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAudioComponent> EquipAudio;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UPostProcessController> PostProcessController;
 
 public:
 	// Sets default values for this character's properties

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "System/CorneredGameMode.h"
+#include "System/ProgressionGameState.h"
 #include "CharacterHealth.generated.h"
 
 class UConfig_Character_General;

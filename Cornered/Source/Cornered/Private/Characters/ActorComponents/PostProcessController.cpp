@@ -2,7 +2,6 @@
 
 
 #include "Characters/ActorComponents/PostProcessController.h"
-#include "System/CorneredGameMode.h"
 #include "Characters/Systems/CorneredCharacter.h"
 #include "Characters/Systems/EnemyCharacter.h"
 #include "Camera/CameraComponent.h"
@@ -12,6 +11,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Configs/DataAssets/Config_Visual.h"
+#include "System/ProgressionGameState.h"
 
 // Sets default values for this component's properties
 UPostProcessController::UPostProcessController()
@@ -19,19 +19,17 @@ UPostProcessController::UPostProcessController()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
-
 
 // Called when the game starts
 void UPostProcessController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
-	CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &UPostProcessController::OnCharacterDefeated);
-	CorneredGameMode->CharacterShotReceived.AddUniqueDynamic(this, &UPostProcessController::OnCharacterShotReceived);
+	AGameStateBase* GameState = GetWorld()->GetGameState();
+	AProgressionGameState* ProgressionGameState = Cast<AProgressionGameState>(GameState);
+	ProgressionGameState->CharacterDefeated.AddUniqueDynamic(this, &UPostProcessController::OnCharacterDefeated);
+	ProgressionGameState->CharacterShotReceived.AddUniqueDynamic(this, &UPostProcessController::OnCharacterShotReceived);
 
 	Camera = GetOwner()->FindComponentByClass<UCameraComponent>();
 }

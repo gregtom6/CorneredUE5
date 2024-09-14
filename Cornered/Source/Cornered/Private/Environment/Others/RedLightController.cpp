@@ -6,6 +6,7 @@
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 #include "Characters/Systems/PlayerCharacter.h"
+#include "System/ProgressionGameState.h"
 
 // Sets default values
 ARedLightController::ARedLightController()
@@ -20,9 +21,11 @@ void ARedLightController::BeginPlay()
 	Super::BeginPlay();
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+	AGameStateBase* GameState = GetWorld()->GetGameState();
+	AProgressionGameState* ProgressionGameState = Cast<AProgressionGameState>(GameState);
 
 	CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ARedLightController::OnTimerOverHappened);
-	CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &ARedLightController::OnCharacterDefeated);
+	ProgressionGameState->CharacterDefeated.AddUniqueDynamic(this, &ARedLightController::OnCharacterDefeated);
 
 	if (SequenceComp) {
 		SequenceComp->StopSequence();

@@ -4,7 +4,6 @@
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Configs/DataAssets/Config_Character_General.h"
 #include "Configs/DataAssets/Config_CharacterSpecific.h"
-#include "System/CorneredGameMode.h"
 #include "Characters/Systems/CorneredCharacter.h"
 
 UCharacterHealth::UCharacterHealth()
@@ -53,16 +52,13 @@ void UCharacterHealth::DamageHealth(float Damage) {
 
 	bShouldReloadHealth = false;
 
-	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 	if (CurrentHealth <= GeneralCharacterConfig->MinHealth)
 	{
 		CharacterDefeated.Broadcast(Cast<ACorneredCharacter>(GetOwner()));
-		CorneredGameMode->CharacterDied(Cast<ACorneredCharacter>(GetOwner()));
 	}
 	else {
 
 		CharacterShotReceived.Broadcast(Cast<ACorneredCharacter>(GetOwner()));
-		CorneredGameMode->CharacterReceivedShot(Cast<ACorneredCharacter>(GetOwner()));
 
 		FTimerManager& TimerManager = GetWorld()->GetTimerManager();
 

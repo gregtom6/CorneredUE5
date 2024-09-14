@@ -5,6 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "System/CorneredGameMode.h"
 #include "Components/AudioComponent.h"
+#include "System/ProgressionGameState.h"
 #include "Characters/Systems/CorneredCharacter.h"
 
 
@@ -34,7 +35,11 @@ void ACorneredHud::BeginPlay()
     ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 
     CorneredGameMode->TimeOverHappened.AddUniqueDynamic(this, &ACorneredHud::OnTimerOverHappened);
-    CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &ACorneredHud::OnCharacterDefeated);
+
+    AGameStateBase* GameState = GetWorld()->GetGameState();
+    AProgressionGameState* ProgressionGameState = Cast<AProgressionGameState>(GameState);
+
+    ProgressionGameState->CharacterDefeated.AddUniqueDynamic(this, &ACorneredHud::OnCharacterDefeated);
 }
 
 void ACorneredHud::OnTimerOverHappened() {

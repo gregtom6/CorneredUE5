@@ -18,14 +18,17 @@
 #include "System/CorneredGameMode.h"
 #include "GameFramework/Character.h"
 #include "Engine/World.h"
+#include "System/ProgressionGameState.h"
 
 void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
+	AGameStateBase* GameState = GetWorld()->GetGameState();
+	AProgressionGameState* ProgressionGameState = Cast<AProgressionGameState>(GameState);
 
-	CorneredGameMode->CharacterDefeated.AddUniqueDynamic(this, &UCharacterSpawner::OnCharacterDefeated);
+	ProgressionGameState->CharacterDefeated.AddUniqueDynamic(this, &UCharacterSpawner::OnCharacterDefeated);
 	CorneredGameMode->NewMatchStarted.AddUniqueDynamic(this, &UCharacterSpawner::OnNewMatchStarted);
 }
 
@@ -91,11 +94,6 @@ TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints() const
 }
 
 void UCharacterSpawner::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
-	/*
-	if (DefeatedCharacter->IsA(AEnemyCharacter::StaticClass())) {
-		DefeatedCharacter->Destroy();
-	}
-	*/
 
 	DefeatedCharacter->SetDieState();
 }

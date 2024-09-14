@@ -10,6 +10,9 @@
 #include "Characters/Systems/CorneredCharacter.h"
 #include "System/LevelManager.h"
 #include "Configs/DeveloperSettings/ConfigLevelsDevSettings.h"
+#include "System/ProgressionGameState.h"
+#include "GameFramework/GameStateBase.h"
+
 
 void ACorneredGameMode::StartPlay()
 {
@@ -23,6 +26,11 @@ void ACorneredGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	RestartTimer();
+
+	AGameStateBase* State = GetWorld()->GetGameState();
+	AProgressionGameState* ProgressionGameState = Cast<AProgressionGameState>(State);
+
+	ProgressionGameState->CharacterDefeated.AddUniqueDynamic(this, &ACorneredGameMode::CharacterDied);
 }
 
 void ACorneredGameMode::RestartTimer() {
@@ -40,8 +48,6 @@ void ACorneredGameMode::WaitTimeEndedBetweenMatches() {
 }
 
 void ACorneredGameMode::CharacterDied(ACorneredCharacter* Character) {
-	CharacterDefeated.Broadcast(Character);
-
 	if (Character->IsA(AEnemyCharacter::StaticClass())) {
 		MatchIndex += 1;
 
@@ -50,10 +56,6 @@ void ACorneredGameMode::CharacterDied(ACorneredCharacter* Character) {
 	else {
 		InitiateGameOver();
 	}
-}
-
-void ACorneredGameMode::CharacterReceivedShot(ACorneredCharacter* Character) {
-	CharacterShotReceived.Broadcast(Character);
 }
 
 void ACorneredGameMode::ZeroingTimer() {

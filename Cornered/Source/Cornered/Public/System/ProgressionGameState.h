@@ -9,6 +9,11 @@
 
 class UConfig_Progress;
 class ACorneredCharacter;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACorneredCharacter*, Character);
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterShotReceivedDelegate, ACorneredCharacter*, Character);
+
 /**
  *
  */
@@ -20,6 +25,11 @@ class CORNERED_API AProgressionGameState : public AGameStateBase
 public:
 	UPROPERTY()
 	int UnlockLevel;
+
+	FCharacterDefeatedDelegate CharacterDefeated;
+
+	FCharacterShotReceivedDelegate CharacterShotReceived;
+
 private:
 
 	UPROPERTY(EditAnywhere)
@@ -43,5 +53,10 @@ private:
 
 	UFUNCTION()
 	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
+	UFUNCTION()
+	void OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot);
+	UFUNCTION()
+	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
+	void SubscribeToCharacterDamageDelegates(ACorneredCharacter* Character);
 };

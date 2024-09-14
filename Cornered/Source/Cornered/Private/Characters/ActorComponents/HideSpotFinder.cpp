@@ -24,7 +24,7 @@ void UHideSpotFinder::BeginPlay()
 	UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
 	if (MySubsystem)
 	{
-		MySubsystem->OnEnemyGenerated.AddDynamic(this, &UHideSpotFinder::OnEnemyGenerated);
+		MySubsystem->OnEnemyGenerated.AddUniqueDynamic(this, &UHideSpotFinder::OnEnemyGenerated);
 	}
 }
 

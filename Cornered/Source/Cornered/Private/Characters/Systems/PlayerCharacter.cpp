@@ -15,6 +15,8 @@
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
 #include "Characters/ActorComponents/PostProcessController.h"
+#include "Characters/Systems/EnemyCharacter.h"
+#include "Configs/DataAssets/Config_Time.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -37,6 +39,28 @@ APlayerCharacter::APlayerCharacter()
 	EquipperComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	InteractorComp->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 	EquipAudio->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
+	DeathAudio->AttachToComponent(CameraComp, FAttachmentTransformRules::KeepRelativeTransform);
+}
+
+void APlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CharacterHealth->CharacterDefeated.AddUniqueDynamic(this, &APlayerCharacter::OnCharacterDefeated);
+}
+
+void APlayerCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (!bCharacterDied) {
+		return;
+	}
+
+	float currentTime = GetWorld()->GetTimeSeconds() - TimeWhenCharacterDied;
+	float percentage = currentTime / TimeConfig->WaitTimeUntilGameOver;
+	percentage = FMath::Clamp(percentage, 0.f, 1.f);
+	DeathAudio->SetVolumeMultiplier(percentage);
 }
 
 IMovableCharacter* APlayerCharacter::GetOwnedController() const {
@@ -48,4 +72,16 @@ IMovableCharacter* APlayerCharacter::GetOwnedController() const {
 UCharacterAnimInstance* APlayerCharacter::GetOwnedAnimInstance() const {
 	UPlayerCharacterAnimInstance* animInst = Cast<UPlayerCharacterAnimInstance>(GetMesh()->GetAnimInstance());
 	return animInst;
+}
+
+void APlayerCharacter::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
+
+	if (DefeatedCharacter->IsA<AEnemyCharacter>()) {
+		return;
+	}
+
+	bCharacterDied = true;
+	TimeWhenCharacterDied= GetWorld()->GetTimeSeconds();
+
+	DeathAudio->Play();
 }

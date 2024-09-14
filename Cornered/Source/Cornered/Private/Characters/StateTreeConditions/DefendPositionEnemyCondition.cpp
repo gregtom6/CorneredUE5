@@ -4,10 +4,13 @@
 #include "StateTreeTaskBase.h"
 #include "StateTreeConditionBase.h"
 #include "Configs/DeveloperSettings/Config_CharacterSpawner.h"
+#include "Characters/Systems/PlayerCharacter.h"
+#include "Characters/ActorComponents/CharacterHealth.h"
+#include <Kismet/GameplayStatics.h>
 
 bool FDefendPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Context) const
 {
-	const FStateTreeDefendConditionMagic* InstanceData = Context.GetInstanceDataPtr<FStateTreeDefendConditionMagic>(*this);
+	const FStateTreeDefendConditionData* InstanceData = Context.GetInstanceDataPtr<FStateTreeDefendConditionData>(*this);
 
 	if (!InstanceData)
 	{
@@ -17,6 +20,16 @@ bool FDefendPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Co
 
 	if (InstanceData->EnemyCurrentHealth <= 0.f) {
 		return false;
+	}
+
+	APawn* PlayerPawn = UGameplayStatics::GetPlayerPawn(Context.GetWorld(), 0);
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(PlayerPawn);
+
+	if (PlayerCharacter) {
+		UCharacterHealth* Health = PlayerCharacter->CharacterHealth;
+		if (Health && Health->GetCurrentHealth() <= 0.f) {
+			return false;
+		}
 	}
 
 	return !InstanceData->bIsReadyToShoot || ((InstanceData->EnemyCurrentHealth / InstanceData->EnemyMaxHealth) * 100.f <= InstanceData->HideWhenLifeLessThanPercentage);

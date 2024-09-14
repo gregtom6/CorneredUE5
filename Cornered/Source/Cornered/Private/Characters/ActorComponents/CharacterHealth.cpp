@@ -56,6 +56,7 @@ void UCharacterHealth::DamageHealth(float Damage) {
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 	if (CurrentHealth <= GeneralCharacterConfig->MinHealth)
 	{
+		CharacterDefeated.Broadcast(Cast<ACorneredCharacter>(GetOwner()));
 		CorneredGameMode->CharacterDied(Cast<ACorneredCharacter>(GetOwner()));
 	}
 	else {

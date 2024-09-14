@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "System/CorneredGameMode.h"
 #include "CharacterHealth.generated.h"
 
 class UConfig_Character_General;
@@ -13,6 +14,10 @@ UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UCharacterHealth : public UActorComponent
 {
 	GENERATED_BODY()
+
+public:
+
+	FCharacterDefeatedDelegate CharacterDefeated;
 
 protected:
 

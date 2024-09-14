@@ -11,11 +11,11 @@
 class UStruct;
 
 USTRUCT()
-struct FStateTreeConditionMagic
+struct FStateTreeShootConditionData
 {
 	GENERATED_BODY()
 
-	FStateTreeConditionMagic()
+	FStateTreeShootConditionData()
 		: EnemyCurrentHealth(0.f), EnemyMaxHealth(0.f), AttackWhenLifeMoreThanPercentage(0.f), bIsReadyToShoot(false) { }
 
 	UPROPERTY(EditAnywhere, Category = "Input")
@@ -37,9 +37,9 @@ struct FShootPositionEnemyCondition : public FStateTreeConditionCommonBase
 {
 	GENERATED_BODY()
 
-	using FMyMagic = FStateTreeConditionMagic;
+	using FConditionData = FStateTreeShootConditionData;
 
-	virtual const UStruct* GetInstanceDataType() const override { return FMyMagic::StaticStruct(); }
+	virtual const UStruct* GetInstanceDataType() const override { return FConditionData::StaticStruct(); }
 
 public:
 

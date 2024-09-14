@@ -19,6 +19,8 @@ public:
 
 	FCharacterDefeatedDelegate CharacterDefeated;
 
+	FCharacterShotReceivedDelegate CharacterShotReceived;
+
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = GetCurrentHealth)

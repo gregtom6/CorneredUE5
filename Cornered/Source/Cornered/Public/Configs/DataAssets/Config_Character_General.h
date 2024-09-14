@@ -34,6 +34,10 @@ public:
 	float LookHorizontalSensitivity;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float MovementMultiplier;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float WhenReceivingShotHeadXRotationMin;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float WhenReceivingShotHeadXRotationMax;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AEnemyCharacter> EnemyCharacterClass;

@@ -56,8 +56,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	ProcessDeathAudio();
-
-	ProcessShotReceivingCamera();
 }
 
 void APlayerCharacter::ProcessShotReceivingCamera() {
@@ -67,14 +65,10 @@ void APlayerCharacter::ProcessShotReceivingCamera() {
 
 	float currentTime = GetWorld()->GetTimeSeconds() - TimeWhenDamageHappened;
 	float percentage = currentTime / TimeConfig->ReceivingHitPostProcessTime;
-	percentage = FMath::Clamp(percentage, 0.f, 1.f);
-	FRotator Rotation = CameraComp->GetComponentRotation();
-	FRotator Modified = FRotator(Rotation.Pitch, Rotation.Yaw, FMath::Lerp(SelectedRotation, 0.f, percentage));
-	CameraComp->SetWorldRotation(Modified);
 
-	if (percentage >= 1.f) {
-		bCharacterReceivedShot = false;
-	}
+	FRotator Rotation = CameraComp->GetComponentRotation();
+	FRotator Modified = FRotator(FMath::Lerp(SelectedRotation,0.f,percentage), Rotation.Yaw, Rotation.Roll);
+	CameraComp->SetWorldRotation(Modified);
 }
 
 void APlayerCharacter::ProcessDeathAudio() {
@@ -122,7 +116,7 @@ void APlayerCharacter::OnCharacterShotReceived(ACorneredCharacter* CharacterRece
 	bool random = FMath::RandBool();
 	SelectedRotation = random ? CharacterConfig->WhenReceivingShotHeadXRotationMin : CharacterConfig->WhenReceivingShotHeadXRotationMax;
 	FRotator Rotation = CameraComp->GetComponentRotation();
-	FRotator Modified = FRotator(Rotation.Pitch, Rotation.Yaw, SelectedRotation);
+	FRotator Modified = FRotator(SelectedRotation, Rotation.Yaw, Rotation.Roll);
 
 	CameraComp->SetWorldRotation(Modified);
 }

@@ -14,6 +14,7 @@ class UAudioComponent;
 class UCharacterAnimInstance;
 class UPostProcessController;
 class UConfig_Time;
+class UConfig_Character_General;
 
 UCLASS()
 class CORNERED_API APlayerCharacter : public ACorneredCharacter
@@ -47,11 +48,18 @@ public:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Time> TimeConfig;
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Character_General> CharacterConfig;
+
 private:
 
 	bool bCharacterDied;
 
-	float TimeWhenCharacterDied;
+	float TimeWhenDamageHappened;
+
+	bool bCharacterReceivedShot;
+
+	float SelectedRotation;
 
 public:
 	// Sets default values for this character's properties
@@ -71,4 +79,11 @@ private:
 
 	UFUNCTION()
 	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
+
+	UFUNCTION()
+	void OnCharacterShotReceived(ACorneredCharacter* DefeatedCharacter);
+
+	void ProcessDeathAudio();
+
+	void ProcessShotReceivingCamera();
 };

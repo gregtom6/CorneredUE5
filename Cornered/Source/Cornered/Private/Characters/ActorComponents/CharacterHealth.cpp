@@ -61,6 +61,7 @@ void UCharacterHealth::DamageHealth(float Damage) {
 	}
 	else {
 
+		CharacterShotReceived.Broadcast(Cast<ACorneredCharacter>(GetOwner()));
 		CorneredGameMode->CharacterReceivedShot(Cast<ACorneredCharacter>(GetOwner()));
 
 		FTimerManager& TimerManager = GetWorld()->GetTimerManager();

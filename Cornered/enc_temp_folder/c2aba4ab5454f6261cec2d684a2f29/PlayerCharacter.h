@@ -37,9 +37,6 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAudioComponent> EquipAudio;
 
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UAudioComponent> DeathAudio;
-
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UPostProcessController> PostProcessController;
 

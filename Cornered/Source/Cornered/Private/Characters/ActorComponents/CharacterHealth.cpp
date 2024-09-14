@@ -53,12 +53,14 @@ void UCharacterHealth::DamageHealth(float Damage) {
 
 	bShouldReloadHealth = false;
 
+	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 	if (CurrentHealth <= GeneralCharacterConfig->MinHealth)
 	{
-		ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 		CorneredGameMode->CharacterDied(Cast<ACorneredCharacter>(GetOwner()));
 	}
 	else {
+
+		CorneredGameMode->CharacterReceivedShot(Cast<ACorneredCharacter>(GetOwner()));
 
 		FTimerManager& TimerManager = GetWorld()->GetTimerManager();
 

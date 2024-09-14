@@ -28,7 +28,6 @@ APlayerCharacter::APlayerCharacter()
 	EquipperComp = CreateDefaultSubobject<UEquipper>(TEXT("EquipperComp"));
 	InteractorComp = CreateDefaultSubobject<UInteractor>(TEXT("InteractorComp"));
 	EquipAudio= CreateDefaultSubobject<UAudioComponent>(TEXT("EquipAudio"));
-	DeathAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("DeathAudio"));
 	CharacterHealth = CreateDefaultSubobject<UCharacterHealth>(TEXT("HealthComp"));
 	PostProcessController = CreateDefaultSubobject<UPostProcessController>(TEXT("PostProcessComp"));
 

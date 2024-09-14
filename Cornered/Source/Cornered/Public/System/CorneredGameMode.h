@@ -13,6 +13,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FTimeOverHappenedDelegate);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACorneredCharacter*, Character);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterShotReceivedDelegate, ACorneredCharacter*, Character);
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FNewMatchStartedDelegate);
 
 UCLASS()
@@ -25,6 +27,8 @@ public:
 	FTimeOverHappenedDelegate TimeOverHappened;
 
 	FCharacterDefeatedDelegate CharacterDefeated;
+
+	FCharacterShotReceivedDelegate CharacterShotReceived;
 
 	FNewMatchStartedDelegate NewMatchStarted;
 
@@ -54,6 +58,8 @@ public:
 	virtual void StartPlay() override;
 
 	void CharacterDied(ACorneredCharacter* Character);
+
+	void CharacterReceivedShot(ACorneredCharacter* Character);
 
 protected:
 	virtual void BeginPlay() override;

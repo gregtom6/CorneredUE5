@@ -52,6 +52,10 @@ void ACorneredGameMode::CharacterDied(ACorneredCharacter* Character) {
 	}
 }
 
+void ACorneredGameMode::CharacterReceivedShot(ACorneredCharacter* Character) {
+	CharacterShotReceived.Broadcast(Character);
+}
+
 void ACorneredGameMode::ZeroingTimer() {
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	PreparingTimeEnded();

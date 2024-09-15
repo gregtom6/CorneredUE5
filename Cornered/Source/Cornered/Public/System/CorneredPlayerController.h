@@ -33,6 +33,20 @@ class CORNERED_API ACorneredPlayerController : public APlayerController, public 
 	GENERATED_BODY()
 
 public:
+
+	FPickupInteractionHappenedDelegate PickupHappenedInstance;
+
+	FDropInteractionHappenedDelegate DropHappenedInstance;
+
+	FEquipInteractionHappenedDelegate EquipHappenedInstance;
+
+	FShootInteractionHappenedDelegate ShootHappenedInstance;
+
+	FInteractStartedDelegate InteractStartedInstance;
+
+	FInteractHappenedDelegate InteractHappenedInstance;
+
+protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 	TObjectPtr<UInputAction> ActionMovement;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
@@ -58,22 +72,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Player Input|Character Input")
 	TObjectPtr<UInputMappingContext> InputMappingContext;
 
+private:
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Character_General> ConfigCharacter;
-
-	FPickupInteractionHappenedDelegate PickupHappenedInstance;
-
-	FDropInteractionHappenedDelegate DropHappenedInstance;
-
-	FEquipInteractionHappenedDelegate EquipHappenedInstance;
-
-	FShootInteractionHappenedDelegate ShootHappenedInstance;
-
-	FInteractStartedDelegate InteractStartedInstance;
-
-	FInteractHappenedDelegate InteractHappenedInstance;
-
-private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UEnhancedInputComponent> EnhancedInputComponent = nullptr;

@@ -17,12 +17,12 @@ class CORNERED_API AIngredient : public AActor, public IIPickable
 {
 	GENERATED_BODY()
 
-public:
+protected:
 	UPROPERTY(EditAnywhere)
 	EItemType ItemType;
+
 	EItemState ItemState;
 
-protected:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UStaticMeshComponent> StaticMesh;
 

@@ -19,12 +19,12 @@ public:
 
 	FUIPressHappenedDelegate UIPressHappened;
 
+private:
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<UWorld> GameLevel;
 
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<UWorld> MainMenuLevel;
-protected:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> Restart;
 

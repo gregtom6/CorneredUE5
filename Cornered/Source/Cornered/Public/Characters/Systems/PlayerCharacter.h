@@ -20,10 +20,8 @@ UCLASS()
 class CORNERED_API APlayerCharacter : public ACorneredCharacter
 {
 	GENERATED_BODY()
-public:
-	// Called every frame
 
-
+private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
@@ -50,8 +48,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Character_General> CharacterConfig;
-
-private:
 
 	bool bCharacterDied;
 

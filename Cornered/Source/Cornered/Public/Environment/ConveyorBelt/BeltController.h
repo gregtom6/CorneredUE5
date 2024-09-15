@@ -17,11 +17,9 @@ class CORNERED_API ABeltController : public AActor
 {
 	GENERATED_BODY()
 
-public:
+private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<ACorneredButton> CorneredButton;
-
-private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UBoxComponent> SpawnPointComp;
 

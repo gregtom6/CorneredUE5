@@ -16,10 +16,6 @@ class CORNERED_API UCharacterWeapon : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UConfig_Equipment> EquipmentConfig;
-
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = IsReadyToShoot)
 	bool bIsReadyToShoot = true;
@@ -27,11 +23,12 @@ protected:
 	TObjectPtr<UCharacterHealth> HealthComp;
 
 private:
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
 	FTimerHandle TimerHandle;
 
 	FTimerManager* TimerManager;
-
 
 public:
 	UCharacterWeapon();

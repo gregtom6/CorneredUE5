@@ -15,11 +15,9 @@ class CORNERED_API UEquipmentVisualizer : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:
+private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Equipment> ConfigEquipment;
-
-private:
 
 	UPROPERTY()
 	TObjectPtr<AActor> SpawnedEquippedWeapon;

@@ -14,7 +14,7 @@ class CORNERED_API ARedLightController : public AActor
 {
 	GENERATED_BODY()
 
-public:
+protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TObjectPtr<UActorSequenceComponent> SequenceComp;

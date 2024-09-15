@@ -43,9 +43,6 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UBoxComponent> ExitDetectorComp;
 
-
-
-
 public:
 	// Sets default values for this actor's properties
 	AGateController();

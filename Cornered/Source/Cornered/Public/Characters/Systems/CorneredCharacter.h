@@ -24,6 +24,11 @@ class CORNERED_API ACorneredCharacter : public ACharacter
 
 public:
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UCharacterHealth> CharacterHealth;
+
+protected:
+
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCharacterWeapon> CharacterWeaponComp;
 
@@ -47,9 +52,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
-
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UCharacterHealth> CharacterHealth;
 
 private:
 

@@ -14,10 +14,9 @@ class CORNERED_API UInteractor : public USceneComponent
 {
 	GENERATED_BODY()
 
-public:
+private:
 	UPROPERTY()
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
-private:
 	bool bInteractHappenedInThisFrame;
 
 	IHoldable* Holdable;

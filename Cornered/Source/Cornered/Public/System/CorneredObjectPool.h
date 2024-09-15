@@ -56,7 +56,7 @@ public:
 
 	bool bAlreadyInitialized;
 
-protected:
+private:
 	UPROPERTY(EditAnywhere)
 	TArray<FPooledObjectData> _PooledObjectData;
 

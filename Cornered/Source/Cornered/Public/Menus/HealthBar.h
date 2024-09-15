@@ -16,7 +16,7 @@ class CORNERED_API UHealthBar : public UUserWidget
 {
 	GENERATED_BODY()
 
-public:
+private:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UProgressBar> Health;
 	UPROPERTY(meta = (BindWidget))
@@ -25,8 +25,6 @@ public:
 	TObjectPtr<UConfig_Time> TimeConfig;
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Visual> VisualConfig;
-
-private:
 
 	float PreviousHealthPercent;
 

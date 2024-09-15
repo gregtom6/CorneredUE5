@@ -22,20 +22,18 @@ public:
 	FCharacterShotReceivedDelegate CharacterShotReceived;
 
 protected:
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, BlueprintGetter = GetCurrentHealth)
 	float CurrentHealth;
 
 	UPROPERTY(BlueprintReadWrite)
 	float MaxHealth;
+private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Character_General> GeneralCharacterConfig;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_CharacterSpecific> SpecificCharacterConfig;
-
-private:
 
 	FTimerHandle TimerHandle;
 

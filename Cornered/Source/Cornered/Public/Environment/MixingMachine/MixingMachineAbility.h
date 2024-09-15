@@ -29,18 +29,16 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<USoundBase> AbilitySound;
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<ACorneredButton> AbilityButton;
-	UPROPERTY(EditAnywhere)
-	bool bShouldCreateResult;
-
-	UPROPERTY(EditAnywhere)
-	bool bShouldAddEffect;
-
 	FAbilityActivatedDelegate AbilityActivated;
 
 private:
 
+	UPROPERTY(EditAnywhere)
+	bool bShouldAddEffect;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<ACorneredButton> AbilityButton;
+	UPROPERTY(EditAnywhere)
+	bool bShouldCreateResult;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_MixingMachine> MixingMachineConfig;

@@ -14,6 +14,11 @@ class CORNERED_API AMainMenuHUD : public AHUD
 {
 	GENERATED_BODY()
 
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
+	TSubclassOf<UUserWidget> UserWidgetClass;
+
 private:
 
 	UPROPERTY()
@@ -25,9 +30,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> SFXComp;
 
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
-	TSubclassOf<UUserWidget> UserWidgetClass;
 public:
 
 	AMainMenuHUD();

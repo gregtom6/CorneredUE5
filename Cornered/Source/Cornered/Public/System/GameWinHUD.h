@@ -15,6 +15,7 @@ class CORNERED_API AGameWinHUD : public AHUD
 	GENERATED_BODY()
 
 protected:
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI")
 	TSubclassOf<UUserWidget> UserWidgetClass;
 

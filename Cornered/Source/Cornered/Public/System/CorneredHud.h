@@ -16,13 +16,14 @@ class CORNERED_API ACorneredHud : public AHUD
 	GENERATED_BODY()
 
 protected:
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TArray<TSubclassOf<UUserWidget>> WidgetClasses;
 
+private:
+
 	UPROPERTY()
 	TArray<TObjectPtr<UUserWidget>> WidgetInstances;
-
-private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> BGMComp;

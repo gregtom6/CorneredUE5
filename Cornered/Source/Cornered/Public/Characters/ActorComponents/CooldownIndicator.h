@@ -14,7 +14,7 @@ class CORNERED_API UCooldownIndicator : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:
+private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> CooldownIndicatorParentComp;
 

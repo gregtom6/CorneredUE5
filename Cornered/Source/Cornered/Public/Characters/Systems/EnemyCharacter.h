@@ -24,6 +24,11 @@ class CORNERED_API AEnemyCharacter : public ACorneredCharacter
 
 public:
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStateTreeComponent> StateTreeComp;
+
+private:
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UHideSpotFinder> HideSpotFinderComp;
 
@@ -32,9 +37,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UPawnSensingComponent> PawnSensingComp;
-
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UStateTreeComponent> StateTreeComp;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;

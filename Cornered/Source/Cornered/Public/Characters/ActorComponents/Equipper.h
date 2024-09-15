@@ -13,7 +13,7 @@ class CORNERED_API UEquipper : public USceneComponent
 {
 	GENERATED_BODY()
 
-public:
+private:
 	UPROPERTY()
 	TObjectPtr<UPicker> PickerComp;
 

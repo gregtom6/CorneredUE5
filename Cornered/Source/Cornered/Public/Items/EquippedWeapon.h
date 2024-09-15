@@ -35,19 +35,18 @@ class CORNERED_API AEquippedWeapon : public AActor
 {
 	GENERATED_BODY()
 
-public:
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<USceneComponent> Root;
+protected:
 
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<USceneComponent> MuzzlePosition;
-
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UPointLightComponent> PointLightComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TObjectPtr<UActorSequenceComponent> ShotSequ;
 
 private:
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> Root;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UPointLightComponent> PointLightComp;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> MuzzlePosition;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> NiagaraComp;
@@ -57,7 +56,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> ShotAudio;
-
 
 public:
 	AEquippedWeapon();

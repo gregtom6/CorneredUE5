@@ -18,7 +18,7 @@ class CORNERED_API UGameWinMenu : public UUserWidget
 public:
 	FUIPressHappenedDelegate UIPressHappened;
 
-protected:
+private:
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> Restart;

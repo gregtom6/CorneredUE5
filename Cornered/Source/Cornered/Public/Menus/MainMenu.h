@@ -33,7 +33,7 @@ class CORNERED_API UMainMenu : public UUserWidget
 public:
 	FUIPressHappenedDelegate UIPressHappened;
 
-protected:
+private:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> NewGame;
 
@@ -63,8 +63,6 @@ protected:
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> ControlsRightPage;
-
-private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Tutorial> TutorialConfig;
 

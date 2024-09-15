@@ -9,6 +9,8 @@
 #include "Characters/ActorComponents/HideSpotFinder.h"
 #include "DrawDebugHelpers.h"
 #include "Configs/DataAssets/Config_AI.h"
+#include "NavigationSystem.h"
+#include "NavigationPath.h"
 
 AEnemyController::AEnemyController()
 {
@@ -45,7 +47,16 @@ void AEnemyController::Tick(float DeltaTime)
 void AEnemyController::FollowPlayer() {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
-	MoveToActor(PlayerPawn);
+
+	FVector extent = FVector(AIConfig->NavmeshSamplePositionDistance, AIConfig->NavmeshSamplePositionDistance, AIConfig->NavmeshSamplePositionDistance);
+
+	FNavLocation ClosestNavmeshPoint;
+
+	UNavigationSystemV1* NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+
+	NavSystem->ProjectPointToNavigation(PlayerPawn->GetActorLocation(), ClosestNavmeshPoint, extent);
+
+	MoveToLocation(ClosestNavmeshPoint);
 }
 
 void AEnemyController::HideFromPlayer() {

@@ -10,6 +10,7 @@
 #include "Characters/ActorComponents/CooldownIndicator.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
 
 // Sets default values
 ACorneredCharacter::ACorneredCharacter()
@@ -37,6 +38,8 @@ void ACorneredCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, CharacterWeaponComp);
+
+	InteractableDetectorComp= FindComponentByClass<UInteractableDetector>();
 }
 
 // Called every frame
@@ -52,8 +55,13 @@ void ACorneredCharacter::Tick(float DeltaTime)
 			thisAnimInstance->LegState = (int)thisController->GetMovementState();
 		}
 
-		if (CharacterWeaponComp && thisAnimInstance->UseWeapon != CharacterWeaponComp->IsThereEquippedWeapon()) {
-			thisAnimInstance->UseWeapon = CharacterWeaponComp->IsThereEquippedWeapon();
+		bool IsSeeingInteractable = false;
+		if (InteractableDetectorComp) {
+			IsSeeingInteractable = InteractableDetectorComp->ItWasValidHit();
+		}
+
+		if (CharacterWeaponComp && thisAnimInstance->UseWeapon != (CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable)) {
+			thisAnimInstance->UseWeapon = CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable;
 		}
 	}
 }

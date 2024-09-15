@@ -6,6 +6,7 @@
 #include <Kismet/GameplayStatics.h>
 #include "System/CorneredPlayerController.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
 
 void UPlayerWeapon::BeginPlay() {
 
@@ -20,11 +21,18 @@ void UPlayerWeapon::BeginPlay() {
 			CustomPlayerController->ShootHappenedInstance.AddUniqueDynamic(this, &UPlayerWeapon::ShootHappened);
 		}
 	}
+
+	InteractableDetectorComp = GetOwner()->FindComponentByClass<UInteractableDetector>();
 }
 
 void UPlayerWeapon::ShootHappened() {
 
 	if (HealthComp->GetCurrentHealth() <= 0.f) {
+		return;
+	}
+
+	if (InteractableDetectorComp && InteractableDetectorComp->ItWasValidHit())
+	{
 		return;
 	}
 

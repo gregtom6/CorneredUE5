@@ -6,13 +6,16 @@
 #include "Characters/ActorComponents/CharacterWeapon.h"
 #include "PlayerWeapon.generated.h"
 
-/**
- *
- */
+class UInteractableDetector;
+
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UPlayerWeapon : public UCharacterWeapon
 {
 	GENERATED_BODY()
+
+private:
+
+	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 protected:
 

@@ -19,6 +19,7 @@
 #include "Characters/ActorComponents/HideSpotFinder.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
+#include "Characters/ActorComponents/InteractableDetector.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {

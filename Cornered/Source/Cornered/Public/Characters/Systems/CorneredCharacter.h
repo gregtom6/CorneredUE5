@@ -15,6 +15,7 @@ class UPaperSpriteComponent;
 class UCooldownIndicator;
 class UCharacterHealth;
 class UCharacterAnimInstance;
+class UInteractableDetector;
 
 UCLASS()
 class CORNERED_API ACorneredCharacter : public ACharacter
@@ -49,6 +50,10 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UCharacterHealth> CharacterHealth;
+
+private:
+
+	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 public:
 	// Sets default values for this character's properties

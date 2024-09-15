@@ -59,7 +59,7 @@ void UPostProcessController::ProcessWhenPlayerDied() {
 }
 
 void UPostProcessController::ProcessWhenShotReceived() {
-	if (bPlayerDied) {
+	if (bPlayerDied || !bPlayerShotReceived) {
 		return;
 	}
 

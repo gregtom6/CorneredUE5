@@ -15,6 +15,7 @@ class UStateTreeComponent;
 class UConfig_AI;
 class UHideSpotFinder;
 class UCharacterAnimInstance;
+class UInteractableDetector;
 
 UCLASS()
 class CORNERED_API AEnemyCharacter : public ACorneredCharacter

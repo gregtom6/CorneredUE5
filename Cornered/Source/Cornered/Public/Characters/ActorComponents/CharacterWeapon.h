@@ -36,7 +36,7 @@ private:
 public:
 	UCharacterWeapon();
 
-	float GetCooldownTimeLeftPercentageBetween01();
+	float GetCooldownTimeLeftPercentageBetween01() const;
 
 	UFUNCTION(BlueprintPure)
 	bool IsThereEquippedWeapon() const;
@@ -56,7 +56,7 @@ protected:
 
 	void ManageVisual();
 
-	FShotRayDatas GetShotRayDatas();
+	FShotRayDatas GetShotRayDatas() const;
 
 	UFUNCTION()
 	void ShootCooldownEnded();

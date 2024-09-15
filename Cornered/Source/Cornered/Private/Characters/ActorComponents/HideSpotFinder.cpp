@@ -206,7 +206,7 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 	return SelectedHideSpot;
 }
 
-TArray<FVector> UHideSpotFinder::GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles) {
+TArray<FVector> UHideSpotFinder::GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles) const {
 	TArray<FVector> highlightedHideSpots;
 
 	for (int i = 0; i < obstacles.Num(); i++) {
@@ -238,7 +238,7 @@ void UHideSpotFinder::FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obsta
 	}
 }
 
-float UHideSpotFinder::CalculateCircularMean(const TArray<float>& Angles) {
+float UHideSpotFinder::CalculateCircularMean(const TArray<float>& Angles) const {
 	float sumSin = 0.0f;
 	float sumCos = 0.0f;
 
@@ -254,13 +254,13 @@ float UHideSpotFinder::CalculateCircularMean(const TArray<float>& Angles) {
 	return NormalizeAngle(meanDegrees);
 }
 
-float UHideSpotFinder::NormalizeAngle(float Angle) {
+float UHideSpotFinder::NormalizeAngle(float Angle) const {
 	while (Angle >= 360.0f) Angle -= 360.0f;
 	while (Angle < 0.0f) Angle += 360.0f;
 	return Angle;
 }
 
-int UHideSpotFinder::GetClosestIndex(const TArray<float>& Array, float TargetValue)
+int UHideSpotFinder::GetClosestIndex(const TArray<float>& Array, float TargetValue) const
 {
 	if (Array.Num() == 0)
 	{
@@ -283,7 +283,7 @@ int UHideSpotFinder::GetClosestIndex(const TArray<float>& Array, float TargetVal
 	return ClosestIndex;
 }
 
-bool UHideSpotFinder::IsObstacleAlreadyFound(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, FObstacleHideSpots& loadedObstacleDetails, int& foundInIndex) {
+bool UHideSpotFinder::IsObstacleAlreadyFound(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, FObstacleHideSpots& loadedObstacleDetails, int& foundInIndex) const {
 	for (int i = 0; i < obstacles.Num(); i++) {
 		if (obstacles[i].ObstacleActor == ObstacleActor) {
 			loadedObstacleDetails = obstacles[i];

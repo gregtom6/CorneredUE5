@@ -58,7 +58,7 @@ void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSetting
 	InflictDamage(weaponSettings, shotRayDatas);
 }
 
-FShotRayDatas UCharacterWeapon::GetShotRayDatas() {
+FShotRayDatas UCharacterWeapon::GetShotRayDatas() const {
 	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 
 	return equipmentVisualizer->GetShotRayDatas();
@@ -80,7 +80,7 @@ void UCharacterWeapon::SetWeaponReadyToBeUsed() {
 	bIsReadyToShoot = true;
 }
 
-float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() {
+float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() const {
 	
 	bool bIsTimerActive = TimerManager->IsTimerActive(TimerHandle);
 

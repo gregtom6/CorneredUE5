@@ -61,15 +61,15 @@ private:
 
 	void SortPointsByDistance(TArray<FVector>& PointsArray);
 
-	bool IsObstacleAlreadyFound(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, FObstacleHideSpots& loadedObstacleDetails, int& foundInIndex);
+	bool IsObstacleAlreadyFound(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, FObstacleHideSpots& loadedObstacleDetails, int& foundInIndex) const;
 
 	void FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obstacles);
 
-	TArray<FVector> GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles);
+	TArray<FVector> GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles) const;
 
-	int GetClosestIndex(const TArray<float>& Array, float TargetValue);
+	int GetClosestIndex(const TArray<float>& Array, float TargetValue) const;
 
-	float NormalizeAngle(float Angle);
+	float NormalizeAngle(float Angle) const;
 
-	float CalculateCircularMean(const TArray<float>& Angles);
+	float CalculateCircularMean(const TArray<float>& Angles) const;
 };

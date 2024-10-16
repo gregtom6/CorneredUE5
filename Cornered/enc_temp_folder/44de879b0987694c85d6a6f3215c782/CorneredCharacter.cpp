@@ -15,7 +15,7 @@
 // Sets default values
 ACorneredCharacter::ACorneredCharacter()
 {
-	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	CooldownIndicatorParentComp = CreateDefaultSubobject<USceneComponent>(TEXT("CooldownIndicatorParentComp"));
@@ -39,7 +39,7 @@ void ACorneredCharacter::BeginPlay()
 
 	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, CharacterWeaponComp);
 
-	InteractableDetectorComp = FindComponentByClass<UInteractableDetector>();
+	InteractableDetectorComp= FindComponentByClass<UInteractableDetector>();
 }
 
 // Called every frame
@@ -49,7 +49,7 @@ void ACorneredCharacter::Tick(float DeltaTime)
 
 	IMovableCharacter* thisController = GetOwnedController();
 	UCharacterAnimInstance* thisAnimInstance = GetOwnedAnimInstance();
-
+	
 	if (thisAnimInstance) {
 		if (thisController && thisAnimInstance->LegState != (int)thisController->GetMovementState()) {
 			thisAnimInstance->LegState = (int)thisController->GetMovementState();
@@ -68,14 +68,12 @@ void ACorneredCharacter::Tick(float DeltaTime)
 
 float ACorneredCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	float RealDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-
 	if (CharacterHealth)
 	{
-		CharacterHealth->DamageHealth(RealDamage);
+		CharacterHealth->DamageHealth(DamageAmount);
 	}
 
-	return RealDamage;
+	return Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 }
 
 void ACorneredCharacter::SetDieState() {

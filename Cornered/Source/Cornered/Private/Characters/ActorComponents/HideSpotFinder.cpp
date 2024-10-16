@@ -202,7 +202,7 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 
 		SelectedHideSpot = highlightedHideSpots[0];
 	}
-
+	
 	return SelectedHideSpot;
 }
 

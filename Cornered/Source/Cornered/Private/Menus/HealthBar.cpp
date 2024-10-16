@@ -31,13 +31,15 @@ void UHealthBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	{
 		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 		APlayerCharacter* PlayerPawn = Cast<APlayerCharacter>(PlayerController->GetPawn());
-		UCharacterHealth* CharHealth = PlayerPawn->FindComponentByClass<UCharacterHealth>();
+		if (PlayerPawn) {
+			UCharacterHealth* CharHealth = PlayerPawn->FindComponentByClass<UCharacterHealth>();
+			float currentHealthPercent = CharHealth->GetCurrentHealth() / 100.f;
 
-		float currentHealthPercent = CharHealth->GetCurrentHealth() / 100.f;
+			Health->SetPercent(currentHealthPercent);
 
-		Health->SetPercent(currentHealthPercent);
+			PreviousHealthPercent = currentHealthPercent;
+		}
 
-		PreviousHealthPercent = currentHealthPercent;
 	}
 }
 

@@ -138,7 +138,8 @@ UCorneredPooledObject* ACorneredObjectPool::SpawnAndSetupPooledObject(FActorSpaw
 	
 	if (!GetWorld() || GetWorld()->bIsTearingDown)
 	{
-		return nullptr;
+		UE_LOG(LogTemp, Warning, TEXT("World is invalid or tearing down. Aborting SpawnActor."));
+		return nullptr;  // or handle appropriately
 	}
 	
 	spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,

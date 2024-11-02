@@ -55,7 +55,9 @@ void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoin
 
 		bool navQuest = NavSystem->ProjectPointToNavigation(currentPoint, ClosestNavmeshPoint, extent);
 
-		if (IsThisPointOutsideColliders(currentPoint, ImpactedComponent) && IsThisPointNotVisibleByPlayer(currentPoint) && navQuest)
+		UNavigationPath* NavPath = NavSystem->FindPathToLocationSynchronously(GetWorld(), GetOwner()->GetActorLocation(), ClosestNavmeshPoint.Location);
+
+		if (IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) && navQuest && NavPath && NavPath->IsValid() && NavPath->PathPoints.Num() > 1)
 		{
 			possibleHideSpots.Add(ClosestNavmeshPoint.Location);
 			break;

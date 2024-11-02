@@ -81,7 +81,7 @@ void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 
 void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool && this)
+	if (GetWorld() && !GetWorld()->bIsTearingDown && OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool && this)
 	{
 		AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
 

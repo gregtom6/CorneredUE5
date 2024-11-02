@@ -51,6 +51,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> NiagaraComp;
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> MuzzleFlashComp;
+
 	UPROPERTY()
 	TObjectPtr<AActor> EquipperActor;
 

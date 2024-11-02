@@ -19,11 +19,13 @@ AEquippedWeapon::AEquippedWeapon()
 	MuzzlePosition = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzlePosition"));
 	PointLightComp = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLightComp"));
 	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComp"));
+	MuzzleFlashComp= CreateDefaultSubobject<UNiagaraComponent>(TEXT("MuzzleFlashComp"));
 	ShotAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("ShotAudio"));
 
 	SetRootComponent(Root);
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	MuzzleFlashComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	NiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	ShotAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
@@ -47,6 +49,8 @@ void AEquippedWeapon::ShotHappened() {
 		NiagaraComp->SetVariablePosition("BeamEnd", ShotDatas.End);
 
 		NiagaraComp->Activate(true);
+
+		MuzzleFlashComp->Activate(true);
 	}
 
 	ShotAudio->Play();

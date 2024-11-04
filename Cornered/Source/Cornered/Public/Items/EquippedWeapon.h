@@ -49,6 +49,9 @@ private:
 	TObjectPtr<USceneComponent> MuzzlePosition;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> ShootRaycastStartPosition;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> NiagaraComp;
 
 	UPROPERTY(VisibleAnywhere)

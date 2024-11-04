@@ -8,6 +8,8 @@
 #include "Perception/PawnSensingComponent.h"
 #include "Configs/DataAssets/Config_AI.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
+#include "Components/StaticMeshComponent.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
 
 UEnemyWeapon::UEnemyWeapon()
 {
@@ -31,6 +33,8 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 		{
 			APawn* pawn = UGameplayStatics::GetPlayerPawn(World, 0);
 
+			UStaticMeshComponent* TaggedComponent = Cast<UStaticMeshComponent>(pawn->FindComponentByTag(UStaticMeshComponent::StaticClass(), FName("Target")));
+
 			FVector Direction = pawn->GetActorLocation() - Owner->GetActorLocation();
 			Direction.Normalize();
 
@@ -41,17 +45,34 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 			bool bHit = GetWorld()->LineTraceSingleByChannel(
 				HitResult,
 				ShotRayDatas.Origin,
-				ShotRayDatas.End,
+				TaggedComponent->GetComponentLocation(),
 				GetOpponentTraceChannel()
 			);
 
-			DrawDebugLine(World, ShotRayDatas.Origin, ShotRayDatas.End, FColor::Green, false, 1.0f, 0, 1.0f);
+			DrawDebugLine(World, ShotRayDatas.Origin, TaggedComponent->GetComponentLocation(), FColor::Green, false, 1.0f, 0, 1.0f);
 
 			if (bHit && HitResult.GetActor() == pawn && pawnSensing->CouldSeePawn(pawn)) {
 				ShootWithEquippedWeapon();
 			}
 		}
 	}
+}
+
+FShotRayDatas UEnemyWeapon::GetShotRayDatas() const {
+	FShotRayDatas ShotDatas;
+
+	APawn* pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
+
+	UStaticMeshComponent* TaggedComponent = Cast<UStaticMeshComponent>(pawn->FindComponentByTag(UStaticMeshComponent::StaticClass(), FName("Target")));
+
+	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
+
+	FShotRayDatas ShotRayDatas= equipmentVisualizer->GetShotRayDatas();
+
+	ShotDatas.Origin = ShotRayDatas.Origin;
+	ShotDatas.End = TaggedComponent->GetComponentLocation();
+
+	return ShotDatas;
 }
 
 ECollisionChannel UEnemyWeapon::GetOpponentTraceChannel() const {

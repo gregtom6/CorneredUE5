@@ -22,6 +22,8 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	virtual FShotRayDatas GetShotRayDatas() const override;
+
 private:
 
 	UFUNCTION()

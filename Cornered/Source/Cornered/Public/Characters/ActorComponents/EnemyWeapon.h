@@ -26,6 +26,10 @@ public:
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+protected:
+
+	virtual FShotRayDatas GetShotRayDatas() const override;
+
 private:
 
 	virtual ECollisionChannel GetOpponentTraceChannel() const override;

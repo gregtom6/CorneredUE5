@@ -17,6 +17,7 @@ AEquippedWeapon::AEquippedWeapon()
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	MuzzlePosition = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzlePosition"));
+	ShootRaycastStartPosition= CreateDefaultSubobject<USceneComponent>(TEXT("ShootRaycastStartPosition"));
 	PointLightComp = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLightComp"));
 	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComp"));
 	MuzzleFlashComp= CreateDefaultSubobject<UNiagaraComponent>(TEXT("MuzzleFlashComp"));
@@ -25,6 +26,7 @@ AEquippedWeapon::AEquippedWeapon()
 
 	SetRootComponent(Root);
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	ShootRaycastStartPosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	MuzzleFlashComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	NiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
@@ -74,7 +76,7 @@ FShotRayDatas AEquippedWeapon::GetShotRayDatas() const {
 
 	UCameraComponent* cameraComp = EquipperActor->FindComponentByClass<UCameraComponent>();
 
-	ShotDatas.Origin = MuzzlePosition->GetComponentLocation();
+	ShotDatas.Origin = ShootRaycastStartPosition->GetComponentLocation();
 	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f);
 
 	return ShotDatas;

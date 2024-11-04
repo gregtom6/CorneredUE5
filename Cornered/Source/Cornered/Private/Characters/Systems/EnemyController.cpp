@@ -56,7 +56,7 @@ void AEnemyController::FollowPlayer() {
 
 	NavSystem->ProjectPointToNavigation(PlayerPawn->GetActorLocation(), ClosestNavmeshPoint, extent);
 
-	MoveToLocation(ClosestNavmeshPoint);
+	MoveToLocation(ClosestNavmeshPoint, -1.0f, false);
 }
 
 void AEnemyController::HideFromPlayer() {
@@ -66,11 +66,43 @@ void AEnemyController::HideFromPlayer() {
 	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
 
 	if (closestHidingSpot.IsSet()) {
-		MoveToLocation(closestHidingSpot.GetValue());
+		MoveToLocation(closestHidingSpot.GetValue(), -1.0f, false);
 		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
 	}
 }
 
 EMovementState AEnemyController::GetMovementState() const {
 	return MovementState;
+}
+
+void AEnemyController::OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result)
+{
+	Super::OnMoveCompleted(RequestID, Result);
+
+	if (Result.Code == EPathFollowingResult::Success)
+	{
+		UE_LOG(LogTemp, Log, TEXT("Agent successfully reached the destination."));
+	}
+	else if (Result.Code == EPathFollowingResult::Blocked)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Agent's path is blocked."));
+	}
+	else if (Result.Code == EPathFollowingResult::Invalid)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Agent could not find a valid path to the destination."));
+	}
+	else if (Result.Code == EPathFollowingResult::OffPath)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Agent went off path."));
+	}
+
+	UHideSpotFinder* hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
+
+	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
+
+	if (closestHidingSpot.IsSet()) {
+		float DistanceToGoal = FVector::Dist(GetPawn()->GetNavAgentLocation(), closestHidingSpot.GetValue());
+	
+		UE_LOG(LogTemp, Warning, TEXT("Distance to goal: %f"), DistanceToGoal);
+	}
 }

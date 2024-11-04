@@ -58,12 +58,6 @@ void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSetting
 	InflictDamage(weaponSettings, shotRayDatas);
 }
 
-FShotRayDatas UCharacterWeapon::GetShotRayDatas() const {
-	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
-
-	return equipmentVisualizer->GetShotRayDatas();
-}
-
 void UCharacterWeapon::ShootCooldownEnded() {
 	bIsReadyToShoot = true;
 }

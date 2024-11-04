@@ -65,7 +65,7 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
-	void SetDieState();
+	virtual void SetDieState();
 
 protected:
 	// Called when the game starts or when spawned

@@ -20,6 +20,7 @@
 #include "Characters/Systems/CharacterAnimInstance.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/ActorComponents/InteractableDetector.h"
+#include "Components/AudioComponent.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -31,6 +32,7 @@ AEnemyCharacter::AEnemyCharacter()
 	CharacterHealth = CreateDefaultSubobject<UCharacterHealth>(TEXT("HealthComp"));
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	StateTreeComp = CreateDefaultSubobject<UStateTreeComponent>(TEXT("StateTreeComp"));
+	DieAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("DieAudio"));
 }
 
 void AEnemyCharacter::SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
@@ -45,4 +47,10 @@ IMovableCharacter* AEnemyCharacter::GetOwnedController() const {
 UCharacterAnimInstance* AEnemyCharacter::GetOwnedAnimInstance() const {
 	UPlayerCharacterAnimInstance* animInst = Cast<UPlayerCharacterAnimInstance>(GetMesh()->GetAnimInstance());
 	return animInst;
+}
+
+void AEnemyCharacter::SetDieState() {
+	Super::SetDieState();
+
+	DieAudio->Play();
 }

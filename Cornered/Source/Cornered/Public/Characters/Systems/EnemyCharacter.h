@@ -16,6 +16,7 @@ class UConfig_AI;
 class UHideSpotFinder;
 class UCharacterAnimInstance;
 class UInteractableDetector;
+class UAudioComponent;
 
 UCLASS()
 class CORNERED_API AEnemyCharacter : public ACorneredCharacter
@@ -32,6 +33,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UHideSpotFinder> HideSpotFinderComp;
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> DieAudio;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UExternalEquipper> ExternalEquipperComp;
 
@@ -45,6 +49,8 @@ public:
 	AEnemyCharacter();
 
 	void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
+
+	virtual void SetDieState() override;
 
 protected:
 

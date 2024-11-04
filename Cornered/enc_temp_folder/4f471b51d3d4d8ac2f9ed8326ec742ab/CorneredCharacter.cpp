@@ -52,10 +52,8 @@ void ACorneredCharacter::Tick(float DeltaTime)
 
 	if (thisAnimInstance) {
 		if (thisController && CharacterHealth) {
-			if (!CharacterHealth->IsDead()) {
-				if (thisAnimInstance->LegState != (int)thisController->GetMovementState()) {
-					thisAnimInstance->LegState = (int)thisController->GetMovementState();
-				}
+			if (!CharacterHealth->IsDead() && thisAnimInstance->LegState != (int)thisController->GetMovementState()) {
+				thisAnimInstance->LegState = (int)thisController->GetMovementState();
 			}
 			else {
 				thisAnimInstance->LegState = (int)EMovementState::Standing;

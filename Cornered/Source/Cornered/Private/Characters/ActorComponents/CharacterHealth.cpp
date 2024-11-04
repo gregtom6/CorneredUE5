@@ -70,3 +70,7 @@ void UCharacterHealth::DamageHealth(float Damage) {
 void UCharacterHealth::HealthReloadWaitTimeEnded() {
 	bShouldReloadHealth = true;
 }
+
+bool UCharacterHealth::IsDead() const {
+	return CurrentHealth <= GeneralCharacterConfig->MinHealth;
+}

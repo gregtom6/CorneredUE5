@@ -51,6 +51,8 @@ public:
 
 	void DamageHealth(float Damage);
 
+	bool IsDead() const;
+
 protected:
 	virtual void BeginPlay() override;
 

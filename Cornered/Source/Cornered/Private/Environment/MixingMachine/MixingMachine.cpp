@@ -29,11 +29,15 @@ AMixingMachine::AMixingMachine()
 	AbilityComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("AbilityComp"));
 	ResultTarget = CreateDefaultSubobject<USceneComponent>(TEXT("ResultTarget"));
 	AbilityAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("AbilityAudio"));
+	CreationNiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CreationNiagaraComp"));
+	CreationAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("CreationAudio"));
 
 	SetRootComponent(Root);
 	ResultTarget->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	AbilityComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	AbilityAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	CreationAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	CreationNiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -64,8 +68,16 @@ void AMixingMachine::AbilityTimeEnded() {
 		AbilityComp->Deactivate();
 	}
 
+	CreationNiagaraComp->Activate();
+
 	AbilityAudio->Stop();
 
+	CreationAudio->Play();
+
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::CreateResult, 0.1f, false);
+}
+
+void AMixingMachine::CreateResult() {
 	CurrentlyUsedAbility->AbilityTimeEnded(MixingItemDetector, RecipeConfig, ResultTarget->GetComponentLocation());
 
 	CurrentlyUsedAbility = nullptr;

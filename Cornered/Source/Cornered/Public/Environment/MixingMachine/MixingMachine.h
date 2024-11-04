@@ -55,6 +55,12 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> AbilityComp;
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> CreationNiagaraComp;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> CreationAudio;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<AMixingItemDetector> MixingItemDetector;
 
@@ -77,6 +83,8 @@ private:
 	void OnNewMatchStarted();
 
 	void AbilityTimeEnded();
+
+	void CreateResult();
 
 	UFUNCTION()
 	void AbilityPressHappened(UMixingMachineAbility* SelectedAbility);

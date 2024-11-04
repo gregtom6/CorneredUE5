@@ -48,6 +48,11 @@ float UCharacterHealth::GetCurrentHealth() const {
 }
 
 void UCharacterHealth::DamageHealth(float Damage) {
+
+	if (IsDead()) {
+		return;
+	}
+
 	CurrentHealth = FMath::Clamp(CurrentHealth += Damage, GeneralCharacterConfig->MinHealth, GetMaxHealth());
 
 	bShouldReloadHealth = false;

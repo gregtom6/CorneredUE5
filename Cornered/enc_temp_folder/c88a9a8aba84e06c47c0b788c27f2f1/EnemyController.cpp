@@ -56,7 +56,7 @@ void AEnemyController::FollowPlayer() {
 
 	NavSystem->ProjectPointToNavigation(PlayerPawn->GetActorLocation(), ClosestNavmeshPoint, extent);
 
-	MoveToLocation(ClosestNavmeshPoint, 170.f, false);
+	MoveToLocation(ClosestNavmeshPoint, -1.0f, false);
 }
 
 void AEnemyController::HideFromPlayer() {
@@ -66,7 +66,7 @@ void AEnemyController::HideFromPlayer() {
 	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
 
 	if (closestHidingSpot.IsSet()) {
-		MoveToLocation(closestHidingSpot.GetValue(), 170.f, false);
+		MoveToLocation(closestHidingSpot.GetValue(), -1.0f, false);
 		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
 	}
 }

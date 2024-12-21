@@ -49,7 +49,7 @@ void AEquippedWeapon::ShotHappened() {
 
 		FShotRayDatas ShotDatas = GetShotRayDatas();
 
-		NiagaraComp->SetVariablePosition("BeamStart", ShotDatas.Origin);
+		NiagaraComp->SetVariablePosition("BeamStart", MuzzlePosition->GetComponentLocation());
 		NiagaraComp->SetVariablePosition("BeamEnd", ShotDatas.End);
 
 		NiagaraComp->Activate(true);

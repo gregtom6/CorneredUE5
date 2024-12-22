@@ -16,6 +16,7 @@ class UCooldownIndicator;
 class UCharacterHealth;
 class UCharacterAnimInstance;
 class UInteractableDetector;
+class UDamageVisualizer;
 
 UCLASS()
 class CORNERED_API ACorneredCharacter : public ACharacter
@@ -34,6 +35,9 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UDamageVisualizer> DamageVisualizer;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UCameraComponent> CameraComp;

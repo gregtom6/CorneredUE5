@@ -49,6 +49,8 @@ public:
 
 	float GetMaxHealth() const;
 
+	float GetHealthPercentage() const;
+
 	void DamageHealth(float Damage);
 
 	bool IsDead() const;

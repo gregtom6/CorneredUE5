@@ -11,6 +11,7 @@
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
 #include "Characters/ActorComponents/InteractableDetector.h"
+#include "Characters/ActorComponents/DamageVisualizer.h"
 
 // Sets default values
 ACorneredCharacter::ACorneredCharacter()
@@ -25,6 +26,7 @@ ACorneredCharacter::ACorneredCharacter()
 	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CooldownIndicatorManagementComp = CreateDefaultSubobject<UCooldownIndicator>(TEXT("CooldownIndicatorManagementComp"));
+	DamageVisualizer = CreateDefaultSubobject<UDamageVisualizer>(TEXT("DamageVisualizer"));
 
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
 	CooldownIndicatorParentComp->SetupAttachment(GetMesh(), FName("RightArmSocketCooldown"));

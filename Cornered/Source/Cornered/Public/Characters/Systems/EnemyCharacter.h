@@ -17,6 +17,10 @@ class UHideSpotFinder;
 class UCharacterAnimInstance;
 class UInteractableDetector;
 class UAudioComponent;
+class UCableComponent;
+class UNiagaraComponent;
+class UMaterialInterface;
+class UConfig_DamageVisual;
 
 UCLASS()
 class CORNERED_API AEnemyCharacter : public ACorneredCharacter
@@ -42,8 +46,34 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UPawnSensingComponent> PawnSensingComp;
 
+	TArray<UCableComponent*> CableComponents;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCableComponent> CableComp1;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCableComponent> CableComp2;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCableComponent> CableComp3;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCableComponent> CableComp4;
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<UNiagaraComponent*> CableNiagaraComponents;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> LeftRepairArmNiagara;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> RightRepairArmNiagara;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_DamageVisual> DamageVisualConfig;
 
 public:
 	AEnemyCharacter();
@@ -52,7 +82,15 @@ public:
 
 	virtual void SetDieState() override;
 
+	void AttachEndpointOfCable(int index, UMaterialInterface* Material, bool shouldAttach);
+
+	int GetCountOfCable();
+
 protected:
+
+	//virtual void OnConstruction(const FTransform& Transform) override;
+
+	virtual void BeginPlay() override;
 
 	virtual IMovableCharacter* GetOwnedController() const override;
 

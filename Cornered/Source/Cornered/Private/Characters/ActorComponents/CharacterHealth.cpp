@@ -79,3 +79,7 @@ void UCharacterHealth::HealthReloadWaitTimeEnded() {
 bool UCharacterHealth::IsDead() const {
 	return CurrentHealth <= GeneralCharacterConfig->MinHealth;
 }
+
+float UCharacterHealth::GetHealthPercentage() const {
+	return CurrentHealth / SpecificCharacterConfig->MaxHealth;
+}

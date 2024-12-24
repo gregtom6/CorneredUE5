@@ -55,6 +55,8 @@ AEnemyCharacter::AEnemyCharacter()
 	CableNiagaraComp3 = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CableNiagaraComp3"));
 	CableNiagaraComp4 = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CableNiagaraComp4"));
 
+	DeathNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("DeathNiagara"));
+
 	USceneComponent* SceneComponent = Cast<USceneComponent>(GetCapsuleComponent());
 	CableComp1->SetupAttachment(SceneComponent);
 	CableComp2->SetupAttachment(SceneComponent);
@@ -65,6 +67,8 @@ AEnemyCharacter::AEnemyCharacter()
 	CableNiagaraComp2->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	CableNiagaraComp3->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	CableNiagaraComp4->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
+	DeathNiagara->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
 	DieAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	ScreamAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
@@ -105,6 +109,57 @@ void AEnemyCharacter::SetDieState() {
 	ACorneredCharacter::SetDieState();
 
 	DieAudio->Play();
+
+	for (int i = 0; i < CableComponents.Num(); i++) {
+
+		CableComponents[i]->bAttachStart = false;
+		CableComponents[i]->bAttachEnd = false;
+	}
+
+	PlayDieNiagara();
+}
+
+void AEnemyCharacter::PlayDieNiagara() {
+
+	FName BoneName = TEXT("NeckBottom");
+
+	// Reattach Niagara component to the skeletal mesh (ragdoll)
+	DeathNiagara->AttachToComponent(
+		GetMesh(),
+		FAttachmentTransformRules::SnapToTargetNotIncludingScale,
+		BoneName
+	);
+
+	// Optionally, reset transform after attaching
+	DeathNiagara->SetRelativeLocation(FVector::ZeroVector);
+	DeathNiagara->SetRelativeRotation(FRotator::ZeroRotator);
+
+	FTimerManager& TimerManager = GetWorldTimerManager();
+
+	TimerManager.SetTimer(TimerHandle1, this, &AEnemyCharacter::PlayExplosion1, FMath::RandRange(0.f,2.f), false);
+	TimerManager.SetTimer(TimerHandle2, this, &AEnemyCharacter::PlayExplosion1, FMath::RandRange(0.f, 2.f), false);
+	TimerManager.SetTimer(TimerHandle3, this, &AEnemyCharacter::PlayExplosion1, FMath::RandRange(0.f, 2.f), false);
+	TimerManager.SetTimer(TimerHandle4, this, &AEnemyCharacter::PlayExplosion1, FMath::RandRange(0.f, 2.f), false);
+}
+
+void AEnemyCharacter::PlayExplosion1() {
+	DeathNiagara->Activate();
+	ExplosionAudio->Play();
+}
+
+void AEnemyCharacter::PlayExplosion2() {
+	PlayCableNiagara(1);
+	ExplosionAudio->Play();
+}
+
+void AEnemyCharacter::PlayExplosion3() {
+	PlayCableNiagara(2);
+	ExplosionAudio->Play();
+}
+
+void AEnemyCharacter::PlayExplosion4() {
+	PlayCableNiagara(3);
+	ExplosionAudio->Play();
 }
 
 void AEnemyCharacter::AttachEndpointOfCable(int index, UMaterialInterface* Material, bool shouldAttach) {

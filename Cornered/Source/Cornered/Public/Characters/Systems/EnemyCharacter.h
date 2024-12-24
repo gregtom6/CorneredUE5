@@ -82,6 +82,9 @@ private:
 	TObjectPtr<UNiagaraComponent> CableNiagaraComp4;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> DeathNiagara;
+
+	UPROPERTY(VisibleAnywhere)
 	TArray<UNiagaraComponent*> CableNiagaraComponents;
 
 	UPROPERTY(EditAnywhere)
@@ -89,6 +92,16 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_DamageVisual> DamageVisualConfig;
+
+	FTimerHandle TimerHandle1;
+	FTimerHandle TimerHandle2;
+	FTimerHandle TimerHandle3;
+	FTimerHandle TimerHandle4;
+
+	void PlayExplosion1();
+	void PlayExplosion2();
+	void PlayExplosion3();
+	void PlayExplosion4();
 
 public:
 	AEnemyCharacter();
@@ -107,11 +120,13 @@ public:
 
 protected:
 
-	//virtual void OnConstruction(const FTransform& Transform) override;
-
 	virtual void BeginPlay() override;
 
 	virtual IMovableCharacter* GetOwnedController() const override;
 
 	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const override;
+
+private:
+
+	void PlayDieNiagara();
 };

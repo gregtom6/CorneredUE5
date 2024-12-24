@@ -36,6 +36,10 @@ void UDamageVisualizer::BeginPlay()
 void UDamageVisualizer::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
 	Enemy = EnemyCharacter;
 
+	for (int i = 0; i < Enemy->GetCountOfCable(); i++) {
+		PreviousDamageStates.Add(false);
+	}
+
 	CharacterHealth = EnemyCharacter->FindComponentByClass<UCharacterHealth>();
 }
 
@@ -54,6 +58,10 @@ void UDamageVisualizer::ProcessDamage() {
 		return;
 	}
 
+	if (CharacterHealth->IsDead()) {
+		return;
+	}
+
 	TArray<float> Values = DamageVisualConfig->GetDamagePercentages();
 
 	if (Values.Num() != Enemy->GetCountOfCable()) {
@@ -64,6 +72,8 @@ void UDamageVisualizer::ProcessDamage() {
 		return A > B;
 		});
 
+	bool isAudioProcessed = false;
+
 	for (int i = 0; i < Values.Num(); i++) {
 
 		bool isDamaged = CharacterHealth->GetHealthPercentage() <= Values[i];
@@ -71,5 +81,17 @@ void UDamageVisualizer::ProcessDamage() {
 		UMaterialInterface* SelectedMaterial = DamageVisualConfig->GetSelectedMaterial(isDamaged);
 
 		Enemy->AttachEndpointOfCable(i, SelectedMaterial, !isDamaged);
+
+		if (!PreviousDamageStates[i] && isDamaged) {
+
+			if (!isAudioProcessed) {
+				Enemy->PlayDamageSounds();
+				isAudioProcessed = true;
+			}
+
+			Enemy->PlayCableNiagara(i);
+		}
+
+		PreviousDamageStates[i] = isDamaged;
 	}
 }

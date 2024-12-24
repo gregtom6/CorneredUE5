@@ -21,4 +21,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool UseWeapon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool IsRepairing;
 };

@@ -40,6 +40,15 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAudioComponent> DieAudio;
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> ScreamAudio;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> DamageAlarmAudio;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> ExplosionAudio;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UExternalEquipper> ExternalEquipperComp;
 
@@ -52,22 +61,28 @@ private:
 	TObjectPtr<UCableComponent> CableComp1;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> CableNiagaraComp1;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCableComponent> CableComp2;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> CableNiagaraComp2;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCableComponent> CableComp3;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> CableNiagaraComp3;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCableComponent> CableComp4;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> CableNiagaraComp4;
+
+	UPROPERTY(VisibleAnywhere)
 	TArray<UNiagaraComponent*> CableNiagaraComponents;
-
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UNiagaraComponent> LeftRepairArmNiagara;
-
-	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UNiagaraComponent> RightRepairArmNiagara;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
@@ -83,6 +98,10 @@ public:
 	virtual void SetDieState() override;
 
 	void AttachEndpointOfCable(int index, UMaterialInterface* Material, bool shouldAttach);
+
+	void PlayDamageSounds();
+
+	void PlayCableNiagara(int index);
 
 	int GetCountOfCable();
 

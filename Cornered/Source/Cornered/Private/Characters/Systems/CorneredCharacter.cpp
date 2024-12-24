@@ -58,9 +58,14 @@ void ACorneredCharacter::Tick(float DeltaTime)
 				if (thisAnimInstance->LegState != (int)thisController->GetMovementState()) {
 					thisAnimInstance->LegState = (int)thisController->GetMovementState();
 				}
+
+				if (thisAnimInstance->IsRepairing != CharacterHealth->GetHealthPercentage() < 1.f) {
+					thisAnimInstance->IsRepairing = CharacterHealth->GetHealthPercentage() < 1.f;
+				}
 			}
 			else {
 				thisAnimInstance->LegState = (int)EMovementState::Standing;
+				thisAnimInstance->IsRepairing = false;
 			}
 		}
 

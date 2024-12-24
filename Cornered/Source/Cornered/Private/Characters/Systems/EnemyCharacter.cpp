@@ -26,6 +26,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Materials/MaterialInterface.h"
 #include "Configs/DataAssets/Config_DamageVisual.h"
+#include "NiagaraComponent.h"
 
 
 AEnemyCharacter::AEnemyCharacter()
@@ -39,12 +40,20 @@ AEnemyCharacter::AEnemyCharacter()
 	PawnSensingComp = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComp"));
 	StateTreeComp = CreateDefaultSubobject<UStateTreeComponent>(TEXT("StateTreeComp"));
 	DieAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("DieAudio"));
-	LeftRepairArmNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("LeftRepairArmNiagara"));
-	RightRepairArmNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("RightRepairArmNiagara"));
+
+	ScreamAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("ScreamAudio"));
+	DamageAlarmAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("DamageAlarmAudio"));
+	ExplosionAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("ExplosionAudio"));
+
 	CableComp1 = CreateDefaultSubobject<UCableComponent>(TEXT("CableCompon1"));
 	CableComp2 = CreateDefaultSubobject<UCableComponent>(TEXT("CableCompon2"));
 	CableComp3 = CreateDefaultSubobject<UCableComponent>(TEXT("CableCompon3"));
 	CableComp4 = CreateDefaultSubobject<UCableComponent>(TEXT("CableCompon4"));
+
+	CableNiagaraComp1 = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CableNiagaraComp1"));
+	CableNiagaraComp2 = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CableNiagaraComp2"));
+	CableNiagaraComp3 = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CableNiagaraComp3"));
+	CableNiagaraComp4 = CreateDefaultSubobject<UNiagaraComponent>(TEXT("CableNiagaraComp4"));
 
 	USceneComponent* SceneComponent = Cast<USceneComponent>(GetCapsuleComponent());
 	CableComp1->SetupAttachment(SceneComponent);
@@ -52,7 +61,15 @@ AEnemyCharacter::AEnemyCharacter()
 	CableComp3->SetupAttachment(SceneComponent);
 	CableComp4->SetupAttachment(SceneComponent);
 
-	
+	CableNiagaraComp1->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	CableNiagaraComp2->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	CableNiagaraComp3->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	CableNiagaraComp4->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
+	DieAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ScreamAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	DamageAlarmAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ExplosionAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 void AEnemyCharacter::BeginPlay()
@@ -63,6 +80,11 @@ void AEnemyCharacter::BeginPlay()
 	CableComponents.Add(CableComp2);
 	CableComponents.Add(CableComp3);
 	CableComponents.Add(CableComp4);
+
+	CableNiagaraComponents.Add(CableNiagaraComp1);
+	CableNiagaraComponents.Add(CableNiagaraComp2);
+	CableNiagaraComponents.Add(CableNiagaraComp3);
+	CableNiagaraComponents.Add(CableNiagaraComp4);
 }
 
 void AEnemyCharacter::SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
@@ -96,6 +118,16 @@ void AEnemyCharacter::AttachEndpointOfCable(int index, UMaterialInterface* Mater
 	}
 
 	CableComponents[index]->bAttachEnd = shouldAttach;
+}
+
+void AEnemyCharacter::PlayDamageSounds() {
+	ScreamAudio->Play();
+	DamageAlarmAudio->Play();
+	ExplosionAudio->Play();
+}
+
+void AEnemyCharacter::PlayCableNiagara(int index) {
+	CableNiagaraComponents[index]->Activate();
 }
 
 int AEnemyCharacter::GetCountOfCable() {

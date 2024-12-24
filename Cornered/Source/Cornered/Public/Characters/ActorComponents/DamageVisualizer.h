@@ -26,6 +26,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_DamageVisual> DamageVisualConfig;
 
+	TArray<bool> PreviousDamageStates;
+
 public:	
 	// Sets default values for this component's properties
 	UDamageVisualizer();

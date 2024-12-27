@@ -12,6 +12,7 @@ class ATargetPoint;
 class AEnemyCharacter;
 class ACorneredCharacter;
 class UConfig_Character_General;
+class ASoulRoute;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEnemyGeneratedDelegate, AEnemyCharacter*, EnemyCharacter);
 
@@ -26,6 +27,12 @@ public:
 private:
 
 	bool bLevelLoaded;
+
+	FTimerHandle TimerHandle;
+
+	ACorneredCharacter* DefeatedChar = nullptr;
+
+	ASoulRoute* SoulRoute = nullptr;
 
 public:
 
@@ -44,4 +51,8 @@ private:
 	FVector GetRandomPosition() const;
 
 	TArray<AActor*> QueryAllTargetPoints() const;
+
+	ASoulRoute* GetSoulRoute();
+
+	void SoulBorner();
 };

@@ -26,7 +26,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Materials/MaterialInterface.h"
 #include "Configs/DataAssets/Config_DamageVisual.h"
-#include "NiagaraComponent.h"
+#include "Components/SceneComponent.h"
 
 
 AEnemyCharacter::AEnemyCharacter()
@@ -57,6 +57,8 @@ AEnemyCharacter::AEnemyCharacter()
 
 	DeathNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("DeathNiagara"));
 
+	SoulLocation = CreateDefaultSubobject<USceneComponent>(TEXT("SoulLocation"));
+
 	USceneComponent* SceneComponent = Cast<USceneComponent>(GetCapsuleComponent());
 	CableComp1->SetupAttachment(SceneComponent);
 	CableComp2->SetupAttachment(SceneComponent);
@@ -74,6 +76,8 @@ AEnemyCharacter::AEnemyCharacter()
 	ScreamAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	DamageAlarmAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	ExplosionAudio->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
+	SoulLocation->AttachToComponent(SceneComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 void AEnemyCharacter::BeginPlay()
@@ -187,4 +191,8 @@ void AEnemyCharacter::PlayCableNiagara(int index) {
 
 int AEnemyCharacter::GetCountOfCable() {
 	return CableComponents.Num();
+}
+
+FVector AEnemyCharacter::GetSoulLocation() {
+	return GetMesh()->GetComponentLocation();
 }

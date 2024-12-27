@@ -19,10 +19,15 @@
 #include "GameFramework/Character.h"
 #include "Engine/World.h"
 #include "System/ProgressionGameState.h"
+#include "Characters/Systems/Soul.h"
+#include "TimerManager.h"
+#include "Environment/Others/SoulRoute.h"
 
 void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
+	
+	SoulRoute = GetSoulRoute();
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 	AGameStateBase* GameState = GetWorld()->GetGameState();
@@ -93,7 +98,36 @@ TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints() const
 	return FoundActors;
 }
 
+ASoulRoute* UCharacterSpawner::GetSoulRoute() {
+	UWorld* World = GetWorld();
+	TArray<AActor*> FoundActors;
+	if (World)
+	{
+		SoulRoute= Cast<ASoulRoute>(UGameplayStatics::GetActorOfClass(World, ASoulRoute::StaticClass()));
+		return SoulRoute;
+	}
+
+	return nullptr;
+}
+
 void UCharacterSpawner::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 	DefeatedCharacter->SetDieState();
+
+	if (DefeatedCharacter->IsA<AEnemyCharacter>()) {
+
+		DefeatedChar = DefeatedCharacter;
+
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UCharacterSpawner::SoulBorner, 2.0f, false);
+	}
+}
+
+void UCharacterSpawner::SoulBorner() {
+	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
+
+	if (Settings) {
+		FVector SoulLocation = Cast<AEnemyCharacter>(DefeatedChar)->GetSoulLocation();
+		ASoul* soul = GetWorld()->SpawnActor<ASoul>(Settings->SoulClass, SoulLocation, FRotator::ZeroRotator);
+		soul->SetSoulRoute(SoulRoute);
+	}
 }

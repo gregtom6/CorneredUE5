@@ -21,6 +21,7 @@ class UCableComponent;
 class UNiagaraComponent;
 class UMaterialInterface;
 class UConfig_DamageVisual;
+class USceneComponent;
 
 UCLASS()
 class CORNERED_API AEnemyCharacter : public ACorneredCharacter
@@ -85,6 +86,9 @@ private:
 	TObjectPtr<UNiagaraComponent> DeathNiagara;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> SoulLocation;
+
+	UPROPERTY(VisibleAnywhere)
 	TArray<UNiagaraComponent*> CableNiagaraComponents;
 
 	UPROPERTY(EditAnywhere)
@@ -117,6 +121,8 @@ public:
 	void PlayCableNiagara(int index);
 
 	int GetCountOfCable();
+
+	FVector GetSoulLocation();
 
 protected:
 

@@ -8,6 +8,7 @@
 
 class UConfig_Character_General;
 class AActor;
+class ASoul;
 
 /**
  *
@@ -24,4 +25,7 @@ public:
 
 	UPROPERTY(config, EditAnywhere)
 	TSoftObjectPtr<UConfig_Character_General> CharacterConfig;
+
+	UPROPERTY(config, EditAnywhere)
+	TSubclassOf<ASoul> SoulClass;
 };

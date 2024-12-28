@@ -15,6 +15,8 @@ class UConfig_Character_General;
 class ASoulRoute;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEnemyGeneratedDelegate, AEnemyCharacter*, EnemyCharacter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulGeneratedDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulDissipatedDelegate);
 
 UCLASS()
 class CORNERED_API UCharacterSpawner : public UWorldSubsystem
@@ -23,6 +25,8 @@ class CORNERED_API UCharacterSpawner : public UWorldSubsystem
 
 public:
 	FEnemyGeneratedDelegate OnEnemyGenerated;
+	FSoulGeneratedDelegate OnSoulGenerated;
+	FSoulDissipatedDelegate OnSoulDissipated;
 
 private:
 
@@ -47,6 +51,9 @@ private:
 
 	UFUNCTION()
 	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
+
+	UFUNCTION()
+	void OnSoulDestroyed();
 
 	FVector GetRandomPosition() const;
 

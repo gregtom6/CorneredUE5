@@ -129,5 +129,12 @@ void UCharacterSpawner::SoulBorner() {
 		FVector SoulLocation = Cast<AEnemyCharacter>(DefeatedChar)->GetSoulLocation();
 		ASoul* soul = GetWorld()->SpawnActor<ASoul>(Settings->SoulClass, SoulLocation, FRotator::ZeroRotator);
 		soul->SetSoulRoute(SoulRoute);
+		OnSoulGenerated.Broadcast();
+
+		soul->OnSoulDestroyed.AddUniqueDynamic(this, &UCharacterSpawner::OnSoulDestroyed);
 	}
+}
+
+void UCharacterSpawner::OnSoulDestroyed() {
+	OnSoulDissipated.Broadcast();
 }

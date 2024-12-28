@@ -31,10 +31,19 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> AmbientComp;
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UAudioComponent> StaticNoiseComp;
+
 private:
 
 	UFUNCTION()
 	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
+
+	UFUNCTION()
+	void OnSoulEjected();
+
+	UFUNCTION()
+	void OnSoulDissipated();
 
 public:
 	ACorneredHud();

@@ -13,6 +13,7 @@ class UStaticMeshComponent;
 class UConfig_Soul;
 class ASoulRoute;
 class USplineComponent;
+class UAudioComponent;
 
 UENUM(BlueprintType)
 enum class ESoulMoveState : uint8 {
@@ -27,10 +28,16 @@ enum class ESoulMoveState : uint8 {
 	Count,
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulDestroyedDelegate);
+
 UCLASS()
 class CORNERED_API ASoul : public AActor
 {
 	GENERATED_BODY()
+
+public:
+
+	FSoulDestroyedDelegate OnSoulDestroyed;
 
 private:
 
@@ -47,9 +54,6 @@ private:
 	TObjectPtr<UStaticMeshComponent> Skull;
 
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<USkeletalMeshComponent> Mesh;
-
-	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> LegNiagara;
 
 	UPROPERTY(VisibleAnywhere)
@@ -57,6 +61,12 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> EndNiagara;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> SoulAudio;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStaticMeshComponent> BadSignMesh;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Soul> SoulConfig;

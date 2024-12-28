@@ -7,11 +7,13 @@
 #include "Components/AudioComponent.h"
 #include "System/ProgressionGameState.h"
 #include "Characters/Systems/CorneredCharacter.h"
+#include "Characters/Systems/CharacterSpawner.h"
 
 
 ACorneredHud::ACorneredHud() {
     BGMComp = CreateDefaultSubobject<UAudioComponent>(TEXT("BGMComp"));
     AmbientComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AmbientComp"));
+    StaticNoiseComp = CreateDefaultSubobject<UAudioComponent>(TEXT("StaticNoiseComp"));
 }
 
 void ACorneredHud::BeginPlay()
@@ -40,6 +42,13 @@ void ACorneredHud::BeginPlay()
     AProgressionGameState* ProgressionGameState = Cast<AProgressionGameState>(GameState);
 
     ProgressionGameState->CharacterDefeated.AddUniqueDynamic(this, &ACorneredHud::OnCharacterDefeated);
+
+    UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
+    if (MySubsystem)
+    {
+        MySubsystem->OnSoulGenerated.AddUniqueDynamic(this, &ACorneredHud::OnSoulEjected);
+        MySubsystem->OnSoulDissipated.AddUniqueDynamic(this, &ACorneredHud::OnSoulDissipated);
+    }
 }
 
 void ACorneredHud::OnTimerOverHappened() {
@@ -50,4 +59,12 @@ void ACorneredHud::OnTimerOverHappened() {
 void ACorneredHud::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
     BGMComp->Stop();
     AmbientComp->Stop();
+}
+
+void ACorneredHud::OnSoulEjected() {
+    StaticNoiseComp->FadeIn(1.f,1.f);
+}
+
+void ACorneredHud::OnSoulDissipated() {
+    StaticNoiseComp->FadeOut(1.f, 0.f);
 }

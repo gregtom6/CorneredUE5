@@ -10,6 +10,7 @@
 #include "Configs/DataAssets/Config_Soul.h"
 #include "Environment/Others/SoulRoute.h"
 #include <Kismet/KismetMathLibrary.h>
+#include "Components/AudioComponent.h"
 
 // Sets default values
 ASoul::ASoul()
@@ -20,14 +21,16 @@ ASoul::ASoul()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	Movable = CreateDefaultSubobject<USceneComponent>(TEXT("Movable"));
 	UpMoveTarget = CreateDefaultSubobject<USceneComponent>(TEXT("UpMoveTarget"));
-	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
+	BadSignMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BadSignMesh"));
 	LegNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("LegNiagara"));
 	StartNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("StartNiagara"));
 	EndNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("EndNiagara"));
 	Skull = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Skull"));
+	SoulAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("SoulAudio"));
 
 	SetRootComponent(Root);
-	Mesh->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	SoulAudio->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
+	BadSignMesh->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
 	Movable->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	UpMoveTarget->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	Skull->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
@@ -100,7 +103,7 @@ void ASoul::Tick(float DeltaTime)
 		}
 	}
 	else if (MoveState == ESoulMoveState::MoveTowardsCollector) {
-
+		OnSoulDestroyed.Broadcast();
 	}
 }
 

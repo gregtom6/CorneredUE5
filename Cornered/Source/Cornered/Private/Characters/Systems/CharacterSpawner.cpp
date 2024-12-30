@@ -22,12 +22,11 @@
 #include "Characters/Systems/Soul.h"
 #include "TimerManager.h"
 #include "Environment/Others/SoulRoute.h"
+#include "Environment/SoulSniffer.h"
 
 void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 {
 	Super::OnWorldBeginPlay(InWorld);
-	
-	SoulRoute = GetSoulRoute();
 
 	ACorneredGameMode* CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
 	AGameStateBase* GameState = GetWorld()->GetGameState();
@@ -97,19 +96,6 @@ TArray<AActor*> UCharacterSpawner::QueryAllTargetPoints() const
 
 	return FoundActors;
 }
-
-ASoulRoute* UCharacterSpawner::GetSoulRoute() {
-	UWorld* World = GetWorld();
-	TArray<AActor*> FoundActors;
-	if (World)
-	{
-		SoulRoute= Cast<ASoulRoute>(UGameplayStatics::GetActorOfClass(World, ASoulRoute::StaticClass()));
-		return SoulRoute;
-	}
-
-	return nullptr;
-}
-
 void UCharacterSpawner::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 	DefeatedCharacter->SetDieState();
@@ -129,6 +115,7 @@ void UCharacterSpawner::SoulBorner() {
 		FVector SoulLocation = Cast<AEnemyCharacter>(DefeatedChar)->GetSoulLocation();
 		ASoul* soul = GetWorld()->SpawnActor<ASoul>(Settings->SoulClass, SoulLocation, FRotator::ZeroRotator);
 		soul->SetSoulRoute(SoulRoute);
+		soul->SetSoulSniffer(SoulSniffer);
 		OnSoulGenerated.Broadcast();
 
 		soul->OnSoulDestroyed.AddUniqueDynamic(this, &UCharacterSpawner::OnSoulDestroyed);
@@ -137,4 +124,16 @@ void UCharacterSpawner::SoulBorner() {
 
 void UCharacterSpawner::OnSoulDestroyed() {
 	OnSoulDissipated.Broadcast();
+}
+
+void UCharacterSpawner::SetSoulRoute(ASoulRoute* soulRoute) {
+	SoulRoute = soulRoute;
+}
+
+void UCharacterSpawner::SetTargetPoint(ATargetPoint* targetPoint) {
+	TargetPoints.Add(targetPoint);
+}
+
+void UCharacterSpawner::SetSoulSniffer(ASoulSniffer* soulSniffer) {
+	SoulSniffer=soulSniffer;
 }

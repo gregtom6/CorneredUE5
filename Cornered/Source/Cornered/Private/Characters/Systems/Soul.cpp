@@ -11,6 +11,7 @@
 #include "Environment/Others/SoulRoute.h"
 #include <Kismet/KismetMathLibrary.h>
 #include "Components/AudioComponent.h"
+#include "Environment/SoulSniffer.h"
 
 // Sets default values
 ASoul::ASoul()
@@ -103,10 +104,38 @@ void ASoul::Tick(float DeltaTime)
 		}
 	}
 	else if (MoveState == ESoulMoveState::MoveTowardsCollector) {
+		StartingPosition = Movable->GetComponentLocation();
+		TargetPosition = SoulSniffer->GetTargetLocation();
+		MoveState = ESoulMoveState::MovingTowardsCollector;
+
+		FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(StartingPosition, TargetPosition);
+		Movable->SetWorldRotation(LookAtRotation);
+	}
+	else if (MoveState == ESoulMoveState::MovingTowardsCollector) {
+		FVector Direction = TargetPosition - StartingPosition;
+		Direction.Normalize();
+		FVector Position = Movable->GetComponentLocation() + Direction * SoulConfig->SpeedTowardsFinalTarget * DeltaTime;
+		FVector PreviousPosition = Movable->GetComponentLocation();
+		Movable->SetWorldLocation(Position);
+
+		FVector DirectionToTarget = (TargetPosition - PreviousPosition).GetSafeNormal();
+
+		// Calculate the direction of movement
+		FVector MovementDirection = (Movable->GetComponentLocation() - PreviousPosition).GetSafeNormal();
+
+		if (FVector::DotProduct(DirectionToTarget, MovementDirection) <= 0.0f) {
+			MoveState = ESoulMoveState::Disappear;
+		}
+	}
+	else if (MoveState == ESoulMoveState::Disappear) {
 		OnSoulDestroyed.Broadcast();
 	}
 }
 
 void ASoul::SetSoulRoute(ASoulRoute* Route) {
 	SoulRoute = Route;
+}
+
+void ASoul::SetSoulSniffer(ASoulSniffer* soulSniffer) {
+	SoulSniffer = soulSniffer;
 }

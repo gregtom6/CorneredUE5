@@ -5,7 +5,7 @@
 #include "System/CorneredSaveGame.h"
 #include <Kismet/GameplayStatics.h>
 
-void UCorneredGameInstance::SaveGame(int32 unlockLevel)
+void UCorneredGameInstance::SaveGame(int32 unlockLevel, int32 sniffedSoulCount)
 {
     if (CurrentSaveGame == nullptr)
     {
@@ -13,6 +13,7 @@ void UCorneredGameInstance::SaveGame(int32 unlockLevel)
     }
 
     CurrentSaveGame->CurrentUnlockLevel = unlockLevel;
+    CurrentSaveGame->CurrentSniffedSouls = sniffedSoulCount;
 
     UGameplayStatics::SaveGameToSlot(CurrentSaveGame, TEXT("DefaultSaveSlot"), 0);
 }
@@ -42,6 +43,14 @@ int32 UCorneredGameInstance::GetCurrentUnlockLevel() const
     if (CurrentSaveGame)
     {
         return CurrentSaveGame->CurrentUnlockLevel;
+    }
+
+    return 0;
+}
+
+int32 UCorneredGameInstance::GetCurrentSniffedSoulCount() const {
+    if (CurrentSaveGame) {
+        return CurrentSaveGame->CurrentSniffedSouls;
     }
 
     return 0;

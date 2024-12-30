@@ -22,7 +22,7 @@ private:
 	TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
 public:
 
-	void SaveGame(int32 unlockLevel);
+	void SaveGame(int32 unlockLevel, int32 sniffedSoulCount);
 
 	void LoadGame();
 
@@ -31,5 +31,6 @@ public:
 	UFUNCTION(BlueprintPure)
 	int32 GetCurrentUnlockLevel() const;
 
-
+	UFUNCTION(BlueprintPure)
+	int32 GetCurrentSniffedSoulCount() const;
 };

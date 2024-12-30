@@ -13,6 +13,7 @@ class AEnemyCharacter;
 class ACorneredCharacter;
 class UConfig_Character_General;
 class ASoulRoute;
+class ASoulSniffer;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FEnemyGeneratedDelegate, AEnemyCharacter*, EnemyCharacter);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulGeneratedDelegate);
@@ -38,9 +39,16 @@ private:
 
 	ASoulRoute* SoulRoute = nullptr;
 
+	ASoulSniffer* SoulSniffer = nullptr;
+
+	TArray<ATargetPoint*> TargetPoints;
+
 public:
 
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+	void SetSoulRoute(ASoulRoute* soulRoute);
+	void SetTargetPoint(ATargetPoint* targetPoint);
+	void SetSoulSniffer(ASoulSniffer* soulSniffer);
 
 protected:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;

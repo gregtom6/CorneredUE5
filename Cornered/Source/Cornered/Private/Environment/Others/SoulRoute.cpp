@@ -4,6 +4,7 @@
 #include "Environment/Others/SoulRoute.h"
 #include "Components/SceneComponent.h"
 #include "Components/SplineComponent.h"
+#include "Characters/Systems/CharacterSpawner.h"
 
 // Sets default values
 ASoulRoute::ASoulRoute()
@@ -23,6 +24,11 @@ void ASoulRoute::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
+	if (MySubsystem)
+	{
+		MySubsystem->SetSoulRoute(this);
+	}
 }
 
 // Called every frame

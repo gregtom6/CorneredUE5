@@ -12,6 +12,7 @@ class UNiagaraComponent;
 class UStaticMeshComponent;
 class UConfig_Soul;
 class ASoulRoute;
+class ASoulSniffer;
 class USplineComponent;
 class UAudioComponent;
 
@@ -23,6 +24,7 @@ enum class ESoulMoveState : uint8 {
 	MovingTowardsSpline,
 	MoveAlongSpline,
 	MoveTowardsCollector,
+	MovingTowardsCollector,
 	Disappear,
 
 	Count,
@@ -79,12 +81,16 @@ private:
 	float ToSplineProgress = 0.f;
 
 	ASoulRoute* SoulRoute;
+
+	ASoulSniffer* SoulSniffer;
 	
 public:	
 	// Sets default values for this actor's properties
 	ASoul();
 
 	void SetSoulRoute(ASoulRoute* SoulRoute);
+
+	void SetSoulSniffer(ASoulSniffer* SoulSniffer);
 
 protected:
 	// Called when the game starts or when spawned

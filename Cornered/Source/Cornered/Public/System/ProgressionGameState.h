@@ -14,6 +14,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACornere
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterShotReceivedDelegate, ACorneredCharacter*, Character);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulSniffedDelegate);
+
 /**
  *
  */
@@ -26,19 +28,24 @@ public:
 	UPROPERTY()
 	int UnlockLevel;
 
+	UPROPERTY()
+	int SoulSniffedCount;
+
 	FCharacterDefeatedDelegate CharacterDefeated;
 
 	FCharacterShotReceivedDelegate CharacterShotReceived;
+
+	FSoulSniffedDelegate SoulSniffed;
 
 private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Progress> ProgressConfig;
 
-public:
+	void StepUnlockLevel();
 	void ResetProgress();
-
-	void StepProgress();
+	void ResetUnlockLevel();
+public:
 
 	void SaveProgress();
 
@@ -57,6 +64,8 @@ private:
 	void OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot);
 	UFUNCTION()
 	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
+	UFUNCTION()
+	void OnSoulSniffed();
 
 	void SubscribeToCharacterDamageDelegates(ACorneredCharacter* Character);
 };

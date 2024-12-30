@@ -15,6 +15,8 @@ class ASoulRoute;
 class ASoulSniffer;
 class USplineComponent;
 class UAudioComponent;
+class UActorSequenceComponent;
+class UActorSequencePlayer;
 
 UENUM(BlueprintType)
 enum class ESoulMoveState : uint8 {
@@ -26,6 +28,7 @@ enum class ESoulMoveState : uint8 {
 	MoveTowardsCollector,
 	MovingTowardsCollector,
 	Disappear,
+	AlreadyDisappeared,
 
 	Count,
 };
@@ -40,6 +43,14 @@ class CORNERED_API ASoul : public AActor
 public:
 
 	FSoulDestroyedDelegate OnSoulDestroyed;
+
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> CreationSequenceComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> DissipateSequenceComp;
 
 private:
 
@@ -77,6 +88,7 @@ private:
 
 	FVector StartingPosition;
 	FVector TargetPosition;
+	FVector DissipateTargetPosition;
 
 	float ToSplineProgress = 0.f;
 

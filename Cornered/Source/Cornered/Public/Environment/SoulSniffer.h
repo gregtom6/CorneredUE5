@@ -24,12 +24,17 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> Target;
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> DissipateTarget;
+
 	
 public:	
 	// Sets default values for this actor's properties
 	ASoulSniffer();
 
 	FVector GetTargetLocation();
+
+	FVector GetDissipateTargetLocation();
 
 protected:
 	// Called when the game starts or when spawned

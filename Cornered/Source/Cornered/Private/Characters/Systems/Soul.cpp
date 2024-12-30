@@ -12,6 +12,8 @@
 #include <Kismet/KismetMathLibrary.h>
 #include "Components/AudioComponent.h"
 #include "Environment/SoulSniffer.h"
+#include "ActorSequenceComponent.h"
+#include "ActorSequencePlayer.h"
 
 // Sets default values
 ASoul::ASoul()
@@ -44,6 +46,10 @@ ASoul::ASoul()
 void ASoul::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (CreationSequenceComp) {
+		CreationSequenceComp->PlaySequence();
+	}
 
 	MoveState = ESoulMoveState::MoveUpwards;
 }
@@ -105,6 +111,7 @@ void ASoul::Tick(float DeltaTime)
 	}
 	else if (MoveState == ESoulMoveState::MoveTowardsCollector) {
 		StartingPosition = Movable->GetComponentLocation();
+		DissipateTargetPosition = SoulSniffer->GetDissipateTargetLocation();
 		TargetPosition = SoulSniffer->GetTargetLocation();
 		MoveState = ESoulMoveState::MovingTowardsCollector;
 
@@ -126,9 +133,18 @@ void ASoul::Tick(float DeltaTime)
 		if (FVector::DotProduct(DirectionToTarget, MovementDirection) <= 0.0f) {
 			MoveState = ESoulMoveState::Disappear;
 		}
+
+		FVector DirectionToDissipateTarget= (DissipateTargetPosition - PreviousPosition).GetSafeNormal();
+
+		if (FVector::DotProduct(DirectionToDissipateTarget, MovementDirection) <= 0.0f) {
+			if (DissipateSequenceComp) {
+				DissipateSequenceComp->PlaySequence();
+			}
+		}
 	}
 	else if (MoveState == ESoulMoveState::Disappear) {
 		OnSoulDestroyed.Broadcast();
+		MoveState = ESoulMoveState::AlreadyDisappeared;
 	}
 }
 

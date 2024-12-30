@@ -14,10 +14,12 @@ ASoulSniffer::ASoulSniffer()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Target= CreateDefaultSubobject<USceneComponent>(TEXT("Target"));
+	DissipateTarget = CreateDefaultSubobject<USceneComponent>(TEXT("DissipateTarget"));
 
 	SetRootComponent(Root);
 	Mesh->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	Target->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	DissipateTarget->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -41,4 +43,8 @@ void ASoulSniffer::Tick(float DeltaTime)
 
 FVector ASoulSniffer::GetTargetLocation() {
 	return Target->GetComponentLocation();
+}
+
+FVector ASoulSniffer::GetDissipateTargetLocation() {
+	return DissipateTarget->GetComponentLocation();
 }

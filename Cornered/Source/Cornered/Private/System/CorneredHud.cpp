@@ -14,6 +14,7 @@ ACorneredHud::ACorneredHud() {
     BGMComp = CreateDefaultSubobject<UAudioComponent>(TEXT("BGMComp"));
     AmbientComp = CreateDefaultSubobject<UAudioComponent>(TEXT("AmbientComp"));
     StaticNoiseComp = CreateDefaultSubobject<UAudioComponent>(TEXT("StaticNoiseComp"));
+    LightFlickerComp = CreateDefaultSubobject<UAudioComponent>(TEXT("LightFlickerComp"));
 }
 
 void ACorneredHud::BeginPlay()
@@ -63,8 +64,10 @@ void ACorneredHud::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 void ACorneredHud::OnSoulEjected() {
     StaticNoiseComp->FadeIn(1.f,1.f);
+    LightFlickerComp->Play(1.f);
 }
 
 void ACorneredHud::OnSoulDissipated() {
     StaticNoiseComp->FadeOut(1.f, 0.f);
+    LightFlickerComp->StopDelayed(1.f);
 }

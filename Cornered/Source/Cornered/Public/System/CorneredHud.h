@@ -34,6 +34,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> StaticNoiseComp;
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UAudioComponent> LightFlickerComp;
+
 private:
 
 	UFUNCTION()

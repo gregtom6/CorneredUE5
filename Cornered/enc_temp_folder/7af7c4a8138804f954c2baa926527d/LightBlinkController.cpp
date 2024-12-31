@@ -67,7 +67,7 @@ void ULightBlinkController::TickComponent(float DeltaTime, ELevelTick TickType, 
 	}
 
 	for (int i = 0; i < LightMaterials.Num(); i++) {
-		LightMaterials[i]->SetScalarParameterValue(FName("ColorMultiplier"), IntensityMultiplier);
+		LightMaterials[i]->SetScalarParameterValue(FName("ColorMultiplier"), IntensityMultiplier/1000.0f);
 
 	}
 }

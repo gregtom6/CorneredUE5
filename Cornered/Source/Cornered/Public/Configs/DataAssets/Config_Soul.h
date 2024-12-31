@@ -6,9 +6,8 @@
 #include "Engine/DataAsset.h"
 #include "Config_Soul.generated.h"
 
-/**
- * 
- */
+class UCurveFloat;
+
 UCLASS()
 class CORNERED_API UConfig_Soul : public UDataAsset
 {
@@ -30,4 +29,14 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float AllowedDistanceFromPoints;
+
+	UPROPERTY(EditAnywhere)
+	float CurveReadMultiplier;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UCurveFloat> LampBlinkingCurve;
+
+public:
+
+	float GetIntensityMultiplier(float Time);
 };

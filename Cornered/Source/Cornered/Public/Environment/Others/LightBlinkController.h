@@ -7,6 +7,9 @@
 #include "LightBlinkController.generated.h"
 
 class UCurveFloat;
+class ULightComponent;
+class UConfig_Soul;
+class UMaterialInstanceDynamic;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CORNERED_API ULightBlinkController : public UActorComponent
@@ -23,14 +26,24 @@ protected:
 
 private:
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UCurveFloat> CurveToUse;
-
 	UFUNCTION()
 	void OnSoulEjected();
 
 	UFUNCTION()
 	void OnSoulDissipated();
+
+	bool bIsSoulExisting;
+
+	float Time;
+
+	TArray<float> OriginalIntensities;
+
+	TArray<ULightComponent*> Lights;
+
+	TArray<UMaterialInstanceDynamic*> LightMaterials;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Soul> SoulConfig;
 
 public:	
 	// Called every frame

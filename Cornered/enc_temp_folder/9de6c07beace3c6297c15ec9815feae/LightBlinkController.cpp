@@ -62,7 +62,7 @@ void ULightBlinkController::TickComponent(float DeltaTime, ELevelTick TickType, 
 
 	for (int i = 0; i < Lights.Num(); i++) {
 		if (i < OriginalIntensities.Num()) {
-			Lights[i]->SetIntensity(IntensityMultiplier * OriginalIntensities[i]);
+			Lights[i]->Intensity = IntensityMultiplier * OriginalIntensities[i];
 		}
 	}
 
@@ -84,7 +84,7 @@ void ULightBlinkController::OnSoulDissipated() {
 	bIsSoulExisting = false;
 	for (int i = 0; i < Lights.Num(); i++) {
 		if (i < OriginalIntensities.Num()) {
-			Lights[i]->SetIntensity(OriginalIntensities[i]);
+			Lights[i]->Intensity = OriginalIntensities[i];
 		}
 	}
 

@@ -9,6 +9,8 @@
 #include "Configs/DataAssets/Config_ExitDoor.h"
 #include "Environment/Interactables/HoldableButton.h"
 #include "Environment/ExitDoor/ExitButtonMover.h"
+#include "Components/RectLightComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 AExitDoorController::AExitDoorController() {
 
@@ -16,9 +18,13 @@ AExitDoorController::AExitDoorController() {
 	DoorVisuals = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorVisuals"));
 	PercentageText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("PercentageText"));
 	ProgressText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("ProgressText"));
+	LightMeshComp= CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightMeshComp"));
+	RectLightComp= CreateDefaultSubobject<URectLightComponent>(TEXT("RectLightComp"));
 
 	SetRootComponent(Root);
 	DoorVisuals->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	LightMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	RectLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	PercentageText->AttachToComponent(DoorVisuals, FAttachmentTransformRules::KeepRelativeTransform);
 	ProgressText->AttachToComponent(DoorVisuals, FAttachmentTransformRules::KeepRelativeTransform);
 }
@@ -70,4 +76,18 @@ void AExitDoorController::PrintPercentageText() {
 	FString stringVersion = FString::FromInt(IntValue);
 
 	PercentageText->SetText(FText::FromString(stringVersion));
+}
+
+TArray<ULightComponent*> AExitDoorController::GetLightComponents()
+{
+	TArray<ULightComponent*> Lights;
+	Lights.Add(RectLightComp);
+	return Lights;
+}
+
+TArray<UMaterialInstanceDynamic*> AExitDoorController::GetLightMaterials()
+{
+	TArray<UMaterialInstanceDynamic*> Materials;
+	Materials.Add(LightMeshComp->CreateAndSetMaterialInstanceDynamic(0));
+	return Materials;
 }

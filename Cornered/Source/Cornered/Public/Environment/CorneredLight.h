@@ -21,7 +21,7 @@ public:
 	// Sets default values for this actor's properties
 	ACorneredLight();
 
-private:
+protected:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USpotLightComponent> SpotLightComp;

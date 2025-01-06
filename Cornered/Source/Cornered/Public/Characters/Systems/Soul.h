@@ -17,6 +17,7 @@ class USplineComponent;
 class UAudioComponent;
 class UActorSequenceComponent;
 class UActorSequencePlayer;
+class UPointLightComponent;
 
 UENUM(BlueprintType)
 enum class ESoulMoveState : uint8 {
@@ -80,6 +81,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStaticMeshComponent> BadSignMesh;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UPointLightComponent> SoulLight;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Soul> SoulConfig;

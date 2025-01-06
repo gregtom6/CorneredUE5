@@ -14,6 +14,7 @@
 #include "Environment/SoulSniffer.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
+#include "Components/PointLightComponent.h"
 
 // Sets default values
 ASoul::ASoul()
@@ -30,13 +31,15 @@ ASoul::ASoul()
 	EndNiagara = CreateDefaultSubobject<UNiagaraComponent>(TEXT("EndNiagara"));
 	Skull = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Skull"));
 	SoulAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("SoulAudio"));
+	SoulLight = CreateDefaultSubobject<UPointLightComponent>(TEXT("SoulLight"));
 
 	SetRootComponent(Root);
 	SoulAudio->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
 	BadSignMesh->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
+	Skull->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
+	SoulLight->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
 	Movable->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	UpMoveTarget->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-	Skull->AttachToComponent(Movable, FAttachmentTransformRules::KeepRelativeTransform);
 	LegNiagara->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	StartNiagara->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	EndNiagara->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);

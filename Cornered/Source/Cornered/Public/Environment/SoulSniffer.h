@@ -45,6 +45,8 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TObjectPtr<UActorSequenceComponent> ProcessedSequenceComp;
 	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> AlarmSequenceComp;
 
 private:
 
@@ -85,6 +87,9 @@ private:
 	TObjectPtr<UAudioComponent> ProcessedAudioComp;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAudioComponent> CountPassedBorderAudioComp;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UTextRenderComponent> CurrentCountTextComp;
 
 	UPROPERTY(VisibleAnywhere)
@@ -99,6 +104,8 @@ private:
 	ESoulSnifferState State = ESoulSnifferState::Disabled;
 
 	FTimerHandle TimerHandle;
+
+	FTimerHandle TimerHandle2;
 	
 public:	
 	// Sets default values for this actor's properties
@@ -130,6 +137,8 @@ private:
 	void SetBackDefaultState();
 
 	void PrintCurrentSniffedSoulCount();
+
+	void CountPassedBorder();
 
 	FString FormatNumber(int32 Number, int32 Digits);
 

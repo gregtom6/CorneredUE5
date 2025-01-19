@@ -156,7 +156,7 @@ void ASoulSniffer::SoulProcessed() {
 }
 
 void ASoulSniffer::CountPassedBorder() {
-	CountPassedBorderAudioComp->Play();
+	CountPassedBorderAudioComp->Play(SnifferConfig->TimeUntilAlarm);
 
 	AlarmSequenceComp->PlaySequence();
 }

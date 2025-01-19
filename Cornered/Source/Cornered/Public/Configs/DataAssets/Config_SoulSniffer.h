@@ -36,6 +36,9 @@ public:
 	int32 DigitNumber;
 
 	UPROPERTY(EditAnywhere)
+	float TimeUntilAlarm;
+
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UMaterialInterface> DisabledGreyLight;
 
 	UPROPERTY(EditAnywhere)

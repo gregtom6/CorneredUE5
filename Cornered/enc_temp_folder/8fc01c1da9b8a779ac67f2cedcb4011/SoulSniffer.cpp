@@ -102,8 +102,6 @@ void ASoulSniffer::StopSoulProcessing() {
 
 	ProcessingAudioComp->Stop();
 
-	ProcessingLed->SetMaterial(0, SnifferConfig->DisabledGreyLight);
-
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ASoulSniffer::SoulProcessed, SnifferConfig->TimeAfterProcess, false);
 }
 

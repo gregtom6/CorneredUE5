@@ -236,7 +236,7 @@ void UHideSpotFinder::FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obsta
 
 			int closestAngleIndex = GetClosestIndex(NormalizedAngles, MeanAngle);
 
-			if (closestAngleIndex >= 0) {
+			if (closestAngleIndex >= 0 && closestAngleIndex<obstacles[i].PossibleHideSpots.Num()) {
 				FVector middleElement = obstacles[i].PossibleHideSpots[closestAngleIndex];
 				obstacles[i].HighlightedHideSpot = middleElement;
 			}

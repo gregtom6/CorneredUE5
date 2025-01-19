@@ -13,6 +13,7 @@ class UAudioComponent;
 class UTextRenderComponent;
 class UBoxComponent;
 class UConfig_SoulSniffer;
+class UConfig_Progress;
 
 UENUM(BlueprintType)
 enum class ESoulSnifferState :uint8
@@ -49,6 +50,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_SoulSniffer> SnifferConfig;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Progress> ProgressConfig;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> Root;
@@ -124,6 +128,10 @@ private:
 	void SoulProcessed();
 
 	void SetBackDefaultState();
+
+	void PrintCurrentSniffedSoulCount();
+
+	FString FormatNumber(int32 Number, int32 Digits);
 
 public:	
 	// Called every frame

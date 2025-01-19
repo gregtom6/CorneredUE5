@@ -16,7 +16,15 @@ class CORNERED_API UCorneredSaveGame : public USaveGame
 
 public:
 	UPROPERTY(EditAnywhere)
+	int32 CurrentLevel;
+	UPROPERTY(EditAnywhere)
+	float OpeningProgress;
+	UPROPERTY(EditAnywhere)
 	int32 CurrentUnlockLevel;
 	UPROPERTY(EditAnywhere)
-	int32 CurrentSniffedSouls;
+	int32 SniffedSoulsInCurrentLevel;
+	UPROPERTY(EditAnywhere)
+	int32 CurrentSniffedSoulsGlobal;
+	UPROPERTY(EditAnywhere)
+	int32 CurrentOverloadSoulsGlobal;
 };

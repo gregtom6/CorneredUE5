@@ -7,6 +7,7 @@
 #include "CorneredGameInstance.generated.h"
 
 class UCorneredSaveGame;
+class AProgressionGameState;
 
 /**
  *
@@ -21,16 +22,22 @@ private:
 	UPROPERTY()
 	TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
 public:
-
-	void SaveGame(int32 unlockLevel, int32 sniffedSoulCount);
+	void SaveGame(int32 currentLevel, int32 unlockLevel, float openingProgress, int32 sniffedSoulCount, int32 sniffedSoulsGlobalCount, int32 sniffedOverloadGlobalCount);
+	void SaveOpeningProgress(float openingProgress);
+	void SaveUnlockLevel(int32 unlockLevel);
+	void SaveSniffedSoulCount(int32 sniffedSoulCount);
+	void SaveEndLevelStats(AProgressionGameState* GameState);
 
 	void LoadGame();
 
 	void ResetGame();
 
 	UFUNCTION(BlueprintPure)
+	int32 GetCurrentLevel() const;
+
+	UFUNCTION(BlueprintPure)
 	int32 GetCurrentUnlockLevel() const;
 
 	UFUNCTION(BlueprintPure)
-	int32 GetCurrentSniffedSoulCount() const;
+	float GetCurrentOpeningProgress() const;
 };

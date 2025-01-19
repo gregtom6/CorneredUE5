@@ -32,6 +32,26 @@ TArray<EAbility> UConfig_Progress::GetAlreadyUnlockedAbilities(int32 currentUnlo
     return abilities;
 }
 
+int32 UConfig_Progress::GetSoulBorderCount(UWorld* World) {
+
+    const UWorld* CastedWorld = Cast<UWorld>(World);
+    if (!CastedWorld)
+    {
+        return -1;
+    }
+
+    for (int i = 0; i < SoulBorderCountsPerLevel.Num(); i++) {
+        
+        const UWorld* LevelPtr = SoulBorderCountsPerLevel[i].Level.Get();
+        if (LevelPtr && LevelPtr->GetName() == CastedWorld->GetName())
+        {
+            return SoulBorderCountsPerLevel[i].SoulBorder;
+        }
+    }
+
+    return -1;
+}
+
 int UConfig_Progress::GetMaxUnlockLevel() const {
     return AbilitiesToUnlockPerLevel.Num();
 }

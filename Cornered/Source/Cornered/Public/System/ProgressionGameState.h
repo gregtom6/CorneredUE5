@@ -52,6 +52,12 @@ public:
 	UFUNCTION(BlueprintPure)
 	bool IsAbilityAlreadyUnlocked(EAbility Ability);
 
+	UFUNCTION(BlueprintPure)
+	int32 GetCurrentSniffedSoulCount() const;
+
+	UFUNCTION(BlueprintPure)
+	int32 GetCurrentOverloadSoulCount() const;
+
 protected:
 
 	virtual void BeginPlay() override;

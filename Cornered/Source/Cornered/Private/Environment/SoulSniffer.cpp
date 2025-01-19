@@ -11,25 +11,28 @@
 #include "Components/TextRenderComponent.h"
 #include "Components/BoxComponent.h"
 #include "Configs/DataAssets/Config_SoulSniffer.h"
+#include "System/ProgressionGameState.h"
+#include "System/CorneredGameInstance.h"
+#include "Configs/DataAssets/Config_Progress.h"
 
 // Sets default values
 ASoulSniffer::ASoulSniffer()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Target= CreateDefaultSubobject<USceneComponent>(TEXT("Target"));
+	Target = CreateDefaultSubobject<USceneComponent>(TEXT("Target"));
 	DissipateTarget = CreateDefaultSubobject<USceneComponent>(TEXT("DissipateTarget"));
 	Led1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Led1"));
 	Led2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Led2"));
-	ProcessingLed= CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProcessingLed"));
+	ProcessingLed = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProcessingLed"));
 	CatchAudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("CatchAudioComp"));
 	ProcessingAudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("ProcessingAudioComp"));
 	ProcessedAudioComp = CreateDefaultSubobject<UAudioComponent>(TEXT("ProcessedAudioComp"));
 	CurrentCountTextComp = CreateDefaultSubobject<UTextRenderComponent>(TEXT("CurrentCountTextComp"));
 	SlashTextComp = CreateDefaultSubobject<UTextRenderComponent>(TEXT("SlashTextComp"));
-	BorderCountTextComp= CreateDefaultSubobject<UTextRenderComponent>(TEXT("BorderCountTextComp"));
+	BorderCountTextComp = CreateDefaultSubobject<UTextRenderComponent>(TEXT("BorderCountTextComp"));
 	SoulDetector = CreateDefaultSubobject<UBoxComponent>(TEXT("SoulDetector"));
 
 	SetRootComponent(Root);
@@ -54,7 +57,7 @@ void ASoulSniffer::BeginPlay()
 	Super::BeginPlay();
 
 	SetBackDefaultState();
-	
+
 	UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
 	if (MySubsystem)
 	{
@@ -64,6 +67,14 @@ void ASoulSniffer::BeginPlay()
 	SoulDetector->OnComponentBeginOverlap.AddUniqueDynamic(this, &ASoulSniffer::OnEnterDetectorBeginOverlap);
 
 	State = ESoulSnifferState::Disabled;
+
+	int32 currentBordercount = ProgressConfig->GetSoulBorderCount(GetWorld());
+
+	FString borderCountInString = FormatNumber(currentBordercount, SnifferConfig->DigitNumber);
+
+	BorderCountTextComp->SetText(FText::FromString(borderCountInString));
+
+	PrintCurrentSniffedSoulCount();
 }
 
 // Called every frame
@@ -89,15 +100,15 @@ void ASoulSniffer::SoulCatched() {
 }
 
 void ASoulSniffer::SoulProcessing() {
-	ProcessingSequenceComp->PlaySequence();
-
+	UActorSequencePlayer* SequencePlayer = ProcessingSequenceComp->GetSequencePlayer();
+	SequencePlayer->PlayLooping();
 	ProcessingAudioComp->Play();
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ASoulSniffer::StopSoulProcessing, SnifferConfig->TimeForProcess, false);
 }
 
 void ASoulSniffer::StopSoulProcessing() {
-	
+
 	ProcessingSequenceComp->StopSequence();
 
 	ProcessingAudioComp->Stop();
@@ -112,13 +123,44 @@ void ASoulSniffer::SoulProcessed() {
 
 	ProcessedAudioComp->Play();
 
-	CurrentCountTextComp->SetMaterial(0, SnifferConfig->ActiveGreenText);
-
 	SlashTextComp->SetMaterial(0, SnifferConfig->ActiveWhiteText);
 
 	BorderCountTextComp->SetMaterial(0, SnifferConfig->ActiveRedText);
 
+	PrintCurrentSniffedSoulCount();
+
+	AProgressionGameState* MyGameState = Cast<AProgressionGameState>(GetWorld()->GetGameState());
+	if (MyGameState)
+	{
+		int32 currentSniffedSoulCount = MyGameState->GetCurrentSniffedSoulCount();
+
+		UMaterialInterface* SelectedMaterial = nullptr;
+
+		UCorneredGameInstance* MyGameInstance = Cast<UCorneredGameInstance>(GetWorld()->GetGameInstance());
+
+		if (currentSniffedSoulCount > ProgressConfig->GetSoulBorderCount(GetWorld())) {
+			SelectedMaterial = SnifferConfig->ActiveRedText;
+		}
+		else {
+			SelectedMaterial = SnifferConfig->ActiveGreenText;
+		}
+
+		CurrentCountTextComp->SetMaterial(0, SelectedMaterial);
+	}
+
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ASoulSniffer::SetBackDefaultState, SnifferConfig->TimeForTextBrightness, false);
+}
+
+void ASoulSniffer::PrintCurrentSniffedSoulCount() {
+	AProgressionGameState* MyGameState = Cast<AProgressionGameState>(GetWorld()->GetGameState());
+
+	if (MyGameState) {
+		int32 currentSniffedSoulCount = MyGameState->GetCurrentSniffedSoulCount();
+
+		FString stringVersion = FormatNumber(currentSniffedSoulCount, SnifferConfig->DigitNumber);
+
+		CurrentCountTextComp->SetText(FText::FromString(stringVersion));
+	}
 }
 
 void ASoulSniffer::SetBackDefaultState() {
@@ -135,4 +177,9 @@ FVector ASoulSniffer::GetTargetLocation() {
 
 FVector ASoulSniffer::GetDissipateTargetLocation() {
 	return DissipateTarget->GetComponentLocation();
+}
+
+FString ASoulSniffer::FormatNumber(int32 Number, int32 Digits)
+{
+	return FString::Printf(TEXT("%0*ld"), Digits, Number);
 }

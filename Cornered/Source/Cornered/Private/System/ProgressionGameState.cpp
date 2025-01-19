@@ -95,10 +95,25 @@ void AProgressionGameState::SaveProgress() {
 
 	UCorneredGameInstance* CorneredGameInstance = Cast<UCorneredGameInstance>(GameInstance);
 
-	CorneredGameInstance->SaveGame(UnlockLevel, SoulSniffedCount);
+	CorneredGameInstance->SaveUnlockLevel(UnlockLevel);
+
+	CorneredGameInstance->SaveSniffedSoulCount(SoulSniffedCount);
 }
 
 bool AProgressionGameState::IsAbilityAlreadyUnlocked(EAbility Ability) {
 
     return ProgressConfig->IsAbilityUnlocked(Ability, this);
+}
+
+int32 AProgressionGameState::GetCurrentSniffedSoulCount() const {
+	return SoulSniffedCount;
+}
+
+int32 AProgressionGameState::GetCurrentOverloadSoulCount() const {
+	int32 overloadSouls = SoulSniffedCount - ProgressConfig->GetSoulBorderCount(GetWorld());
+	if (overloadSouls > 0) {
+		return overloadSouls;
+	}
+
+	return 0;
 }

@@ -33,6 +33,9 @@ public:
 	float TimeForTextBrightness;
 
 	UPROPERTY(EditAnywhere)
+	int32 DigitNumber;
+
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UMaterialInterface> DisabledGreyLight;
 
 	UPROPERTY(EditAnywhere)

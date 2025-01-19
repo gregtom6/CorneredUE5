@@ -11,6 +11,7 @@
 #include "Environment/ExitDoor/ExitButtonMover.h"
 #include "Components/RectLightComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "System/CorneredGameInstance.h"
 
 AExitDoorController::AExitDoorController() {
 
@@ -68,6 +69,12 @@ void AExitDoorController::HoldProcessStarted() {
 
 void AExitDoorController::HoldProcessEnded() {
 	bOpeningInProgress = false;
+
+	UCorneredGameInstance* MyGameInstance = Cast<UCorneredGameInstance>(GetWorld()->GetGameInstance());
+
+	if (MyGameInstance) {
+		MyGameInstance->SaveOpeningProgress(OpeningPercentage);
+	}
 }
 
 void AExitDoorController::PrintPercentageText() {

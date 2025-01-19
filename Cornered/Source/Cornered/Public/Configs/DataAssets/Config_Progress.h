@@ -16,6 +16,18 @@ struct FUnlockableAbilities
 	TArray<EAbility> Abilities;
 };
 
+USTRUCT(BlueprintType)
+struct FSoulBordersPerLevels
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	TSoftObjectPtr<UWorld> Level;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	float SoulBorder;
+};
+
 class UCorneredGameInstance;
 class AProgressionGameState;
 
@@ -30,6 +42,9 @@ class CORNERED_API UConfig_Progress : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere)
+	TArray<FSoulBordersPerLevels> SoulBorderCountsPerLevel;
+
+	UPROPERTY(EditAnywhere)
 	TArray<FUnlockableAbilities> AbilitiesToUnlockPerLevel;
 
 public:
@@ -39,6 +54,8 @@ public:
 	int GetMaxUnlockLevel() const;
 
 	bool IsAbilityUnlocked(EAbility Ability, AProgressionGameState* GameState);
+
+	int32 GetSoulBorderCount(UWorld* World);
 
 private:
 

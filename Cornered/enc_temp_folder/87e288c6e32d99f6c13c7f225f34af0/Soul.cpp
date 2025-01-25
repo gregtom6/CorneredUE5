@@ -62,10 +62,7 @@ void ASoul::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (MoveState == ESoulMoveState::AlreadyDisappeared) {
-		Destroy();
-	}
-	else if (MoveState == ESoulMoveState::MoveUpwards) {
+	if (MoveState == ESoulMoveState::MoveUpwards) {
 		Movable->SetWorldLocation(FVector(Movable->GetComponentLocation().X, Movable->GetComponentLocation().Y, Movable->GetComponentLocation().Z + SoulConfig->Speed * DeltaTime));
 
 		if (Movable->GetComponentLocation().Z >= UpMoveTarget->GetComponentLocation().Z) {

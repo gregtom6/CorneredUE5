@@ -14,6 +14,7 @@ class UInputMappingContext;
 struct FInputActionValue;
 class UCameraComponent;
 class UConfig_Character_General;
+class UCorneredCheats;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPickupInteractionHappenedDelegate);
 

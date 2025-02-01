@@ -33,6 +33,10 @@ void UHideSpotFinder::BeginPlay()
 	}
 }
 
+void UHideSpotFinder::ManageDebugDrawings(bool enabled) {
+	bDrawDebug = enabled;
+}
+
 void UHideSpotFinder::RegisterCallback(FHideSpotSearchingEnded hideSpotSearchingEnded) {
 	HideSpotSearchingEnded = hideSpotSearchingEnded;
 }
@@ -41,11 +45,9 @@ void UHideSpotFinder::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
 	Enemy = EnemyCharacter;
 }
 
-void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, int foundInIndex) {
+void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, int foundInIndex, float CurrentlyCheckedAngle, AActor* Obstacle) {
 
 	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_FindingPossiblePositionsAlongCurrentRay");
-
-	bDidFindPossibleHideSpotAlongThisRay = false;
 
 	float currentDistanceToCheckOnRay = 0.f;
 	stepCount = AIConfig->ObstacleFindingRayStartingStepCount;
@@ -54,15 +56,15 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 	{
 		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_Check"); //38.7 ms
 
-		if (bDidFindPossibleHideSpotAlongThisRay) {
-			break;
+		if (IsPossibleHideSpotFoundInThisAngle(Obstacle, CurrentlyCheckedAngle)) {
+			return;
 		}
 
 		currentDistanceToCheckOnRay = AIConfig->RayTraverseStepSizeToDiscoverHidingPlace * stepCount;
 
-		if (currentDistanceToCheckOnRay >= AIConfig->ObstacleFindingRayMaxDistance)
+		if (currentDistanceToCheckOnRay >= AIConfig->ObstacleFindingRayMaxDistance / 2.f)
 		{
-			continue;
+			return;
 		}
 
 		FVector currentPoint = ImpactPoint + (Direction * currentDistanceToCheckOnRay);
@@ -89,12 +91,29 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 			Query.PathInstanceToFill = MakeShareable(new FNavigationPath());
 
 			uint32 PathRequestID = NavSystem->FindPathAsync(NavAgentProperties, Query, FNavPathQueryDelegate::CreateUObject(this, &UHideSpotFinder::OnPathFound), EPathFindingMode::Regular);
-			obstacleCheckDetails[foundInIndex].PathRequestIDs.Add(PathRequestID);
+
+			int position = GetLocationOfAngleHideouts(foundInIndex, CurrentlyCheckedAngle);
+
+			obstacleCheckDetails[foundInIndex].AnglesAndPossibleHideSpots[position].PathRequestIDs.Add(PathRequestID);
 		}
 
 		stepCount += AIConfig->ObstacleFindingRayDeltaStepSize;
 
 	} while (currentDistanceToCheckOnRay < AIConfig->ObstacleFindingRayMaxDistance / 2.f);
+}
+
+bool UHideSpotFinder::IsPossibleHideSpotFoundInThisAngle(AActor* Obstacle, float CurrentlyCheckedAngle) {
+	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
+		if (obstacleCheckDetails[i].ObstacleActor == Obstacle) {
+			for (int j = 0; j < obstacleCheckDetails[i].AnglesAndPossibleHideSpots.Num(); j++) {
+				if (obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].Angle == CurrentlyCheckedAngle && obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PossibleHideSpot.IsSet()) {
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 void UHideSpotFinder::OnPathFound(uint32 PathRequestID, ENavigationQueryResult::Type Result, FNavPathSharedPtr Path) {
@@ -103,49 +122,64 @@ void UHideSpotFinder::OnPathFound(uint32 PathRequestID, ENavigationQueryResult::
 
 	if (GetBackObstacleDetailsWherePathRequestID(PathRequestID, location)) {
 
-		if (bDidFindPossibleHideSpotAlongThisRay) {
+		float Angle = GetBackAngleOfPathRequestID(obstacleCheckDetails[location].ObstacleActor, PathRequestID);
+		int position = GetLocationOfAngleHideouts(location, Angle);
 
-			obstacleCheckDetails[location].PathRequestIDs.Remove(PathRequestID);
-			if (obstacleCheckDetails[location].PossibleHideSpots.Num() == obstacleCheckDetails[location].Angles.Num() && currentlyCheckedAngle >= 360.f) {
-				ProcessingPossibleHideSpots();
-			}
-			return;
-		}
-
-		if (Result == ENavigationQueryResult::Type::Success && Path && Path->IsValid() && Path->GetPathPoints().Num() > 1)
+		if (!IsPossibleHideSpotSetted(location, position) && Result == ENavigationQueryResult::Type::Success && Path && Path->IsValid() && Path->GetPathPoints().Num() > 1)
 		{
-			obstacleCheckDetails[location].PossibleHideSpots.Add(Path->GetPathPoints().Last());
-			obstacleCheckDetails[location].PathRequestIDs.Remove(PathRequestID);
-
-			bDidFindPossibleHideSpotAlongThisRay = true;
-		}
-		else {
-			UE_LOG(LogTemp, Warning, TEXT("path sync invalid: %u"), PathRequestID);
+			obstacleCheckDetails[location].AnglesAndPossibleHideSpots[position].PossibleHideSpot = Path->GetPathPoints().Last();
 		}
 
-		if (obstacleCheckDetails[location].PossibleHideSpots.Num()==obstacleCheckDetails[location].Angles.Num() && currentlyCheckedAngle >= 360.f) {
-				ProcessingPossibleHideSpots();
-			}
-	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("Nem kene megtortennie."));
+		if (AreAllPossibleHideSpotsSetted(location) && currentlyCheckedAngle >= 360.f) {
+			ProcessingPossibleHideSpots();
+		}
 	}
 }
 
-bool UHideSpotFinder::AreAllPathRequestIDsAreEmpty() {
-	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
-		if (obstacleCheckDetails[i].PathRequestIDs.Num() > 0) {
+bool UHideSpotFinder::IsPossibleHideSpotSetted(int location, int position) {
+	return obstacleCheckDetails[location].AnglesAndPossibleHideSpots[position].PossibleHideSpot.IsSet();
+}
+
+bool UHideSpotFinder::AreAllPossibleHideSpotsSetted(int location) {
+	for (int i = 0; i < obstacleCheckDetails[location].AnglesAndPossibleHideSpots.Num(); i++) {
+		if (!obstacleCheckDetails[location].AnglesAndPossibleHideSpots[i].PossibleHideSpot.IsSet()) {
 			return false;
 		}
 	}
 	return true;
 }
 
+int UHideSpotFinder::GetLocationOfAngleHideouts(int location, float CurrentAngle) {
+	for (int i = 0; i < obstacleCheckDetails[location].AnglesAndPossibleHideSpots.Num(); i++) {
+		if (obstacleCheckDetails[location].AnglesAndPossibleHideSpots[i].Angle == CurrentAngle) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+float UHideSpotFinder::GetBackAngleOfPathRequestID(AActor* Obstacle, uint32 PathRequestID) {
+	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
+		if (obstacleCheckDetails[i].ObstacleActor == Obstacle) {
+			for (int j = 0; j < obstacleCheckDetails[i].AnglesAndPossibleHideSpots.Num(); j++) {
+				if (obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PathRequestIDs.Contains(PathRequestID)) {
+					return obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].Angle;
+				}
+			}
+		}
+	}
+	return -1.f;
+}
+
 bool UHideSpotFinder::GetBackObstacleDetailsWherePathRequestID(uint32 PathRequestID, int& location) {
 	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
-		if (obstacleCheckDetails[i].PathRequestIDs.Contains(PathRequestID)) {
-			location = i;
-			return true;
+		for (int j = 0; j < obstacleCheckDetails[i].AnglesAndPossibleHideSpots.Num(); j++) {
+			if (obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PathRequestIDs.Contains(PathRequestID)) {
+				location = i;
+				return true;
+			}
+
 		}
 	}
 
@@ -184,6 +218,17 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 
 	Hit = bHit;
 
+	DrawDebugLines(Origin, End);
+
+	return HitResult;
+}
+
+void UHideSpotFinder::DrawDebugLines(FVector Origin, FVector End) const {
+
+	if (!bDrawDebug) {
+		return;
+	}
+
 	DrawDebugLine(
 		GetWorld(),
 		Origin,
@@ -194,9 +239,6 @@ FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float
 		0,
 		AIConfig->HideSpotFinderDebugLineThickness
 	);
-
-
-	return HitResult;
 }
 
 bool UHideSpotFinder::ThisRayIsNotHittingPlayer(FHitResult raycastHits) const {
@@ -281,7 +323,7 @@ void UHideSpotFinder::GetClosestHidingSpotAsync() {
 
 			StoreGeneralObstacleDetails(raycastHits, currentlyCheckedAngle, foundInIndex);
 
-			FindingPossibleHideSpotAlongCurrentRayAsync(raycastHits.ImpactPoint, raycastHits.Component, Direction, foundInIndex);
+			FindingPossibleHideSpotAlongCurrentRayAsync(raycastHits.ImpactPoint, raycastHits.Component, Direction, foundInIndex, currentlyCheckedAngle, raycastHits.GetActor());
 		}
 
 		currentlyCheckedAngle += AIConfig->AngleRotationChecksToDetectHidingSpot;
@@ -289,8 +331,12 @@ void UHideSpotFinder::GetClosestHidingSpotAsync() {
 }
 
 void UHideSpotFinder::StoreGeneralObstacleDetails(FHitResult raycastHits, float CurrentAngle, int foundInIndex) {
+
 	obstacleCheckDetails[foundInIndex].ObstacleActor = raycastHits.GetActor();
-	obstacleCheckDetails[foundInIndex].Angles.Add(CurrentAngle);
+
+	FAngleAndItsPossibleHideSpot AngleAndItsPossibleHideSpot;
+	AngleAndItsPossibleHideSpot.Angle = CurrentAngle;
+	obstacleCheckDetails[foundInIndex].AnglesAndPossibleHideSpots.Add(AngleAndItsPossibleHideSpot);
 }
 
 void UHideSpotFinder::ProcessingPossibleHideSpots() {
@@ -299,14 +345,6 @@ void UHideSpotFinder::ProcessingPossibleHideSpots() {
 
 	if (AreTherePossibleHideSpots(obstacleCheckDetails))
 	{
-		//TESZT:
-		for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
-			for (int j = 0; j < obstacleCheckDetails[i].PossibleHideSpots.Num(); j++) {
-				DrawDebugSphere(GetWorld(), obstacleCheckDetails[i].PossibleHideSpots[j], AIConfig->HideSpotDebugSphereRadius / 2.f, AIConfig->HideSpotDebugSphereSegments / 2.f, FColor::Green, false, 0.5f, 0, AIConfig->HideSpotDebugSphereThickness);
-			}
-		}
-
-
 		SetBestHideSpotsForAllObstacles(obstacleCheckDetails);
 
 		TArray<FVector> bestHideSpots = GetBestHideSpots(obstacleCheckDetails);
@@ -314,17 +352,28 @@ void UHideSpotFinder::ProcessingPossibleHideSpots() {
 		SortPointsByDistance(bestHideSpots);
 
 		FinalSelectedHideSpot = bestHideSpots[0];
+
+		DrawDebug(FinalSelectedHideSpot.GetValue());
 	}
 
 	if (HideSpotSearchingEnded.IsBound()) {
 		HideSpotSearchingEnded.Broadcast(FinalSelectedHideSpot.GetValue(), true);
+		bCanLookForNewHidingSpot = true;
+	}
+}
+
+void UHideSpotFinder::DrawDebug(FVector FinalSelectedHideSpot) {
+
+	if (!bDrawDebug) {
+		return;
 	}
 
-	obstacleCheckDetails.Empty();
-	bDidFindPossibleHideSpotAlongThisRay = false;
-	stepCount = 0.f;
-
-	bCanLookForNewHidingSpot = true;
+	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
+		for (int j = 0; j < obstacleCheckDetails[i].AnglesAndPossibleHideSpots.Num(); j++) {
+			DrawDebugSphere(GetWorld(), obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PossibleHideSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius / 2.f, AIConfig->HideSpotDebugSphereSegments / 2.f, FColor::Green, false, 0.5f, 0, AIConfig->HideSpotDebugSphereThickness);
+		}
+	}
+	DrawDebugSphere(GetWorld(), FinalSelectedHideSpot, AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
 }
 
 int UHideSpotFinder::LoadObstacleDetailsIfExists(FHitResult raycastHits) {
@@ -363,21 +412,22 @@ void UHideSpotFinder::SetBestHideSpotsForAllObstacles(TArray<FObstacleHideSpots>
 	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_FillHighlightedHideSpots");
 
 	for (int i = 0; i < obstacles.Num(); i++) {
-		if (obstacles[i].PossibleHideSpots.Num() > 0) {
+
+		if (obstacles[i].AnglesAndPossibleHideSpots.Num() > 0) {
 
 			TArray<float> NormalizedAngles;
 
-			for (int j = 0; j < obstacles[i].Angles.Num(); j++) {
-				NormalizedAngles.Add(NormalizeAngle(obstacles[i].Angles[j]));
+			for (int j = 0; j < obstacles[i].AnglesAndPossibleHideSpots.Num(); j++) {
+				NormalizedAngles.Add(NormalizeAngle(obstacles[i].AnglesAndPossibleHideSpots[j].Angle));
 			}
 
 			float MeanAngle = CalculateCircularMean(NormalizedAngles);
 
 			int closestAngleIndex = GetClosestIndex(NormalizedAngles, MeanAngle);
 
-			if (closestAngleIndex >= 0 && closestAngleIndex < obstacles[i].PossibleHideSpots.Num()) {
-				FVector middleElement = obstacles[i].PossibleHideSpots[closestAngleIndex];
-				obstacles[i].BestHideSpot = middleElement;
+			if (closestAngleIndex >= 0 && closestAngleIndex < obstacles[i].AnglesAndPossibleHideSpots.Num()) {
+				FAngleAndItsPossibleHideSpot middleElement = obstacles[i].AnglesAndPossibleHideSpots[closestAngleIndex];
+				obstacles[i].BestHideSpot = middleElement.PossibleHideSpot.GetValue();
 			}
 		}
 	}

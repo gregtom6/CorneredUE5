@@ -8,6 +8,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
 #include "Configs/DataAssets/Config_Character_General.h"
+#include "System/CorneredCheats.h"
 
 void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	Super::OnPossess(aPawn);
@@ -66,6 +67,12 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	UEnhancedInputLocalPlayerSubsystem* InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	InputSubsystem->ClearAllMappings();
 	InputSubsystem->AddMappingContext(InputMappingContext, 0);
+
+	//UCorneredCheats* CorneredCheats = Cast<UCorneredCheats>(CheatManager);
+
+	//if (CorneredCheats) {
+		//CorneredCheats->RegisterCommands();
+	//}
 }
 
 void ACorneredPlayerController::OnUnPossess() {

@@ -75,7 +75,6 @@ void AEnemyController::HideSpotSearchingEnded(FVector closestHidingSpot, bool is
 
 	if (isValid) {
 		MoveToLocation(closestHidingSpot, 200.f, false);
-		DrawDebugSphere(GetWorld(), closestHidingSpot, AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
 	}
 }
 

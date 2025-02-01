@@ -11,6 +11,7 @@
 #include "Camera/CameraComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Characters/Systems/PlayerCharacter.h"
+#include "NavigationSystem.h"
 
 UHideSpotFinder::UHideSpotFinder()
 {
@@ -21,6 +22,10 @@ void UHideSpotFinder::BeginPlay()
 {
 	Super::BeginPlay();
 
+	NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+
+	bCanLookForNewHidingSpot = true;
+
 	UCharacterSpawner* MySubsystem = GetWorld()->GetSubsystem<UCharacterSpawner>();
 	if (MySubsystem)
 	{
@@ -28,18 +33,31 @@ void UHideSpotFinder::BeginPlay()
 	}
 }
 
+void UHideSpotFinder::RegisterCallback(FHideSpotSearchingEnded hideSpotSearchingEnded) {
+	HideSpotSearchingEnded = hideSpotSearchingEnded;
+}
+
 void UHideSpotFinder::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
 	Enemy = EnemyCharacter;
 }
 
-void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, TArray<FVector>& possibleHideSpots) {
-	float currentDistanceToCheckOnRay = 0.f;
-	float stepCount = AIConfig->ObstacleFindingRayStartingStepCount;
+void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, int foundInIndex) {
 
-	UNavigationSystemV1* NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_FindingPossiblePositionsAlongCurrentRay");
+
+	bDidFindPossibleHideSpotAlongThisRay = false;
+
+	float currentDistanceToCheckOnRay = 0.f;
+	stepCount = AIConfig->ObstacleFindingRayStartingStepCount;
 
 	do
 	{
+		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_Check"); //38.7 ms
+
+		if (bDidFindPossibleHideSpotAlongThisRay) {
+			break;
+		}
+
 		currentDistanceToCheckOnRay = AIConfig->RayTraverseStepSizeToDiscoverHidingPlace * stepCount;
 
 		if (currentDistanceToCheckOnRay >= AIConfig->ObstacleFindingRayMaxDistance)
@@ -53,27 +71,90 @@ void UHideSpotFinder::FindingPossiblePositionsAlongCurrentRay(FVector ImpactPoin
 
 		FNavLocation ClosestNavmeshPoint;
 
-		bool navQuest = NavSystem->ProjectPointToNavigation(currentPoint, ClosestNavmeshPoint, extent);
+		bool isCurrentPointProjectableToNavmesh = NavSystem->ProjectPointToNavigation(currentPoint, ClosestNavmeshPoint, extent);
 
 		FNavLocation ClosestActorLocationPointOnNavmesh;
 
-		bool navQuest2 = NavSystem->ProjectPointToNavigation(GetOwner()->GetActorLocation(), ClosestActorLocationPointOnNavmesh, extent);
+		bool isAILocationProjectableToNavmesh = NavSystem->ProjectPointToNavigation(GetOwner()->GetActorLocation(), ClosestActorLocationPointOnNavmesh, extent);
 
-		UNavigationPath* NavPath = NavSystem->FindPathToLocationSynchronously(GetWorld(), ClosestActorLocationPointOnNavmesh.Location, ClosestNavmeshPoint.Location);
+		if (IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) && isCurrentPointProjectableToNavmesh && isAILocationProjectableToNavmesh) {
+			const FNavAgentProperties& NavAgentProperties = Cast<AEnemyCharacter>(GetOwner())->GetNavAgentPropertiesRef();
 
-		if (IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) && navQuest && navQuest2 && NavPath && NavPath->IsValid() && NavPath->PathPoints.Num() > 1)
-		{
-			possibleHideSpots.Add(ClosestNavmeshPoint.Location);
-			break;
+			FPathFindingQuery Query;
+			Query.StartLocation = ClosestActorLocationPointOnNavmesh.Location;
+			Query.EndLocation = ClosestNavmeshPoint.Location;
+			Query.NavAgentProperties = NavAgentProperties;
+			Query.NavData = NavSystem->GetDefaultNavDataInstance(FNavigationSystem::Create);
+			Query.QueryFilter = Query.NavData->GetDefaultQueryFilter();
+			Query.PathInstanceToFill = MakeShareable(new FNavigationPath());
+
+			uint32 PathRequestID = NavSystem->FindPathAsync(NavAgentProperties, Query, FNavPathQueryDelegate::CreateUObject(this, &UHideSpotFinder::OnPathFound), EPathFindingMode::Regular);
+			obstacleCheckDetails[foundInIndex].PathRequestIDs.Add(PathRequestID);
 		}
-		else
-		{
-			stepCount += AIConfig->ObstacleFindingRayDeltaStepSize;
+
+		stepCount += AIConfig->ObstacleFindingRayDeltaStepSize;
+
+	} while (currentDistanceToCheckOnRay < AIConfig->ObstacleFindingRayMaxDistance / 2.f);
+}
+
+void UHideSpotFinder::OnPathFound(uint32 PathRequestID, ENavigationQueryResult::Type Result, FNavPathSharedPtr Path) {
+
+	int location = -1;
+
+	if (GetBackObstacleDetailsWherePathRequestID(PathRequestID, location)) {
+
+		if (bDidFindPossibleHideSpotAlongThisRay) {
+
+			obstacleCheckDetails[location].PathRequestIDs.Remove(PathRequestID);
+			if (obstacleCheckDetails[location].PossibleHideSpots.Num() == obstacleCheckDetails[location].Angles.Num() && currentlyCheckedAngle >= 360.f) {
+				ProcessingPossibleHideSpots();
+			}
+			return;
 		}
-	} while (currentDistanceToCheckOnRay < AIConfig->ObstacleFindingRayMaxDistance);
+
+		if (Result == ENavigationQueryResult::Type::Success && Path && Path->IsValid() && Path->GetPathPoints().Num() > 1)
+		{
+			obstacleCheckDetails[location].PossibleHideSpots.Add(Path->GetPathPoints().Last());
+			obstacleCheckDetails[location].PathRequestIDs.Remove(PathRequestID);
+
+			bDidFindPossibleHideSpotAlongThisRay = true;
+		}
+		else {
+			UE_LOG(LogTemp, Warning, TEXT("path sync invalid: %u"), PathRequestID);
+		}
+
+		if (obstacleCheckDetails[location].PossibleHideSpots.Num()==obstacleCheckDetails[location].Angles.Num() && currentlyCheckedAngle >= 360.f) {
+				ProcessingPossibleHideSpots();
+			}
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Nem kene megtortennie."));
+	}
+}
+
+bool UHideSpotFinder::AreAllPathRequestIDsAreEmpty() {
+	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
+		if (obstacleCheckDetails[i].PathRequestIDs.Num() > 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool UHideSpotFinder::GetBackObstacleDetailsWherePathRequestID(uint32 PathRequestID, int& location) {
+	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
+		if (obstacleCheckDetails[i].PathRequestIDs.Contains(PathRequestID)) {
+			location = i;
+			return true;
+		}
+	}
+
+	return false;
 }
 
 FHitResult UHideSpotFinder::MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) const {
+
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_MakeRaycastInSelectedAngle");
 
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APlayerCharacter* PlayerPawn = Cast<APlayerCharacter>(PlayerController->GetPawn());
@@ -127,6 +208,9 @@ bool UHideSpotFinder::ThisRayIsNotHittingPlayer(FHitResult raycastHits) const {
 }
 
 bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) const {
+
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_IsThisPointNotVisibleByPlayer");
+
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 	APawn* PlayerPawn = PlayerController->GetPawn();
 
@@ -156,6 +240,9 @@ bool UHideSpotFinder::IsThisPointNotVisibleByPlayer(FVector CurrentPoint) const 
 }
 
 bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent) const {
+
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_IsThisPointOutsideColliders");
+
 	const FTransform ComponentTransform = ImpactedComponent->GetComponentTransform();
 
 	const FBoxSphereBounds ComponentBounds = ImpactedComponent->CalcBounds(ComponentTransform);
@@ -164,11 +251,21 @@ bool UHideSpotFinder::IsThisPointOutsideColliders(FVector CurrentPoint, TWeakObj
 	return !BoundingBox.IsInside(CurrentPoint);
 }
 
-TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
+void UHideSpotFinder::GetClosestHidingSpotAsync() {
 
-	float currentAngle = 0.f;
-	TOptional<FVector> SelectedHideSpot;
-	TArray<FObstacleHideSpots> possibleHideSpots;
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_GetClosestHidingSpot");
+
+	if (!bCanLookForNewHidingSpot) {
+		return;
+	}
+
+	bCanLookForNewHidingSpot = false;
+
+	currentlyCheckedAngle = 0.f;
+
+	obstacleCheckDetails.Empty();
+	bDidFindPossibleHideSpotAlongThisRay = false;
+	stepCount = 0.f;
 
 	do
 	{
@@ -176,53 +273,95 @@ TOptional<FVector> UHideSpotFinder::GetClosestHidingSpot() {
 		FVector Direction;
 		bool Hit;
 
-		FHitResult raycastHits = MakeRaycastInSelectedAngle(currentAngle, AIConfig->RayLengthToFindObstacle, Origin, Direction, Hit);
+		FHitResult raycastHits = MakeRaycastInSelectedAngle(currentlyCheckedAngle, AIConfig->RayLengthToFindObstacle, Origin, Direction, Hit);
 
-		if (Hit && ThisRayIsNotHittingPlayer(raycastHits))
+		if (DidIFindObstacle(Hit, raycastHits))
 		{
-			FObstacleHideSpots loadedObstacleDetails;
-			int foundInIndex = -1;
-			if (IsObstacleAlreadyFound(raycastHits.GetActor(), possibleHideSpots, loadedObstacleDetails, foundInIndex)) {
-				FindingPossiblePositionsAlongCurrentRay(raycastHits.ImpactPoint, raycastHits.Component, Direction, loadedObstacleDetails.PossibleHideSpots);
-				loadedObstacleDetails.Angles.Add(currentAngle);
-				possibleHideSpots[foundInIndex] = loadedObstacleDetails;
-			}
-			else {
-				FindingPossiblePositionsAlongCurrentRay(raycastHits.ImpactPoint, raycastHits.Component, Direction, loadedObstacleDetails.PossibleHideSpots);
-				loadedObstacleDetails.ObstacleActor = raycastHits.GetActor();
-				loadedObstacleDetails.Angles.Add(currentAngle);
-				possibleHideSpots.Add(loadedObstacleDetails);
+			int foundInIndex = LoadObstacleDetailsIfExists(raycastHits);
+
+			StoreGeneralObstacleDetails(raycastHits, currentlyCheckedAngle, foundInIndex);
+
+			FindingPossibleHideSpotAlongCurrentRayAsync(raycastHits.ImpactPoint, raycastHits.Component, Direction, foundInIndex);
+		}
+
+		currentlyCheckedAngle += AIConfig->AngleRotationChecksToDetectHidingSpot;
+	} while (currentlyCheckedAngle < 360.f);
+}
+
+void UHideSpotFinder::StoreGeneralObstacleDetails(FHitResult raycastHits, float CurrentAngle, int foundInIndex) {
+	obstacleCheckDetails[foundInIndex].ObstacleActor = raycastHits.GetActor();
+	obstacleCheckDetails[foundInIndex].Angles.Add(CurrentAngle);
+}
+
+void UHideSpotFinder::ProcessingPossibleHideSpots() {
+
+	TOptional<FVector> FinalSelectedHideSpot;
+
+	if (AreTherePossibleHideSpots(obstacleCheckDetails))
+	{
+		//TESZT:
+		for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
+			for (int j = 0; j < obstacleCheckDetails[i].PossibleHideSpots.Num(); j++) {
+				DrawDebugSphere(GetWorld(), obstacleCheckDetails[i].PossibleHideSpots[j], AIConfig->HideSpotDebugSphereRadius / 2.f, AIConfig->HideSpotDebugSphereSegments / 2.f, FColor::Green, false, 0.5f, 0, AIConfig->HideSpotDebugSphereThickness);
 			}
 		}
 
-		currentAngle += AIConfig->AngleRotationChecksToDetectHidingSpot;
-	} while (currentAngle < 360.f);
 
-	if (possibleHideSpots.Num() > 0)
-	{
-		FillHighlightedHideSpots(possibleHideSpots);
+		SetBestHideSpotsForAllObstacles(obstacleCheckDetails);
 
-		TArray<FVector> highlightedHideSpots = GetHighlightedHideSpots(possibleHideSpots);
+		TArray<FVector> bestHideSpots = GetBestHideSpots(obstacleCheckDetails);
 
-		SortPointsByDistance(highlightedHideSpots);
+		SortPointsByDistance(bestHideSpots);
 
-		SelectedHideSpot = highlightedHideSpots[0];
+		FinalSelectedHideSpot = bestHideSpots[0];
 	}
-	
-	return SelectedHideSpot;
+
+	if (HideSpotSearchingEnded.IsBound()) {
+		HideSpotSearchingEnded.Broadcast(FinalSelectedHideSpot.GetValue(), true);
+	}
+
+	obstacleCheckDetails.Empty();
+	bDidFindPossibleHideSpotAlongThisRay = false;
+	stepCount = 0.f;
+
+	bCanLookForNewHidingSpot = true;
 }
 
-TArray<FVector> UHideSpotFinder::GetHighlightedHideSpots(TArray<FObstacleHideSpots> obstacles) const {
+int UHideSpotFinder::LoadObstacleDetailsIfExists(FHitResult raycastHits) {
+
+	int foundInIndex = -1;
+
+	if (!IsObstacleAlreadyFoundInPreviousAngle(raycastHits.GetActor(), obstacleCheckDetails, foundInIndex)) {
+
+		obstacleCheckDetails.Add(FObstacleHideSpots());
+		foundInIndex = obstacleCheckDetails.Num() - 1;
+	}
+
+	return foundInIndex;
+}
+
+bool UHideSpotFinder::AreTherePossibleHideSpots(TArray<FObstacleHideSpots> possibleHideSpots) const {
+	return possibleHideSpots.Num() > 0;
+}
+
+bool UHideSpotFinder::DidIFindObstacle(bool Hit, FHitResult raycastHits) const {
+	return Hit && ThisRayIsNotHittingPlayer(raycastHits);
+}
+
+TArray<FVector> UHideSpotFinder::GetBestHideSpots(TArray<FObstacleHideSpots> obstacles) const {
 	TArray<FVector> highlightedHideSpots;
 
 	for (int i = 0; i < obstacles.Num(); i++) {
-		highlightedHideSpots.Add(obstacles[i].HighlightedHideSpot);
+		highlightedHideSpots.Add(obstacles[i].BestHideSpot);
 	}
 
 	return highlightedHideSpots;
 }
 
-void UHideSpotFinder::FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obstacles) {
+void UHideSpotFinder::SetBestHideSpotsForAllObstacles(TArray<FObstacleHideSpots>& obstacles) {
+
+	TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_FillHighlightedHideSpots");
+
 	for (int i = 0; i < obstacles.Num(); i++) {
 		if (obstacles[i].PossibleHideSpots.Num() > 0) {
 
@@ -236,9 +375,9 @@ void UHideSpotFinder::FillHighlightedHideSpots(TArray<FObstacleHideSpots>& obsta
 
 			int closestAngleIndex = GetClosestIndex(NormalizedAngles, MeanAngle);
 
-			if (closestAngleIndex >= 0 && closestAngleIndex<obstacles[i].PossibleHideSpots.Num()) {
+			if (closestAngleIndex >= 0 && closestAngleIndex < obstacles[i].PossibleHideSpots.Num()) {
 				FVector middleElement = obstacles[i].PossibleHideSpots[closestAngleIndex];
-				obstacles[i].HighlightedHideSpot = middleElement;
+				obstacles[i].BestHideSpot = middleElement;
 			}
 		}
 	}
@@ -289,10 +428,9 @@ int UHideSpotFinder::GetClosestIndex(const TArray<float>& Array, float TargetVal
 	return ClosestIndex;
 }
 
-bool UHideSpotFinder::IsObstacleAlreadyFound(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, FObstacleHideSpots& loadedObstacleDetails, int& foundInIndex) const {
+bool UHideSpotFinder::IsObstacleAlreadyFoundInPreviousAngle(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, int& foundInIndex) const {
 	for (int i = 0; i < obstacles.Num(); i++) {
 		if (obstacles[i].ObstacleActor == ObstacleActor) {
-			loadedObstacleDetails = obstacles[i];
 			foundInIndex = i;
 			return true;
 		}

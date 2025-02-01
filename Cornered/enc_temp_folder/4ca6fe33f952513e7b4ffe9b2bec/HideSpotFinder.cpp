@@ -79,7 +79,7 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 
 		bool isAILocationProjectableToNavmesh = NavSystem->ProjectPointToNavigation(GetOwner()->GetActorLocation(), ClosestActorLocationPointOnNavmesh, extent);
 
-		if (FMath::IsNearlyEqual(currentPoint.X,ClosestNavmeshPoint.Location.X) && FMath::IsNearlyEqual(currentPoint.Y,ClosestNavmeshPoint.Location.Y) && IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) && isCurrentPointProjectableToNavmesh && isAILocationProjectableToNavmesh) {
+		if (IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) && isCurrentPointProjectableToNavmesh && isAILocationProjectableToNavmesh) {
 			const FNavAgentProperties& NavAgentProperties = Cast<AEnemyCharacter>(GetOwner())->GetNavAgentPropertiesRef();
 
 			FPathFindingQuery Query;

@@ -8,7 +8,7 @@ https://github.com/gregtom6/CorneredUE5/tree/master
 Most up-to-date branch, have more features, visually nice, but NOT REFACTORED yet: 
 https://github.com/gregtom6/CorneredUE5/tree/visual_upgrade
 
-Optimized AI (not refactored yet, have more features):
+Optimized AI (NOT REFACTORED, have more features):
 https://github.com/gregtom6/CorneredUE5/tree/optimizing_AI/
 
 AI code is: Private/Characters/ActorComponents/HideSpotFinder.cpp

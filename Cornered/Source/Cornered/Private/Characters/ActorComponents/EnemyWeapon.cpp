@@ -16,6 +16,10 @@ UEnemyWeapon::UEnemyWeapon()
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
+void UEnemyWeapon::ManageDebugDrawings(bool enabled) {
+	bDrawDebug = enabled;
+}
+
 void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
 
 	if (HealthComp->GetCurrentHealth() <= 0.f) {
@@ -49,13 +53,21 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 				GetOpponentTraceChannel()
 			);
 
-			DrawDebugLine(World, ShotRayDatas.Origin, TaggedComponent->GetComponentLocation(), FColor::Green, false, 1.0f, 0, 1.0f);
+			DrawDebug(World, ShotRayDatas, TaggedComponent);
 
 			if (bHit && HitResult.GetActor() == pawn && pawnSensing->CouldSeePawn(pawn)) {
 				ShootWithEquippedWeapon();
 			}
 		}
 	}
+}
+
+void UEnemyWeapon::DrawDebug(UWorld* World, FShotRayDatas ShotRayDatas, UStaticMeshComponent* TaggedComponent) {
+	if (!bDrawDebug) {
+		return;
+	}
+
+	DrawDebugLine(World, ShotRayDatas.Origin, TaggedComponent->GetComponentLocation(), FColor::Green, false, 1.0f, 0, 1.0f);
 }
 
 FShotRayDatas UEnemyWeapon::GetShotRayDatas() const {
@@ -67,7 +79,7 @@ FShotRayDatas UEnemyWeapon::GetShotRayDatas() const {
 
 	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 
-	FShotRayDatas ShotRayDatas= equipmentVisualizer->GetShotRayDatas();
+	FShotRayDatas ShotRayDatas = equipmentVisualizer->GetShotRayDatas();
 
 	ShotDatas.Origin = ShotRayDatas.Origin;
 	ShotDatas.End = TaggedComponent->GetComponentLocation();

@@ -35,6 +35,10 @@
 		{
 			"Name": "AudioInsights",
 			"Enabled": true
+		},
+		{
+			"Name": "ConsoleVariables",
+			"Enabled": true
 		}
 	]
 }

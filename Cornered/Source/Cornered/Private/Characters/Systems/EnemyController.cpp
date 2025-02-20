@@ -61,13 +61,20 @@ void AEnemyController::FollowPlayer() {
 
 void AEnemyController::HideFromPlayer() {
 
-	UHideSpotFinder* hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
+	if (!hideSpotFinder) {
 
-	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
+		hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
 
-	if (closestHidingSpot.IsSet()) {
-		MoveToLocation(closestHidingSpot.GetValue(), 200.f, false);
-		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
+		hideSpotFinder->HideSpotSearchingEnded.AddUniqueDynamic(this, &AEnemyController::HideSpotSearchingEnded);
+	}
+
+	hideSpotFinder->GetClosestHidingSpotAsync();
+}
+
+void AEnemyController::HideSpotSearchingEnded(FVector closestHidingSpot, bool isValid) {
+
+	if (isValid) {
+		MoveToLocation(closestHidingSpot, 200.f, false);
 	}
 }
 
@@ -94,15 +101,5 @@ void AEnemyController::OnMoveCompleted(FAIRequestID RequestID, const FPathFollow
 	else if (Result.Code == EPathFollowingResult::OffPath)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Agent went off path."));
-	}
-
-	UHideSpotFinder* hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
-
-	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
-
-	if (closestHidingSpot.IsSet()) {
-		float DistanceToGoal = FVector::Dist(GetPawn()->GetNavAgentLocation(), closestHidingSpot.GetValue());
-	
-		UE_LOG(LogTemp, Warning, TEXT("Distance to goal: %f"), DistanceToGoal);
 	}
 }

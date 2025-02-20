@@ -20,7 +20,12 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
 
+	UPROPERTY(EditAnywhere)
+	bool bDrawDebug;
+
 public:
+
+	void ManageDebugDrawings(bool enabled);
 
 	UEnemyWeapon();
 
@@ -33,4 +38,6 @@ protected:
 private:
 
 	virtual ECollisionChannel GetOpponentTraceChannel() const override;
+
+	void DrawDebug(UWorld* World, FShotRayDatas ShotRayDatas, UStaticMeshComponent* TaggedComponent);
 };

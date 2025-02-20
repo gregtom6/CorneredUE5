@@ -1,10 +1,19 @@
 CORNERED (Unreal Engine 5)
 
 An open-source portfolio project by Tamas Gregus.
-This is the UE5 port made from the Unity version of my project: 
-https://github.com/gregtom6/Cornered
 
-https://www.youtube.com/watch?v=2wweYN_QKgw
+Visually not polished, but REFACTORED branch: 
+https://github.com/gregtom6/CorneredUE5/tree/master
+
+Most up-to-date branch, have more features, visually nice, but NOT REFACTORED yet: 
+https://github.com/gregtom6/CorneredUE5/tree/visual_upgrade
+
+Optimized AI (NOT REFACTORED, have more features):
+https://github.com/gregtom6/CorneredUE5/tree/optimizing_AI/
+
+AI code is: Private/Characters/ActorComponents/HideSpotFinder.cpp
+
+https://www.youtube.com/watch?v=zcvlouoBm9U
 
 ///////////////////////////////////////////////////
 

@@ -46,16 +46,12 @@ float UMixingMachineAbility::GetCurrentProcessTime() const {
 }
 
 void UMixingMachineAbility::ResultCreation(AMixingItemDetector* MixingItemDetector, UConfig_Recipe* RecipeConfig, FVector ResultLocation) {
-	if (!bShouldCreateResult) {
+
+	if (!IsThereCreationResult(MixingItemDetector, RecipeConfig)) {
 		return;
 	}
 
 	TArray<FItemData> detectedItems = MixingItemDetector->GetDetectedItems();
-
-	if (detectedItems.Num() == 0)
-	{
-		return;
-	}
 
 	TSubclassOf<AIngredient> result = RecipeConfig->GetResultItem(detectedItems);
 
@@ -72,4 +68,21 @@ void UMixingMachineAbility::AddingEffectOnItems(AMixingItemDetector* MixingItemD
 	}
 
 	MixingItemDetector->AddStateToAllItems(ItemStateAfterAbility);
+}
+
+bool UMixingMachineAbility::IsThereCreationResult(AMixingItemDetector* MixingItemDetector, UConfig_Recipe* RecipeConfig) {
+	if (!bShouldCreateResult) {
+		return false;
+	}
+
+	if (!MixingItemDetector->AreThereDetectedItems())
+	{
+		return false;
+	}
+
+	TArray<FItemData> detectedItems = MixingItemDetector->GetDetectedItems();
+
+	TSubclassOf<AIngredient> result = RecipeConfig->GetResultItem(detectedItems);
+
+	return result != nullptr;
 }

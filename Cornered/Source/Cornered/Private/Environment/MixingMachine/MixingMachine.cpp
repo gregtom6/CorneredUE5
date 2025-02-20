@@ -68,11 +68,12 @@ void AMixingMachine::AbilityTimeEnded() {
 		AbilityComp->Deactivate();
 	}
 
-	CreationNiagaraComp->Activate();
-
 	AbilityAudio->Stop();
 
-	CreationAudio->Play();
+	if (CurrentlyUsedAbility->IsThereCreationResult(MixingItemDetector, RecipeConfig)) {
+		CreationNiagaraComp->Activate();
+		CreationAudio->Play();
+	}
 
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AMixingMachine::CreateResult, 0.1f, false);
 }

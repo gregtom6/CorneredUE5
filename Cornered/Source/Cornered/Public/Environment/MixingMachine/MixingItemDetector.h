@@ -33,6 +33,8 @@ public:
 
 	TArray<FItemData> GetDetectedItems() const;
 
+	bool AreThereDetectedItems();
+
 	void DestroyAllItems();
 
 	void AddStateToAllItems(EItemState State);

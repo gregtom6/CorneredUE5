@@ -3,7 +3,8 @@
 
 #include "Environment/Interactables/CorneredButton.h"
 #include "Components/AudioComponent.h"
-
+#include "ActorSequenceComponent.h"
+#include "ActorSequencePlayer.h"
 
 // Sets default values
 ACorneredButton::ACorneredButton()
@@ -17,5 +18,10 @@ ACorneredButton::ACorneredButton()
 void ACorneredButton::Interact() {
 
 	PressAudio->Play();
+	
+	if (ButtonPushComp) {
+		ButtonPushComp->PlaySequence();
+	}
+
 	PressHappened.Broadcast();
 }

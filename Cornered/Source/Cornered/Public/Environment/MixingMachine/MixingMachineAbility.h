@@ -58,6 +58,8 @@ public:
 	void SetButtonStatus();
 	float GetCurrentProcessTime() const;
 
+	bool IsThereCreationResult(AMixingItemDetector* MixingItemDetector, UConfig_Recipe* RecipeConfig);
+
 protected:
 	virtual void BeginPlay() override;
 

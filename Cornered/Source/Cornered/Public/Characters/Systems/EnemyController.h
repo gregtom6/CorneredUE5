@@ -14,6 +14,7 @@ class UPathFollowingComponent;
 class AEnemyCharacter;
 class UStateTreeComponent;
 class UConfig_AI;
+class UHideSpotFinder;
 
 UCLASS()
 class CORNERED_API AEnemyController : public AAIController, public IMovableCharacter
@@ -28,6 +29,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
+
+	TObjectPtr<UHideSpotFinder> hideSpotFinder;
 
 public:
 	AEnemyController();
@@ -51,4 +54,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result) override;
+
+private:
+
+	UFUNCTION()
+	void HideSpotSearchingEnded(FVector closestHidingSpot, bool isValid);
 };

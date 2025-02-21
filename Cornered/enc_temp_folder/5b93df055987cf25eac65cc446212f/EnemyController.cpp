@@ -56,16 +56,7 @@ void AEnemyController::FollowPlayer() {
 
 	NavSystem->ProjectPointToNavigation(PlayerPawn->GetActorLocation(), ClosestNavmeshPoint, extent);
 
-	FAIRequestID RequestID = MoveToLocation(ClosestNavmeshPoint, 200.f, false);
-
-	if (RequestID.IsValid())
-	{
-		UE_LOG(LogTemp, Log, TEXT("MoveToLocation request was successful!"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("MoveToLocation request failed!"));
-	}
+	MoveToLocation(ClosestNavmeshPoint, 200.f, false);
 }
 
 void AEnemyController::HideFromPlayer() {

@@ -69,7 +69,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool bDrawDebug;
 
-	int asyncPathQueryCount;
+	int testInteger;
 
 public:
 	

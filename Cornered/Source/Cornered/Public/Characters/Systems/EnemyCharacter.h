@@ -86,6 +86,9 @@ private:
 	TObjectPtr<UNiagaraComponent> DeathNiagara;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> FallenParticlesNiagara;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> SoulLocation;
 
 	UPROPERTY(VisibleAnywhere)
@@ -117,6 +120,8 @@ public:
 	void AttachEndpointOfCable(int index, UMaterialInterface* Material, bool shouldAttach);
 
 	void PlayDamageSounds();
+
+	void PlayFallenParticles();
 
 	void PlayCableNiagara(int index);
 

@@ -142,15 +142,6 @@ void AEnemyCharacter::PlayDieNiagara() {
 	DeathNiagara->SetRelativeLocation(FVector::ZeroVector);
 	DeathNiagara->SetRelativeRotation(FRotator::ZeroRotator);
 
-	FallenParticlesNiagara->AttachToComponent(
-		GetMesh(),
-		FAttachmentTransformRules::SnapToTargetNotIncludingScale,
-		BoneName
-	);
-
-	FallenParticlesNiagara->SetRelativeLocation(FVector::ZeroVector);
-	FallenParticlesNiagara->SetRelativeRotation(FRotator::ZeroRotator);
-
 	FTimerManager& TimerManager = GetWorldTimerManager();
 
 	TimerManager.SetTimer(TimerHandle1, this, &AEnemyCharacter::PlayExplosion1, FMath::RandRange(0.f,2.f), false);
@@ -162,29 +153,24 @@ void AEnemyCharacter::PlayDieNiagara() {
 void AEnemyCharacter::PlayExplosion1() {
 	DeathNiagara->Activate();
 	ExplosionAudio->Play();
-	PlayFallenParticles();
 }
 
 void AEnemyCharacter::PlayExplosion2() {
 	PlayCableNiagara(1);
 	ExplosionAudio->Play();
-	PlayFallenParticles();
 }
 
 void AEnemyCharacter::PlayExplosion3() {
 	PlayCableNiagara(2);
 	ExplosionAudio->Play();
-	PlayFallenParticles();
 }
 
 void AEnemyCharacter::PlayExplosion4() {
 	PlayCableNiagara(3);
 	ExplosionAudio->Play();
-	PlayFallenParticles();
 }
 
 void AEnemyCharacter::PlayFallenParticles() {
-	FallenParticlesNiagara->Deactivate();
 	FallenParticlesNiagara->Activate();
 }
 

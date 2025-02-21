@@ -8,6 +8,7 @@
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Algo/Sort.h"
 #include "Materials/MaterialInterface.h"
+#include "Characters/Systems/PlayerCharacter.h"
 
 // Sets default values for this component's properties
 UDamageVisualizer::UDamageVisualizer()
@@ -41,6 +42,7 @@ void UDamageVisualizer::OnEnemyGenerated(AEnemyCharacter* EnemyCharacter) {
 	}
 
 	CharacterHealth = EnemyCharacter->FindComponentByClass<UCharacterHealth>();
+	CharacterHealth->CharacterShotReceived.AddUniqueDynamic(this, &UDamageVisualizer::OnCharacterShotReceived);
 }
 
 
@@ -94,4 +96,12 @@ void UDamageVisualizer::ProcessDamage() {
 
 		PreviousDamageStates[i] = isDamaged;
 	}
+}
+
+void UDamageVisualizer::OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot) {
+	if (CharacterReceivedShot->IsA<APlayerCharacter>()) {
+		return;
+	}
+
+	Enemy->PlayFallenParticles();
 }

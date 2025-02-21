@@ -9,6 +9,7 @@
 class UConfig_DamageVisual;
 class AEnemyCharacter;
 class UCharacterHealth;
+class ACorneredCharacter;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CORNERED_API UDamageVisualizer : public UActorComponent
@@ -31,6 +32,10 @@ private:
 public:	
 	// Sets default values for this component's properties
 	UDamageVisualizer();
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void ProcessDamage();
 
 protected:
 	// Called when the game starts
@@ -39,9 +44,8 @@ protected:
 	UFUNCTION()
 	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+private:
 
-	void ProcessDamage();
+	UFUNCTION()
+	void OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot);
 };

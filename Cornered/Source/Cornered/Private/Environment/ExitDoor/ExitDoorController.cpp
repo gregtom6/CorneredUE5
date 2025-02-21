@@ -15,6 +15,8 @@
 
 AExitDoorController::AExitDoorController() {
 
+	PrimaryActorTick.bCanEverTick = true;
+
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	DoorVisuals = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorVisuals"));
 	PercentageText = CreateDefaultSubobject<UTextRenderComponent>(TEXT("PercentageText"));

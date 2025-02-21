@@ -8,11 +8,24 @@
 #include "HoldableButton.generated.h"
 
 class AHoldActivable;
+class UActorSequenceComponent;
+class UActorSequencePlayer;
 
 UCLASS()
 class CORNERED_API AHoldableButton : public AActor, public IHoldable
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> ButtonPushComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> ButtonReleaseComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> ButtonRotateComp;
 
 private:
 

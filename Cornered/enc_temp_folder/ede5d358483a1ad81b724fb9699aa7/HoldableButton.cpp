@@ -25,7 +25,6 @@ void AHoldableButton::HoldingStarted() {
 	}
 
 	if (ButtonRotateComp) {
-		ButtonRotateComp->StopSequence();
 		ButtonRotateComp->GetSequencePlayer()->PlayLooping();
 	}
 }
@@ -37,12 +36,12 @@ void AHoldableButton::HoldingFinished() {
 		ButtonPushComp->StopSequence();
 	}
 
+	if (ButtonReleaseComp) {
+		ButtonReleaseComp->PlaySequence();
+	}
+
 	if (ButtonRotateComp) {
 		ButtonRotateComp->StopSequence();
 		ButtonRotateComp->GetSequencePlayer()->SetPlaybackPosition(FMovieSceneSequencePlaybackParams(0.0f, EUpdatePositionMethod::Jump));
-	}
-
-	if (ButtonReleaseComp) {
-		ButtonReleaseComp->PlaySequence();
 	}
 }

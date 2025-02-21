@@ -14,10 +14,7 @@ class CORNERED_API UConfig_AI : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere)
-	float HideWhenLifeLessThanPercentage;
-
-	UPROPERTY(EditAnywhere)
-	float AttackWhenLifeMoreThanPercentage;
+	float AttackHideLifeBorderPercentage;
 
 	UPROPERTY(EditAnywhere)
 	float PreserveDistanceBetweenPlayerAndMe;

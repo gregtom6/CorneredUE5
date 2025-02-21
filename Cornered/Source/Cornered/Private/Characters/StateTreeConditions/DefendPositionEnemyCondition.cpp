@@ -32,5 +32,5 @@ bool FDefendPositionEnemyCondition::TestCondition(FStateTreeExecutionContext& Co
 		}
 	}
 
-	return !InstanceData->bIsReadyToShoot || ((InstanceData->EnemyCurrentHealth / InstanceData->EnemyMaxHealth) * 100.f <= InstanceData->HideWhenLifeLessThanPercentage);
+	return !InstanceData->bIsReadyToShoot || ((InstanceData->EnemyCurrentHealth / InstanceData->EnemyMaxHealth) * 100.f < InstanceData->HideWhenLifeLessThanPercentage);
 }

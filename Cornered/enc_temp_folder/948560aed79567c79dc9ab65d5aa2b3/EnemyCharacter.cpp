@@ -27,7 +27,6 @@
 #include "Materials/MaterialInterface.h"
 #include "Configs/DataAssets/Config_DamageVisual.h"
 #include "Components/SceneComponent.h"
-#include "Engine/SkeletalMesh.h"
 
 
 AEnemyCharacter::AEnemyCharacter()
@@ -118,8 +117,6 @@ void AEnemyCharacter::SetDieState() {
 	ACorneredCharacter::SetDieState();
 
 	DieAudio->Play();
-
-	GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel3, ECR_Ignore);
 
 	for (int i = 0; i < CableComponents.Num(); i++) {
 

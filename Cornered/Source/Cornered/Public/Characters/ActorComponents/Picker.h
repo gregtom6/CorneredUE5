@@ -30,6 +30,8 @@ public:
 
 	IIPickable* GetPickedPickable() const;
 
+	FVector GetPickedPickablePosition();
+
 	void RemovePickable();
 protected:
 	// Called when the game starts

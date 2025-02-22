@@ -7,6 +7,17 @@
 #include "Equipper.generated.h"
 
 class UPicker;
+class UCameraComponent;
+class UConfig_Equipment;
+
+UENUM(BlueprintType)
+enum class EPickedFlyState :uint8
+{
+	NotFlying,
+	Flying,
+
+	Count,
+};
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class CORNERED_API UEquipper : public USceneComponent
@@ -17,8 +28,10 @@ private:
 	UPROPERTY()
 	TObjectPtr<UPicker> PickerComp;
 
-public:
-	UEquipper();
+	EPickedFlyState State;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
 protected:
 	virtual void BeginPlay() override;
@@ -26,4 +39,7 @@ protected:
 private:
 	UFUNCTION()
 	void EquipHappened();
+
+	UFUNCTION()
+	void ActualEquip();
 };

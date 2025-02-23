@@ -10,6 +10,7 @@
 
 class AProduct;
 class UMaterialInterface;
+class UNiagaraSystem;
 
 USTRUCT(BlueprintType)
 struct FItemDatas
@@ -56,6 +57,9 @@ struct FWeaponSettingsEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	TObjectPtr<UMaterialInterface> DecalMaterial;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	TObjectPtr<UNiagaraSystem> NiagaraDecal;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	FVector DecalSize;

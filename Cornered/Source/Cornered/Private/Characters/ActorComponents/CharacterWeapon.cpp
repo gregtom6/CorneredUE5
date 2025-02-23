@@ -116,7 +116,7 @@ void UCharacterWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotR
 
 
 	if (HitResult.Component.IsValid() && HitResult.Component->GetCollisionObjectType() == ECollisionChannel::ECC_WorldStatic) {
-		UGameplayStatics::SpawnDecalAtLocation(GetWorld(), weaponSettings.DecalMaterial, weaponSettings.DecalSize, HitResult.ImpactPoint, Rotator, weaponSettings.DecalLifeSpan);
+		UGameplayStatics::SpawnDecalAtLocation(GetWorld(), weaponSettings.GetRandomDecal(), weaponSettings.DecalSize, HitResult.ImpactPoint, Rotator, weaponSettings.DecalLifeSpan);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), weaponSettings.NiagaraDecal, HitResult.ImpactPoint, Rotator);
 	}
 

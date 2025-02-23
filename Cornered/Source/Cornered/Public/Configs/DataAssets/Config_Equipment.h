@@ -56,7 +56,7 @@ struct FWeaponSettingsEntry
 	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	TObjectPtr<UMaterialInterface> DecalMaterial;
+	TArray<TObjectPtr<UMaterialInterface>> DecalMaterial;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	TObjectPtr<UNiagaraSystem> NiagaraDecal;
@@ -71,6 +71,11 @@ struct FWeaponSettingsEntry
 	float CooldownTimeInSec;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	float Damage;
+
+	UMaterialInterface* GetRandomDecal() const
+	{
+		return DecalMaterial[FMath::RandRange(0, DecalMaterial.Num()-1)];
+	}
 
 };
 

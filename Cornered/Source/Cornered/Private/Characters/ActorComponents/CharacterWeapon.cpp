@@ -109,6 +109,11 @@ void UCharacterWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotR
 		GetOpponentTraceChannel()
 	);
 
+	FVector Normal = HitResult.Normal;
+	FRotator Rotator = Normal.Rotation();
+
+	UGameplayStatics::SpawnDecalAtLocation(GetWorld(), weaponSettings.DecalMaterial, weaponSettings.DecalSize, HitResult.ImpactPoint, Rotator, weaponSettings.DecalLifeSpan);
+
 	if (bHit) {
 
 		UGameplayStatics::ApplyDamage(HitResult.GetActor(), weaponSettings.Damage, GetOwner()->GetInstigatorController(), GetOwner(), UDamageType::StaticClass());

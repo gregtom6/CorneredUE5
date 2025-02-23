@@ -9,6 +9,7 @@
 #include "Config_Equipment.generated.h"
 
 class AProduct;
+class UMaterialInterface;
 
 USTRUCT(BlueprintType)
 struct FItemDatas
@@ -52,6 +53,15 @@ struct FWeaponSettingsEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	EItemType Key;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	TObjectPtr<UMaterialInterface> DecalMaterial;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	FVector DecalSize;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
+	float DecalLifeSpan;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	float CooldownTimeInSec;

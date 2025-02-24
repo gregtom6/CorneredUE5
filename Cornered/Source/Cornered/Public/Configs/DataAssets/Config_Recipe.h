@@ -108,7 +108,7 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
-	UConfig_Progress* ProgressConfig;
+	TObjectPtr<UConfig_Progress> ProgressConfig;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
 	TArray<FRecipeEntry> RecipeEntries;
@@ -117,10 +117,10 @@ private:
 	TArray<FProductClassEntry> ProductClassEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-	TArray< FIngredientRadiatingMaterialEntry> IngredientRadiatingMaterialEntries;
+	TArray<FIngredientRadiatingMaterialEntry> IngredientRadiatingMaterialEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-	TArray< FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
+	TArray<FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
 
 public:
 

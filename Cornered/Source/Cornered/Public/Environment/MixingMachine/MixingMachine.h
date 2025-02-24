@@ -48,8 +48,10 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> ResultTarget;
 
+	UPROPERTY()
 	TArray<TObjectPtr<UMixingMachineAbility>> AbilityComponents;
 
+	UPROPERTY()
 	TObjectPtr<UMixingMachineAbility> CurrentlyUsedAbility;
 
 	UPROPERTY(VisibleAnywhere)

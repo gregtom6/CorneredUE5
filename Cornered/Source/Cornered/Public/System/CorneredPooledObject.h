@@ -24,7 +24,7 @@ public:
 	FActivatedDelegate Activated;
 
 private:
-
+	UPROPERTY()
 	TObjectPtr<ACorneredObjectPool> _ObjectPool;
 
 public:

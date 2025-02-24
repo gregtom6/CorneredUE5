@@ -17,6 +17,8 @@ class CORNERED_API UPostProcessController : public UActorComponent
 	GENERATED_BODY()
 
 private:
+
+	UPROPERTY()
 	TObjectPtr<UCameraComponent> Camera;
 
 	bool bPlayerDied = false;

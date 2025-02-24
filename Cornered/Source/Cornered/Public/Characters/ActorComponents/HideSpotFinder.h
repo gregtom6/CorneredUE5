@@ -32,7 +32,8 @@ struct FObstacleHideSpots
 	
 public:
 
-	AActor* ObstacleActor;
+	UPROPERTY()
+	TObjectPtr<AActor> ObstacleActor;
 
 	TArray<FAngleAndItsPossibleHideSpot> AnglesAndPossibleHideSpots;
 

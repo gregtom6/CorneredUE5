@@ -35,13 +35,17 @@ private:
 
 	FTimerHandle TimerHandle;
 
-	ACorneredCharacter* DefeatedChar = nullptr;
+	UPROPERTY()
+	TObjectPtr<ACorneredCharacter> DefeatedChar = nullptr;
 
-	ASoulRoute* SoulRoute = nullptr;
+	UPROPERTY()
+	TObjectPtr<ASoulRoute> SoulRoute = nullptr;
 
-	ASoulSniffer* SoulSniffer = nullptr;
+	UPROPERTY()
+	TObjectPtr<ASoulSniffer> SoulSniffer = nullptr;
 
-	TArray<ATargetPoint*> TargetPoints;
+	UPROPERTY()
+	TArray<TObjectPtr<ATargetPoint>> TargetPoints;
 
 public:
 

@@ -19,10 +19,10 @@ class CORNERED_API UConfig_DamageVisual : public UDataAsset
 private:
 
 	UPROPERTY(EditAnywhere)
-	UMaterialInterface* NormalMaterial;
+	TObjectPtr<UMaterialInterface> NormalMaterial;
 
 	UPROPERTY(EditAnywhere)
-	UMaterialInterface* DamagedMaterial;
+	TObjectPtr<UMaterialInterface> DamagedMaterial;
 
 	UPROPERTY(EditAnywhere)
 	TArray<float> DamageStepPercentages;

@@ -30,6 +30,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
 
+	UPROPERTY()
 	TObjectPtr<UHideSpotFinder> hideSpotFinder;
 
 public:

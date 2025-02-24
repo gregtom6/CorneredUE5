@@ -15,6 +15,7 @@ class CORNERED_API UPlayerWeapon : public UCharacterWeapon
 
 private:
 
+	UPROPERTY()
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 protected:

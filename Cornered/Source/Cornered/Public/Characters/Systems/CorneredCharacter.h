@@ -59,6 +59,7 @@ protected:
 
 private:
 
+	UPROPERTY()
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 public:

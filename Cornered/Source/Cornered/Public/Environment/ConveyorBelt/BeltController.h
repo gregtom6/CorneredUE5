@@ -34,7 +34,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<ACorneredObjectPool> ObjectPool;
 
-	TArray<AActor*> CurrentlyVisibleBeltElements;
+	UPROPERTY()
+	TArray<TObjectPtr<AActor>> CurrentlyVisibleBeltElements;
 
 public:
 	ABeltController();

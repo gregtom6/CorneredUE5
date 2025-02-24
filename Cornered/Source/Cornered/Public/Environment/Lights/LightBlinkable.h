@@ -16,9 +16,6 @@ class ULightBlinkable : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- * 
- */
 class CORNERED_API ILightBlinkable
 {
 	GENERATED_BODY()

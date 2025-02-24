@@ -24,9 +24,11 @@ private:
 
 	TArray<float> OriginalIntensities;
 
-	TArray<ULightComponent*> Lights;
+	UPROPERTY()
+	TArray<TObjectPtr<ULightComponent>> Lights;
 
-	TArray<UMaterialInstanceDynamic*> LightMaterials;
+	UPROPERTY()
+	TArray<TObjectPtr<UMaterialInstanceDynamic>> LightMaterials;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Soul> SoulConfig;

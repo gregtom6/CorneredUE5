@@ -17,6 +17,7 @@ class CORNERED_API ACorridorHider : public AActor
 	
 private:
 
+	UPROPERTY()
 	TObjectPtr<USceneComponent> Root;
 
 	UPROPERTY(VisibleAnywhere)

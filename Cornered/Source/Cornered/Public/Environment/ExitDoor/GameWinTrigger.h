@@ -6,9 +6,8 @@
 #include "Engine/TriggerBox.h"
 #include "GameWinTrigger.generated.h"
 
-/**
- *
- */
+class AActor;
+
 UCLASS()
 class CORNERED_API AGameWinTrigger : public ATriggerBox
 {
@@ -19,5 +18,5 @@ public:
 	AGameWinTrigger();
 
 	UFUNCTION()
-	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
+	void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
 };

@@ -96,9 +96,11 @@ private:
 
 	float ToSplineProgress = 0.f;
 
-	ASoulRoute* SoulRoute;
+	UPROPERTY()
+	TObjectPtr<ASoulRoute> SoulRoute;
 
-	ASoulSniffer* SoulSniffer;
+	UPROPERTY()
+	TObjectPtr<ASoulSniffer> SoulSniffer;
 	
 public:	
 	// Sets default values for this actor's properties

@@ -14,6 +14,9 @@ class CORNERED_API UCorneredCheats : public UCheatManager
 {
 	GENERATED_BODY()
 
+private:
+
+	bool bEnabled;
 public:
 
 	UCorneredCheats();
@@ -27,7 +30,4 @@ public:
 
 	void RegisterCommands();
 
-private:
-
-	bool bEnabled;
 };

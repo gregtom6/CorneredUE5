@@ -16,21 +16,7 @@ class CORNERED_API ULightBlinkController : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
-	// Sets default values for this component's properties
-	ULightBlinkController();
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
 private:
-
-	UFUNCTION()
-	void OnSoulEjected();
-
-	UFUNCTION()
-	void OnSoulDissipated();
 
 	bool bIsSoulExisting;
 
@@ -46,8 +32,20 @@ private:
 	TObjectPtr<UConfig_Soul> SoulConfig;
 
 public:	
+	ULightBlinkController();
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+
+private:
+
+	UFUNCTION()
+	void OnSoulEjected();
+
+	UFUNCTION()
+	void OnSoulDissipated();
+
 };

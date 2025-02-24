@@ -21,6 +21,7 @@ private:
 
 	UPROPERTY()
 	TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
+
 public:
 	void SaveGame(int32 currentLevel, int32 unlockLevel, float openingProgress, int32 sniffedSoulCount, int32 sniffedSoulsGlobalCount, int32 sniffedOverloadGlobalCount);
 	void SaveOpeningProgress(float openingProgress);

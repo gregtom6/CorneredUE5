@@ -27,6 +27,11 @@ private:
 
 	ETimerButtonState SelfState;
 
+public:
+	ATimeZeroerButton();
+
+	void Interact() override;
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -36,11 +41,6 @@ protected:
 
 	UFUNCTION()
 	void OnNewMatchStarted();
-
-public:
-	ATimeZeroerButton();
-
-	void Interact() override;
 
 private:
 

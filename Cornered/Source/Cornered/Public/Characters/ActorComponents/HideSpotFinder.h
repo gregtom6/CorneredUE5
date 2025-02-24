@@ -72,15 +72,12 @@ private:
 	int asyncPathQueryCount;
 
 public:
+	UHideSpotFinder();
 	
 	void ManageDebugDrawings(bool enabled);
 
 	void RegisterCallback(FHideSpotSearchingEnded HideSpotSearchingEnded);
 
-	void OnPathFound(uint32 PathRequestID, ENavigationQueryResult::Type Result, FNavPathSharedPtr Path);
-
-public:
-	UHideSpotFinder();
 	void GetClosestHidingSpotAsync();
 
 protected:
@@ -90,6 +87,7 @@ protected:
 	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
 
 private:
+	void OnPathFound(uint32 PathRequestID, ENavigationQueryResult::Type Result, FNavPathSharedPtr Path);
 
 	void DrawDebug(FVector FinalSelectedHideSpot);
 

@@ -29,7 +29,6 @@ struct FAbilityProcessTimeEntry
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	float ProcessTime;
-
 };
 
 UCLASS()

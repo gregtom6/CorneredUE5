@@ -37,6 +37,15 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> LightFlickerComp;
 
+public:
+	ACorneredHud();
+	virtual void BeginPlay() override;
+
+protected:
+
+	UFUNCTION()
+	void OnTimerOverHappened();
+
 private:
 
 	UFUNCTION()
@@ -48,12 +57,4 @@ private:
 	UFUNCTION()
 	void OnSoulDissipated();
 
-public:
-	ACorneredHud();
-	virtual void BeginPlay() override;
-
-protected:
-
-	UFUNCTION()
-	void OnTimerOverHappened();
 };

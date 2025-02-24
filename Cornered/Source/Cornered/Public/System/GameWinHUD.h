@@ -36,7 +36,6 @@ public:
 
 	virtual void BeginPlay() override;
 
-
 private:
 
 	UFUNCTION()

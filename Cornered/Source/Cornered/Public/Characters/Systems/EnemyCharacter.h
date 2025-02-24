@@ -105,10 +105,6 @@ private:
 	FTimerHandle TimerHandle3;
 	FTimerHandle TimerHandle4;
 
-	void PlayExplosion1();
-	void PlayExplosion2();
-	void PlayExplosion3();
-	void PlayExplosion4();
 
 public:
 	AEnemyCharacter();
@@ -138,6 +134,10 @@ protected:
 	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const override;
 
 private:
+	void PlayExplosion1();
+	void PlayExplosion2();
+	void PlayExplosion3();
+	void PlayExplosion4();
 
 	void PlayDieNiagara();
 };

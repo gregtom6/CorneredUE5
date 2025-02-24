@@ -33,7 +33,6 @@ public:
 
 	void VisualizeWeaponDatas(FItemDatas ItemDatas);
 
-
 	void PlayEquippedWeaponVisuals();
 
 	FShotRayDatas GetShotRayDatas() const;

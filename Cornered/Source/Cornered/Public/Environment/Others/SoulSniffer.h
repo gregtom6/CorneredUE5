@@ -115,6 +115,7 @@ public:
 
 	FVector GetDissipateTargetLocation();
 
+	virtual void Tick(float DeltaTime) override;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -141,9 +142,5 @@ private:
 	void CountPassedBorder();
 
 	FString FormatNumber(int32 Number, int32 Digits);
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 };

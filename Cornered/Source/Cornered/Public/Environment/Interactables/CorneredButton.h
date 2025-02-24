@@ -18,12 +18,14 @@ class CORNERED_API ACorneredButton : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 
+public:
+	FPressHappenedDelegate PressHappened;
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TObjectPtr<UActorSequenceComponent> ButtonPushComp;
 	
-
 private:
 
 	UPROPERTY(EditAnywhere)
@@ -33,7 +35,5 @@ public:
 	ACorneredButton();
 
 	void Interact() override;
-
-	FPressHappenedDelegate PressHappened;
 
 };

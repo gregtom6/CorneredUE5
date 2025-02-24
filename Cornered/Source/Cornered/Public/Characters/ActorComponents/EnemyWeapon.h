@@ -25,9 +25,9 @@ private:
 
 public:
 
-	void ManageDebugDrawings(bool enabled);
-
 	UEnemyWeapon();
+
+	void ManageDebugDrawings(bool enabled);
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 

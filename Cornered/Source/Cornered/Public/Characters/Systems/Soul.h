@@ -104,6 +104,8 @@ public:
 	// Sets default values for this actor's properties
 	ASoul();
 
+	virtual void Tick(float DeltaTime) override;
+
 	void SetSoulRoute(ASoulRoute* SoulRoute);
 
 	void SetSoulSniffer(ASoulSniffer* SoulSniffer);
@@ -111,9 +113,4 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 };

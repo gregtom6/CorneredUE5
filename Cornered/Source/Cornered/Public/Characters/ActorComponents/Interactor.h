@@ -17,8 +17,8 @@ class CORNERED_API UInteractor : public USceneComponent
 private:
 	UPROPERTY()
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
-	bool bInteractHappenedInThisFrame;
 
+	bool bInteractHappenedInThisFrame;
 	IHoldable* Holdable;
 
 public:
@@ -32,7 +32,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
 
 	UFUNCTION()
 	void InteractStarted();

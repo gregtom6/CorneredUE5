@@ -44,7 +44,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_ExitDoor> ExitDoorConfig;
 
-
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<AHoldableButton> HoldableButton;
 

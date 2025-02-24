@@ -17,10 +17,6 @@ class CORNERED_API ACorneredLight : public AActor, public ILightBlinkable
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	ACorneredLight();
-
 protected:
 
 	UPROPERTY(VisibleAnywhere)
@@ -34,18 +30,18 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> Root;
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 public:	
+	ACorneredLight();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 
 	// Inherited via ILightBlinkable
 	TArray<ULightComponent*> GetLightComponents() override;
 
 	TArray<UMaterialInstanceDynamic*> GetLightMaterials() override;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 };

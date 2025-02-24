@@ -42,9 +42,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Progress> ProgressConfig;
 
-	void StepUnlockLevel();
-	void ResetProgress();
-	void ResetUnlockLevel();
 public:
 
 	void SaveProgress();
@@ -74,4 +71,8 @@ private:
 	void OnSoulSniffed();
 
 	void SubscribeToCharacterDamageDelegates(ACorneredCharacter* Character);
+
+	void StepUnlockLevel();
+	void ResetProgress();
+	void ResetUnlockLevel();
 };

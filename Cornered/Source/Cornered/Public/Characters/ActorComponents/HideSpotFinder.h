@@ -69,7 +69,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool bDrawDebug;
 
-	int asyncPathQueryCount;
+	int32 asyncPathQueryCount;
 
 public:
 	UHideSpotFinder();
@@ -93,21 +93,21 @@ private:
 
 	void DrawDebugLines(FVector Origin, FVector End) const;
 
-	bool IsPossibleHideSpotSetted(int location, int position);
+	bool IsPossibleHideSpotSetted(int32 location, int32 position);
 
-	bool AreAllPossibleHideSpotsSetted(int location);
+	bool AreAllPossibleHideSpotsSetted(int32 location);
 
 	bool IsPossibleHideSpotFoundInThisAngle(AActor* Obstacle, float CurrentlyCheckedAngle);
 
 	float GetBackAngleOfPathRequestID(AActor* Obstacle, uint32 PathRequestID);
 
-	int GetLocationOfAngleHideouts(int location, float CurrentAngle);
+	int32 GetLocationOfAngleHideouts(int32 location, float CurrentAngle);
 
-	void StoreGeneralObstacleDetails(FHitResult raycastHits, float CurrentAngle, int foundInIndex);
+	void StoreGeneralObstacleDetails(FHitResult raycastHits, float CurrentAngle, int32 foundInIndex);
 
-	bool GetBackObstacleDetailsWherePathRequestID(uint32 PathRequestID, int& location);
+	bool GetBackObstacleDetailsWherePathRequestID(uint32 PathRequestID, int32& location);
 
-	void FindingPossibleHideSpotAlongCurrentRayAsync(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, int foundInIndex, float CurrentlyCheckedAngle, AActor* Obstacle);
+	void FindingPossibleHideSpotAlongCurrentRayAsync(FVector ImpactPoint, TWeakObjectPtr<UPrimitiveComponent> ImpactedComponent, FVector Direction, int32 foundInIndex, float CurrentlyCheckedAngle, AActor* Obstacle);
 
 	FHitResult MakeRaycastInSelectedAngle(float CurrentAngle, float RayLength, FVector& Origin, FVector& Direction, bool& Hit) const;
 
@@ -115,7 +115,7 @@ private:
 
 	bool DidIFindObstacle(bool Hit, FHitResult raycastHits) const;
 
-	int LoadObstacleDetailsIfExists(FHitResult raycastHits);
+	int32 LoadObstacleDetailsIfExists(FHitResult raycastHits);
 
 	bool AreTherePossibleHideSpots(TArray<FObstacleHideSpots> possibleHideSpots) const;
 
@@ -127,13 +127,13 @@ private:
 
 	void SortPointsByDistance(TArray<FVector>& PointsArray);
 
-	bool IsObstacleAlreadyFoundInPreviousAngle(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, int& foundInIndex) const;
+	bool IsObstacleAlreadyFoundInPreviousAngle(AActor* ObstacleActor, TArray<FObstacleHideSpots> obstacles, int32& foundInIndex) const;
 
 	void SetBestHideSpotsForAllObstacles(TArray<FObstacleHideSpots>& obstacles);
 
 	TArray<FVector> GetBestHideSpots(TArray<FObstacleHideSpots> obstacles) const;
 
-	int GetClosestIndex(const TArray<float>& Array, float TargetValue) const;
+	int32 GetClosestIndex(const TArray<float>& Array, float TargetValue) const;
 
 	float NormalizeAngle(float Angle) const;
 

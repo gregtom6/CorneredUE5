@@ -49,8 +49,6 @@ void ACorneredGameMode::WaitTimeEndedBetweenMatches() {
 
 void ACorneredGameMode::CharacterDied(ACorneredCharacter* Character) {
 	if (Character->IsA(AEnemyCharacter::StaticClass())) {
-		MatchIndex += 1;
-
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ACorneredGameMode::WaitTimeEndedBetweenMatches, TimeConfig->WaitBetweenPreviousAndNewMatchInSec, false);
 	}
 	else {

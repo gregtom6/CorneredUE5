@@ -51,7 +51,7 @@ public:
 
 	bool IsAbilityAlreadyUnlocked(EAbility ability, UCorneredGameInstance* gameInstance);
 
-	int GetMaxUnlockLevel() const;
+	int32 GetMaxUnlockLevel() const;
 
 	bool IsAbilityUnlocked(EAbility Ability, AProgressionGameState* GameState);
 
@@ -59,5 +59,5 @@ public:
 
 private:
 
-	TArray<EAbility> GetAlreadyUnlockedAbilities(int currentUnlockLevel) const;
+	TArray<EAbility> GetAlreadyUnlockedAbilities(int32 currentUnlockLevel) const;
 };

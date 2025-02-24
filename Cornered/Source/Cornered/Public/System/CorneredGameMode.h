@@ -35,8 +35,6 @@ private:
 
 	FTimerHandle TimerHandle;
 
-	int MatchIndex;
-
 public:
 
 	void RestartTimer();

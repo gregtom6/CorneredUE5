@@ -31,7 +31,7 @@ public:
 
 	TArray<float> GetDamagePercentages();
 
-	int GetCountOfDamagePercentages();
+	int32 GetCountOfDamagePercentages();
 
 	UMaterialInterface* GetSelectedMaterial(bool isDamaged);
 	

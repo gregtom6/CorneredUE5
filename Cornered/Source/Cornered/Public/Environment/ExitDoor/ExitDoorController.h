@@ -83,5 +83,4 @@ private:
 
 	void PrintPercentageText();
 
-
 };

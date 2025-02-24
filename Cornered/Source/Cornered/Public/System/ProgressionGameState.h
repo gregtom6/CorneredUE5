@@ -26,10 +26,10 @@ class CORNERED_API AProgressionGameState : public AGameStateBase
 
 public:
 	UPROPERTY()
-	int UnlockLevel;
+	int32 UnlockLevel;
 
 	UPROPERTY()
-	int SoulSniffedCount;
+	int32 SoulSniffedCount;
 
 	FCharacterDefeatedDelegate CharacterDefeated;
 

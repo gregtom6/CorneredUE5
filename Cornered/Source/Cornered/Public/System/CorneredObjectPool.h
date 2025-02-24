@@ -29,7 +29,7 @@ struct FPooledObjectData
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> _ActorTemplate;
 	UPROPERTY(EditAnywhere)
-	int _PoolSize;
+	int32 _PoolSize;
 	UPROPERTY(EditAnywhere)
 	bool _CanGrow;
 	UPROPERTY(EditAnywhere)
@@ -84,11 +84,11 @@ protected:
 
 private:
 
-	UCorneredPooledObject* SpawnAndSetupPooledObject(FActorSpawnParameters spawnParams, AActor*& SpawnedActor, int poolIndex);
+	UCorneredPooledObject* SpawnAndSetupPooledObject(FActorSpawnParameters spawnParams, AActor*& SpawnedActor, int32 poolIndex);
 
-	void SetupActorSpawnParameters(FActorSpawnParameters& spawnParams, int poolIndex);
+	void SetupActorSpawnParameters(FActorSpawnParameters& spawnParams, int32 poolIndex);
 
 	void SetActorVisibility(AActor* Actor, bool ShouldActivate, AActor* Parent);
 
-	void RegenItem(int poolIndex, int positionIndex);
+	void RegenItem(int32 poolIndex, int32 positionIndex);
 };

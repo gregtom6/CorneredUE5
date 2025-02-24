@@ -113,15 +113,15 @@ public:
 
 	virtual void SetDieState() override;
 
-	void AttachEndpointOfCable(int index, UMaterialInterface* Material, bool shouldAttach);
+	void AttachEndpointOfCable(int32 index, UMaterialInterface* Material, bool shouldAttach);
 
 	void PlayDamageSounds();
 
 	void PlayFallenParticles();
 
-	void PlayCableNiagara(int index);
+	void PlayCableNiagara(int32 index);
 
-	int GetCountOfCable();
+	int32 GetCountOfCable();
 
 	FVector GetSoulLocation();
 

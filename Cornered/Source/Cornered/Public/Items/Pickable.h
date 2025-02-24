@@ -5,16 +5,16 @@
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
 #include "Items/Equippable.h"
-#include "IPickable.generated.h"
+#include "Pickable.generated.h"
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class UIPickable : public UInterface
+class UPickable : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class CORNERED_API IIPickable
+class CORNERED_API IPickable
 {
 	GENERATED_BODY()
 

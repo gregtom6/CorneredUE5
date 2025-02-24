@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Environment/CorneredLight.h"
+#include "Environment/Lights/CorneredLight.h"
 #include "LightBulb.generated.h"
 
 /**

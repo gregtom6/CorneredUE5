@@ -1,6 +1,6 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
-#include "Environment/Others/RedLightController.h"
+#include "Environment/Lights/RedLightController.h"
 #include "System/CorneredGameMode.h"
 #include "Characters/Systems/CorneredCharacter.h"
 #include "ActorSequenceComponent.h"

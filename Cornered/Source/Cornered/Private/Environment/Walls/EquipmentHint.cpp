@@ -8,7 +8,7 @@
 #include "Configs/DataAssets/Config_Hint.h"
 #include "Characters/Systems/EquipmentDecider.h"
 #include "Components/RectLightComponent.h"
-#include "Environment/Others/LightBlinkController.h"
+#include "Environment/Lights/LightBlinkController.h"
 #include "Materials/MaterialInstanceDynamic.h"
 
 AEquipmentHint::AEquipmentHint()

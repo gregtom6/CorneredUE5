@@ -1,9 +1,9 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Environment/Others/LightBlinkController.h"
+#include "Environment/Lights/LightBlinkController.h"
 #include "Characters/Systems/CharacterSpawner.h"
-#include "Environment/Others/LightBlinkable.h"
+#include "Environment/Lights/LightBlinkable.h"
 #include "Components/LightComponent.h"
 #include "Configs/DataAssets/Config_Soul.h"
 #include "Materials/MaterialInstanceDynamic.h"

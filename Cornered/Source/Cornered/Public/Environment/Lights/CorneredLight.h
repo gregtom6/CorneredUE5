@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Environment/Others/LightBlinkable.h"
+#include "Environment/Lights/LightBlinkable.h"
 #include "CorneredLight.generated.h"
 
 class USpotLightComponent;

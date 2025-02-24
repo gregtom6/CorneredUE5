@@ -5,7 +5,7 @@
 #include "Characters/ActorComponents/InteractableDetector.h"
 #include <Kismet/GameplayStatics.h>
 #include "System/CorneredPlayerController.h"
-#include "Items/IPickable.h"
+#include "Items/Pickable.h"
 
 UPicker::UPicker()
 {
@@ -37,7 +37,7 @@ void UPicker::PickupHappened() {
 
 		if (HitActor) {
 
-			IIPickable* Pickable = Cast<IIPickable>(HitActor);
+			IPickable* Pickable = Cast<IPickable>(HitActor);
 			if (Pickable) {
 				Pickable->Pickup(GetOwner());
 				PickedPickable = Pickable;
@@ -63,7 +63,7 @@ void UPicker::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponen
 	bPickupDropHappenedInThisFrame = false;
 }
 
-IIPickable* UPicker::GetPickedPickable() const {
+IPickable* UPicker::GetPickedPickable() const {
 	return PickedPickable;
 }
 

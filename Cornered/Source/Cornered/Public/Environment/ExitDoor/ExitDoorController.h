@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Environment/Interactables/HoldActivable.h"
-#include "Environment/Others/LightBlinkable.h"
+#include "Environment/Lights/LightBlinkable.h"
 #include "ExitDoorController.generated.h"
 
 class UTextRenderComponent;

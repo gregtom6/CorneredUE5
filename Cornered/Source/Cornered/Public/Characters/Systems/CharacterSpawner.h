@@ -7,7 +7,7 @@
 #include "CharacterSpawner.generated.h"
 
 
-class UConfig_CharacterSpawner;
+class UConfigCharacterSpawnerDevSettings;
 class ATargetPoint;
 class AEnemyCharacter;
 class ACorneredCharacter;

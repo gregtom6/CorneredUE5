@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Configs/DataAssets/Config_Equipment.h"
-#include "Environment/Others/LightBlinkable.h"
+#include "Environment/Lights/LightBlinkable.h"
 #include "EquipmentHint.generated.h"
 
 class USceneComponent;

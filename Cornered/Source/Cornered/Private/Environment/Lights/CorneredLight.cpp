@@ -1,7 +1,7 @@
 // @ 15.07.2024 Tamas Gregus. All Rights Reserved.
 
 
-#include "Environment/CorneredLight.h"
+#include "Environment/Lights/CorneredLight.h"
 #include "Components/RectLightComponent.h"
 #include "Components/SpotLightComponent.h"
 #include "Components/PointLightComponent.h"

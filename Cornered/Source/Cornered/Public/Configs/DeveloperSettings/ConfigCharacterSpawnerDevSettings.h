@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DeveloperSettings.h"
-#include "Config_CharacterSpawner.generated.h"
+#include "ConfigCharacterSpawnerDevSettings.generated.h"
 
 class UConfig_Character_General;
 class AActor;
@@ -14,7 +14,7 @@ class ASoul;
  *
  */
 UCLASS(config = Game, defaultconfig)
-class CORNERED_API UConfig_CharacterSpawner : public UDeveloperSettings
+class CORNERED_API UConfigCharacterSpawnerDevSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 

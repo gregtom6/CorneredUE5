@@ -8,7 +8,7 @@
 #include "Characters/Systems/EnemyCharacter.h"
 #include <Kismet/GameplayStatics.h>
 #include "Engine/TargetPoint.h"
-#include "Configs/DeveloperSettings/Config_CharacterSpawner.h"
+#include "Configs/DeveloperSettings/ConfigCharacterSpawnerDevSettings.h"
 #include "Engine/World.h"
 #include "Engine/Engine.h"
 #include "Engine/TargetPoint.h"
@@ -22,7 +22,7 @@
 #include "Characters/Systems/Soul.h"
 #include "TimerManager.h"
 #include "Environment/Others/SoulRoute.h"
-#include "Environment/SoulSniffer.h"
+#include "Environment/Others/SoulSniffer.h"
 
 void UCharacterSpawner::OnWorldBeginPlay(UWorld& InWorld)
 {
@@ -40,7 +40,7 @@ void UCharacterSpawner::OnNewMatchStarted() {
 
 	FVector SelectedPosition = GetRandomPosition();
 
-	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
+	const UConfigCharacterSpawnerDevSettings* Settings = GetDefault<UConfigCharacterSpawnerDevSettings>();
 
 	if (Settings) {
 		AEnemyCharacter* enemyCharacter = GetWorld()->SpawnActor<AEnemyCharacter>(Settings->CharacterConfig->EnemyCharacterClass, SelectedPosition, FRotator::ZeroRotator);
@@ -62,7 +62,7 @@ bool UCharacterSpawner::ShouldCreateSubsystem(UObject* Outer) const
 		return false;
 	}
 
-	const TArray<TSoftObjectPtr<UWorld>>& Levels = GetDefault<UConfig_CharacterSpawner>()->ActiveInTheseLevels;
+	const TArray<TSoftObjectPtr<UWorld>>& Levels = GetDefault<UConfigCharacterSpawnerDevSettings>()->ActiveInTheseLevels;
 	for (TSoftObjectPtr<UWorld> Level : Levels)
 	{
 		const UWorld* LevelPtr = Level.Get();
@@ -109,7 +109,7 @@ void UCharacterSpawner::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacte
 }
 
 void UCharacterSpawner::SoulBorner() {
-	const UConfig_CharacterSpawner* Settings = GetDefault<UConfig_CharacterSpawner>();
+	const UConfigCharacterSpawnerDevSettings* Settings = GetDefault<UConfigCharacterSpawnerDevSettings>();
 
 	if (Settings) {
 		FVector SoulLocation = Cast<AEnemyCharacter>(DefeatedChar)->GetSoulLocation();

@@ -11,7 +11,7 @@
 #include "Environment/Others/SoulRoute.h"
 #include <Kismet/KismetMathLibrary.h>
 #include "Components/AudioComponent.h"
-#include "Environment/SoulSniffer.h"
+#include "Environment/Others/SoulSniffer.h"
 #include "ActorSequenceComponent.h"
 #include "ActorSequencePlayer.h"
 #include "Components/PointLightComponent.h"

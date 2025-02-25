@@ -56,7 +56,8 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UPawnSensingComponent> PawnSensingComp;
 
-	TArray<UCableComponent*> CableComponents;
+	UPROPERTY()
+	TArray<TObjectPtr<UCableComponent>> CableComponents;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCableComponent> CableComp1;
@@ -92,7 +93,7 @@ private:
 	TObjectPtr<USceneComponent> SoulLocation;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<UNiagaraComponent*> CableNiagaraComponents;
+	TArray<TObjectPtr<UNiagaraComponent>> CableNiagaraComponents;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;

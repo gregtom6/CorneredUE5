@@ -100,7 +100,7 @@ void AEnemyCharacter::BeginPlay()
 	CableNiagaraComponents.Add(CableNiagaraComp4);
 }
 
-void AEnemyCharacter::SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
+void AEnemyCharacter::SetEquipment(FItemData weapon, FItemData shield, FItemData additional) {
 	ExternalEquipperComp->Equip(weapon, shield, additional);
 }
 

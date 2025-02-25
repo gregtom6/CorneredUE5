@@ -67,7 +67,7 @@ protected:
 private:
 
 	UFUNCTION()
-	void OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional);
+	void OnEquipmentDecided(FItemData Weapon, FItemData Shield, FItemData Additional);
 
 	// Inherited via ILightBlinkable
 	TArray<ULightComponent*> GetLightComponents() override;

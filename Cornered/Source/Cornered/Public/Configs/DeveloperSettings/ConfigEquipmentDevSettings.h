@@ -27,22 +27,22 @@ private:
 	UPROPERTY(config, EditAnywhere)
 	EItemType FixWeapon;
 	UPROPERTY(config, EditAnywhere)
-	TArray<FItemDatas> Weapons;
+	TArray<FItemData> Weapons;
 	UPROPERTY(config, EditAnywhere)
-	TArray<FItemDatas> Shields;
+	TArray<FItemData> Shields;
 	UPROPERTY(config, EditAnywhere)
-	TArray<FItemDatas> Additionals;
+	TArray<FItemData> Additionals;
 
 public:
 
-	FItemDatas GetWeapon() const;
+	FItemData GetWeapon() const;
 
-	FItemDatas GetRandomShield() const;
+	FItemData GetRandomShield() const;
 
-	FItemDatas GetRandomAdditional() const;
+	FItemData GetRandomAdditional() const;
 private:
-	FItemDatas GetFixWeapon() const;
+	FItemData GetFixWeapon() const;
 
-	FItemDatas GetRandomWeapon() const;
+	FItemData GetRandomWeapon() const;
 
 };

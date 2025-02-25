@@ -28,9 +28,9 @@ void UEquipmentDecider::GenerateEquipment(AEnemyCharacter* EnemyCharacter) {
 	const UConfigEquipmentDevSettings* Settings = GetDefault<UConfigEquipmentDevSettings>();
 
 	if (Settings) {
-		FItemDatas weapon = Settings->GetWeapon();
-		FItemDatas shield = Settings->GetRandomShield();
-		FItemDatas additional = Settings->GetRandomAdditional();
+		FItemData weapon = Settings->GetWeapon();
+		FItemData shield = Settings->GetRandomShield();
+		FItemData additional = Settings->GetRandomAdditional();
 
 		EnemyCharacter->SetEquipment(weapon, shield, additional);
 

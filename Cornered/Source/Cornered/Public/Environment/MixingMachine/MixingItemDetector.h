@@ -4,25 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/TriggerBox.h"
-#include "Items/ItemType.h"
-#include "Items/ItemState.h"
+#include "Items/ItemData.h"
 #include "MixingItemDetector.generated.h"
-
-USTRUCT(BlueprintType)
-struct FItemData
-{
-	GENERATED_BODY()
-
-	FItemData()
-		: ItemType(EItemType::Count), ItemState(EItemState::Count) { }
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	EItemType ItemType;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	EItemState ItemState;
-
-};
 
 UCLASS()
 class CORNERED_API AMixingItemDetector : public ATriggerBox

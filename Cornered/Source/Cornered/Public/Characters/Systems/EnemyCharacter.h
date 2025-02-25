@@ -110,7 +110,7 @@ private:
 public:
 	AEnemyCharacter();
 
-	void SetEquipment(FItemDatas weapon, FItemDatas shield, FItemDatas additional);
+	void SetEquipment(FItemData weapon, FItemData shield, FItemData additional);
 
 	virtual void SetDieState() override;
 

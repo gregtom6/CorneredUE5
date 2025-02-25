@@ -44,9 +44,9 @@ void AEquipmentHint::BeginPlay()
 	}
 }
 
-void AEquipmentHint::OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional) {
-	WeaponMeshComp->SetMaterial(0, HintConfig->GetMaterialBasedOnItemType(Weapon.Key));
-	ShieldMeshComp->SetMaterial(0, HintConfig->GetMaterialBasedOnItemType(Shield.Key));
+void AEquipmentHint::OnEquipmentDecided(FItemData Weapon, FItemData Shield, FItemData Additional) {
+	WeaponMeshComp->SetMaterial(0, HintConfig->GetMaterialBasedOnItemType(Weapon.ItemType));
+	ShieldMeshComp->SetMaterial(0, HintConfig->GetMaterialBasedOnItemType(Shield.ItemType));
 }
 
 TArray<ULightComponent*> AEquipmentHint::GetLightComponents()

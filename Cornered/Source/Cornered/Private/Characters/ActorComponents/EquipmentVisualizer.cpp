@@ -44,9 +44,9 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 	ActualVisualization(Product->GetItemType(), GetNameOfSocket(Product));
 }
 
-void UEquipmentVisualizer::VisualizeWeaponDatas(FItemDatas ItemDatas) {
+void UEquipmentVisualizer::VisualizeWeaponDatas(FItemData ItemDatas) {
 
-	ActualVisualization(ItemDatas.Key, GetNameOfSocketBasedOnItemType(ItemDatas.Key));
+	ActualVisualization(ItemDatas.ItemType, GetNameOfSocketBasedOnItemType(ItemDatas.ItemType));
 }
 
 void UEquipmentVisualizer::ActualVisualization(EItemType ItemType, FName SocketName) {

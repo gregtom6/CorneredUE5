@@ -31,7 +31,7 @@ public:
 
 	void VisualizeEquipment(AProduct* Product);
 
-	void VisualizeWeaponDatas(FItemDatas ItemDatas);
+	void VisualizeWeaponDatas(FItemData ItemDatas);
 
 	void PlayEquippedWeaponVisuals();
 

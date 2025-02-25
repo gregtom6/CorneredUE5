@@ -25,11 +25,11 @@ public:
 	UInventory();
 	void EquipItem(AProduct* Product);
 
-	void EquipWeapon(FItemDatas itemDatas);
+	void EquipWeapon(FItemData itemDatas);
 
-	void EquipShield(FItemDatas itemDatas);
+	void EquipShield(FItemData itemDatas);
 
-	void EquipAdditional(FItemDatas itemDatas);
+	void EquipAdditional(FItemData itemDatas);
 
 	UFUNCTION(BlueprintPure)
 	EItemType GetWeapon() const;

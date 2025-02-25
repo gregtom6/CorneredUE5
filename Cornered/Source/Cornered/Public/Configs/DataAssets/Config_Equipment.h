@@ -4,30 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "Items/ItemType.h"
+#include "Items/ItemData.h"
 #include "Environment/MixingMachine/MixingItemDetector.h"
 #include "Config_Equipment.generated.h"
 
 class AProduct;
 class UMaterialInterface;
 class UNiagaraSystem;
-
-USTRUCT(BlueprintType)
-struct FItemDatas
-{
-	GENERATED_BODY()
-
-	FItemDatas()
-		: Key(EItemType::Count),
-		Value(EItemState::Count) { }
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	EItemType Key;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	EItemState Value;
-};
-
 
 USTRUCT(BlueprintType)
 struct FEquippedProductEntry
@@ -127,11 +110,11 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
-	TArray<FItemDatas> Weapons;
+	TArray<FItemData> Weapons;
 	UPROPERTY(EditAnywhere)
-	TArray<FItemDatas> Shields;
+	TArray<FItemData> Shields;
 	UPROPERTY(EditAnywhere)
-	TArray<FItemDatas> Additionals;
+	TArray<FItemData> Additionals;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
 	TArray<FEquippedProductEntry> EquippedProductEntries;
@@ -155,9 +138,9 @@ public:
 
 	FAdditionalSettingsEntry GetAdditionalSettings(EItemType itemType) const;
 
-	FItemDatas GetRandomWeapon() const;
+	FItemData GetRandomWeapon() const;
 
-	FItemDatas GetRandomShield() const;
+	FItemData GetRandomShield() const;
 
-	FItemDatas GetRandomAdditional() const;
+	FItemData GetRandomAdditional() const;
 };

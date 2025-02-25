@@ -64,7 +64,7 @@ void UInteractor::InteractStarted() {
 				bInteractHappenedInThisFrame = true;
 			}
 
-			Holdable = Cast<IHoldable>(HitActor);
+			Holdable = TScriptInterface<IHoldable>(Cast<UObject>(HitActor));
 
 			if (Holdable) {
 				Holdable->HoldingStarted();
@@ -80,7 +80,7 @@ void UInteractor::InteractHappened() {
 
 		if (HitActor) {
 
-			Holdable = Cast<IHoldable>(HitActor);
+			Holdable = TScriptInterface<IHoldable>(Cast<UObject>(HitActor));
 
 			if (Holdable) {
 				Holdable->HoldingFinished();

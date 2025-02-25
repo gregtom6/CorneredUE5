@@ -19,7 +19,9 @@ private:
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 	bool bInteractHappenedInThisFrame;
-	IHoldable* Holdable;
+
+	UPROPERTY()
+	TScriptInterface<IHoldable> Holdable;
 
 public:
 	// Sets default values for this component's properties

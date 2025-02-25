@@ -15,7 +15,6 @@ class UPaperSpriteComponent;
 class UCooldownIndicator;
 class UCharacterHealth;
 class UCharacterAnimInstance;
-class UInteractableDetector;
 class UDamageVisualizer;
 
 UCLASS()
@@ -57,11 +56,6 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
 
-private:
-
-	UPROPERTY()
-	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
-
 public:
 	// Sets default values for this character's properties
 	ACorneredCharacter();
@@ -79,4 +73,6 @@ protected:
 	virtual IMovableCharacter* GetOwnedController() const PURE_VIRTUAL(ACorneredCharacter::GetOwnedController, return nullptr;);
 
 	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const PURE_VIRTUAL(ACorneredCharacter::GetOwnedAnimInstance, return nullptr;);
+
+	virtual bool IsSeeingInteractable() const PURE_VIRTUAL(ACorneredCharacter::IsSeeingInteractable, return false;);
 };

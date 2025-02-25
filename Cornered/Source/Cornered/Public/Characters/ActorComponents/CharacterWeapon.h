@@ -28,7 +28,6 @@ private:
 
 	FTimerHandle TimerHandle;
 
-	UPROPERTY()
 	FTimerManager* TimerManager;
 
 public:

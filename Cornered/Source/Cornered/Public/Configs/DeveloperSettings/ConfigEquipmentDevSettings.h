@@ -26,7 +26,6 @@ private:
 
 	UPROPERTY(config, EditAnywhere)
 	EItemType FixWeapon;
-
 	UPROPERTY(config, EditAnywhere)
 	TArray<FItemDatas> Weapons;
 	UPROPERTY(config, EditAnywhere)

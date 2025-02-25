@@ -221,3 +221,8 @@ int AEnemyCharacter::GetCountOfCable() {
 FVector AEnemyCharacter::GetSoulLocation() {
 	return GetMesh()->GetComponentLocation();
 }
+
+bool AEnemyCharacter::IsSeeingInteractable() const {
+
+	return false;
+}

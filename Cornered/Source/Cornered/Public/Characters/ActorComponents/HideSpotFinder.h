@@ -59,6 +59,7 @@ private:
 
 	UNavigationSystemV1* NavSystem;
 
+	UPROPERTY()
 	TArray<FObstacleHideSpots> obstacleCheckDetails;
 
 	bool bDidFindPossibleHideSpotAlongThisRay;

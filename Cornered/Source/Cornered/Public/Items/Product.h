@@ -25,7 +25,6 @@ public:
 
 	FProductEquipEnded ProductEquipEnded;
 
-
 private:
 
 	float StartTime;

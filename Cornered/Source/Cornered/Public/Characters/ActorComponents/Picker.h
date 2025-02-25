@@ -20,7 +20,8 @@ private:
 
 	bool bPickupDropHappenedInThisFrame;
 
-	IPickable* PickedPickable;
+	UPROPERTY()
+	TScriptInterface<IPickable> PickedPickable;
 
 public:
 	// Sets default values for this component's properties

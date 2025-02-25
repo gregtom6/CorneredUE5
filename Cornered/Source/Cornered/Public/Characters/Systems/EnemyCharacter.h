@@ -134,6 +134,8 @@ protected:
 
 	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const override;
 
+	virtual bool IsSeeingInteractable() const override;
+
 private:
 	void PlayExplosion1();
 	void PlayExplosion2();

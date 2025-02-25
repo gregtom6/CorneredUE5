@@ -15,7 +15,6 @@ class CORNERED_API UCorneredPooledObject : public UActorComponent
 {
 	GENERATED_BODY()
 
-
 public:
 
 	UPROPERTY(VisibleInstanceOnly)

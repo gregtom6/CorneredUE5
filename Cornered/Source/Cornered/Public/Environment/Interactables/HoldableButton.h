@@ -33,7 +33,7 @@ private:
 	TObjectPtr<AHoldActivable> HoldActivable;
 
 public:
-	// Sets default values for this actor's properties
+
 	AHoldableButton();
 
 	virtual void HoldingStarted() override;

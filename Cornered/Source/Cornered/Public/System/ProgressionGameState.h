@@ -16,9 +16,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterShotReceivedDelegate, ACor
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulSniffedDelegate);
 
-/**
- *
- */
 UCLASS()
 class CORNERED_API AProgressionGameState : public AGameStateBase
 {

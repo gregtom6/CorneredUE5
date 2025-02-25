@@ -36,15 +36,10 @@ class CORNERED_API ACorneredPlayerController : public APlayerController, public 
 public:
 
 	FPickupInteractionHappenedDelegate PickupHappenedInstance;
-
 	FDropInteractionHappenedDelegate DropHappenedInstance;
-
 	FEquipInteractionHappenedDelegate EquipHappenedInstance;
-
 	FShootInteractionHappenedDelegate ShootHappenedInstance;
-
 	FInteractStartedDelegate InteractStartedInstance;
-
 	FInteractHappenedDelegate InteractHappenedInstance;
 
 protected:

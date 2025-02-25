@@ -14,8 +14,7 @@ class CORNERED_API UInteractableDetector : public USceneComponent
 
 private:
 
-	UPROPERTY()
-	UWorld* CachedWorld;
+	TWeakObjectPtr<UWorld> CachedWorld;
 
 	bool bIsValidHit;
 

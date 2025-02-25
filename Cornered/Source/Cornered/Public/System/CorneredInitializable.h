@@ -13,9 +13,6 @@ class UCorneredInitializable : public UInterface
 	GENERATED_BODY()
 };
 
-/**
- *
- */
 class CORNERED_API ICorneredInitializable
 {
 	GENERATED_BODY()

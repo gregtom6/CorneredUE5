@@ -40,8 +40,6 @@ void ACorneredCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, CharacterWeaponComp);
-
-	InteractableDetectorComp = FindComponentByClass<UInteractableDetector>();
 }
 
 // Called every frame
@@ -69,13 +67,8 @@ void ACorneredCharacter::Tick(float DeltaTime)
 			}
 		}
 
-		bool IsSeeingInteractable = false;
-		if (InteractableDetectorComp) {
-			IsSeeingInteractable = InteractableDetectorComp->ItWasValidHit();
-		}
-
-		if (CharacterWeaponComp && thisAnimInstance->UseWeapon != (CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable)) {
-			thisAnimInstance->UseWeapon = CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable;
+		if (CharacterWeaponComp && thisAnimInstance->UseWeapon != (CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable())) {
+			thisAnimInstance->UseWeapon = CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable();
 		}
 	}
 }

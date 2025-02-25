@@ -40,7 +40,7 @@ void UPicker::PickupHappened() {
 			IPickable* Pickable = Cast<IPickable>(HitActor);
 			if (Pickable) {
 				Pickable->Pickup(GetOwner());
-				PickedPickable = Pickable;
+				PickedPickable = TScriptInterface<IPickable>(Cast<UObject>(HitActor));
 				bPickupDropHappenedInThisFrame = true;
 			}
 		}
@@ -64,7 +64,11 @@ void UPicker::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponen
 }
 
 IPickable* UPicker::GetPickedPickable() const {
-	return PickedPickable;
+	if (PickedPickable.GetObject()) {
+		return Cast<IPickable>(PickedPickable.GetObject());
+	}
+
+	return nullptr;
 }
 
 void UPicker::RemovePickable() {

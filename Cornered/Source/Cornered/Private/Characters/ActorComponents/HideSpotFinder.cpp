@@ -54,7 +54,7 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 
 	do
 	{
-		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_Check"); //38.7 ms
+		TRACE_CPUPROFILER_EVENT_SCOPE_STR("HideSpotFinder_Check");
 
 		if (IsPossibleHideSpotFoundInThisAngle(Obstacle, CurrentlyCheckedAngle)) {
 			return;
@@ -62,7 +62,7 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 
 		currentDistanceToCheckOnRay = AIConfig->RayTraverseStepSizeToDiscoverHidingPlace * stepCount;
 
-		if (currentDistanceToCheckOnRay >= AIConfig->ObstacleFindingRayMaxDistance / 2.f)
+		if (currentDistanceToCheckOnRay >= AIConfig->ObstacleFindingRayMaxDistance)
 		{
 			return;
 		}
@@ -79,7 +79,11 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 
 		bool isAILocationProjectableToNavmesh = NavSystem->ProjectPointToNavigation(GetOwner()->GetActorLocation(), ClosestActorLocationPointOnNavmesh, extent);
 
-		if (FMath::IsNearlyEqual(currentPoint.X, ClosestNavmeshPoint.Location.X) && FMath::IsNearlyEqual(currentPoint.Y, ClosestNavmeshPoint.Location.Y) && IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) && isCurrentPointProjectableToNavmesh && isAILocationProjectableToNavmesh) {
+		if (FMath::IsNearlyEqual(currentPoint.X, ClosestNavmeshPoint.Location.X) && FMath::IsNearlyEqual(currentPoint.Y, ClosestNavmeshPoint.Location.Y) 
+			&& IsThisPointOutsideColliders(ClosestNavmeshPoint.Location, ImpactedComponent) && IsThisPointNotVisibleByPlayer(ClosestNavmeshPoint.Location) 
+			&& isCurrentPointProjectableToNavmesh && isAILocationProjectableToNavmesh) {
+
+
 			const FNavAgentProperties& NavAgentProperties = Cast<AEnemyCharacter>(GetOwner())->GetNavAgentPropertiesRef();
 
 			FPathFindingQuery Query;
@@ -101,7 +105,7 @@ void UHideSpotFinder::FindingPossibleHideSpotAlongCurrentRayAsync(FVector Impact
 
 		stepCount += AIConfig->ObstacleFindingRayDeltaStepSize;
 
-	} while (currentDistanceToCheckOnRay < AIConfig->ObstacleFindingRayMaxDistance / 2.f);
+	} while (currentDistanceToCheckOnRay < AIConfig->ObstacleFindingRayMaxDistance);
 }
 
 bool UHideSpotFinder::IsPossibleHideSpotFoundInThisAngle(AActor* Obstacle, float CurrentlyCheckedAngle) {
@@ -377,7 +381,7 @@ void UHideSpotFinder::DrawDebug(FVector FinalSelectedHideSpot) {
 	for (int i = 0; i < obstacleCheckDetails.Num(); i++) {
 		for (int j = 0; j < obstacleCheckDetails[i].AnglesAndPossibleHideSpots.Num(); j++) {
 			if (obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PossibleHideSpot.IsSet()) {
-				DrawDebugSphere(GetWorld(), obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PossibleHideSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius / 2.f, AIConfig->HideSpotDebugSphereSegments / 2.f, FColor::Green, false, 0.5f, 0, AIConfig->HideSpotDebugSphereThickness);
+				DrawDebugSphere(GetWorld(), obstacleCheckDetails[i].AnglesAndPossibleHideSpots[j].PossibleHideSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Green, false, 0.5f, 0, AIConfig->HideSpotDebugSphereThickness);
 			}
 		}
 	}

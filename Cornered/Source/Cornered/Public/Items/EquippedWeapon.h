@@ -35,6 +35,11 @@ class CORNERED_API AEquippedWeapon : public AActor
 {
 	GENERATED_BODY()
 
+private:
+
+	static const FName BeamStart;
+	static const FName BeamEnd;
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)

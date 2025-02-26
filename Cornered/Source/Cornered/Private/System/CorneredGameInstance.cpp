@@ -6,6 +6,8 @@
 #include <Kismet/GameplayStatics.h>
 #include "System/ProgressionGameState.h"
 
+const FString UCorneredGameInstance::DefaultSaveSlot(TEXT("DefaultSaveSlot"));
+
 void UCorneredGameInstance::SaveGame(int32 currentLevel, int32 unlockLevel, float openingProgress, int32 sniffedSoulCount, int32 sniffedSoulsGlobalCount, int32 sniffedOverloadGlobalCount)
 {
     if (CurrentSaveGame == nullptr)
@@ -20,7 +22,7 @@ void UCorneredGameInstance::SaveGame(int32 currentLevel, int32 unlockLevel, floa
     CurrentSaveGame->CurrentSniffedSoulsGlobal = sniffedSoulsGlobalCount;
     CurrentSaveGame->CurrentOverloadSoulsGlobal = sniffedOverloadGlobalCount;
 
-    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, TEXT("DefaultSaveSlot"), 0);
+    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, DefaultSaveSlot, 0);
 }
 
 void UCorneredGameInstance::SaveOpeningProgress(float openingProgress) {
@@ -31,7 +33,7 @@ void UCorneredGameInstance::SaveOpeningProgress(float openingProgress) {
 
     CurrentSaveGame->OpeningProgress = openingProgress;
 
-    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, TEXT("DefaultSaveSlot"), 0);
+    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, DefaultSaveSlot, 0);
 }
 
 void UCorneredGameInstance::SaveUnlockLevel(int32 unlockLevel) {
@@ -42,7 +44,7 @@ void UCorneredGameInstance::SaveUnlockLevel(int32 unlockLevel) {
 
     CurrentSaveGame->CurrentUnlockLevel = unlockLevel;
 
-    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, TEXT("DefaultSaveSlot"), 0);
+    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, DefaultSaveSlot, 0);
 }
 
 void UCorneredGameInstance::SaveSniffedSoulCount(int32 sniffedSoulCount) {
@@ -53,7 +55,7 @@ void UCorneredGameInstance::SaveSniffedSoulCount(int32 sniffedSoulCount) {
 
     CurrentSaveGame->SniffedSoulsInCurrentLevel = sniffedSoulCount;
 
-    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, TEXT("DefaultSaveSlot"), 0);
+    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, DefaultSaveSlot, 0);
 }
 
 void UCorneredGameInstance::SaveEndLevelStats(AProgressionGameState* GameState) {
@@ -69,12 +71,12 @@ void UCorneredGameInstance::SaveEndLevelStats(AProgressionGameState* GameState) 
     CurrentSaveGame->CurrentOverloadSoulsGlobal += GameState->GetCurrentOverloadSoulCount();
     CurrentSaveGame->SniffedSoulsInCurrentLevel = 0;
 
-    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, TEXT("DefaultSaveSlot"), 0);
+    UGameplayStatics::SaveGameToSlot(CurrentSaveGame, DefaultSaveSlot, 0);
 }
 
 void UCorneredGameInstance::LoadGame()
 {
-    CurrentSaveGame = Cast<UCorneredSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("DefaultSaveSlot"), 0));
+    CurrentSaveGame = Cast<UCorneredSaveGame>(UGameplayStatics::LoadGameFromSlot(DefaultSaveSlot, 0));
 
     if (CurrentSaveGame)
     {

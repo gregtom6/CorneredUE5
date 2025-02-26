@@ -28,6 +28,9 @@ class CORNERED_API AEnemyCharacter : public ACorneredCharacter
 {
 	GENERATED_BODY()
 
+private:
+	static const FName BoneName;
+
 public:
 
 	UPROPERTY(VisibleAnywhere)

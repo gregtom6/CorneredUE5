@@ -8,6 +8,8 @@
 #include "Configs/DataAssets/Config_Soul.h"
 #include "Materials/MaterialInstanceDynamic.h"
 
+const FName ULightBlinkController::ColorMultiplier(TEXT("ColorMultiplier"));
+
 // Sets default values for this component's properties
 ULightBlinkController::ULightBlinkController()
 {
@@ -69,7 +71,7 @@ void ULightBlinkController::TickComponent(float DeltaTime, ELevelTick TickType, 
 	for (int i = 0; i < LightMaterials.Num(); i++) {
 		if (LightMaterials[i]) {
 
-			LightMaterials[i]->SetScalarParameterValue(FName("ColorMultiplier"), IntensityMultiplier);
+			LightMaterials[i]->SetScalarParameterValue(ColorMultiplier, IntensityMultiplier);
 		}
 
 	}
@@ -90,7 +92,7 @@ void ULightBlinkController::OnSoulDissipated() {
 
 	for (int i = 0; i < LightMaterials.Num(); i++) {
 		if (LightMaterials[i]) {
-			LightMaterials[i]->SetScalarParameterValue(FName("ColorMultiplier"), 1.f);
+			LightMaterials[i]->SetScalarParameterValue(ColorMultiplier, 1.f);
 		}
 	}
 }

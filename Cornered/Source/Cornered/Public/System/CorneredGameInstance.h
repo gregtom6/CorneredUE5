@@ -19,6 +19,8 @@ class CORNERED_API UCorneredGameInstance : public UGameInstance
 
 private:
 
+	static const FString DefaultSaveSlot;
+
 	UPROPERTY()
 	TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
 

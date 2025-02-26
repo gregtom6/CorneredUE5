@@ -11,6 +11,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "Characters/ActorComponents/EquipmentVisualizer.h"
 
+const FName UEnemyWeapon::Target(TEXT("Target"));
+
 UEnemyWeapon::UEnemyWeapon()
 {
 	PrimaryComponentTick.bCanEverTick = true;
@@ -37,7 +39,7 @@ void UEnemyWeapon::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 		{
 			APawn* pawn = UGameplayStatics::GetPlayerPawn(World, 0);
 
-			UStaticMeshComponent* TaggedComponent = Cast<UStaticMeshComponent>(pawn->FindComponentByTag(UStaticMeshComponent::StaticClass(), FName("Target")));
+			UStaticMeshComponent* TaggedComponent = Cast<UStaticMeshComponent>(pawn->FindComponentByTag(UStaticMeshComponent::StaticClass(), Target));
 
 			FVector Direction = pawn->GetActorLocation() - Owner->GetActorLocation();
 			Direction.Normalize();
@@ -75,7 +77,7 @@ FShotRayDatas UEnemyWeapon::GetShotRayDatas() const {
 
 	APawn* pawn = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
 
-	UStaticMeshComponent* TaggedComponent = Cast<UStaticMeshComponent>(pawn->FindComponentByTag(UStaticMeshComponent::StaticClass(), FName("Target")));
+	UStaticMeshComponent* TaggedComponent = Cast<UStaticMeshComponent>(pawn->FindComponentByTag(UStaticMeshComponent::StaticClass(), Target));
 
 	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 

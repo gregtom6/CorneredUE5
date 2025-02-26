@@ -29,6 +29,7 @@
 #include "Components/SceneComponent.h"
 #include "Engine/SkeletalMesh.h"
 
+const FName AEnemyCharacter::BoneName(TEXT("NeckBottom"));
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -131,8 +132,6 @@ void AEnemyCharacter::SetDieState() {
 }
 
 void AEnemyCharacter::PlayDieNiagara() {
-
-	FName BoneName = TEXT("NeckBottom");
 
 	// Reattach Niagara component to the skeletal mesh (ragdoll)
 	DeathNiagara->AttachToComponent(

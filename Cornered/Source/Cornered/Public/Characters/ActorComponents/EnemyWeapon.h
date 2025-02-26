@@ -17,6 +17,9 @@ class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 	GENERATED_BODY()
 
 private:
+
+	static const FName Target;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
 

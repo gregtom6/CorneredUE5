@@ -18,6 +18,8 @@ class CORNERED_API ULightBlinkController : public UActorComponent
 
 private:
 
+	static const FName ColorMultiplier;
+
 	bool bIsSoulExisting;
 
 	float Time;

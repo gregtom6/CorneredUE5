@@ -9,6 +9,8 @@
 #include "Environment/ConveyorBelt/BeltElement.h"
 #include "Environment/Interactables/CorneredButton.h"
 
+const FString ABeltController::BeltElement(TEXT("BP_BeltElement"));
+
 ABeltController::ABeltController()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -35,7 +37,7 @@ void ABeltController::BeginPlay()
 }
 
 void ABeltController::ObjectPoolInitialized() {
-	AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
+	AActor* beltElement = ObjectPool->GetPooledActor(BeltElement);
 	beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
 
 	CurrentlyVisibleBeltElements.Add(beltElement);
@@ -83,7 +85,7 @@ void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* 
 {
 	if (GetWorld() && !GetWorld()->bIsTearingDown && OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool && this)
 	{
-		AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
+		AActor* beltElement = ObjectPool->GetPooledActor(BeltElement);
 
 		if (beltElement) {
 			beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());

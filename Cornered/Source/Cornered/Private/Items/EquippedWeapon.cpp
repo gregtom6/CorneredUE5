@@ -11,6 +11,9 @@
 #include <Camera/CameraComponent.h>
 #include "Components/AudioComponent.h"
 
+const FName AEquippedWeapon::BeamStart(TEXT("BeamStart"));
+const FName AEquippedWeapon::BeamEnd(TEXT("BeamEnd"));
+
 AEquippedWeapon::AEquippedWeapon()
 {
 	PrimaryActorTick.bCanEverTick = false;
@@ -49,8 +52,8 @@ void AEquippedWeapon::ShotHappened() {
 
 		FShotRayDatas ShotDatas = GetShotRayDatas();
 
-		NiagaraComp->SetVariablePosition("BeamStart", MuzzlePosition->GetComponentLocation());
-		NiagaraComp->SetVariablePosition("BeamEnd", ShotDatas.End);
+		NiagaraComp->SetVariablePosition(BeamStart, MuzzlePosition->GetComponentLocation());
+		NiagaraComp->SetVariablePosition(BeamEnd, ShotDatas.End);
 
 		NiagaraComp->Activate(true);
 

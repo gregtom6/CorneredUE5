@@ -7,9 +7,10 @@
 #include "System/CorneredGameInstance.h"
 #include "System/ProgressionGameState.h"
 
-AGameWinTrigger::AGameWinTrigger()
+void AGameWinTrigger::BeginPlay()
 {
-    // Bind the overlap event to the function
+    Super::BeginPlay();
+
     OnActorBeginOverlap.AddUniqueDynamic(this, &AGameWinTrigger::OnOverlapBegin);
 }
 

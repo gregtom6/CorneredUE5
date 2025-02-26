@@ -13,10 +13,13 @@ class CORNERED_API AGameWinTrigger : public ATriggerBox
 {
 	GENERATED_BODY()
 
-public:
+protected:
 
-	AGameWinTrigger();
+	virtual void BeginPlay() override;
+
+private:
 
 	UFUNCTION()
 	void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
+
 };

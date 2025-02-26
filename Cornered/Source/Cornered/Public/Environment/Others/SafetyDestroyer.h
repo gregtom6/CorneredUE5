@@ -16,6 +16,9 @@ class CORNERED_API ASafetyDestroyer : public ATriggerBox
 
 public:
 	ASafetyDestroyer();
+protected:
+
+	virtual void BeginPlay() override;
 
 private:
 

@@ -32,16 +32,10 @@ protected:
 
 public:	
 	ACorneredLight();
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	// Inherited via ILightBlinkable
 	TArray<ULightComponent*> GetLightComponents() override;
 
 	TArray<UMaterialInstanceDynamic*> GetLightMaterials() override;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
 };

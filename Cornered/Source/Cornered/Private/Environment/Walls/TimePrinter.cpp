@@ -24,7 +24,6 @@ void ATimePrinter::BeginPlay()
 	Super::BeginPlay();
 
 	CorneredGameMode = GetWorld()->GetAuthGameMode<ACorneredGameMode>();
-	
 }
 
 // Called every frame
@@ -42,6 +41,5 @@ void ATimePrinter::Tick(float DeltaTime)
 
 		TimeLeftComp->SetText(FText::FromString(stringVersion));
 	}
-	
 }
 

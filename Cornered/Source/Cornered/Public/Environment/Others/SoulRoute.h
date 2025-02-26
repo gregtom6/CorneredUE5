@@ -23,10 +23,7 @@ private:
 	TObjectPtr<USplineComponent> SplineComp;
 	
 public:	
-	// Sets default values for this actor's properties
 	ASoulRoute();
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	FVector GetSplinePoint(int32 index) const;
 
@@ -41,7 +38,7 @@ public:
 	float GetRouteLengthOnSpline(FVector StartPos);
 
 protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
 
 };

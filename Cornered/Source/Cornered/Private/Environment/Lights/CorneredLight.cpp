@@ -12,7 +12,7 @@
 ACorneredLight::ACorneredLight()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SpotLightComp = CreateDefaultSubobject<USpotLightComponent>(TEXT("SpotLightComp"));
@@ -25,20 +25,6 @@ ACorneredLight::ACorneredLight()
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	RectLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	StaticMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
-}
-
-// Called when the game starts or when spawned
-void ACorneredLight::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ACorneredLight::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 TArray<ULightComponent*> ACorneredLight::GetLightComponents()

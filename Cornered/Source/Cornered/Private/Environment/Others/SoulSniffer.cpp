@@ -19,7 +19,7 @@
 ASoulSniffer::ASoulSniffer()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Target = CreateDefaultSubobject<USceneComponent>(TEXT("Target"));
@@ -77,13 +77,6 @@ void ASoulSniffer::BeginPlay()
 	BorderCountTextComp->SetText(FText::FromString(borderCountInString));
 
 	PrintCurrentSniffedSoulCount();
-}
-
-// Called every frame
-void ASoulSniffer::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 void ASoulSniffer::OnEnterDetectorBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,

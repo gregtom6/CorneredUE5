@@ -67,12 +67,6 @@ void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	UEnhancedInputLocalPlayerSubsystem* InputSubsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	InputSubsystem->ClearAllMappings();
 	InputSubsystem->AddMappingContext(InputMappingContext, 0);
-
-	//UCorneredCheats* CorneredCheats = Cast<UCorneredCheats>(CheatManager);
-
-	//if (CorneredCheats) {
-		//CorneredCheats->RegisterCommands();
-	//}
 }
 
 void ACorneredPlayerController::OnUnPossess() {

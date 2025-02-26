@@ -9,8 +9,7 @@
 // Sets default values
 ASoulRoute::ASoulRoute()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	SplineComp = CreateDefaultSubobject<USplineComponent>(TEXT("SplineComp"));
@@ -29,13 +28,6 @@ void ASoulRoute::BeginPlay()
 	{
 		MySubsystem->SetSoulRoute(this);
 	}
-}
-
-// Called every frame
-void ASoulRoute::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 FVector ASoulRoute::GetSplinePoint(int32 index) const {

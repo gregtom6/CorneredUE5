@@ -33,7 +33,7 @@ struct FWeaponSettingsEntry
 	GENERATED_BODY()
 
 	FWeaponSettingsEntry()
-		: Key(EItemType::Count), CooldownTimeInSec(0.f), Damage(0.f) { }
+		: Key(EItemType::Count), DecalSize(1.f,1.f,1.f), DecalLifeSpan(0.f), CooldownTimeInSec(0.f), Damage(0.f) { }
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	EItemType Key;

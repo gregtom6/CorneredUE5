@@ -21,6 +21,9 @@ struct FSoulBordersPerLevels
 {
 	GENERATED_BODY()
 
+	FSoulBordersPerLevels()
+		: SoulBorder(0.f) { }
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	TSoftObjectPtr<UWorld> Level;
 

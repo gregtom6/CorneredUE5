@@ -107,6 +107,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float PercentageOfEquipPath;
 
+	UPROPERTY(EditAnywhere)
+	float ShotRayDistance;
+
 private:
 
 	UPROPERTY(EditAnywhere)

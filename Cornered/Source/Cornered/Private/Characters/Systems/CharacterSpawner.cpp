@@ -2,8 +2,6 @@
 
 
 #include "Characters/Systems/CharacterSpawner.h"
-#include "Engine/World.h"
-#include "Engine/LevelStreaming.h"
 #include "Configs/DataAssets/Config_Character_General.h"
 #include "Characters/Systems/EnemyCharacter.h"
 #include <Kismet/GameplayStatics.h>
@@ -11,13 +9,9 @@
 #include "Configs/DeveloperSettings/ConfigCharacterSpawnerDevSettings.h"
 #include "Engine/World.h"
 #include "Engine/Engine.h"
-#include "Engine/TargetPoint.h"
 #include "Engine/LevelStreaming.h"
-#include "Characters/Systems/EnemyCharacter.h"
-#include "Configs/DataAssets/Config_Character_General.h"
 #include "System/CorneredGameMode.h"
 #include "GameFramework/Character.h"
-#include "Engine/World.h"
 #include "System/ProgressionGameState.h"
 #include "Characters/Systems/Soul.h"
 #include "TimerManager.h"

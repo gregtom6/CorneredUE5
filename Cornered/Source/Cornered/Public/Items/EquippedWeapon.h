@@ -12,6 +12,7 @@ class UActorSequenceComponent;
 class UActorSequencePlayer;
 class UNiagaraComponent;
 class UAudioComponent;
+class UConfig_Equipment;
 
 USTRUCT(BlueprintType)
 struct FShotRayDatas
@@ -70,6 +71,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> ShotAudio;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
 public:
 	AEquippedWeapon();

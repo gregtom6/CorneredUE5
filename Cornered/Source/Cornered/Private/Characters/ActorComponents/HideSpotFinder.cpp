@@ -11,7 +11,6 @@
 #include "Camera/CameraComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Characters/Systems/PlayerCharacter.h"
-#include "NavigationSystem.h"
 
 UHideSpotFinder::UHideSpotFinder()
 {

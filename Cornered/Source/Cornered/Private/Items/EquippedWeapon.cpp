@@ -10,6 +10,7 @@
 #include "NiagaraFunctionLibrary.h"
 #include <Camera/CameraComponent.h>
 #include "Components/AudioComponent.h"
+#include "Configs/DataAssets/Config_Equipment.h"
 
 const FName AEquippedWeapon::BeamStart(TEXT("BeamStart"));
 const FName AEquippedWeapon::BeamEnd(TEXT("BeamEnd"));
@@ -80,7 +81,7 @@ FShotRayDatas AEquippedWeapon::GetShotRayDatas() const {
 	UCameraComponent* cameraComp = EquipperActor->FindComponentByClass<UCameraComponent>();
 
 	ShotDatas.Origin = ShootRaycastStartPosition->GetComponentLocation();
-	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f);
+	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * EquipmentConfig->ShotRayDistance);
 
 	return ShotDatas;
 }

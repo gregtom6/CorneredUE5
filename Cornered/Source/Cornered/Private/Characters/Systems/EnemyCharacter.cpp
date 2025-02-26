@@ -19,15 +19,12 @@
 #include "Characters/ActorComponents/HideSpotFinder.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
-#include "Characters/ActorComponents/InteractableDetector.h"
 #include "Components/AudioComponent.h"
 #include "CableComponent.h"
 #include "NiagaraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Materials/MaterialInterface.h"
-#include "Configs/DataAssets/Config_DamageVisual.h"
 #include "Components/SceneComponent.h"
-#include "Engine/SkeletalMesh.h"
 
 const FName AEnemyCharacter::BoneName(TEXT("NeckBottom"));
 

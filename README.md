@@ -2,12 +2,6 @@ CORNERED (Unreal Engine 5)
 
 Cornered © 2024 by Tamas Gregus is licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International 
 
-Visually not polished, but REFACTORED branch: 
-https://github.com/gregtom6/CorneredUE5/tree/master
-
-Most up-to-date branch, have more features, visually nice, but NOT REFACTORED yet: 
-https://github.com/gregtom6/CorneredUE5/tree/visual_upgrade
-
 AI code is: Private/Characters/ActorComponents/HideSpotFinder.cpp
 
 https://www.youtube.com/watch?v=zcvlouoBm9U

@@ -3,6 +3,8 @@
 
 #include "Environment/Interactables/HoldableButton.h"
 #include "Environment/Interactables/HoldActivable.h"
+#include "ActorSequenceComponent.h"
+#include "ActorSequencePlayer.h"
 
 // Sets default values
 AHoldableButton::AHoldableButton()
@@ -13,8 +15,34 @@ AHoldableButton::AHoldableButton()
 
 void AHoldableButton::HoldingStarted() {
 	HoldActivable->HoldProcessStarted();
+
+	if (ButtonReleaseComp) {
+		ButtonReleaseComp->StopSequence();
+	}
+
+	if (ButtonPushComp) {
+		ButtonPushComp->PlaySequence();
+	}
+
+	if (ButtonRotateComp) {
+		ButtonRotateComp->StopSequence();
+		ButtonRotateComp->GetSequencePlayer()->PlayLooping();
+	}
 }
 
 void AHoldableButton::HoldingFinished() {
 	HoldActivable->HoldProcessEnded();
+
+	if (ButtonPushComp) {
+		ButtonPushComp->StopSequence();
+	}
+
+	if (ButtonRotateComp) {
+		ButtonRotateComp->StopSequence();
+		ButtonRotateComp->GetSequencePlayer()->SetPlaybackPosition(FMovieSceneSequencePlaybackParams(0.0f, EUpdatePositionMethod::Jump));
+	}
+
+	if (ButtonReleaseComp) {
+		ButtonReleaseComp->PlaySequence();
+	}
 }

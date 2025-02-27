@@ -5,11 +5,14 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Configs/DataAssets/Config_Equipment.h"
+#include "Environment/Lights/LightBlinkable.h"
 #include "EquipmentHint.generated.h"
 
 class USceneComponent;
 class UStaticMeshComponent;
 class UConfig_Hint;
+class URectLightComponent;
+class ULightBlinkController;
 
 UENUM()
 enum class EEquipment :uint8
@@ -22,7 +25,7 @@ enum class EEquipment :uint8
 };
 
 UCLASS()
-class CORNERED_API AEquipmentHint : public AActor
+class CORNERED_API AEquipmentHint : public AActor, public ILightBlinkable
 {
 	GENERATED_BODY()
 
@@ -40,6 +43,20 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Hint> HintConfig;
 
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<URectLightComponent> RectLightWeapon;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<URectLightComponent> RectLightShield;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStaticMeshComponent> LightMeshWeapon;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStaticMeshComponent> LightMeshShield;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<ULightBlinkController> LightBlinkController;
 
 public:
 	AEquipmentHint();
@@ -50,5 +67,11 @@ protected:
 private:
 
 	UFUNCTION()
-	void OnEquipmentDecided(FItemDatas Weapon, FItemDatas Shield, FItemDatas Additional);
+	void OnEquipmentDecided(FItemData Weapon, FItemData Shield, FItemData Additional);
+
+	// Inherited via ILightBlinkable
+	TArray<ULightComponent*> GetLightComponents() override;
+
+	// Inherited via ILightBlinkable
+	TArray<UMaterialInstanceDynamic*> GetLightMaterials() override;
 };

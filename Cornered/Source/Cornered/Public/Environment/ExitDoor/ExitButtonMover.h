@@ -19,7 +19,6 @@ protected:
 	TObjectPtr<UActorSequenceComponent> OpenSequ;
 private:
 
-
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<USceneComponent> Root;
 

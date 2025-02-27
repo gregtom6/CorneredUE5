@@ -69,6 +69,8 @@ protected:
 
 	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const override;
 
+	virtual bool IsSeeingInteractable() const override;
+
 	virtual void BeginPlay() override;
 
 private:

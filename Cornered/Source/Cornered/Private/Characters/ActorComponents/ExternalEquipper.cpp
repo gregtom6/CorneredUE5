@@ -11,7 +11,7 @@ UExternalEquipper::UExternalEquipper()
 	PrimaryComponentTick.bCanEverTick = false;
 }
 
-void UExternalEquipper::Equip(FItemDatas weapon, FItemDatas shield, FItemDatas additional) {
+void UExternalEquipper::Equip(FItemData weapon, FItemData shield, FItemData additional) {
 	
 	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
 	UInventory* inventory = GetOwner()->FindComponentByClass<UInventory>();

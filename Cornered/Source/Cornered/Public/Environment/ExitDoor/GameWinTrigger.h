@@ -6,18 +6,20 @@
 #include "Engine/TriggerBox.h"
 #include "GameWinTrigger.generated.h"
 
-/**
- *
- */
+class AActor;
+
 UCLASS()
 class CORNERED_API AGameWinTrigger : public ATriggerBox
 {
 	GENERATED_BODY()
 
-public:
+protected:
 
-	AGameWinTrigger();
+	virtual void BeginPlay() override;
+
+private:
 
 	UFUNCTION()
-	void OnOverlapBegin(class AActor* OverlappedActor, class AActor* OtherActor);
+	void OnOverlapBegin(AActor* OverlappedActor, AActor* OtherActor);
+
 };

@@ -24,6 +24,10 @@ TArray<FItemData> AMixingItemDetector::GetDetectedItems() const {
 	return itemTypes;
 }
 
+bool AMixingItemDetector::AreThereDetectedItems() {
+	return GetDetectedItems().Num() > 0;
+}
+
 void AMixingItemDetector::DestroyAllItems() {
 	TArray<AActor*> OverlappingActors;
 	GetCollisionComponent()->GetOverlappingActors(OverlappingActors);

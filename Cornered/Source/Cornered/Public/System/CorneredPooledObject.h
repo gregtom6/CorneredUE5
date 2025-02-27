@@ -15,7 +15,6 @@ class CORNERED_API UCorneredPooledObject : public UActorComponent
 {
 	GENERATED_BODY()
 
-
 public:
 
 	UPROPERTY(VisibleInstanceOnly)
@@ -24,7 +23,7 @@ public:
 	FActivatedDelegate Activated;
 
 private:
-
+	UPROPERTY()
 	TObjectPtr<ACorneredObjectPool> _ObjectPool;
 
 public:

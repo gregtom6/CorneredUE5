@@ -14,10 +14,10 @@
 void AProgressionGameState::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 	if (DefeatedCharacter->IsA<AEnemyCharacter>()) {
-		StepProgress();
+		StepUnlockLevel();
 	}
 	else {
-		ResetProgress();
+		ResetUnlockLevel();
 	}
 
 	CharacterDefeated.Broadcast(DefeatedCharacter);
@@ -25,6 +25,13 @@ void AProgressionGameState::OnCharacterDefeated(ACorneredCharacter* DefeatedChar
 
 void AProgressionGameState::OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot) {
 	CharacterShotReceived.Broadcast(CharacterReceivedShot);
+}
+
+void AProgressionGameState::OnSoulSniffed() {
+	
+	SoulSniffedCount += 1;
+
+	SaveProgress();
 }
 
 void AProgressionGameState::BeginPlay()
@@ -41,6 +48,7 @@ void AProgressionGameState::BeginPlay()
 	if (MySubsystem)
 	{
 		MySubsystem->OnEnemyGenerated.AddUniqueDynamic(this, &AProgressionGameState::OnEnemyGenerated);
+		MySubsystem->OnSoulDissipated.AddUniqueDynamic(this, &AProgressionGameState::OnSoulSniffed);
 	}
 }
 
@@ -62,11 +70,18 @@ void AProgressionGameState::SubscribeToCharacterDamageDelegates(ACorneredCharact
 void AProgressionGameState::ResetProgress() {
 	
 	UnlockLevel = 0;
+	SoulSniffedCount = 0;
 
 	SaveProgress();
 }
 
-void AProgressionGameState::StepProgress() {
+void AProgressionGameState::ResetUnlockLevel() {
+	UnlockLevel = 0;
+
+	SaveProgress();
+}
+
+void AProgressionGameState::StepUnlockLevel() {
 
 	UnlockLevel = FMath::Clamp(UnlockLevel + 1, 0, ProgressConfig->GetMaxUnlockLevel());
 
@@ -80,10 +95,25 @@ void AProgressionGameState::SaveProgress() {
 
 	UCorneredGameInstance* CorneredGameInstance = Cast<UCorneredGameInstance>(GameInstance);
 
-	CorneredGameInstance->SaveGame(UnlockLevel);
+	CorneredGameInstance->SaveUnlockLevel(UnlockLevel);
+
+	CorneredGameInstance->SaveSniffedSoulCount(SoulSniffedCount);
 }
 
 bool AProgressionGameState::IsAbilityAlreadyUnlocked(EAbility Ability) {
 
     return ProgressConfig->IsAbilityUnlocked(Ability, this);
+}
+
+int32 AProgressionGameState::GetCurrentSniffedSoulCount() const {
+	return SoulSniffedCount;
+}
+
+int32 AProgressionGameState::GetCurrentOverloadSoulCount() const {
+	int32 overloadSouls = SoulSniffedCount - ProgressConfig->GetSoulBorderCount(GetWorld());
+	if (overloadSouls > 0) {
+		return overloadSouls;
+	}
+
+	return 0;
 }

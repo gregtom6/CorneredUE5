@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "Items/IPickable.h"
+#include "Items/Pickable.h"
 #include "Picker.generated.h"
 
 class UInteractableDetector;
@@ -20,7 +20,8 @@ private:
 
 	bool bPickupDropHappenedInThisFrame;
 
-	IIPickable* PickedPickable;
+	UPROPERTY()
+	TScriptInterface<IPickable> PickedPickable;
 
 public:
 	// Sets default values for this component's properties
@@ -28,7 +29,7 @@ public:
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	IIPickable* GetPickedPickable() const;
+	IPickable* GetPickedPickable() const;
 
 	void RemovePickable();
 protected:

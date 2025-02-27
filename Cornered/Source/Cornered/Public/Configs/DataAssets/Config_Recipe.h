@@ -6,6 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "Characters/ActorComponents/CharacterWeapon.h"
 #include "Configs/DataAssets/Config_MixingMachine.h"
+#include "Items/ItemMaterial.h"
 #include "Config_Recipe.generated.h"
 
 class AIngredient;
@@ -46,21 +47,6 @@ struct FProductClassEntry
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	TSubclassOf<AIngredient> IngredientClass;
 
-};
-
-USTRUCT(BlueprintType)
-struct FIngredientRadiatingMaterialEntry {
-
-	GENERATED_BODY()
-
-	FIngredientRadiatingMaterialEntry()
-		: Key(EItemType::Count) { }
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	EItemType Key;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	TObjectPtr<UMaterialInterface> Material;
 };
 
 USTRUCT(BlueprintType)
@@ -108,7 +94,7 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
-	UConfig_Progress* ProgressConfig;
+	TObjectPtr<UConfig_Progress> ProgressConfig;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
 	TArray<FRecipeEntry> RecipeEntries;
@@ -117,10 +103,10 @@ private:
 	TArray<FProductClassEntry> ProductClassEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-	TArray< FIngredientRadiatingMaterialEntry> IngredientRadiatingMaterialEntries;
+	TArray<FItemMaterial> IngredientRadiatingMaterialEntries;
 
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-	TArray< FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
+	TArray<FEffectRadiatingMaterialEntry> EffectRadiatingMaterialEntries;
 
 public:
 

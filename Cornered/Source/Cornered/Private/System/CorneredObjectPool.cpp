@@ -135,6 +135,12 @@ void ACorneredObjectPool::RegenItem(int poolIndex, int positionIndex)
 }
 
 UCorneredPooledObject* ACorneredObjectPool::SpawnAndSetupPooledObject(FActorSpawnParameters spawnParams, AActor*& spawnedActor,int poolIndex) {
+	
+	if (!GetWorld() || GetWorld()->bIsTearingDown)
+	{
+		return nullptr;
+	}
+	
 	spawnedActor = GetWorld()->SpawnActor(_PooledObjectData[poolIndex]._ActorTemplate,
 		&FVector::ZeroVector, &FRotator::ZeroRotator, spawnParams);
 	UCorneredPooledObject* poolComp = NewObject<UCorneredPooledObject>(spawnedActor);

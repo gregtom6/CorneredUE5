@@ -15,12 +15,15 @@ class CORNERED_API UPlayerWeapon : public UCharacterWeapon
 
 private:
 
+	UPROPERTY()
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
 
 protected:
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	virtual FShotRayDatas GetShotRayDatas() const override;
 
 private:
 

@@ -17,16 +17,30 @@ class CORNERED_API UEnemyWeapon : public UCharacterWeapon
 	GENERATED_BODY()
 
 private:
+
+	static const FName Target;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_AI> AIConfig;
+
+	UPROPERTY(EditAnywhere)
+	bool bDrawDebug;
 
 public:
 
 	UEnemyWeapon();
 
+	void ManageDebugDrawings(bool enabled);
+
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+protected:
+
+	virtual FShotRayDatas GetShotRayDatas() const override;
 
 private:
 
 	virtual ECollisionChannel GetOpponentTraceChannel() const override;
+
+	void DrawDebug(UWorld* World, FShotRayDatas ShotRayDatas, UStaticMeshComponent* TaggedComponent);
 };

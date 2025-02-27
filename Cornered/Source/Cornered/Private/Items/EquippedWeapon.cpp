@@ -10,6 +10,10 @@
 #include "NiagaraFunctionLibrary.h"
 #include <Camera/CameraComponent.h>
 #include "Components/AudioComponent.h"
+#include "Configs/DataAssets/Config_Equipment.h"
+
+const FName AEquippedWeapon::BeamStart(TEXT("BeamStart"));
+const FName AEquippedWeapon::BeamEnd(TEXT("BeamEnd"));
 
 AEquippedWeapon::AEquippedWeapon()
 {
@@ -17,14 +21,20 @@ AEquippedWeapon::AEquippedWeapon()
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	MuzzlePosition = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzlePosition"));
+	ShootRaycastStartPosition= CreateDefaultSubobject<USceneComponent>(TEXT("ShootRaycastStartPosition"));
 	PointLightComp = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLightComp"));
 	NiagaraComp = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComp"));
+	MuzzleFlashComp= CreateDefaultSubobject<UNiagaraComponent>(TEXT("MuzzleFlashComp"));
+	SmokeComp= CreateDefaultSubobject<UNiagaraComponent>(TEXT("SmokeComp"));
 	ShotAudio = CreateDefaultSubobject<UAudioComponent>(TEXT("ShotAudio"));
 
 	SetRootComponent(Root);
 	MuzzlePosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	ShootRaycastStartPosition->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	PointLightComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	MuzzleFlashComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	NiagaraComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	SmokeComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 	ShotAudio->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
@@ -43,10 +53,14 @@ void AEquippedWeapon::ShotHappened() {
 
 		FShotRayDatas ShotDatas = GetShotRayDatas();
 
-		NiagaraComp->SetVariablePosition("BeamStart", ShotDatas.Origin);
-		NiagaraComp->SetVariablePosition("BeamEnd", ShotDatas.End);
+		NiagaraComp->SetVariablePosition(BeamStart, MuzzlePosition->GetComponentLocation());
+		NiagaraComp->SetVariablePosition(BeamEnd, ShotDatas.End);
 
 		NiagaraComp->Activate(true);
+
+		MuzzleFlashComp->Activate(true);
+
+		SmokeComp->Activate(true);
 	}
 
 	ShotAudio->Play();
@@ -66,8 +80,8 @@ FShotRayDatas AEquippedWeapon::GetShotRayDatas() const {
 
 	UCameraComponent* cameraComp = EquipperActor->FindComponentByClass<UCameraComponent>();
 
-	ShotDatas.Origin = MuzzlePosition->GetComponentLocation();
-	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * 10000.0f);
+	ShotDatas.Origin = ShootRaycastStartPosition->GetComponentLocation();
+	ShotDatas.End = cameraComp->GetComponentLocation() + (cameraComp->GetForwardVector() * EquipmentConfig->ShotRayDistance);
 
 	return ShotDatas;
 }

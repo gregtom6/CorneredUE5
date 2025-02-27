@@ -7,6 +7,7 @@
 #include "System/CorneredPlayerController.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/ActorComponents/InteractableDetector.h"
+#include "Characters/ActorComponents/EquipmentVisualizer.h"
 
 void UPlayerWeapon::BeginPlay() {
 
@@ -37,6 +38,12 @@ void UPlayerWeapon::ShootHappened() {
 	}
 
 	ShootWithEquippedWeapon();
+}
+
+FShotRayDatas UPlayerWeapon::GetShotRayDatas() const {
+	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
+
+	return equipmentVisualizer->GetShotRayDatas();
 }
 
 ECollisionChannel UPlayerWeapon::GetOpponentTraceChannel() const {

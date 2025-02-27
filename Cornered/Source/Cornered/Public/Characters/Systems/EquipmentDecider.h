@@ -11,7 +11,7 @@ class UCharacterSpawner;
 class UConfig_Equipment;
 class AEnemyCharacter;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FEquipmentDecidedDelegate, FItemDatas, Weapon, FItemDatas, Shield, FItemDatas, Additional);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FEquipmentDecidedDelegate, FItemData, Weapon, FItemData, Shield, FItemData, Additional);
 
 UCLASS()
 class CORNERED_API UEquipmentDecider : public UWorldSubsystem
@@ -23,11 +23,9 @@ public:
 
 public:
 
-
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
-
 
 protected:
 	UFUNCTION()

@@ -17,9 +17,11 @@ class CORNERED_API UInteractor : public USceneComponent
 private:
 	UPROPERTY()
 	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
+
 	bool bInteractHappenedInThisFrame;
 
-	IHoldable* Holdable;
+	UPROPERTY()
+	TScriptInterface<IHoldable> Holdable;
 
 public:
 	// Sets default values for this component's properties
@@ -32,7 +34,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
 
 	UFUNCTION()
 	void InteractStarted();

@@ -9,9 +9,6 @@
 class UUserWidget;
 class UAudioComponent;
 
-/**
- *
- */
 UCLASS()
 class CORNERED_API AGameOverHUD : public AHUD
 {
@@ -32,7 +29,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> SFXComp;
-
 
 public:
 

@@ -5,17 +5,23 @@
 #include "Components/StaticMeshComponent.h"
 #include "Configs/DataAssets/Config_Belt.h"
 #include "Environment/ConveyorBelt/BeltController.h"
+#include "ActorSequenceComponent.h"
+#include "ActorSequencePlayer.h"
 
 AConveyorBeltSpeederButton::AConveyorBeltSpeederButton() {
 
 	BeltButtonStaticMeshComp=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BeltButtonStaticMeshComp"));
+	ButtonHolderStaticMeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ButtonHolderStaticMeshComp"));
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
 	SetRootComponent(Root);
-	BeltButtonStaticMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	ButtonHolderStaticMeshComp->AttachToComponent(Root, FAttachmentTransformRules::KeepRelativeTransform);
+	BeltButtonStaticMeshComp->AttachToComponent(ButtonHolderStaticMeshComp, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 void AConveyorBeltSpeederButton::BeginPlay() {
+
+	Super::BeginPlay();
 
 	SetMaterialBasedOnSpeed();
 }

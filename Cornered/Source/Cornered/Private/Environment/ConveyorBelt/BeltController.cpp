@@ -9,15 +9,14 @@
 #include "Environment/ConveyorBelt/BeltElement.h"
 #include "Environment/Interactables/CorneredButton.h"
 
+const FString ABeltController::BeltElement(TEXT("BP_BeltElement"));
+
 ABeltController::ABeltController()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
 	SpawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("SpawnPointComp"));
 	DespawnPointComp = CreateDefaultSubobject<UBoxComponent>(TEXT("DespawnPointComp"));
-
-	DespawnPointComp->OnComponentBeginOverlap.AddUniqueDynamic(this, &ABeltController::OnOverlapBegin);
-	SpawnPointComp->OnComponentEndOverlap.AddUniqueDynamic(this, &ABeltController::OnOverlapEnd);
 }
 
 void ABeltController::BeginPlay()
@@ -26,6 +25,8 @@ void ABeltController::BeginPlay()
 
 	CurrentBeltSpeed = EBeltSpeed::Normal;
 
+	DespawnPointComp->OnComponentBeginOverlap.AddUniqueDynamic(this, &ABeltController::OnOverlapBegin);
+	SpawnPointComp->OnComponentEndOverlap.AddUniqueDynamic(this, &ABeltController::OnOverlapEnd);
 	CorneredButton->PressHappened.AddUniqueDynamic(this, &ABeltController::PressHappened);
 	ObjectPool->InitializationHappened.AddUniqueDynamic(this, &ABeltController::ObjectPoolInitialized);
 
@@ -35,7 +36,7 @@ void ABeltController::BeginPlay()
 }
 
 void ABeltController::ObjectPoolInitialized() {
-	AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
+	AActor* beltElement = ObjectPool->GetPooledActor(BeltElement);
 	beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());
 
 	CurrentlyVisibleBeltElements.Add(beltElement);
@@ -81,9 +82,9 @@ void ABeltController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
 
 void ABeltController::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool && this)
+	if (GetWorld() && !GetWorld()->bIsTearingDown && OtherActor && (OtherActor != this) && OtherComp && OtherActor->IsA<ABeltElement>() && ObjectPool && this)
 	{
-		AActor* beltElement = ObjectPool->GetPooledActor("BP_BeltElement");
+		AActor* beltElement = ObjectPool->GetPooledActor(BeltElement);
 
 		if (beltElement) {
 			beltElement->SetActorLocation(SpawnPointComp->GetComponentLocation());

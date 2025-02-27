@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Items/IPickable.h"
+#include "Items/Pickable.h"
 #include "Items/Equippable.h"
 #include "Characters/ActorComponents/CharacterWeapon.h"
 #include "Environment/MixingMachine/MixingItemDetector.h"
@@ -13,7 +13,7 @@
 class UStaticMeshComponent;
 
 UCLASS()
-class CORNERED_API AIngredient : public AActor, public IIPickable
+class CORNERED_API AIngredient : public AActor, public IPickable
 {
 	GENERATED_BODY()
 

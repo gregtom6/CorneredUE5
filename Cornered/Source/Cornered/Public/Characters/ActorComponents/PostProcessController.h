@@ -17,6 +17,8 @@ class CORNERED_API UPostProcessController : public UActorComponent
 	GENERATED_BODY()
 
 private:
+
+	UPROPERTY()
 	TObjectPtr<UCameraComponent> Camera;
 
 	bool bPlayerDied = false;
@@ -34,12 +36,13 @@ private:
 public:	
 	// Sets default values for this component's properties
 	UPostProcessController();
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
 private:
 	UFUNCTION()
 	void OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot);

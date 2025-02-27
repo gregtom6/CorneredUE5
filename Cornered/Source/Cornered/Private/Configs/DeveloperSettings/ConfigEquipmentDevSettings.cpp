@@ -3,21 +3,21 @@
 
 #include "Configs/DeveloperSettings/ConfigEquipmentDevSettings.h"
 
-FItemDatas UConfigEquipmentDevSettings::GetWeapon() const {
+FItemData UConfigEquipmentDevSettings::GetWeapon() const {
     if (bShouldUseFixWeapon) {
         return GetFixWeapon();
     }
     return GetRandomWeapon();
 }
 
-FItemDatas UConfigEquipmentDevSettings::GetRandomWeapon() const {
+FItemData UConfigEquipmentDevSettings::GetRandomWeapon() const {
     int index = FMath::RandRange(0, Weapons.Num() - 1);
     return Weapons[index];
 }
 
-FItemDatas UConfigEquipmentDevSettings::GetFixWeapon() const {
+FItemData UConfigEquipmentDevSettings::GetFixWeapon() const {
     for (int i = 0; i < Weapons.Num(); i++) {
-        if (Weapons[i].Key == FixWeapon) {
+        if (Weapons[i].ItemType == FixWeapon) {
             return Weapons[i];
         }
     }
@@ -25,12 +25,12 @@ FItemDatas UConfigEquipmentDevSettings::GetFixWeapon() const {
     return GetRandomWeapon();
 }
 
-FItemDatas UConfigEquipmentDevSettings::GetRandomShield() const {
+FItemData UConfigEquipmentDevSettings::GetRandomShield() const {
     int index = FMath::RandRange(0, Shields.Num() - 1);
     return Shields[index];
 }
 
-FItemDatas UConfigEquipmentDevSettings::GetRandomAdditional() const {
+FItemData UConfigEquipmentDevSettings::GetRandomAdditional() const {
     int index = FMath::RandRange(0, Additionals.Num() - 1);
     return Additionals[index];
 }

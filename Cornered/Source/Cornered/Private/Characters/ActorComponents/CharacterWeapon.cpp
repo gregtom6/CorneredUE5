@@ -8,6 +8,8 @@
 #include "Items/EquippedWeapon.h"
 #include "Characters/ActorComponents/Inventory.h"
 #include "Characters/ActorComponents/CharacterHealth.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraSystem.h"
 
 UCharacterWeapon::UCharacterWeapon()
 {
@@ -58,12 +60,6 @@ void UCharacterWeapon::DamageTheOtherOneIfCan(FWeaponSettingsEntry weaponSetting
 	InflictDamage(weaponSettings, shotRayDatas);
 }
 
-FShotRayDatas UCharacterWeapon::GetShotRayDatas() const {
-	UEquipmentVisualizer* equipmentVisualizer = GetOwner()->FindComponentByClass<UEquipmentVisualizer>();
-
-	return equipmentVisualizer->GetShotRayDatas();
-}
-
 void UCharacterWeapon::ShootCooldownEnded() {
 	bIsReadyToShoot = true;
 }
@@ -81,7 +77,7 @@ void UCharacterWeapon::SetWeaponReadyToBeUsed() {
 }
 
 float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() const {
-	
+
 	bool bIsTimerActive = TimerManager->IsTimerActive(TimerHandle);
 
 	if (bIsTimerActive) {
@@ -92,9 +88,9 @@ float UCharacterWeapon::GetCooldownTimeLeftPercentageBetween01() const {
 
 		return FMath::Clamp(ElapsedTime / weaponSettings.CooldownTimeInSec, 0.f, 1.f);
 	}
-	
+
 	return 1.0f;
-	
+
 }
 
 bool UCharacterWeapon::IsReadyToShoot() const {
@@ -114,6 +110,15 @@ void UCharacterWeapon::InflictDamage(FWeaponSettingsEntry weaponSettings, FShotR
 		End,
 		GetOpponentTraceChannel()
 	);
+
+	FVector Normal = HitResult.Normal;
+	FRotator Rotator = Normal.Rotation();
+
+
+	if (HitResult.Component.IsValid() && HitResult.Component->GetCollisionObjectType() == ECollisionChannel::ECC_WorldStatic) {
+		UGameplayStatics::SpawnDecalAtLocation(GetWorld(), weaponSettings.GetRandomDecal(), weaponSettings.DecalSize, HitResult.ImpactPoint, Rotator, weaponSettings.DecalLifeSpan);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), weaponSettings.NiagaraDecal, HitResult.ImpactPoint, Rotator);
+	}
 
 	if (bHit) {
 

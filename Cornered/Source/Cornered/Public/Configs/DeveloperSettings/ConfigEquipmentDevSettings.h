@@ -20,30 +20,29 @@ public:
 	UPROPERTY(config, EditAnywhere)
 	TArray<TSoftObjectPtr<UWorld>> ActiveInTheseLevels;
 
-
 private:
 	UPROPERTY(config, EditAnywhere)
 	bool bShouldUseFixWeapon;
 
 	UPROPERTY(config, EditAnywhere)
 	EItemType FixWeapon;
-
 	UPROPERTY(config, EditAnywhere)
-	TArray<FItemDatas> Weapons;
+	TArray<FItemData> Weapons;
 	UPROPERTY(config, EditAnywhere)
-	TArray<FItemDatas> Shields;
+	TArray<FItemData> Shields;
 	UPROPERTY(config, EditAnywhere)
-	TArray<FItemDatas> Additionals;
+	TArray<FItemData> Additionals;
 
-	FItemDatas GetFixWeapon() const;
-
-	FItemDatas GetRandomWeapon() const;
 public:
 
-	FItemDatas GetWeapon() const;
+	FItemData GetWeapon() const;
 
-	FItemDatas GetRandomShield() const;
+	FItemData GetRandomShield() const;
 
-	FItemDatas GetRandomAdditional() const;
+	FItemData GetRandomAdditional() const;
+private:
+	FItemData GetFixWeapon() const;
+
+	FItemData GetRandomWeapon() const;
 
 };

@@ -31,10 +31,11 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> AmbientComp;
 
-private:
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UAudioComponent> StaticNoiseComp;
 
-	UFUNCTION()
-	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UAudioComponent> LightFlickerComp;
 
 public:
 	ACorneredHud();
@@ -44,4 +45,16 @@ protected:
 
 	UFUNCTION()
 	void OnTimerOverHappened();
+
+private:
+
+	UFUNCTION()
+	void OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter);
+
+	UFUNCTION()
+	void OnSoulEjected();
+
+	UFUNCTION()
+	void OnSoulDissipated();
+
 };

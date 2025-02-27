@@ -5,25 +5,10 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "Characters/ActorComponents/CharacterWeapon.h"
+#include "Items/ItemMaterial.h"
 #include "Config_Hint.generated.h"
 
 class UMaterialInterface;
-
-USTRUCT(BlueprintType)
-struct FItemHintMaterialEntry
-{
-	GENERATED_BODY()
-
-	FItemHintMaterialEntry()
-		: Key(EItemType::Count) { }
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	EItemType Key;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	TObjectPtr<UMaterialInterface> Material;
-
-};
 
 UCLASS()
 class CORNERED_API UConfig_Hint : public UDataAsset
@@ -32,7 +17,7 @@ class CORNERED_API UConfig_Hint : public UDataAsset
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Dictionary")
-	TArray<FItemHintMaterialEntry> ItemHintMaterialDict;
+	TArray<FItemMaterial> ItemHintMaterialDict;
 
 public:
 

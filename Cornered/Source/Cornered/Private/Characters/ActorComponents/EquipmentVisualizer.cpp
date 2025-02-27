@@ -11,6 +11,11 @@
 #include "Items/EquippedWeapon.h"
 #include "Characters/ActorComponents/CharacterWeapon.h"
 
+const FName UEquipmentVisualizer::RightArmSocketPistol(TEXT("RightArmSocketPistol"));
+const FName UEquipmentVisualizer::RightArmSocketShotgun(TEXT("RightArmSocketShotgun"));
+const FName UEquipmentVisualizer::BodySocket(TEXT("BodySocket"));
+const FName UEquipmentVisualizer::EmptyName(TEXT(""));
+
 UEquipmentVisualizer::UEquipmentVisualizer()
 {
 	PrimaryComponentTick.bCanEverTick = true;
@@ -44,9 +49,9 @@ void UEquipmentVisualizer::VisualizeEquipment(AProduct* Product) {
 	ActualVisualization(Product->GetItemType(), GetNameOfSocket(Product));
 }
 
-void UEquipmentVisualizer::VisualizeWeaponDatas(FItemDatas ItemDatas) {
+void UEquipmentVisualizer::VisualizeWeaponDatas(FItemData ItemDatas) {
 
-	ActualVisualization(ItemDatas.Key, GetNameOfSocketBasedOnItemType(ItemDatas.Key));
+	ActualVisualization(ItemDatas.ItemType, GetNameOfSocketBasedOnItemType(ItemDatas.ItemType));
 }
 
 void UEquipmentVisualizer::ActualVisualization(EItemType ItemType, FName SocketName) {
@@ -67,10 +72,10 @@ void UEquipmentVisualizer::ActualVisualization(EItemType ItemType, FName SocketN
 
 FName UEquipmentVisualizer::GetNameOfSocketBasedOnItemType(EItemType ItemType) const {
 	if (ItemType == EItemType::Pistol) {
-		return FName("RightArmSocketPistol");
+		return RightArmSocketPistol;
 	}
 	
-	return FName("RightArmSocketShotgun");
+	return RightArmSocketShotgun;
 }
 
 FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) const {
@@ -78,13 +83,13 @@ FName UEquipmentVisualizer::GetNameOfSocket(AProduct* Product) const {
 		return GetNameOfSocketBasedOnItemType(Product->GetItemType());
 	}
 	else if (Product->IsA(AShieldProduct::StaticClass())) {
-		return FName("BodySocket");
+		return BodySocket;
 	}
 	else if (Product->IsA(AAdditionalProduct::StaticClass())) {
-		return FName("");
+		return EmptyName;
 	}
 
-	return FName("");
+	return EmptyName;
 }
 
 void UEquipmentVisualizer::PlayEquippedWeaponVisuals() {

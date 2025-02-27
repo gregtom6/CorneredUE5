@@ -15,7 +15,7 @@ class UPaperSpriteComponent;
 class UCooldownIndicator;
 class UCharacterHealth;
 class UCharacterAnimInstance;
-class UInteractableDetector;
+class UDamageVisualizer;
 
 UCLASS()
 class CORNERED_API ACorneredCharacter : public ACharacter
@@ -36,6 +36,9 @@ protected:
 	TObjectPtr<UEquipmentVisualizer> EquipmentVisualizer;
 
 	UPROPERTY(EditAnywhere)
+	TObjectPtr<UDamageVisualizer> DamageVisualizer;
+
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UCameraComponent> CameraComp;
 
 	UPROPERTY(EditAnywhere)
@@ -53,10 +56,6 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCooldownIndicator> CooldownIndicatorManagementComp;
 
-private:
-
-	TObjectPtr<UInteractableDetector> InteractableDetectorComp;
-
 public:
 	// Sets default values for this character's properties
 	ACorneredCharacter();
@@ -65,7 +64,7 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
-	void SetDieState();
+	virtual void SetDieState();
 
 protected:
 	// Called when the game starts or when spawned
@@ -74,4 +73,6 @@ protected:
 	virtual IMovableCharacter* GetOwnedController() const PURE_VIRTUAL(ACorneredCharacter::GetOwnedController, return nullptr;);
 
 	virtual UCharacterAnimInstance* GetOwnedAnimInstance() const PURE_VIRTUAL(ACorneredCharacter::GetOwnedAnimInstance, return nullptr;);
+
+	virtual bool IsSeeingInteractable() const PURE_VIRTUAL(ACorneredCharacter::IsSeeingInteractable, return false;);
 };

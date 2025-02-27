@@ -7,6 +7,7 @@
 #include "CorneredGameInstance.generated.h"
 
 class UCorneredSaveGame;
+class AProgressionGameState;
 
 /**
  *
@@ -18,18 +19,28 @@ class CORNERED_API UCorneredGameInstance : public UGameInstance
 
 private:
 
+	static const FString DefaultSaveSlot;
+
 	UPROPERTY()
 	TObjectPtr<UCorneredSaveGame> CurrentSaveGame;
-public:
 
-	void SaveGame(int32 unlockLevel);
+public:
+	void SaveGame(int32 currentLevel, int32 unlockLevel, float openingProgress, int32 sniffedSoulCount, int32 sniffedSoulsGlobalCount, int32 sniffedOverloadGlobalCount);
+	void SaveOpeningProgress(float openingProgress);
+	void SaveUnlockLevel(int32 unlockLevel);
+	void SaveSniffedSoulCount(int32 sniffedSoulCount);
+	void SaveEndLevelStats(AProgressionGameState* GameState);
 
 	void LoadGame();
 
 	void ResetGame();
 
 	UFUNCTION(BlueprintPure)
+	int32 GetCurrentLevel() const;
+
+	UFUNCTION(BlueprintPure)
 	int32 GetCurrentUnlockLevel() const;
 
-
+	UFUNCTION(BlueprintPure)
+	float GetCurrentOpeningProgress() const;
 };

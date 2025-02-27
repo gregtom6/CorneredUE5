@@ -14,9 +14,8 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDefeatedDelegate, ACornere
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterShotReceivedDelegate, ACorneredCharacter*, Character);
 
-/**
- *
- */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSoulSniffedDelegate);
+
 UCLASS()
 class CORNERED_API AProgressionGameState : public AGameStateBase
 {
@@ -24,11 +23,16 @@ class CORNERED_API AProgressionGameState : public AGameStateBase
 
 public:
 	UPROPERTY()
-	int UnlockLevel;
+	int32 UnlockLevel;
+
+	UPROPERTY()
+	int32 SoulSniffedCount;
 
 	FCharacterDefeatedDelegate CharacterDefeated;
 
 	FCharacterShotReceivedDelegate CharacterShotReceived;
+
+	FSoulSniffedDelegate SoulSniffed;
 
 private:
 
@@ -36,14 +40,17 @@ private:
 	TObjectPtr<UConfig_Progress> ProgressConfig;
 
 public:
-	void ResetProgress();
-
-	void StepProgress();
 
 	void SaveProgress();
 
 	UFUNCTION(BlueprintPure)
 	bool IsAbilityAlreadyUnlocked(EAbility Ability);
+
+	UFUNCTION(BlueprintPure)
+	int32 GetCurrentSniffedSoulCount() const;
+
+	UFUNCTION(BlueprintPure)
+	int32 GetCurrentOverloadSoulCount() const;
 
 protected:
 
@@ -57,6 +64,12 @@ private:
 	void OnCharacterShotReceived(ACorneredCharacter* CharacterReceivedShot);
 	UFUNCTION()
 	void OnEnemyGenerated(AEnemyCharacter* EnemyCharacter);
+	UFUNCTION()
+	void OnSoulSniffed();
 
 	void SubscribeToCharacterDamageDelegates(ACorneredCharacter* Character);
+
+	void StepUnlockLevel();
+	void ResetProgress();
+	void ResetUnlockLevel();
 };

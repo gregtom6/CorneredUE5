@@ -16,7 +16,6 @@ class CORNERED_API UGameOverMenu : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
 	FUIPressHappenedDelegate UIPressHappened;
 
 private:

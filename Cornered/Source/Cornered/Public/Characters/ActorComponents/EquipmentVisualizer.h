@@ -16,6 +16,12 @@ class CORNERED_API UEquipmentVisualizer : public UActorComponent
 	GENERATED_BODY()
 
 private:
+
+	static const FName RightArmSocketPistol;
+	static const FName RightArmSocketShotgun;
+	static const FName BodySocket;
+	static const FName EmptyName;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_Equipment> ConfigEquipment;
 
@@ -31,8 +37,7 @@ public:
 
 	void VisualizeEquipment(AProduct* Product);
 
-	void VisualizeWeaponDatas(FItemDatas ItemDatas);
-
+	void VisualizeWeaponDatas(FItemData ItemDatas);
 
 	void PlayEquippedWeaponVisuals();
 

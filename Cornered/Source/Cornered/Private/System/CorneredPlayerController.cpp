@@ -8,6 +8,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
 #include "Configs/DataAssets/Config_Character_General.h"
+#include "System/CorneredCheats.h"
 
 void ACorneredPlayerController::OnPossess(APawn* aPawn) {
 	Super::OnPossess(aPawn);

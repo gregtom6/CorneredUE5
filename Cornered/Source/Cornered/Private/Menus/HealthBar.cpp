@@ -39,7 +39,6 @@ void UHealthBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 
 			PreviousHealthPercent = currentHealthPercent;
 		}
-
 	}
 }
 

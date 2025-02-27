@@ -53,7 +53,7 @@ protected:
 
 	void ManageVisual();
 
-	FShotRayDatas GetShotRayDatas() const;
+	virtual FShotRayDatas GetShotRayDatas() const PURE_VIRTUAL(UCharacterWeapon::GetShotRayDatas, return FShotRayDatas(););
 
 	UFUNCTION()
 	void ShootCooldownEnded();

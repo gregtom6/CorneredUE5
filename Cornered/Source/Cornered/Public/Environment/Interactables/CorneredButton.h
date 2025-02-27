@@ -8,6 +8,8 @@
 #include "CorneredButton.generated.h"
 
 class UAudioComponent;
+class UActorSequenceComponent;
+class UActorSequencePlayer;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FPressHappenedDelegate);
 
@@ -16,6 +18,14 @@ class CORNERED_API ACorneredButton : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 
+public:
+	FPressHappenedDelegate PressHappened;
+
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<UActorSequenceComponent> ButtonPushComp;
+	
 private:
 
 	UPROPERTY(EditAnywhere)
@@ -25,7 +35,5 @@ public:
 	ACorneredButton();
 
 	void Interact() override;
-
-	FPressHappenedDelegate PressHappened;
 
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Environment/Interactables/HoldActivable.h"
+#include "Environment/Lights/LightBlinkable.h"
 #include "ExitDoorController.generated.h"
 
 class UTextRenderComponent;
@@ -13,11 +14,12 @@ class UActorSequencePlayer;
 class UConfig_ExitDoor;
 class AHoldableButton;
 class AExitButtonMover;
+class URectLightComponent;
 /**
  *
  */
 UCLASS()
-class CORNERED_API AExitDoorController : public AHoldActivable
+class CORNERED_API AExitDoorController : public AHoldActivable, public ILightBlinkable
 {
 	GENERATED_BODY()
 
@@ -42,12 +44,17 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UConfig_ExitDoor> ExitDoorConfig;
 
-
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<AHoldableButton> HoldableButton;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<AExitButtonMover> ExitButtonParent;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStaticMeshComponent> LightMeshComp;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<URectLightComponent> RectLightComp;
 
 	bool bOpeningInProgress;
 
@@ -65,6 +72,9 @@ public:
 
 	virtual void HoldProcessEnded() override;
 
+	TArray<ULightComponent*> GetLightComponents() override;
+
+	TArray<UMaterialInstanceDynamic*> GetLightMaterials() override;
 protected:
 
 	virtual void BeginPlay() override;

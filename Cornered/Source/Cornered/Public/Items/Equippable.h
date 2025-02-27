@@ -8,6 +8,8 @@
 
 class UEquipmentVisualizer;
 class UInventory;
+class UCameraComponent;
+class UConfig_Equipment;
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
@@ -22,5 +24,5 @@ class CORNERED_API IEquippable
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) = 0;
+	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory, UCameraComponent* camera, UConfig_Equipment* EquipmentConfig) = 0;
 };

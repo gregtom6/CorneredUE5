@@ -56,21 +56,59 @@ void AEnemyController::FollowPlayer() {
 
 	NavSystem->ProjectPointToNavigation(PlayerPawn->GetActorLocation(), ClosestNavmeshPoint, extent);
 
-	MoveToLocation(ClosestNavmeshPoint);
+	FAIRequestID RequestID = MoveToLocation(ClosestNavmeshPoint, 200.f, false);
+
+	if (RequestID.IsValid())
+	{
+		UE_LOG(LogTemp, Log, TEXT("MoveToLocation request was successful!"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("MoveToLocation request failed!"));
+	}
 }
 
 void AEnemyController::HideFromPlayer() {
 
-	UHideSpotFinder* hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
+	if (!hideSpotFinder) {
 
-	TOptional<FVector> closestHidingSpot = hideSpotFinder->GetClosestHidingSpot();
+		hideSpotFinder = GetPawn()->FindComponentByClass<UHideSpotFinder>();
 
-	if (closestHidingSpot.IsSet()) {
-		MoveToLocation(closestHidingSpot.GetValue());
-		DrawDebugSphere(GetWorld(), closestHidingSpot.GetValue(), AIConfig->HideSpotDebugSphereRadius, AIConfig->HideSpotDebugSphereSegments, FColor::Red, false, -1.f, 0, AIConfig->HideSpotDebugSphereThickness);
+		hideSpotFinder->HideSpotSearchingEnded.AddUniqueDynamic(this, &AEnemyController::HideSpotSearchingEnded);
+	}
+
+	hideSpotFinder->GetClosestHidingSpotAsync();
+}
+
+void AEnemyController::HideSpotSearchingEnded(FVector closestHidingSpot, bool isValid) {
+
+	if (isValid) {
+		MoveToLocation(closestHidingSpot, 200.f, false);
 	}
 }
 
 EMovementState AEnemyController::GetMovementState() const {
 	return MovementState;
+}
+
+void AEnemyController::OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result)
+{
+	Super::OnMoveCompleted(RequestID, Result);
+
+	if (Result.Code == EPathFollowingResult::Success)
+	{
+		UE_LOG(LogTemp, Log, TEXT("Agent successfully reached the destination."));
+	}
+	else if (Result.Code == EPathFollowingResult::Blocked)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Agent's path is blocked."));
+	}
+	else if (Result.Code == EPathFollowingResult::Invalid)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Agent could not find a valid path to the destination."));
+	}
+	else if (Result.Code == EPathFollowingResult::OffPath)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Agent went off path."));
+	}
 }

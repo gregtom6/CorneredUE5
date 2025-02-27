@@ -21,7 +21,7 @@ struct FIngredientEntry
 	EItemType Key;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
-	int WeightForAppear;
+	int32 WeightForAppear;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dictionary Entry")
 	TSubclassOf<AIngredient> IngredientClass;

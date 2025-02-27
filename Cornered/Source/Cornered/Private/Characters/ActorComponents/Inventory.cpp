@@ -36,16 +36,16 @@ void UInventory::EquipItem(AProduct* Product) {
 	}
 }
 
-void UInventory::EquipWeapon(FItemDatas itemDatas) {
-	Weapon = itemDatas.Key;
+void UInventory::EquipWeapon(FItemData itemDatas) {
+	Weapon = itemDatas.ItemType;
 }
 
-void UInventory::EquipShield(FItemDatas itemDatas) {
-	Shield = itemDatas.Key;
+void UInventory::EquipShield(FItemData itemDatas) {
+	Shield = itemDatas.ItemType;
 }
 
-void UInventory::EquipAdditional(FItemDatas itemDatas) {
-	Additional = itemDatas.Key;
+void UInventory::EquipAdditional(FItemData itemDatas) {
+	Additional = itemDatas.ItemType;
 }
 
 EItemType UInventory::GetWeapon() const {

@@ -3,12 +3,15 @@
 
 #include "Environment/Others/SafetyDestroyer.h"
 
-ASafetyDestroyer::ASafetyDestroyer()
-{
-    // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-    PrimaryActorTick.bCanEverTick = false;
+ASafetyDestroyer::ASafetyDestroyer() {
 
-    // Set up the overlap event
+    PrimaryActorTick.bCanEverTick = false;
+}
+
+void ASafetyDestroyer::BeginPlay()
+{
+    Super::BeginPlay();
+
     OnActorBeginOverlap.AddUniqueDynamic(this, &ASafetyDestroyer::OnOverlapBegin);
 }
 

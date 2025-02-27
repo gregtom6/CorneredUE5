@@ -8,6 +8,8 @@
 
 class UEquipmentVisualizer;
 class UInventory;
+class UCameraComponent;
+class UConfig_Equipment;
 /**
  *
  */
@@ -18,5 +20,5 @@ class CORNERED_API AShieldProduct : public AProduct
 
 protected:
 
-	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory) override;
+	virtual void Equip(UEquipmentVisualizer* equipmentVisualizer, UInventory* inventory, UCameraComponent* camera, UConfig_Equipment* config) override;
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Environment/Interactables/CorneredButton.h"
+#include "Configs/DataAssets/Config_Others.h"
 #include "TimeZeroerButton.generated.h"
 
 class UStaticMeshComponent;
@@ -21,9 +22,28 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USceneComponent> Root;
 
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Others> OthersConfig;
+
+	ETimerButtonState SelfState;
+
 public:
 	ATimeZeroerButton();
 
 	void Interact() override;
+
+protected:
+
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void OnTimerOverHappened();
+
+	UFUNCTION()
+	void OnNewMatchStarted();
+
+private:
+
+	void ManageButton(ETimerButtonState State);
 
 };

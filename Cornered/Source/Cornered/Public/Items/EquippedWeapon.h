@@ -12,6 +12,7 @@ class UActorSequenceComponent;
 class UActorSequencePlayer;
 class UNiagaraComponent;
 class UAudioComponent;
+class UConfig_Equipment;
 
 USTRUCT(BlueprintType)
 struct FShotRayDatas
@@ -35,6 +36,11 @@ class CORNERED_API AEquippedWeapon : public AActor
 {
 	GENERATED_BODY()
 
+private:
+
+	static const FName BeamStart;
+	static const FName BeamEnd;
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
@@ -49,13 +55,25 @@ private:
 	TObjectPtr<USceneComponent> MuzzlePosition;
 
 	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> ShootRaycastStartPosition;
+
+	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UNiagaraComponent> NiagaraComp;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> SmokeComp;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UNiagaraComponent> MuzzleFlashComp;
 
 	UPROPERTY()
 	TObjectPtr<AActor> EquipperActor;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAudioComponent> ShotAudio;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UConfig_Equipment> EquipmentConfig;
 
 public:
 	AEquippedWeapon();

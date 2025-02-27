@@ -99,6 +99,14 @@ UCharacterAnimInstance* APlayerCharacter::GetOwnedAnimInstance() const {
 	return animInst;
 }
 
+bool APlayerCharacter::IsSeeingInteractable() const {
+	if (InteractableDetectorComp) {
+		return InteractableDetectorComp->ItWasValidHit();
+	}
+
+	return false;
+}
+
 void APlayerCharacter::OnCharacterDefeated(ACorneredCharacter* DefeatedCharacter) {
 
 	if (DefeatedCharacter->IsA<AEnemyCharacter>()) {

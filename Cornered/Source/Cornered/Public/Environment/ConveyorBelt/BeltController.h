@@ -18,6 +18,9 @@ class CORNERED_API ABeltController : public AActor
 	GENERATED_BODY()
 
 private:
+
+	static const FString BeltElement;
+
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<ACorneredButton> CorneredButton;
 	UPROPERTY(VisibleAnywhere)
@@ -34,7 +37,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<ACorneredObjectPool> ObjectPool;
 
-	TArray<AActor*> CurrentlyVisibleBeltElements;
+	UPROPERTY()
+	TArray<TObjectPtr<AActor>> CurrentlyVisibleBeltElements;
 
 public:
 	ABeltController();

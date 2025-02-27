@@ -11,6 +11,7 @@
 #include "Characters/ActorComponents/CharacterHealth.h"
 #include "Characters/Systems/CharacterAnimInstance.h"
 #include "Characters/ActorComponents/InteractableDetector.h"
+#include "Characters/ActorComponents/DamageVisualizer.h"
 
 // Sets default values
 ACorneredCharacter::ACorneredCharacter()
@@ -25,6 +26,7 @@ ACorneredCharacter::ACorneredCharacter()
 	InventoryComp = CreateDefaultSubobject<UInventory>(TEXT("InventoryComp"));
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CooldownIndicatorManagementComp = CreateDefaultSubobject<UCooldownIndicator>(TEXT("CooldownIndicatorManagementComp"));
+	DamageVisualizer = CreateDefaultSubobject<UDamageVisualizer>(TEXT("DamageVisualizer"));
 
 	CameraComp->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform);
 	CooldownIndicatorParentComp->SetupAttachment(GetMesh(), FName("RightArmSocketCooldown"));
@@ -38,8 +40,6 @@ void ACorneredCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	CooldownIndicatorManagementComp->SetComponents(CooldownIndicatorComp, CharacterWeaponComp);
-
-	InteractableDetectorComp = FindComponentByClass<UInteractableDetector>();
 }
 
 // Called every frame
@@ -51,17 +51,24 @@ void ACorneredCharacter::Tick(float DeltaTime)
 	UCharacterAnimInstance* thisAnimInstance = GetOwnedAnimInstance();
 
 	if (thisAnimInstance) {
-		if (thisController && thisAnimInstance->LegState != (int)thisController->GetMovementState()) {
-			thisAnimInstance->LegState = (int)thisController->GetMovementState();
+		if (thisController && CharacterHealth) {
+			if (!CharacterHealth->IsDead()) {
+				if (thisAnimInstance->LegState != (int)thisController->GetMovementState()) {
+					thisAnimInstance->LegState = (int)thisController->GetMovementState();
+				}
+
+				if (thisAnimInstance->IsRepairing != CharacterHealth->GetHealthPercentage() < 1.f) {
+					thisAnimInstance->IsRepairing = CharacterHealth->GetHealthPercentage() < 1.f;
+				}
+			}
+			else {
+				thisAnimInstance->LegState = (int)EMovementState::Standing;
+				thisAnimInstance->IsRepairing = false;
+			}
 		}
 
-		bool IsSeeingInteractable = false;
-		if (InteractableDetectorComp) {
-			IsSeeingInteractable = InteractableDetectorComp->ItWasValidHit();
-		}
-
-		if (CharacterWeaponComp && thisAnimInstance->UseWeapon != (CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable)) {
-			thisAnimInstance->UseWeapon = CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable;
+		if (CharacterWeaponComp && thisAnimInstance->UseWeapon != (CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable())) {
+			thisAnimInstance->UseWeapon = CharacterWeaponComp->IsThereEquippedWeapon() && !IsSeeingInteractable();
 		}
 	}
 }
